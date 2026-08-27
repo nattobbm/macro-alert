@@ -1,0 +1,291 @@
+# 宏观监控规则表 v2.0 | 2026-08-26
+# 每条规则 = 一条已写死的推理链的可观测触发点
+# severity: info=记录 / watch=留意 / alert=推送TG / critical=推送并置顶
+# requires: 依赖的 DataPoint key，任一 stale/缺失 → 规则 skipped（不算未触发）
+# 阈值修改必须注明理由与日期，禁止事后无痕调参
+
+meta:
+  version: "2.0"
+  created: "2026-08-26"
+  note: "继承v1全部规则并补 requires；表达式引擎换 simpleeval；新增 T2_tic/T6_rg/F4/P1/H1/H2"
+  vars: >
+    衍生变量（monitor.py构造）：long_btc/long_tail_bp/long_indirect_pct = 最近一场20Y或30Y拍卖；
+    indirect_falling_3 = 长债indirect连续3场下滑；vix_prev_max = 近60日VIX最高；
+    tic_*_chg = TIC环比(bn)；cot_gold_pctile = 52周分位；tail用手动值，缺失回落合成值
+
+treasury:
+  - id: T1_auction_long
+    name: "长债拍卖需求恶化（20Y/30Y）"
+    requires: [auctions]
+    rule: "long_btc < 2.2 or (long_tail_bp is not None and long_tail_bp > 2.0)"
+    consecutive: 2
+    severity: critical
+    chain: "压力链第1环。买方罢工前哨→长端失序→政策方被迫用FIMA/SRF/停QT"
+    falsify: "认购>2.4且tail<1bp持续三场=需求正常，本链暂不激活"
+
+  - id: T2_auction_indirect
+    name: "海外间接投标连续走软"
+    requires: [auctions]
+    rule: "indirect_falling_3 and long_indirect_pct < 60"
+    severity: alert
+    chain: "海外官方需求退潮→发行成本上升→财政部进一步短期化"
+    falsify: "任一场indirect回升至65%以上"
+
+  - id: T2b_tic_decline
+    name: "三大海外持有人同时减持"
+    requires: [tic_japan, tic_uk, tic_china]
+    rule: "tic_japan_chg < 0 and tic_uk_chg < 0 and tic_china_chg < 0"
+    severity: alert
+    once_per: 30d
+    chain: "官方买方退潮→发行成本上升→term premium上行。与央行购金构成同一笔钱的两端"
+    baseline: "2026-06: JP -26.4bn, UK -8.7bn, CN -25.9bn（三方同减，本规则当前应触发）"
+
+  - id: T3_fima_used
+    name: "FIMA回购便利被实际动用"
+    requires: [fima_weekly_usd]
+    rule: "fima_weekly_usd > 0"
+    severity: critical
+    chain: "零成本信号→真金白银切换确认。外国央行以美债抵押换美元而非抛售"
+    falsify: "连续零使用=仍处信号威慑阶段"
+    baseline: "截至2026-08-05连续8周为零"
+
+  - id: T3b_srf_used
+    name: "SRF常备回购被动用"
+    requires: [repo_ops]
+    rule: "repo_ops > 1"
+    severity: alert
+    chain: "货币市场融资压力实锤（>10亿美元）。RRP已枯竭至~10亿，任何抽水直接打准备金"
+
+  - id: T4_move
+    name: "债市波动率突破"
+    requires: [move]
+    rule: "move > 140"
+    severity: alert
+    chain: "压力链第2环。basis trade（约8300亿）强制平仓风险上升"
+
+  - id: T5_30y_yield
+    name: "30年期收益率失序区"
+    requires: [us30y]
+    rule: "us30y > 5.5"
+    severity: critical
+    chain: "压力链第6环。触发SLR豁免/财政部回购加码/Fed重启购债的政策阈值"
+    baseline: "2026-08-18高点5.33%（19年新高）；8-24回落至5.19%"
+
+  - id: T5b_30y_retest
+    name: "30年重上8-18前高（财政压制失败）"
+    requires: [us30y]
+    rule: "us30y > 5.33"
+    severity: alert
+    once_per: 14d
+    chain: "8-19财政部回购翻倍压长端。重上5.33=A类操作失效判定，期限溢价环恶化"
+    falsify: "us30y持续<5.10=压制成功"
+
+  - id: T6_rg_gap
+    name: "r 逼近 g（债务动力学翻转前哨）"
+    requires: [avg_rate]
+    rule: "avg_rate > 4.0"
+    severity: critical
+    chain: "债务/GDP变化=(r−g)×债务/GDP−基础盈余。r>g时原地不动也需盈余"
+    falsify: "avg_rate连续两季回落至3.0%以下"
+    baseline: "2026-02: 3.355% → 2026-07: 3.443%（上行中）vs 名义GDP增速约4-5%"
+
+  - id: T7_sofr_iorb
+    name: "SOFR持续高于IORB（准备金稀缺信号）"
+    requires: [sofr, iorb]
+    rule: "sofr - iorb > 0.03"
+    consecutive: 3
+    severity: alert
+    chain: "8-25报告排序#4观测点。RRP枯竭后准备金稀缺最早公开信号"
+    baseline: "2026-08-25: SOFR 3.66 vs IORB 3.65（+1bp，未触发）"
+
+fed:
+  - id: F1_hike_odds_up
+    name: "9月加息概率回升"
+    requires: [fedwatch_sep_hike]
+    rule: "fedwatch_sep_hike > 0.65"
+    severity: alert
+    chain: "判别点1。艾丽框架（服务压利息）vs 官僚信誉框架（Warsh为信誉加息）的正面冲突点"
+    falsify: "若实际加息=艾丽单因子框架重伤；若维持=官僚框架减分"
+
+  - id: F2_hike_odds_down
+    name: "9月加息概率大幅回落"
+    requires: [fedwatch_sep_hike]
+    rule: "fedwatch_sep_hike < 0.25"
+    severity: watch
+    chain: "8-25报告下修阈值0.35→0.25（8-20读数已31.6%，旧阈值失去判别力）。宽松预期回归→实际利率下行→黄金支撑"
+
+  - id: F3_real_yield
+    name: "10年期实际利率突破"
+    requires: [tips10y]
+    rule: "tips10y > 2.6 or tips10y < 2.0"
+    severity: watch
+    chain: "黄金核心定价锚。实际利率升→持金机会成本升→金价承压（反之亦然）"
+    baseline: "2026-08-25: 2.32%"
+
+  - id: F4_repression_signal
+    name: "金融抑制路径启动特征"
+    requires: [breakeven10, us30y, fedwatch_sep_hike]
+    rule: "breakeven10 > 2.8 and us30y > 5.2 and fedwatch_sep_hike < 0.4"
+    severity: critical
+    chain: "通胀预期上行+长端上行+市场不预期加息=央行不会来管的溢价。C路径确认→黄金结构性买点"
+    note: "预测单 2026-08-28_jacksonhole_warsh 的 linked_rule"
+
+geopolitics:
+  - id: G1_oil_band_break
+    name: "油价跨出80-90美元区间"
+    requires: [brent]
+    rule: "brent < 80 or brent > 90"
+    severity: watch
+    once_per: 7d
+    chain: "艾丽区间控制假说加样点（样本<8只加样不下结论）。>90→美方倾向缓和；<80→行动更大胆"
+
+  - id: G2_oil_spike
+    name: "油价急升（供给冲击）"
+    requires: [brent]
+    rule: "brent_1d_pct > 5 or brent > 100"
+    severity: alert
+    chain: "霍尔木兹通行受阻→通胀预期↑→加息预期↑→压制金价（但避险对冲）；SPX承压"
+
+  - id: G3_hormuz
+    name: "霍尔木兹协议状态变更"
+    requires: []
+    rule: "manual"
+    severity: alert
+    chain: "协议落地→油价↓→通胀↓→加息预期↓→金价支撑；破裂→反向"
+
+jpy:
+  - id: J1_intervention_zone
+    name: "USDJPY进入干预临界区"
+    requires: [usdjpy]
+    rule: "usdjpy > 163"
+    severity: alert
+    chain: "2026-07-31联合干预触发位约163-164。再度干预→carry unwind→全球去杠杆"
+    baseline: "2026-08-25: 159.29（月内日元走强2.7%）"
+
+  - id: J1b_carry_unwind
+    name: "日元急升（套息平仓信号）"
+    requires: [usdjpy]
+    rule: "usdjpy < 157"
+    severity: alert
+    chain: "8-25报告：MS估约5000亿美元套息未平。急跌<157=平仓启动→美债承压+风险资产回调"
+
+  - id: J2_boj_hike_window
+    name: "BOJ加息（9月窗口 9/17-18）"
+    requires: []
+    rule: "manual"
+    severity: critical
+    chain: "利差收窄→日元↑→日本投资者美债回流减少→长端承压。日本FY27偿债成本36.64万亿日元(+17%)双向牵制"
+    falsify: "BOJ加息后TIC显示日本连续两月增持美债=外溢链证伪"
+
+gold:
+  - id: X1_gold_breakout
+    name: "黄金突破关键位"
+    requires: [gold]
+    rule: "gold > 4700 or gold < 4450"
+    severity: alert
+    once_per: 7d
+    chain: "8-25报告基线区间4450-4700。上破=上行情景确认；下破=需求侧紧缩链回归"
+    note: "阈值由v1的4400/4000更新（2026-08-26，依据8-25报告情景区间）"
+
+  - id: X2_metals_divergence
+    name: "贵金属板块背离"
+    requires: [gold, silver]
+    rule: "gold_1d_pct > 1 and silver_1d_pct < 0"
+    severity: watch
+    chain: "板块共振判断的证伪条件。若仅黄金涨→'共同宏观因子驱动'证伪，需找黄金独有催化"
+
+  - id: X3_dxy_gold_corr_break
+    name: "美元-黄金负相关破裂"
+    requires: [dxy, gold]
+    rule: "dxy_1d_pct > 0.5 and gold_1d_pct > 1.0"
+    severity: watch
+    chain: "同涨=系统性避险或央行购金主导，定价框架需从利率主导切换"
+
+positioning:
+  - id: P1_cot_extreme
+    name: "COT黄金净多极端"
+    requires: [cot_gold]
+    rule: "cot_gold_pctile > 90 or cot_gold_pctile < 10"
+    severity: watch
+    once_per: 7d
+    chain: "拥挤度指标。极端位置反向风险上升（方向对也可能先踩踏）"
+    baseline: "2026-08-18: 净多222,189张，52周分位75%"
+
+spx:
+  - id: S1_vix_regime
+    name: "VIX进入应激区"
+    requires: [vix]
+    rule: "vix > 30"
+    severity: alert
+    chain: "历史统计30-40区间中期正收益概率偏高（样本小不显著）；>50即时后续常混乱"
+
+  - id: S2_vix_term_flip
+    name: "VIX期限结构转backwardation"
+    requires: [vix, vix3m]
+    rule: "vix - vix3m > 0"
+    severity: alert
+    chain: "近月>远月=应激状态。0DTE流动性收缩、gap风险上升、期权成本骤升"
+
+  - id: S3_vix_collapse
+    name: "VIX由高位回落至30"
+    requires: [vix]
+    rule: "vix_prev_max > 50 and vix < 30"
+    severity: watch
+    chain: "历史样本极小(1988/2002/2009/2020)中期反转信号，首周中位仍约-0.7%"
+
+  - id: S4_spx_drawdown
+    name: "SPX单日大幅下跌"
+    requires: [spx]
+    rule: "spx_1d_pct < -2.0"
+    severity: alert
+    chain: "事件驱动。检查是否伴随A类政策行动（真实资金流）还是C类口头噪音——后者历史均值回归"
+
+data_health:
+  - id: H1_stale
+    name: "数据源陈旧"
+    requires: []
+    rule: "any_stale"
+    severity: alert
+    chain: "任一tier-1源超过max_staleness_days或落后官方日程。二手聚合站教训的制度化防线"
+
+  - id: H2_sofr_conflict
+    name: "交叉源冲突（SOFR）"
+    requires: [sofr, sofr_nyfed]
+    rule: "abs(sofr - sofr_nyfed) > 0.02"
+    severity: alert
+    chain: "同一指标两源不一致→并列告警，不静默择一"
+
+calendar:
+  - date: "2026-08-26"
+    event: "7月PCE + 英伟达财报（盘后）"
+    watch: "核心PCE环比≤0.2%→金↑；≥0.4%→加息预期回升。NVDA=AI资本开支持续性风向标"
+  - date: "2026-08-28"
+    event: "★★Jackson Hole Warsh主题演讲（上午）"
+    watch: "单点最高杠杆。官僚信誉框架（鹰）vs 金融抑制框架（淡化加息）。预测单结算依据"
+  - date: "2026-08-31"
+    event: "Jackson Hole预测单结算日"
+    watch: "CME FedWatch演讲后首日收盘 vs 前一日收盘"
+  - date: "2026-09-04"
+    event: "8月非农"
+    watch: "<5万或失业率>4.5%→FOMC预测单F2触发"
+  - date: "2026-09-09"
+    event: "★财政部长端回购生效（至11/4）"
+    watch: "实际中标量是否≥40亿=A类确认；两周无放量→叙事降权"
+  - date: "2026-09-16"
+    event: "★★FOMC（9/16-17，决议9/17）"
+    watch: "全库最高信息量判别点。加息vs维持直接判别两框架。无点阵图"
+  - date: "2026-09-17"
+    event: "★BOJ会议（9/17-18）"
+    watch: "加息→套息平仓通道（尾部）；USDJPY 159-160关口"
+  - date: "2026-09-30"
+    event: "FY2026拨款截止"
+    watch: "两院CR日期差（12/4 vs 12/11）待协调；停摆→数据发布延迟"
+  - date: "2026-10-16"
+    event: "TIC发布（8月数据）"
+    watch: "三大持有人是否连续减持（T2b加样）"
+  - date: "2026-11-03"
+    event: "★★美国中期选举"
+    watch: "所有决策方利益函数的兑现截止点；模型有效期至此"
+  - date: "2026-11-04"
+    event: "下次QRA"
+    watch: "发债结构是否进一步短期化；回购计划是否延长"

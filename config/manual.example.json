@@ -1,0 +1,7 @@
+{
+  "_说明": "复制本文件为 data/manual.json 后填写。value+as_of 必填，note 写来源。commit 时间戳即录入时间证明。",
+  "fedwatch_sep_hike": {"value": 0.32, "as_of": "2026-08-26", "note": "CME FedWatch网页读数；若用Atlanta Fed口径需注明（三个月平均利率分布，非单次会议概率）"},
+  "fima_weekly_usd": {"value": 0, "as_of": "2026-08-20", "note": "Fed H.4.1周报，每周四"},
+  "war_risk_premium": {"value": null, "as_of": null, "note": "霍尔木兹航运战争险费率，人工跟踪"},
+  "auction_tail_bp": {"value": null, "as_of": null, "note": "最近一场20Y/30Y拍卖tail，LiveSquawk/FirstSquawk类源"}
+}

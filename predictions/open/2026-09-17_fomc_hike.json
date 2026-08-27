@@ -1,0 +1,54 @@
+{
+  "id": "2026-09-17_fomc_hike",
+  "created_at": "2026-08-20T00:00:00Z",
+  "created_by": "Momo",
+  "status": "OPEN",
+
+  "question": "9月FOMC是否加息25bp（至3.75%-4.00%）？",
+  "resolution": "YES = 会后声明宣布上调联邦基金目标区间25bp；NO = 维持或其他",
+
+  "probability": null,
+  "_probability_note": "由Momo填写。可与市场隐含概率对照，但不得直接抄——抄市场价则本预测无信息量、不计入校准样本。",
+
+  "settle_date": "2026-09-17",
+  "_date_conflict": "会议日期存在两个口径：9月15-16日 vs 9月16-17日。锁定前须以 federalreserve.gov 官方日历核实。",
+  "settle_source_primary": "federalreserve.gov FOMC statement",
+
+  "ex_ante_facts": {
+    "_rule": "以下为2026-08-20前可核实的事实。结算时不得增补。",
+    "current_rate": "3.50%-3.75%（IORB 3.65%）",
+    "july_vote": "9-3维持，三位地区联储主席主张加息25bp。为2016年9月以来首次有三位政策制定者同方向异议",
+    "market_implied": "存在冲突读数：约55%（8月上旬）vs 约33%（8月17日前后）。见 data_conflict",
+    "inflation_path": "6月CPI 3.5%（核心2.6%）；7月CPI 3.4%（核心2.5%）；7月PPI环比持平、同比4.7%（前值5.5%）",
+    "demand_signal": "7月零售销售环比-0.6%（预期为正）；8月密歇根信心初值51.0",
+    "inflation_expectations": "密歇根一年期通胀预期连续第5个月高于4%",
+    "fiscal_constraint": "公共债务破40万亿；FY26前10月净利息9630亿美元（年化约1.156万亿，高于CBO年初预测的1.039万亿）；利息约占财政支出15%",
+    "treasury_action": "8月19日财政部长端回购规模翻倍，9月9日生效",
+    "external_forecast": "美银CEO Moynihan于8月7日预测2026年加息三次（外部观点，非事实，仅记录）",
+    "remaining_data": ["8月26日 7月PCE", "9月上旬 8月CPI/PPI/非农"]
+  },
+
+  "reasoning_ex_ante": "【由Momo填写。要求：只用8月20日前信息。】",
+
+  "falsifiers": {
+    "F1": "8月26日核心PCE >3.3% → 上调概率",
+    "F2": "8月非农大幅走弱（<5万或失业率>4.5%）→ 下调概率",
+    "F3": "霍尔木兹再度封锁、油价重回90+ → 通胀路径重估，方向不确定（滞胀两难）",
+    "F4": "会议因故推迟或非常规决议 → VOID"
+  },
+
+  "linkage": {
+    "upstream": "2026-08-28_jacksonhole_warsh",
+    "note": "两级结算设计：Jackson Hole（1周）先给快速反馈，9月FOMC（4周）给最终判定。若上游预测对而本预测错，说明'读懂了讲话但误判了行动'——这是有信息量的失败模式，须在结算记录中注明。"
+  },
+
+  "outcome": null,
+  "settled_at": null,
+  "settlement_note": null,
+
+  "discipline": {
+    "no_edit_after_lock": true,
+    "outcome_vs_quality": "分两栏记录",
+    "sample_threshold": "累计 < 50 只记录不解读"
+  }
+}

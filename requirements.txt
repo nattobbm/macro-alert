@@ -1,0 +1,5 @@
+requests>=2.31
+pandas>=2.2
+PyYAML>=6.0
+yfinance>=0.2.40
+simpleeval>=0.9.13

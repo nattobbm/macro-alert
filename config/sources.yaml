@@ -1,0 +1,54 @@
+# 数据源注册表 v2 | 2026-08-26
+# tier: 1=一手官方 2=官方镜像 3=手动
+# 差异登记：TIC实际用 slt_table5.txt（规格书写的mfhhis01.txt是历史文件，见 fetchers/tic.py 头注）
+
+sources:
+  # ---- FRED (需 FRED_API_KEY) ----
+  tips10y:    {tier: 1, provider: fred, series: DFII10,     unit: "%",  max_staleness_days: 5,
+               desc: "10年期TIPS实际利率，黄金核心定价锚"}
+  us10y:      {tier: 1, provider: fred, series: DGS10,      unit: "%",  max_staleness_days: 5}
+  us30y:      {tier: 1, provider: fred, series: DGS30,      unit: "%",  max_staleness_days: 5}
+  us20y:      {tier: 1, provider: fred, series: DGS20,      unit: "%",  max_staleness_days: 5}
+  curve_10y2y: {tier: 1, provider: fred, series: T10Y2Y,    unit: "%",  max_staleness_days: 5}
+  breakeven10: {tier: 1, provider: fred, series: T10YIE,    unit: "%",  max_staleness_days: 5}
+  sofr:       {tier: 1, provider: fred, series: SOFR,       unit: "%",  max_staleness_days: 5}
+  iorb:       {tier: 1, provider: fred, series: IORB,       unit: "%",  max_staleness_days: 10}
+  rrp:        {tier: 1, provider: fred, series: RRPONTSYD,  unit: "bn", max_staleness_days: 5}
+  fed_assets: {tier: 1, provider: fred, series: WALCL,      unit: "mn", max_staleness_days: 10}
+  tga:        {tier: 1, provider: fred, series: WTREGEN,    unit: "mn", max_staleness_days: 10}
+  m2:         {tier: 1, provider: fred, series: M2SL,       unit: "bn", max_staleness_days: 75}
+
+  # ---- Treasury Fiscal Data (无需key) ----
+  debt_total: {tier: 1, provider: fiscaldata, unit: usd, max_staleness_days: 4}
+  tga_daily:  {tier: 1, provider: fiscaldata, unit: mn,  max_staleness_days: 6}
+  avg_rate:   {tier: 1, provider: fiscaldata, unit: "%", max_staleness_days: 45,
+               desc: "平均发行利率(Total Marketable)，r vs g 判据的 r"}
+
+  # ---- TIC (无需key) ----
+  tic_mfh:    {tier: 1, provider: tic, max_staleness_days: 75,
+               desc: "月度、滞后约6周。三国各出一个 DataPoint: tic_japan/tic_uk/tic_china"}
+
+  # ---- TreasuryDirect 拍卖 (无需key) ----
+  auctions:   {tier: 1, provider: treasurydirect, max_staleness_days: 30}
+
+  # ---- CFTC COT (无需key) ----
+  cot_gold:   {tier: 1, provider: cftc, code: "088691", max_staleness_days: 10}
+  cot_silver: {tier: 1, provider: cftc, code: "084691", max_staleness_days: 10}
+  cot_jpy:    {tier: 1, provider: cftc, code: "097741", max_staleness_days: 10}
+
+  # ---- NY Fed (无需key) ----
+  repo_ops:   {tier: 1, provider: nyfed, max_staleness_days: 5,
+               desc: "SRF常备回购用量；sofr_nyfed 同模块，做交叉源"}
+
+  # ---- EIA (需 EIA_API_KEY，未提供前标stale不阻塞) ----
+  crude_stocks: {tier: 1, provider: eia, max_staleness_days: 10}
+
+  # ---- 行情 yfinance (tier 2) ----
+  market:     {tier: 2, provider: yfinance, max_staleness_days: 4}
+
+  # ---- 手动录入 data/manual.json ----
+  fedwatch_sep_hike: {tier: 3, provider: manual, max_staleness_days: 10,
+                      desc: "CME FedWatch网页人工读数。替代口径Atlanta Fed需并列标注"}
+  fima_weekly_usd:   {tier: 3, provider: manual, max_staleness_days: 10}
+  war_risk_premium:  {tier: 3, provider: manual, max_staleness_days: 14}
+  auction_tail_bp:   {tier: 3, provider: manual, max_staleness_days: 30}
