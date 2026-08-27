@@ -350,11 +350,96 @@ function renderNews(items) {
   }).join("") || "<div class='dim'>暂无</div>";
 }
 
+/* ---------- 页面路由（4页：home/reason/stock/data） ---------- */
+const PAGES = ["home", "reason", "stock", "data"];
+function showPage(tab) {
+  if (!PAGES.includes(tab)) tab = "home";
+  document.querySelectorAll("section[data-page]").forEach(s =>
+    s.style.display = s.dataset.page === tab ? "" : "none");
+  document.querySelectorAll("#tabs a").forEach(a =>
+    a.classList.toggle("active", a.dataset.tab === tab));
+  // 切页后resize图表（隐藏时初始化的图尺寸为0）
+  requestAnimationFrame(() => {
+    document.querySelectorAll(`section[data-page="${tab}"] .chart, #globe, #kline, #gex-profile`)
+      .forEach(el => { const c = window.echarts && echarts.getInstanceByDom(el); if (c) c.resize(); });
+    dispatchEvent(new Event("resize"));
+    if (tab === "stock" && window.__kline) {
+      const el = $("#kline");
+      window.__kline.resize(el.clientWidth, el.clientHeight || 340);
+    }
+  });
+}
+addEventListener("hashchange", () => showPage(location.hash.slice(1)));
+
+/* ---------- 推理页：逻辑链步进器 ---------- */
+const NODE_ICON = { crossed: "▲", near: "◐", quiet: "●", fact: "▪", manual: "✎", no_data: "○" };
+const NODE_CLS = { crossed: "n-crossed", near: "n-near", quiet: "n-quiet",
+  fact: "n-fact", manual: "n-fact", no_data: "n-nodata" };
+
+function renderChains(chains) {
+  $("#chains").innerHTML = (chains || []).map(ch => {
+    const hot = ch.nodes.filter(n => n.status === "crossed").length;
+    const nearN = ch.nodes.filter(n => n.status === "near").length;
+    const headBadge = hot ? `<span class="badge b-fired">${hot}节点已突破</span>`
+      : nearN ? `<span class="badge b-stale">${nearN}节点逼近</span>`
+      : `<span class="badge b-ok">安静</span>`;
+    const nodes = ch.nodes.map(n => {
+      const val = n.value != null
+        ? `${fmt(n.value, Math.abs(n.value) > 100 ? 1 : 3)}<span class="dim">/${n.direction === "above" ? "↑" : "↓"}${fmt(n.threshold, Math.abs(n.threshold) > 100 ? 0 : 2)}</span>`
+        : (n.value_text || "—");
+      const dist = n.dist_pct != null
+        ? (n.dist_pct <= 0 ? "已突破" : `距${fmt(Math.abs(n.dist_pct), 1)}%`) : "";
+      return `<div class="cnode ${NODE_CLS[n.status] ?? ""}" title="${n.note ?? ""}">
+        <div class="cn-top">${NODE_ICON[n.status] ?? "·"} ${n.label}</div>
+        <div class="cn-val mono">${val}</div>
+        <div class="cn-dist dim">${dist || n.note?.slice(0, 14) || ""}</div>
+      </div>`;
+    }).join('<div class="carrow">→</div>');
+    return `<div class="chain card">
+      <div class="chain-head" onclick="this.parentElement.classList.toggle('open')">
+        <b>${ch.name}</b> ${headBadge}
+        <div class="dim">${ch.one_liner}</div>
+      </div>
+      <div class="chain-nodes">${nodes}</div>
+      <div class="chain-falsify dim">证伪条件：${ch.falsify}</div>
+    </div>`;
+  }).join("");
+}
+
+const VERDICT_STYLE = { "已证实": ["✅", "b-ok"], "已证伪": ["❌", "b-fired"],
+  "未决": ["⏳", "b-stale"], "假设(加样中)": ["🧪", "b-stale"], "事实": ["▪", "b-ok"] };
+
+function renderConclusions(list) {
+  $("#conclusions").innerHTML = (list || []).map(c => {
+    const [icon, cls] = VERDICT_STYLE[c.verdict] ?? ["·", "b-ok"];
+    return `<div class="rule concl">
+      <div class="head" onclick="this.parentElement.classList.toggle('open')">
+        <span><span class="badge ${cls}">${icon} ${c.verdict}</span> <b>${c.claim}</b></span>
+        <span class="dim mono">${c.date ?? ""}</span>
+      </div>
+      <div class="detail">
+        ${c.number ? `<div class="inputs">${c.number}</div>` : ""}
+        ${c.evidence ? `<div>证据：${c.evidence}</div>` : ""}
+        ${c.so_what ? `<div style="color:#d8e6f5">含义：${c.so_what}</div>` : ""}
+        ${c.source ? `<div class="mono">来源：${c.source}</div>` : ""}
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function renderInbox(items) {
+  $("#inbox").innerHTML = (items || []).map(i =>
+    `<div class="cal-item"><span class="cal-date">${i.mtime}</span>
+     <a href="./${i.path}" target="_blank">${i.name}</a></div>`).join("")
+    || `<div class="dim">空。把新文档丢进 repo 的 knowledge/inbox/ 并 push，就会出现在这里；
+        下次对话说"整理inbox"即提炼进结论库。</div>`;
+}
+
 /* ---------- SPX K线 + gamma价位（lightweight-charts） ---------- */
 function renderKline(ohlc, gex) {
   const el = $("#kline");
   if (!el || !window.LightweightCharts || !ohlc?.length) return;
-  const chart = LightweightCharts.createChart(el, {
+  const chart = window.__kline = LightweightCharts.createChart(el, {
     layout: { background: { color: "transparent" }, textColor: "#5f7692",
       fontFamily: "Share Tech Mono" },
     grid: { vertLines: { color: "#16233c" }, horzLines: { color: "#16233c" } },
@@ -431,6 +516,11 @@ async function main() {
   renderNews(data.news);
   renderKline(data.spx_ohlc, data.gex);
   renderGexProfile(data.gex);
+  const kn = data.knowledge || {};
+  renderChains(kn.chains);
+  renderConclusions(kn.conclusions);
+  renderInbox(kn.inbox);
+  showPage(location.hash.slice(1) || "home");
   renderHealth(data.health);
   renderSnapshot(data.metrics, data.series || {});
   renderRules(data.rules);

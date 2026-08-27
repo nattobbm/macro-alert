@@ -1,0 +1,75 @@
+# 结论库：每条=一个已判定或待判定的研究结论
+# verdict: 已证实 / 已证伪 / 未决 / 假设(加样中) / 事实
+# 呈现规则：结论一句话在前，证据折叠在后。样本<8只加样不下结论。
+# 新结论来源：回测输出、预测结算、研究报告——由对话整理入库，git commit=时间戳
+
+conclusions:
+  - id: H2_oversold_bounce
+    date: 2026-08-27
+    verdict: 已证实
+    claim: 快速超卖（≤10日内跌≥5%）后5日反弹幅度系统性高于普通日子
+    number: "中位差+0.84%，95%CI[+0.47%,+1.60%]全>0"
+    evidence: SPX 2000-2026，block bootstrap B=5000块长≥h，基线剔除事件日+h日
+    source: 周期分析/output/report.md
+    so_what: 3月/7月体验被数据确认。超卖区反弹预期有支撑；仓位映射等Phase 4预注册
+
+  - id: H3_compression_reversed
+    date: 2026-08-27
+    verdict: 已证伪
+    claim: 「日线压缩后必有大行情」——实测方向相反
+    number: "压缩结束后|位移|比波动率匹配组低0.65%，95%CI[−1.55%,−0.11%]全<0"
+    evidence: 对照组=同等低波动但无≥5日持续性的日子（K3修订后）
+    source: 周期分析/output/report.md
+    so_what: 日线级"憋久必大动"不成立。盘中级是独立问题（M11待测），预期需收敛
+
+  - id: H1_newhigh_undecided
+    date: 2026-08-27
+    verdict: 未决
+    claim: 创252日新高后10日收益与普通日子等价（±0.3%内）
+    number: "90%CI[−0.44%,+0.08%]，略超等价界下沿"
+    evidence: TOST等价检验，预注册界±0.3%
+    source: 周期分析/output/report.md
+    so_what: 没有证据表明追新高会被惩罚，但等价性也未获证明——对"害怕新高"情绪：数据不支持恐惧
+
+  - id: M1b_down_faster
+    date: 2026-08-27
+    verdict: 已证实
+    claim: 「上涨磨、下跌快」成立但幅度温和
+    number: "|下跌|/上涨中位速度比=1.26×（非碾压级）"
+    evidence: 200条周期腿(2000-2026)；下跌腿中位−8.5%/15日，上涨+11.0%/20日
+    source: 周期分析/output/m1b_speed_asymmetry.md
+
+  - id: july_low_data_note
+    date: 2026-08-27
+    verdict: 事实
+    claim: 记忆中的7月低点7294在SPX现货上不存在
+    number: "SPX 7月窗口实际最低7313.9(07-29)；期货基差约16点"
+    evidence: 案例校验K15未识别→记为发现。7294大概率是ES期货价
+    source: 周期分析/output/report.md
+    so_what: 看盘与回测必须统一标的口径——ES价不能直接当SPX价用
+
+  - id: tic_triple_decline
+    date: 2026-08-17
+    verdict: 事实
+    claim: 三大海外持有人2026-06同时减持美债
+    number: "日本−26.4bn / 英国−8.7bn / 中国−25.9bn"
+    evidence: TIC slt_table5一手解析，与官方修订值精确一致
+    source: macro-alert规则T2b（已触发）
+    so_what: 官方买方退潮→与央行购金是同一笔钱的两端
+
+  - id: integer_cluster_dead
+    date: 2026-08-20
+    verdict: 已证伪
+    claim: 整数价位聚集效应（含80/20价位族的先验）
+    number: "z=+24.4修正后≈+1.0"
+    evidence: tick网格伪影；H5检验必须用同一修正
+    source: 前阶段研究（登记册§4已证伪清单）
+
+  - id: gex_pinning_sample
+    date: 2026-08-27
+    verdict: 假设(加样中)
+    claim: 正GEX下价格被钉在墙位附近（pinning）
+    number: "8/27实测：现价7675.7贴call墙7675(距0.009%)，净GEX+50bn"
+    evidence: n=1只登记不推断；每日GEX快照自动累积中(data/gex/)
+    source: fetchers/cboe_gex.py
+    so_what: 样本≥8后可做正/负gamma日波动性质分层检验（M11 Phase 2变量）

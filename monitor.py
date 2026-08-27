@@ -197,6 +197,66 @@ def build_radar(ctx: dict) -> list[dict]:
     return out
 
 
+def build_knowledge(ctx: dict) -> dict:
+    """knowledge/ → 推理页数据：链条节点状态自动判定 + 结论库 + inbox清单。
+    节点状态：crossed(已突破,红) / near(距阈值<5%,黄) / quiet(安静,绿) / fact / manual / no_data
+    """
+    kdir = ROOT / "knowledge"
+    out = {"chains": [], "conclusions": [], "inbox": []}
+
+    cf = kdir / "chains.yaml"
+    if cf.exists():
+        chains = yaml.safe_load(cf.read_text(encoding="utf-8")).get("chains", [])
+        for ch in chains:
+            nodes = []
+            crossed = near = 0
+            for nd in ch.get("nodes", []):
+                node = {"label": nd["label"], "note": nd.get("note", "")}
+                if "metric" in nd:
+                    v = ctx.get(nd["metric"])
+                    thr, direc = nd["threshold"], nd["direction"]
+                    if v is None:
+                        node.update(status="no_data", value=None)
+                    else:
+                        denom = abs(thr) or 100.0
+                        dist = (thr - v) / denom if direc == "above" else (v - thr) / denom
+                        st = "crossed" if dist <= 0 else ("near" if dist < 0.05 else "quiet")
+                        crossed += st == "crossed"; near += st == "near"
+                        node.update(status=st, value=v, threshold=thr,
+                                    direction=direc, dist_pct=round(dist * 100, 2))
+                else:
+                    node.update(status=nd.get("status", "fact"),
+                                value_text=nd.get("value_text", ""))
+                nodes.append(node)
+            out["chains"].append({
+                "id": ch["id"], "name": ch["name"], "one_liner": ch.get("one_liner", ""),
+                "falsify": ch.get("falsify", ""), "nodes": nodes,
+                "heat": crossed * 2 + near,   # 排序用：越热越靠前
+            })
+        out["chains"].sort(key=lambda c: -c["heat"])
+
+    conf = kdir / "conclusions.yaml"
+    if conf.exists():
+        cons = yaml.safe_load(conf.read_text(encoding="utf-8")).get("conclusions", [])
+        for c in cons:
+            if c.get("date") is not None:
+                c["date"] = str(c["date"])
+        cons.sort(key=lambda c: c.get("date", ""), reverse=True)
+        out["conclusions"] = cons
+
+    inbox = kdir / "inbox"
+    if inbox.exists():
+        for p in sorted(inbox.glob("*.*"), key=lambda p: -p.stat().st_mtime):
+            if p.name == "README.md":
+                continue
+            out["inbox"].append({
+                "name": p.name,
+                "mtime": dt.datetime.fromtimestamp(p.stat().st_mtime).strftime("%Y-%m-%d"),
+                "path": f"knowledge/inbox/{p.name}",
+            })
+    return out
+
+
 def build_regime(ctx: dict) -> dict:
     """主导链判定（8-25报告链条6判据的条件计数版，不做叙事）。"""
     conds = [
@@ -259,6 +319,7 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
                                            "stale": by_key["gex_net"].stale})
                if "gex_net" in by_key else None,
         "spx_ohlc": by_key["spx"].extra.get("ohlc") if "spx" in by_key else None,
+        "knowledge": build_knowledge(ctx or {}),
     }
 
 

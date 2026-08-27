@@ -45,8 +45,9 @@ jobs:
         run: |
           mkdir -p _site
           cp -r web/. _site/
-          rm -rf _site/data
+          rm -rf _site/data _site/knowledge
           cp -r data _site/data
+          cp -r knowledge _site/knowledge
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

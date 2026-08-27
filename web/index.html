@@ -11,7 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=6">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#04070f">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,8 +32,16 @@
   </div>
 </header>
 
+<nav id="tabs">
+  <a href="#home" data-tab="home">总览</a>
+  <a href="#reason" data-tab="reason">推理</a>
+  <a href="#stock" data-tab="stock">正股</a>
+  <a href="#data" data-tab="data">数据</a>
+</nav>
+
+
 <!-- 0. 地球：TIC 资金流主视觉 -->
-<section id="hero">
+<section data-page="home" id="hero">
   <div id="globe"></div>
   <div class="hero-overlay">
     <div class="hero-title">US TREASURY · FOREIGN HOLDERS FLOW</div>
@@ -44,45 +52,45 @@
 </section>
 
 <!-- 0.5 观测点雷达 -->
-<section>
+<section data-page="home">
   <h2><span class="h-icon">◈</span> 观测点雷达 <span class="dim">THRESHOLD RADAR · 距触发线最近排前</span></h2>
   <div id="radar" class="grid"></div>
 </section>
 
 <!-- 0.6 SPX K线 + GEX价位（GammaFrame式） -->
-<section class="card">
+<section data-page="stock" class="card">
   <h2><span class="h-icon">◈</span> SPX × GAMMA地图 <span class="dim" id="gex-head"></span></h2>
   <div id="kline" style="height:340px"></div>
   <div id="gex-levels" class="dim note"></div>
 </section>
 
 <!-- 0.7 GEX按行权价 -->
-<section class="card">
+<section data-page="stock" class="card">
   <h2><span class="h-icon">◈</span> GEX BY STRIKE <span class="dim">CBOE延迟链自算 · dealer long-call/short-put启发式，符号不可验证</span></h2>
   <div id="gex-profile" class="chart" style="height:300px"></div>
 </section>
 
 <!-- 1. 数据健康 -->
-<section id="health" class="card">
+<section data-page="data" id="health" class="card">
   <h2><span class="h-icon">◈</span> 数据健康 <span class="dim">DATA INTEGRITY</span></h2>
   <div id="health-summary"></div>
   <div id="stale-list"></div>
 </section>
 
 <!-- 2. 快照 -->
-<section>
+<section data-page="home">
   <h2><span class="h-icon">◈</span> 市场快照 <span class="dim">SNAPSHOT</span></h2>
   <div id="snapshot" class="grid"></div>
 </section>
 
 <!-- 3. 规则状态 -->
-<section>
+<section data-page="stock">
   <h2><span class="h-icon">◈</span> 规则引擎 <span class="dim" id="rules-count"></span></h2>
   <div id="rules"></div>
 </section>
 
 <!-- 4. 拍卖 -->
-<section class="card">
+<section data-page="stock" class="card">
   <h2><span class="h-icon">◈</span> 国债拍卖 <span class="dim">AUCTIONS · 近6场</span></h2>
   <div class="table-wrap"><table id="auctions">
     <thead><tr><th>期限</th><th>日期</th><th>规模</th><th>认购</th><th>indirect</th><th>dealer</th><th>tail</th></tr></thead>
@@ -92,7 +100,7 @@
 </section>
 
 <!-- 5. 图表区 -->
-<section>
+<section data-page="data">
   <h2><span class="h-icon">◈</span> 图表 <span class="dim">CHARTS</span></h2>
   <div class="chart-grid">
     <div class="card"><h3>TIPS实际利率 × 黄金</h3><div id="chart-tips-gold" class="chart"></div></div>
@@ -104,20 +112,39 @@
   </div>
 </section>
 
+
+<!-- R1 逻辑链地图 -->
+<section data-page="reason">
+  <h2><span class="h-icon">◈</span> 逻辑链 <span class="dim">TRANSMISSION CHAINS · 节点绑实时数据自动判定 · 热度排序</span></h2>
+  <div id="chains"></div>
+</section>
+
+<!-- R2 结论库 -->
+<section data-page="reason">
+  <h2><span class="h-icon">◈</span> 结论库 <span class="dim">VERDICT LEDGER · 已证实/已证伪/未决，git时间戳</span></h2>
+  <div id="conclusions"></div>
+</section>
+
+<!-- R3 inbox -->
+<section data-page="reason" class="card">
+  <h2><span class="h-icon">◈</span> 待整理 <span class="dim">INBOX · 丢进knowledge/inbox的原料，未判定</span></h2>
+  <div id="inbox"></div>
+</section>
+
 <!-- 5.5 事件流 -->
-<section class="card">
+<section data-page="reason" class="card">
   <h2><span class="h-icon">◈</span> 事件流 <span class="dim">LOG · 官方源RSS · 词表分拣不解读</span></h2>
   <div id="newslog"></div>
 </section>
 
 <!-- 6. 日历 -->
-<section class="card">
+<section data-page="reason" class="card">
   <h2><span class="h-icon">◈</span> 未来30天节点 <span class="dim">CALENDAR</span></h2>
   <div id="calendar"></div>
 </section>
 
 <!-- 7. 预测记分卡 -->
-<section class="card">
+<section data-page="reason" class="card">
   <h2><span class="h-icon">◈</span> 预测记分卡 <span class="dim">FORECAST LEDGER</span></h2>
   <div id="predictions"></div>
 </section>
@@ -127,6 +154,6 @@
   每个数字带 as_of；stale 数据不参与规则判定。非投资建议。
 </footer>
 
-<script src="app.js?v=4"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>

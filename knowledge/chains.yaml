@@ -1,0 +1,68 @@
+# 逻辑链定义（来源：2026-08-25传导分析报告六链 + rules.yaml）
+# 每个节点：label + 绑定指标(metric=ctx变量名) + 阈值判定，monitor自动算状态
+# status规则：metric节点→ crossed(已突破)/near(距<5%)/quiet(安静)；fact节点→固定事实
+# 修改本文件 = 修改推理页。narrative写"为什么"，falsify写"什么时候这条链死"
+
+chains:
+  - id: debt_loop
+    name: 债务自我强化环
+    one_liner: 财政压长端省利息 → 打破惯例的信誉成本 → 期限溢价↑ → 长端回升 → 更高利息
+    falsify: 30Y持续<5.10且期限溢价回落<0.5% = 压制成功，环暂不闭合
+    nodes:
+      - {label: "净利息FY26前10月", value_text: "9630亿$(+14%)", status: fact, note: "CBO 8月报告"}
+      - {label: "公共债务", value_text: "破40万亿$", status: fact, note: "2026-08-19"}
+      - {label: "财政部回购翻倍", value_text: "9/9生效", status: fact, note: "打破regular&predictable"}
+      - {label: "30Y重上前高", metric: us30y, threshold: 5.33, direction: above, note: "重上=压制失败"}
+      - {label: "30Y失序区", metric: us30y, threshold: 5.5, direction: above, note: "政策被迫出手阈值"}
+      - {label: "长债拍卖认购", metric: long_btc, threshold: 2.2, direction: below, note: "<2.2=需求恶化"}
+
+  - id: liquidity
+    name: 货币链（净流动性）
+    one_liner: RRP已枯竭 → 任何抽水直接打准备金 → SOFR>IORB是稀缺最早信号 → SRF被动用=实锤
+    falsify: TGA大幅投放+RMP续购 = 净宽松，本链警报解除
+    nodes:
+      - {label: "RRP余额", metric: rrp, threshold: 50, direction: below, note: "枯竭(<500亿)缓冲垫没了"}
+      - {label: "SOFR-IORB", metric: sofr, threshold: 3.68, direction: above, note: "持续>IORB=准备金稀缺"}
+      - {label: "SRF用量", metric: repo_ops, threshold: 1, direction: above, note: ">10亿=融资压力实锤"}
+      - {label: "TGA余额", metric: tga_daily, threshold: 500000, direction: below, note: "大幅下降=向市场放水"}
+
+  - id: repression
+    name: 金融抑制链（黄金主驱动候选）
+    one_liner: 通胀预期↑+长端↑+市场不预期加息 = 央行不会来管的溢价 → 黄金结构性买点
+    falsify: 实际利率跳升而金同步下跌 = 回到需求侧紧缩链，本链降权
+    nodes:
+      - {label: "加息预期<0.4", metric: fedwatch_sep_hike, threshold: 0.4, direction: below, note: "市场不信Fed会管"}
+      - {label: "30Y>5.2", metric: us30y, threshold: 5.2, direction: above}
+      - {label: "盈亏平衡通胀>2.8", metric: breakeven10, threshold: 2.8, direction: above}
+      - {label: "TIPS实际利率", metric: tips10y, threshold: 2.6, direction: above, note: "黄金定价锚"}
+      - {label: "黄金上破", metric: gold, threshold: 4700, direction: above, note: "上破=抑制叙事确认"}
+
+  - id: geo
+    name: 地缘链
+    one_liner: 霍尔木兹状态 → 油价 → 通胀预期 → 加息概率 → 实际利率 → 黄金（利率与避险两渠道反向）
+    falsify: 协议落地+Brent<80持续 = 供给冲击解除
+    nodes:
+      - {label: "霍尔木兹", value_text: "未正常化(约1600万桶/夜)", status: fact, note: "战前约2000万/日"}
+      - {label: "Brent区间上沿", metric: brent, threshold: 90, direction: above, note: ">90通胀渠道激活"}
+      - {label: "Brent区间下沿", metric: brent, threshold: 80, direction: below, note: "<80美方行动更大胆(假说n=2)"}
+      - {label: "油价急升", metric: brent_1d_pct, threshold: 5, direction: above, note: "单日>5%=供给冲击"}
+
+  - id: japan
+    name: 日本链（尾部通道）
+    one_liner: BOJ加息 → 日元↑ → 套息平仓(约5000亿$) → 抛美债 → 长端↑ + 全球去杠杆
+    falsify: BOJ加息后TIC显示日本连续两月增持美债 = 外溢链证伪
+    nodes:
+      - {label: "日本偿债成本", value_text: "FY27请求36.6万亿¥(+17%)", status: fact, note: "双向牵制BOJ"}
+      - {label: "TIC日本持仓", metric: tic_japan_chg, threshold: 0, direction: below, note: "连续减持中"}
+      - {label: "JPY套息平仓线", metric: usdjpy, threshold: 157, direction: below, note: "急跌<157=平仓启动"}
+      - {label: "JPY干预临界", metric: usdjpy, threshold: 163, direction: above, note: "7/31联合干预位"}
+
+  - id: ai_credit
+    name: AI融资链
+    one_liner: 表外承诺9690亿$ → SPV/私募信贷 → 认购倍数降 → 信用事件 → 资本开支放缓 → 芯片链与股指
+    falsify: 发行认购倍数回升>3× 且 Oracle CDS<150bp = 融资顺畅，本链降权
+    nodes:
+      - {label: "表外租赁承诺", value_text: "9690亿$(五巨头)", status: fact, note: "Moody's 2026-02"}
+      - {label: "Oracle 5Y CDS", value_text: "约200bp(<50→200)", status: manual, note: ">250bp=恶化，手动跟踪"}
+      - {label: "损失落点", value_text: "非银行核心(承诺≈25%Tier1)", status: fact, note: "芝加哥联储"}
+      - {label: "SPX单日", metric: spx_1d_pct, threshold: -2, direction: below, note: "事件驱动检查口"}
