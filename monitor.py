@@ -23,7 +23,7 @@ import yaml
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex  # noqa: E402
+from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict  # noqa: E402
 
@@ -42,7 +42,7 @@ LABELS = {
     "crude_stocks": "原油商业库存", "spx": "SPX", "vix": "VIX", "vix3m": "VIX3M",
     "gold": "黄金", "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
     "usdjpy": "USDJPY", "brent": "Brent", "wti": "WTI", "move": "MOVE",
-    "auctions": "最新拍卖认购", "gex_net": "SPX净GEX", "fedwatch_sep_hike": "9月加息概率(手动)",
+    "auctions": "最新拍卖认购", "gex_net": "SPX净GEX", "fedwatch_zq_sep": "9月加息概率(ZQ自算)", "fedwatch_sep_hike": "9月加息概率(手动)",
     "fima_weekly_usd": "FIMA用量(手动)", "war_risk_premium": "战争险费率(手动)",
     "auction_tail_bp": "拍卖tail(手动)",
 }
@@ -79,6 +79,7 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps += market.fetch_all(sources.get("market", {}).get("max_staleness_days", 4))
     dps += manual.fetch_all(DATA / "manual.json")
     dps.append(cboe_gex.fetch(DATA / "gex"))
+    dps.append(fedwatch_zq.fetch(DATA / "fedwatch"))
     return dps
 
 
