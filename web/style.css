@@ -126,6 +126,9 @@ section { margin-bottom: 24px; }
 .tile .asof { color: var(--dim); font-size: .68rem; margin-top: 1px; }
 .tile .spark { position: absolute; right: 6px; bottom: 6px; opacity: .8; }
 .tile.stale { border-color: var(--amber); opacity: .55; }
+.tile.crossed { border-color: var(--red); box-shadow: inset 0 0 22px rgba(255,77,106,.08); }
+.tile.crossed::before { background: var(--red); }
+#regime-chip { margin-bottom: 8px; pointer-events: auto; }
 .tile.stale::before { background: var(--amber); }
 .up { color: var(--green); }
 .down { color: var(--red); }

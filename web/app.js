@@ -306,6 +306,50 @@ function renderPredictions(p) {
       <span class="dim">${p.note ?? ""}</span></div>${rows}`;
 }
 
+function renderRegime(rg) {
+  if (!rg) return;
+  const pct = rg.met / rg.total;
+  const cls = pct >= 1 ? "b-fired" : pct >= 0.5 ? "b-stale" : "b-ok";
+  const detail = rg.detail.map(d =>
+    `${d.met ? "✓" : "·"} ${d.cond}(${d.value ?? "—"})`).join("  ");
+  $("#regime-chip").innerHTML =
+    `<span class="badge ${cls}" title="${rg.judge}">${rg.name} ${rg.met}/${rg.total}</span>
+     <span class="dim mono">${detail}</span>`;
+}
+
+function renderRadar(radar) {
+  $("#radar").innerHTML = (radar || []).map(r => {
+    const crossed = r.distance_pct <= 0;
+    const arrow = r.direction === "above" ? "↑" : "↓";
+    return `<div class="tile ${crossed ? "crossed" : ""}" title="${r.rule_id}">
+      <div class="label">${r.label} ${arrow}${fmt(r.threshold, 2)}</div>
+      <div class="value">${fmt(r.value, Math.abs(r.value) > 100 ? 1 : 3)}</div>
+      <div class="chg ${crossed ? "down" : "dim"}">${crossed
+        ? "已突破" : `距 ${fmt(Math.abs(r.distance_pct), 1)}%`}</div>
+    </div>`;
+  }).join("");
+}
+
+function relTime(iso) {
+  if (!iso) return "";
+  const h = (Date.now() - new Date(iso)) / 36e5;
+  return h < 1 ? `${Math.round(h * 60)}m` : h < 48 ? `${Math.round(h)}h` : `${Math.round(h / 24)}d`;
+}
+
+const TAG_COLOR = { "债务链": "#ff4d6a", "货币链": "#00e5ff", "日本链": "#ffd166",
+  "地缘链": "#ffb02e", "AI链": "#4da3ff", "黄金链": "#e3b341", "数据": "#2fe6a0", "其他": "#5f7692" };
+
+function renderNews(items) {
+  $("#newslog").innerHTML = (items || []).slice(0, 25).map(n => {
+    const chips = (n.tags || []).map(t =>
+      `<span class="badge" style="color:${TAG_COLOR[t] ?? "#5f7692"};border:1px solid ${TAG_COLOR[t] ?? "#5f7692"}44;background:${TAG_COLOR[t] ?? "#5f7692"}14">${t}</span>`).join("");
+    return `<div class="cal-item">
+      ${chips}<a href="${n.link}" target="_blank" rel="noopener">${n.title}</a>
+      <span class="dim mono"> ${n.source} · ${relTime(n.published)}</span>
+    </div>`;
+  }).join("") || "<div class='dim'>暂无</div>";
+}
+
 async function main() {
   let data;
   try {
@@ -317,6 +361,9 @@ async function main() {
   $("#gen-time").textContent = `UPDATED ${data.generated_at} UTC`;
   renderHeroTic(data.tic, data.tic?.[0]?.as_of);
   renderGlobe(data.tic);
+  renderRegime(data.regime);
+  renderRadar(data.radar);
+  renderNews(data.news);
   renderHealth(data.health);
   renderSnapshot(data.metrics, data.series || {});
   renderRules(data.rules);

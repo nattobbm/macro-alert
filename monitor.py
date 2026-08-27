@@ -23,7 +23,7 @@ import yaml
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual  # noqa: E402
+from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict  # noqa: E402
 
@@ -142,7 +142,61 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
     return ctx, stale_keys, auctions
 
 
-def build_latest(dps, rule_results, auctions, cal, scorecard_data) -> dict:
+# 观测点雷达：8-25传导分析报告的最高信息量观测点 + 规则阈值距离
+# direction: above=向上突破触发 / below=向下突破触发
+RADAR = [
+    ("30Y重上前高",       "us30y",            5.33, "above", "T5b_30y_retest"),
+    ("30Y失序区",         "us30y",            5.50, "above", "T5_30y_yield"),
+    ("准备金稀缺(SOFR-IORB)", "_sofr_iorb",   0.03, "above", "T7_sofr_iorb"),
+    ("9月加息预期回升",   "fedwatch_sep_hike", 0.65, "above", "F1_hike_odds_up"),
+    ("9月加息预期崩落",   "fedwatch_sep_hike", 0.25, "below", "F2_hike_odds_down"),
+    ("JPY干预临界",       "usdjpy",           163.0, "above", "J1_intervention_zone"),
+    ("JPY套息平仓",       "usdjpy",           157.0, "below", "J1b_carry_unwind"),
+    ("黄金上破",          "gold",             4700.0, "above", "X1_gold_breakout"),
+    ("黄金下破",          "gold",             4450.0, "below", "X1_gold_breakout"),
+    ("油价区间上沿",      "brent",            90.0, "above", "G1_oil_band_break"),
+    ("油价区间下沿",      "brent",            80.0, "below", "G1_oil_band_break"),
+    ("VIX应激区",         "vix",              30.0, "above", "S1_vix_regime"),
+    ("MOVE突破",          "move",             140.0, "above", "T4_move"),
+    ("COT净多极端",       "cot_gold_pctile",  90.0, "above", "P1_cot_extreme"),
+    ("r逼近g",            "avg_rate",         4.0, "above", "T6_rg_gap"),
+]
+
+
+def build_radar(ctx: dict) -> list[dict]:
+    vals = dict(ctx)
+    if ctx.get("sofr") is not None and ctx.get("iorb") is not None:
+        vals["_sofr_iorb"] = round(ctx["sofr"] - ctx["iorb"], 4)
+    out = []
+    for label, key, thr, direction, rule_id in RADAR:
+        v = vals.get(key)
+        if v is None:
+            continue
+        # 距离%：>0 未到阈值，<=0 已突破
+        dist = (thr - v) / abs(thr) if direction == "above" else (v - thr) / abs(thr)
+        out.append({"label": label, "key": key, "value": v, "threshold": thr,
+                    "direction": direction, "rule_id": rule_id,
+                    "distance_pct": round(dist * 100, 2)})
+    out.sort(key=lambda x: x["distance_pct"])
+    return out
+
+
+def build_regime(ctx: dict) -> dict:
+    """主导链判定（8-25报告链条6判据的条件计数版，不做叙事）。"""
+    conds = [
+        ("加息预期<0.4", ctx.get("fedwatch_sep_hike"), lambda v: v < 0.4),
+        ("30Y>5.2",      ctx.get("us30y"),             lambda v: v > 5.2),
+        ("盈亏平衡通胀>2.8", ctx.get("breakeven10"),   lambda v: v > 2.8),
+    ]
+    detail = [{"cond": name, "value": v, "met": (v is not None and fn(v))}
+              for name, v, fn in conds]
+    met = sum(1 for d in detail if d["met"])
+    return {"name": "金融抑制链", "met": met, "total": len(detail), "detail": detail,
+            "judge": "判据(8-25报告)：若实际利率跳升而金不跌→确认主导；若金随实际利率同步回落→回到需求侧紧缩链"}
+
+
+def build_latest(dps, rule_results, auctions, cal, scorecard_data,
+                 news_items=None, ctx=None) -> dict:
     by_key = {dp.key: dp for dp in dps}
     stale_list = [{"key": dp.key, "as_of": dp.as_of, "reason": dp.stale_reason}
                   for dp in dps if dp.stale]
@@ -182,6 +236,9 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data) -> dict:
         "calendar": upcoming,
         "series": series,
         "predictions": scorecard_data,
+        "news": news_items or [],
+        "radar": build_radar(ctx or {}),
+        "regime": build_regime(ctx or {}),
     }
 
 
@@ -220,7 +277,13 @@ def main():
 
     scorecard_data = predict.scorecard(ROOT / "predictions")
     cal = rules.get("calendar", [])
-    latest = build_latest(dps, rule_results, auctions, cal, scorecard_data)
+    try:
+        news_items = news.fetch_news(DATA / "news.json")
+    except Exception as e:
+        print(f"[warn] news: {e}", file=sys.stderr)
+        news_items = []
+    latest = build_latest(dps, rule_results, auctions, cal, scorecard_data,
+                          news_items=news_items, ctx=ctx)
     LATEST_FILE.write_text(json.dumps(latest, ensure_ascii=False), encoding="utf-8")
 
     metrics_by_key = {m["key"]: m for m in latest["metrics"]}
