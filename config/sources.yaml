@@ -52,3 +52,7 @@ sources:
   fima_weekly_usd:   {tier: 3, provider: manual, max_staleness_days: 10}
   war_risk_premium:  {tier: 3, provider: manual, max_staleness_days: 14}
   auction_tail_bp:   {tier: 3, provider: manual, max_staleness_days: 30}
+
+  # ---- CBOE 延迟期权链 (无需key, 15-20分钟延迟) ----
+  gex_net:    {tier: 1, provider: cboe, max_staleness_days: 3,
+               desc: "SPX净GEX(bn$/1%)。dealer long call/short put启发式+BS重定价flip。每日快照存data/gex/"}

@@ -350,6 +350,71 @@ function renderNews(items) {
   }).join("") || "<div class='dim'>暂无</div>";
 }
 
+/* ---------- SPX K线 + gamma价位（lightweight-charts） ---------- */
+function renderKline(ohlc, gex) {
+  const el = $("#kline");
+  if (!el || !window.LightweightCharts || !ohlc?.length) return;
+  const chart = LightweightCharts.createChart(el, {
+    layout: { background: { color: "transparent" }, textColor: "#5f7692",
+      fontFamily: "Share Tech Mono" },
+    grid: { vertLines: { color: "#16233c" }, horzLines: { color: "#16233c" } },
+    rightPriceScale: { borderColor: "#16233c" },
+    timeScale: { borderColor: "#16233c" },
+    crosshair: { mode: 0 },
+    autoSize: true,
+  });
+  const series = chart.addCandlestickSeries({
+    upColor: "#2fe6a0", downColor: "#ff4d6a",
+    wickUpColor: "#2fe6a0", wickDownColor: "#ff4d6a",
+    borderVisible: false,
+  });
+  series.setData(ohlc.map(([t, o, h, l, c]) => ({ time: t, open: o, high: h, low: l, close: c })));
+  const lines = [];
+  if (gex && !gex.stale) {
+    if (gex.call_wall) lines.push([gex.call_wall, "#2fe6a0", "CALL墙"]);
+    if (gex.put_wall && gex.put_wall !== gex.call_wall) lines.push([gex.put_wall, "#ff4d6a", "PUT墙"]);
+    if (gex.flip) lines.push([gex.flip, "#ffd166", "FLIP"]);
+  }
+  for (const [price, color, title] of lines)
+    series.createPriceLine({ price, color, title, lineStyle: 2, lineWidth: 1 });
+  chart.timeScale().setVisibleLogicalRange({ from: ohlc.length - 60, to: ohlc.length + 2 });
+
+  if (gex) {
+    $("#gex-head").textContent = `净GEX ${fmt(gex.net_gex_bn, 1)}bn/1% · 0DTE ${fmt(gex.gex_0dte_bn, 1)}bn · ${gex.date}`;
+    $("#gex-levels").innerHTML =
+      `<span class="badge ${gex.net_gex_bn >= 0 ? "b-ok" : "b-fired"}">${gex.net_gex_bn >= 0 ? "正GAMMA·压波动" : "负GAMMA·助趋势"}</span>` +
+      `FLIP <span class="mono" style="color:#ffd166">${gex.flip ?? "—"}</span> · ` +
+      `CALL墙 <span class="mono" style="color:#2fe6a0">${gex.call_wall ?? "—"}</span> · ` +
+      `PUT墙 <span class="mono" style="color:#ff4d6a">${gex.put_wall ?? "—"}</span> · ` +
+      `现价 <span class="mono">${fmt(gex.spot, 1)}</span>` +
+      `<div class="dim">${gex.assumption ?? ""}</div>`;
+  }
+}
+
+function renderGexProfile(gex) {
+  if (!gex?.profile?.length) return;
+  const spot = gex.spot;
+  const rows = gex.profile.filter(([s]) => Math.abs(s - spot) / spot <= 0.04);
+  lineChart("#gex-profile", {
+    ...DARK,
+    tooltip: { ...DARK.tooltip, trigger: "axis" },
+    legend: { textStyle: { color: C.dim }, top: 0 },
+    xAxis: { ...DARK.xAxis, data: rows.map(r => r[0]) },
+    yAxis: yAxis({ name: "bn$/1%" }),
+    series: [
+      { name: "Call GEX", type: "bar", stack: "g", data: rows.map(r => r[1]),
+        itemStyle: { color: "rgba(47,230,160,.75)" } },
+      { name: "Put GEX", type: "bar", stack: "g", data: rows.map(r => r[2]),
+        itemStyle: { color: "rgba(255,77,106,.75)" },
+        markLine: { silent: true, symbol: "none",
+          lineStyle: { color: "#ffd166", type: "dashed" },
+          label: { color: "#ffd166", formatter: "现价" },
+          data: [{ xAxis: String(rows.reduce((best, r) =>
+            Math.abs(r[0] - spot) < Math.abs(best - spot) ? r[0] : best, rows[0][0])) }] } },
+    ],
+  });
+}
+
 async function main() {
   let data;
   try {
@@ -364,6 +429,8 @@ async function main() {
   renderRegime(data.regime);
   renderRadar(data.radar);
   renderNews(data.news);
+  renderKline(data.spx_ohlc, data.gex);
+  renderGexProfile(data.gex);
   renderHealth(data.health);
   renderSnapshot(data.metrics, data.series || {});
   renderRules(data.rules);
@@ -379,3 +446,5 @@ async function main() {
   ticChart(s);
 }
 main();
+
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(() => {});

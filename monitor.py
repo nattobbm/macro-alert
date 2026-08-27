@@ -23,7 +23,7 @@ import yaml
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news  # noqa: E402
+from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict  # noqa: E402
 
@@ -42,7 +42,7 @@ LABELS = {
     "crude_stocks": "原油商业库存", "spx": "SPX", "vix": "VIX", "vix3m": "VIX3M",
     "gold": "黄金", "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
     "usdjpy": "USDJPY", "brent": "Brent", "wti": "WTI", "move": "MOVE",
-    "auctions": "最新拍卖认购", "fedwatch_sep_hike": "9月加息概率(手动)",
+    "auctions": "最新拍卖认购", "gex_net": "SPX净GEX", "fedwatch_sep_hike": "9月加息概率(手动)",
     "fima_weekly_usd": "FIMA用量(手动)", "war_risk_premium": "战争险费率(手动)",
     "auction_tail_bp": "拍卖tail(手动)",
 }
@@ -78,6 +78,7 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps.append(eia.fetch_crude_stocks())
     dps += market.fetch_all(sources.get("market", {}).get("max_staleness_days", 4))
     dps += manual.fetch_all(DATA / "manual.json")
+    dps.append(cboe_gex.fetch(DATA / "gex"))
     return dps
 
 
@@ -135,6 +136,16 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
             ctx["indirect_falling_3"] = len(inds) >= 4 and all(
                 inds[i] < inds[i + 1] for i in range(3))
 
+    # GEX 衍生变量（雷达用）：距flip/墙的百分比距离
+    gex_dp = by_key.get("gex_net")
+    if gex_dp and not gex_dp.stale:
+        spot = gex_dp.extra.get("spot")
+        for name, level in [("flip", gex_dp.extra.get("flip")),
+                            ("callwall", gex_dp.extra.get("call_wall")),
+                            ("putwall", gex_dp.extra.get("put_wall"))]:
+            if spot and level:
+                ctx[f"gex_{name}_dist_pct"] = round((spot - level) / spot * 100, 3)
+
     # 数据健康标志（tier1/2 才算；手动源缺录不触发H1）
     tier12_stale = [k for k in stale_keys
                     if by_key[k].tier <= 2 and by_key[k].stale_reason != "missing_EIA_API_KEY"]
@@ -160,6 +171,10 @@ RADAR = [
     ("MOVE突破",          "move",             140.0, "above", "T4_move"),
     ("COT净多极端",       "cot_gold_pctile",  90.0, "above", "P1_cot_extreme"),
     ("r逼近g",            "avg_rate",         4.0, "above", "T6_rg_gap"),
+    # GEX（距离本身就是%，阈值0=穿越）
+    ("跌破gamma flip(转负gamma)", "gex_flip_dist_pct",     0.0, "below", "GEX"),
+    ("上破call墙",               "gex_callwall_dist_pct", 0.0, "above", "GEX"),
+    ("跌破put墙",                "gex_putwall_dist_pct",  0.0, "below", "GEX"),
 ]
 
 
@@ -172,8 +187,9 @@ def build_radar(ctx: dict) -> list[dict]:
         v = vals.get(key)
         if v is None:
             continue
-        # 距离%：>0 未到阈值，<=0 已突破
-        dist = (thr - v) / abs(thr) if direction == "above" else (v - thr) / abs(thr)
+        # 距离%：>0 未到阈值，<=0 已突破。阈值0时变量本身已是%距离，分母取100抵消后面的×100
+        denom = abs(thr) or 100.0
+        dist = (thr - v) / denom if direction == "above" else (v - thr) / denom
         out.append({"label": label, "key": key, "value": v, "threshold": thr,
                     "direction": direction, "rule_id": rule_id,
                     "distance_pct": round(dist * 100, 2)})
@@ -239,6 +255,10 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
         "news": news_items or [],
         "radar": build_radar(ctx or {}),
         "regime": build_regime(ctx or {}),
+        "gex": (by_key["gex_net"].extra | {"net_gex_bn": by_key["gex_net"].value,
+                                           "stale": by_key["gex_net"].stale})
+               if "gex_net" in by_key else None,
+        "spx_ohlc": by_key["spx"].extra.get("ohlc") if "spx" in by_key else None,
     }
 
 

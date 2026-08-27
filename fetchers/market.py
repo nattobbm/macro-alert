@@ -33,6 +33,11 @@ def fetch_all(max_staleness_days: int = 4, tickers: dict | None = None) -> list[
                 tail = closes.tail(250)
                 dp.extra["series"] = [[i.date().isoformat(), round(float(v), 4)]
                                       for i, v in tail.items()]
+                if key == "spx":   # K线图用OHLC（近130日）
+                    ohlc = h[["Open", "High", "Low", "Close"]].dropna().tail(130)
+                    dp.extra["ohlc"] = [
+                        [i.date().isoformat()] + [round(float(x), 2) for x in row]
+                        for i, row in ohlc.iterrows()]
         except Exception as e:
             dp.stale = True
             dp.stale_reason = f"fetch_error:{type(e).__name__}:{str(e)[:80]}"
