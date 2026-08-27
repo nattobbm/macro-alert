@@ -23,7 +23,13 @@
       {"value": 0.55, "as_of": "2026-08上旬", "source": "CME FedWatch，经TMGM转引"},
       {"value": 0.33, "as_of": "2026-08-17前后", "source": "regardsofwallstreet，原文'September hike odds, near 58% just after the July meeting, now sit around a third'"}
     ],
-    "interpretation": "若33%属实，则8月12-14的数据三连（CPI/PPI/零售）已使加息预期从约58%大幅下修至约1/3。这是本预测的核心背景，方向完全取决于此。**所有转引均为二手，必须回CME官网核当日读数。**"
+    "interpretation": "若33%属实，则8月12-14的数据三连（CPI/PPI/零售）已使加息预期从约58%大幅下修至约1/3。这是本预测的核心背景，方向完全取决于此。**所有转引均为二手，必须回CME官网核当日读数。**",
+    "RESOLVED_2026_08_26": {
+      "value": 0.381, "as_of": "2026-08-26 11:20:48 CT",
+      "source": "CME FedWatch官网一手读数（Momo截图核实）",
+      "series_firsthand": {"2026-07-24": 0.553, "2026-08-19": 0.331, "2026-08-25": 0.396, "2026-08-26": 0.381},
+      "note": "冲突解决：二手33%方向正确（8/19确为33.1%）；一周内已回升至38-40%区间。8/26核心PCE公布日读数38.1%。演讲前一日(8/27)收盘值仍需在结算时另取，本读数不替代 actual_prob_before"
+    }
   },
 
   "ex_ante_facts": {

@@ -1,0 +1,6 @@
+{
+  "fedwatch_sep_hike": {"value": 0.381, "as_of": "2026-08-26", "note": "CME FedWatch网页一手读数 11:20:48 CT。序列：7/24 55.3% → 8/19 33.1% → 8/25 39.6% → 8/26 38.1%。NO CHANGE 61.9%"},
+  "fima_weekly_usd": {"value": null, "as_of": null, "note": "Fed H.4.1周报，每周四。待录入"},
+  "war_risk_premium": {"value": null, "as_of": null, "note": "霍尔木兹航运战争险费率。待录入"},
+  "auction_tail_bp": {"value": null, "as_of": null, "note": "最近一场20Y/30Y拍卖tail。待录入"}
+}
