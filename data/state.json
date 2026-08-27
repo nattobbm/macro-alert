@@ -2,7 +2,7 @@
  "counters": {
   "T1_auction_long": 0,
   "T2_auction_indirect": 0,
-  "T2b_tic_decline": 2,
+  "T2b_tic_decline": 4,
   "T3_fima_used": 0,
   "T3b_srf_used": 0,
   "T4_move": 0,
@@ -26,7 +26,7 @@
   "S2_vix_term_flip": 0,
   "S3_vix_collapse": 0,
   "S4_spx_drawdown": 0,
-  "H1_stale": 2,
+  "H1_stale": 0,
   "H2_sofr_conflict": 0
  },
  "last_fired": {
