@@ -301,9 +301,19 @@ function renderPredictions(p) {
       <span class="mono">${o.id}</span> <span class="dim">结算 ${o.settle_date ?? "—"} · p=${o.probability ?? "未填"}</span>
       <div class="cal-watch">${o.question ?? ""}</div>
     </div>`).join("");
+  const mo = p.market_odds || {};
+  const src = (label, o, color) => o && o.value != null
+    ? `<span class="badge" style="color:${color};border:1px solid ${color}44;background:${color}14">
+        ${label} ${(o.value * 100).toFixed(1)}%<span class="dim"> ${o.as_of ?? ""}</span></span>` : "";
+  const oddsRow = `<div style="margin:6px 0 10px">
+    <span class="dim">9月加息定价（三源三口径并列，不混用）：</span><br>
+    ${src("ZQ期货自算", mo.zq_auto, "#00e5ff")}
+    ${src("CME手读", mo.cme_manual, "#ffd166")}
+    ${src("Polymarket", mo.polymarket, "#2fe6a0")}
+  </div>`;
   $("#predictions").innerHTML =
     `<div>开放 ${p.open} · 已结算 ${p.settled} · Brier <span class="mono">${p.brier ?? "—"}</span> (n=${p.n_for_brier})
-      <span class="dim">${p.note ?? ""}</span></div>${rows}`;
+      <span class="dim">${p.note ?? ""}</span></div>${oddsRow}${rows}`;
 }
 
 function renderRegime(rg) {
