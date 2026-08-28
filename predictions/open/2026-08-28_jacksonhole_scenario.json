@@ -1,0 +1,66 @@
+{
+  "id": "2026-08-28_jacksonhole_scenario",
+  "created_at": "2026-08-27T00:00:00Z",
+  "created_by": "Momo",
+  "status": "OPEN",
+  "format": "scenario_map",
+  "format_note": "情景图预注册（非概率单）。取代 2026-08-28_jacksonhole_warsh（该概率单因'问题格式与推理者模式不匹配'于演讲前作废，登记为预测系统设计发现，不计入Brier）",
+
+  "question": "Warsh在Jackson Hole主题演讲（2026-08-28上午10点ET）会扣哪条逻辑链，市场反应是否与该情景的预期路径一致？",
+
+  "ex_ante_snapshot": {
+    "_note": "锁定时机器自动记录，结算时对照",
+    "as_of": "2026-08-27",
+    "hike_odds_zq_auto": 0.369,
+    "hike_odds_cme_manual_0826": 0.381,
+    "hike_odds_polymarket": 0.305,
+    "gold": 4661.5,
+    "us30y": 5.17,
+    "us10y": 4.64,
+    "tips10y": 2.32,
+    "vix": 15.2,
+    "usdjpy": 159.3,
+    "gex": "净+50bn正gamma，现价7675.7钉在call/put墙7675",
+    "core_pce_jul": "环比+0.25% 同比+3.34%（F1擦线触发，市场当日仅-1.5pp消化）"
+  },
+
+  "scenarios": {
+    "S1_信誉链": {
+      "script": "他扣「价格稳定/机构信誉」逻辑：强调通胀警惕、为9月加息留门、与财政部划清界限",
+      "expected_path": "加息定价↑(>+1pp) · 2Y收益率↑ · 黄金↓ · 美元↑"
+    },
+    "S2_支付链": {
+      "script": "他扣「支付创新」主题不碰宏观：宏观一笔带过、不给任何利率信号",
+      "expected_path": "加息定价漂移±1pp内 · 低波动 · gamma钉价延续"
+    },
+    "S3_配合链": {
+      "script": "他扣「配合财政/淡化加息」逻辑：暗示利率非主要工具、容忍长端压制",
+      "expected_path": "加息定价↓ · 黄金↑ · 长端先↓ · 金融抑制叙事强化(F4方向)"
+    }
+  },
+
+  "momo_ranking": null,
+  "_ranking_note": "由Momo填写，如 'S2>S3>S1'。锁定后不得修改。",
+  "reasoning_ex_ante": null,
+  "_reasoning_note": "由Momo填写一句：按维稳逻辑他为什么最可能扣该链（只用8-28演讲前信息）",
+
+  "settle_date": "2026-08-29",
+  "settle_rule": "演讲后首个交易日收盘，机器记录实际值（ZQ定价变动/金/30Y/VIX/JPY），对照三情景的expected_path判定哪个命中；话语内容由Momo读演讲稿标注他实际扣的链。双向验证：话语强度 vs 实际波幅并列记录。",
+  "settle_source": "federalreserve.gov演讲稿 + data/fedwatch每日存档 + data/snapshots",
+
+  "what_this_discriminates": {
+    "S1命中": "官僚信誉框架加分；老天花板重装；实际利率上行压金",
+    "S2命中": "「话术剧本服务多听众维稳」理论加分；单一框架均减权",
+    "S3命中": "金融抑制/压利息框架加分；F4路径确认方向"
+  },
+
+  "outcome": null,
+  "settled_at": null,
+  "settlement_note": null,
+
+  "discipline": {
+    "no_edit_after_lock": "momo_ranking与reasoning_ex_ante填写commit后不得修改",
+    "void_condition": "演讲前未填ranking则本卡作废（VOID）",
+    "sample_note": "情景图不计Brier；计入'机制判别命中率'新序列（n<50只记录不解读同规矩）"
+  }
+}
