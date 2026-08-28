@@ -7,11 +7,12 @@
 <title>CYPERMOW · MACRO TERMINAL</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
-<link rel="stylesheet" href="style.css?v=8">
+<script>try{var th=localStorage.getItem("theme");if(th)document.documentElement.dataset.theme=th}catch(e){}</script>
+<link rel="stylesheet" href="style.css?v=9">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FFD84D">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,6 +25,12 @@
   <div class="brand">
     <span class="logo-dot"></span>
     <h1>🌍 CYPERMOW <span class="accent">看懂世界的小终端</span></h1>
+    <span id="themes" title="换配色">
+      <button class="sw-paper" data-set-theme="paper" title="纸墨"></button>
+      <button class="sw-latte" data-set-theme="latte" title="拿铁"></button>
+      <button class="sw-mocha" data-set-theme="mocha" title="摩卡"></button>
+      <button class="sw-nord"  data-set-theme="nord"  title="夜航"></button>
+    </span>
   </div>
   <div class="sub">
     <span id="gen-time" class="mono"></span>
@@ -153,6 +160,6 @@
   所有数据来自官方一手渠道（美联储/财政部/CBOE等），每个数字都标注日期。过期数据不参与判定。非投资建议。
 </footer>
 
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 </body>
 </html>

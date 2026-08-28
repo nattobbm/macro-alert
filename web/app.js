@@ -5,14 +5,24 @@ const fmt = (v, d = 2) => (v == null ? "—" : Number(v).toLocaleString("en-US",
 const SNAPSHOT_KEYS = ["spx", "vix", "gold", "silver", "dxy", "usdjpy", "brent",
   "us10y", "us30y", "tips10y", "move", "avg_rate"];
 
-const C = { cyan: "#2F6FBF", green: "#2EC486", red: "#FF6B6B", amber: "#FFA928",
-  gold: "#E8A93D", blue: "#4DA3FF", dim: "#8A8375", grid: "#EFE6D0" };
+function cssVar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+const C = { cyan: cssVar("--s1"), green: cssVar("--s3"), red: cssVar("--s8"), amber: cssVar("--s4"),
+  gold: cssVar("--s4"), blue: cssVar("--s1"), dim: cssVar("--dim"), grid: cssVar("--line"),
+  ink: cssVar("--ink"), card: cssVar("--card"),
+  s: [1,2,3,4,5,6,7,8].map(i=>cssVar("--s"+i)),
+  good: cssVar("--good"), bad: cssVar("--bad"), warn: cssVar("--warn") };
+document.querySelectorAll("#themes button").forEach(b=>{
+  const cur = document.documentElement.dataset.theme || "paper";
+  b.classList.toggle("active", b.dataset.setTheme === cur);
+  b.onclick = () => { try{localStorage.setItem("theme", b.dataset.setTheme)}catch(e){}; location.reload(); };
+});
 
 const DARK = {
   textStyle: { color: C.dim, fontFamily: "Baloo 2, Noto Sans SC" },
+  backgroundColor: "transparent",
   grid: { left: 46, right: 46, top: 26, bottom: 26 },
   xAxis: { type: "category", axisLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.dim } },
-  tooltip: { trigger: "axis", backgroundColor: "#FFFFFF", borderColor: "#1E1E28", textStyle: { color: "#1E1E28" } },
+  tooltip: { trigger: "axis", backgroundColor: C.card, borderColor: C.ink, textStyle: { color: C.ink } },
 };
 const yAxis = (opts = {}) => ({
   type: "value", scale: true,
@@ -173,7 +183,7 @@ function renderSnapshot(metrics, series) {
       <div class="value" data-key="${k}">—</div>
       <div class="chg ${chgClass(m.chg_1d_pct ?? m.chg_1d)}">${chg}</div>
       <div class="asof">${m.as_of ?? ""} · ${m.source.split(":")[0]}</div>
-      ${sparkline(series[k], 64, 26, up ? "#2EC486" : "#FF6B6B")}
+      ${sparkline(series[k], 64, 26, up ? C.good : C.bad)}
     </div>`;
   }).join("");
   // 数字滚动
@@ -230,7 +240,7 @@ function ticChart(series) {
   if (!series.tic_japan) return;
   lineChart("#tic-chart", {
     ...DARK,
-    color: [C.red, C.blue, C.gold],
+    color: [C.s[4], C.s[0], C.s[3]],
     legend: { textStyle: { color: C.dim }, top: 0 },
     xAxis: { ...DARK.xAxis, data: series.tic_japan.map(p => p[0].slice(0, 7)) },
     yAxis: yAxis({ name: "bn" }),
@@ -247,7 +257,7 @@ function dualAxis(el, s1, s2, n1, n2) {
   const m2 = new Map((s2 || []).map(p => [p[0], p[1]]));
   lineChart(el, {
     ...DARK,
-    color: [C.cyan, C.gold],
+    color: [C.s[0], C.s[3]],
     legend: { textStyle: { color: C.dim }, top: 0 },
     xAxis: { ...DARK.xAxis, data: dates },
     yAxis: [yAxis({ name: n1 }), yAxis({ name: n2, splitLine: { show: false } })],
@@ -272,8 +282,8 @@ function singleLine(el, s, name, marks = [], color = C.cyan) {
         colorStops: [{ offset: 0, color: color + "33" }, { offset: 1, color: "transparent" }] } },
       markLine: marks.length ? {
         silent: true, symbol: "none",
-        lineStyle: { color: C.amber, type: "dashed" },
-        label: { color: C.amber, fontFamily: "Share Tech Mono" },
+        lineStyle: { color: C.warn, type: "dashed" },
+        label: { color: C.warn },
         data: marks.map(v => ({ yAxis: v })),
       } : undefined,
     }],
@@ -307,9 +317,9 @@ function renderPredictions(p) {
         ${label} ${(o.value * 100).toFixed(1)}%<span class="dim"> ${o.as_of ?? ""}</span></span>` : "";
   const oddsRow = `<div style="margin:6px 0 10px">
     <span class="dim">9月会不会加息？三个地方的报价（口径不同，只并列不混）：</span><br>
-    ${src("期货算出来的", mo.zq_auto, "#2F6FBF")}
-    ${src("CME官网读的", mo.cme_manual, "#E8A93D")}
-    ${src("押注市场", mo.polymarket, "#2EC486")}
+    ${src("期货算出来的", mo.zq_auto, C.s[0])}
+    ${src("CME官网读的", mo.cme_manual, C.s[3])}
+    ${src("押注市场", mo.polymarket, C.s[2])}
   </div>`;
   $("#predictions").innerHTML =
     `<div>开放 ${p.open} · 已结算 ${p.settled} · Brier <span class="mono">${p.brier ?? "—"}</span> (n=${p.n_for_brier})
@@ -346,8 +356,8 @@ function relTime(iso) {
   return h < 1 ? `${Math.round(h * 60)}m` : h < 48 ? `${Math.round(h)}h` : `${Math.round(h / 24)}d`;
 }
 
-const TAG_COLOR = { "债务链": "#FF6B6B", "货币链": "#2F6FBF", "日本链": "#B4589B",
-  "地缘链": "#FFA928", "AI链": "#4DA3FF", "黄金链": "#E8A93D", "数据": "#2EC486", "其他": "#8A8375" };
+const TAG_COLOR = { "债务链": C.s[7], "货币链": C.s[0], "日本链": C.s[4],
+  "地缘链": C.s[1], "AI链": C.s[6], "黄金链": C.s[3], "数据": C.s[2], "其他": C.dim };
 
 function renderNews(items) {
   $("#newslog").innerHTML = (items || []).slice(0, 25).map(n => {
@@ -450,25 +460,25 @@ function renderKline(ohlc, gex) {
   const el = $("#kline");
   if (!el || !window.LightweightCharts || !ohlc?.length) return;
   const chart = window.__kline = LightweightCharts.createChart(el, {
-    layout: { background: { color: "transparent" }, textColor: "#8A8375",
+    layout: { background: { color: "transparent" }, textColor: C.dim,
       fontFamily: "Baloo 2" },
-    grid: { vertLines: { color: "#F3ECDA" }, horzLines: { color: "#F3ECDA" } },
-    rightPriceScale: { borderColor: "#E4D9BE" },
-    timeScale: { borderColor: "#E4D9BE" },
+    grid: { vertLines: { color: C.grid }, horzLines: { color: C.grid } },
+    rightPriceScale: { borderColor: C.grid },
+    timeScale: { borderColor: C.grid },
     crosshair: { mode: 0 },
     autoSize: true,
   });
   const series = chart.addCandlestickSeries({
-    upColor: "#2EC486", downColor: "#FF6B6B",
-    wickUpColor: "#2EC486", wickDownColor: "#FF6B6B",
+    upColor: C.good, downColor: C.bad,
+    wickUpColor: C.good, wickDownColor: C.bad,
     borderVisible: false,
   });
   series.setData(ohlc.map(([t, o, h, l, c]) => ({ time: t, open: o, high: h, low: l, close: c })));
   const lines = [];
   if (gex && !gex.stale) {
-    if (gex.call_wall) lines.push([gex.call_wall, "#2EC486", "天花板"]);
-    if (gex.put_wall && gex.put_wall !== gex.call_wall) lines.push([gex.put_wall, "#FF6B6B", "地板"]);
-    if (gex.flip) lines.push([gex.flip, "#E8A93D", "转性线"]);
+    if (gex.call_wall) lines.push([gex.call_wall, C.good, "天花板"]);
+    if (gex.put_wall && gex.put_wall !== gex.call_wall) lines.push([gex.put_wall, C.bad, "地板"]);
+    if (gex.flip) lines.push([gex.flip, C.warn, "转性线"]);
   }
   for (const [price, color, title] of lines)
     series.createPriceLine({ price, color, title, lineStyle: 2, lineWidth: 1 });
@@ -478,9 +488,9 @@ function renderKline(ohlc, gex) {
     $("#gex-head").textContent = `磁力总量 ${fmt(gex.net_gex_bn, 1)}bn · 当日到期部分 ${fmt(gex.gex_0dte_bn, 1)}bn · ${gex.date}`;
     $("#gex-levels").innerHTML =
       `<span class="badge ${gex.net_gex_bn >= 0 ? "b-ok" : "b-fired"}">${gex.net_gex_bn >= 0 ? "🧲 吸铁石模式(压波动)" : "🚀 放大器模式(助趋势)"}</span>` +
-      `转性线 <span class="mono" style="color:#E8A93D">${gex.flip ?? "—"}</span> · ` +
-      `天花板 <span class="mono" style="color:#2EC486">${gex.call_wall ?? "—"}</span> · ` +
-      `地板 <span class="mono" style="color:#FF6B6B">${gex.put_wall ?? "—"}</span> · ` +
+      `转性线 <span class="mono" style="color:${C.warn}">${gex.flip ?? "—"}</span> · ` +
+      `天花板 <span class="mono" style="color:${C.good}">${gex.call_wall ?? "—"}</span> · ` +
+      `地板 <span class="mono" style="color:${C.bad}">${gex.put_wall ?? "—"}</span> · ` +
       `现价 <span class="mono">${fmt(gex.spot, 1)}</span>` +
       `<div class="dim">${gex.assumption ?? ""}</div>`;
   }
@@ -498,12 +508,12 @@ function renderGexProfile(gex) {
     yAxis: yAxis({ name: "bn$/1%" }),
     series: [
       { name: "Call GEX", type: "bar", stack: "g", data: rows.map(r => r[1]),
-        itemStyle: { color: "rgba(47,230,160,.75)" } },
+        itemStyle: { color: C.good } },
       { name: "Put GEX", type: "bar", stack: "g", data: rows.map(r => r[2]),
-        itemStyle: { color: "rgba(255,77,106,.75)" },
+        itemStyle: { color: C.bad },
         markLine: { silent: true, symbol: "none",
-          lineStyle: { color: "#ffd166", type: "dashed" },
-          label: { color: "#ffd166", formatter: "现价" },
+          lineStyle: { color: C.warn, type: "dashed" },
+          label: { color: C.warn, formatter: "现价" },
           data: [{ xAxis: String(rows.reduce((best, r) =>
             Math.abs(r[0] - spot) < Math.abs(best - spot) ? r[0] : best, rows[0][0])) }] } },
     ],
