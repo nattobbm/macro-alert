@@ -2,36 +2,53 @@
   "id": "2026-08-28_jacksonhole_warsh",
   "created_at": "2026-08-20T00:00:00Z",
   "created_by": "Momo",
-  "status": "OPEN",
-
+  "status": "VOID",
   "question": "Jackson Hole Warsh主题演讲后的首个交易日收盘，9月FOMC加息25bp的市场隐含概率，是否高于演讲前一日收盘值？",
   "resolution": "YES = 演讲后首日收盘概率 > 演讲前一日收盘概率；NO = 低于或持平（差值绝对值<1pp视为持平，判NO）",
-
   "probability": null,
   "_probability_note": "此栏由Momo填写。填写前必须先自行核实当前概率读数——见下方 data_conflict。禁止事后修改。",
-
   "settle_date": "2026-08-31",
   "settle_source_primary": "CME FedWatch Tool（官方网页读数）",
   "settle_source_secondary": "Kalshi / Polymarket 的9月FOMC合约（口径不同，作交叉参照，不作判定依据）",
   "settle_rule": "以CME FedWatch为准。若当日CME数据不可得，顺延至下一交易日，并在结算记录中注明。",
-
   "data_conflict_MUST_RESOLVE_BEFORE_LOCKING": {
     "note": "当前概率读数存在重大冲突，锁定概率前必须自行核实",
     "readings": [
-      {"value": 0.559, "as_of": "2026-07-30前后", "source": "CME FedWatch，经Kalshi新闻转引"},
-      {"value": 0.55, "as_of": "2026-08-06", "source": "CME FedWatch，经Yahoo/Motley Fool转引"},
-      {"value": 0.55, "as_of": "2026-08上旬", "source": "CME FedWatch，经TMGM转引"},
-      {"value": 0.33, "as_of": "2026-08-17前后", "source": "regardsofwallstreet，原文'September hike odds, near 58% just after the July meeting, now sit around a third'"}
+      {
+        "value": 0.559,
+        "as_of": "2026-07-30前后",
+        "source": "CME FedWatch，经Kalshi新闻转引"
+      },
+      {
+        "value": 0.55,
+        "as_of": "2026-08-06",
+        "source": "CME FedWatch，经Yahoo/Motley Fool转引"
+      },
+      {
+        "value": 0.55,
+        "as_of": "2026-08上旬",
+        "source": "CME FedWatch，经TMGM转引"
+      },
+      {
+        "value": 0.33,
+        "as_of": "2026-08-17前后",
+        "source": "regardsofwallstreet，原文'September hike odds, near 58% just after the July meeting, now sit around a third'"
+      }
     ],
     "interpretation": "若33%属实，则8月12-14的数据三连（CPI/PPI/零售）已使加息预期从约58%大幅下修至约1/3。这是本预测的核心背景，方向完全取决于此。**所有转引均为二手，必须回CME官网核当日读数。**",
     "RESOLVED_2026_08_26": {
-      "value": 0.381, "as_of": "2026-08-26 11:20:48 CT",
+      "value": 0.381,
+      "as_of": "2026-08-26 11:20:48 CT",
       "source": "CME FedWatch官网一手读数（Momo截图核实）",
-      "series_firsthand": {"2026-07-24": 0.553, "2026-08-19": 0.331, "2026-08-25": 0.396, "2026-08-26": 0.381},
+      "series_firsthand": {
+        "2026-07-24": 0.553,
+        "2026-08-19": 0.331,
+        "2026-08-25": 0.396,
+        "2026-08-26": 0.381
+      },
       "note": "冲突解决：二手33%方向正确（8/19确为33.1%）；一周内已回升至38-40%区间。8/26核心PCE公布日读数38.1%。演讲前一日(8/27)收盘值仍需在结算时另取，本读数不替代 actual_prob_before"
     }
   },
-
   "ex_ante_facts": {
     "_rule": "以下全部为2026-08-20前可核实的事实。结算时不得增补。",
     "fomc_july": "7月28-29日以9-3维持3.50-3.75%，三位地区联储主席（Hammack/Kashkari/Logan）主张加息25bp",
@@ -45,30 +62,42 @@
     "aug19_minutes": "7月FOMC会议纪要于8月19日14:00 ET公布",
     "structural_conflict": "财政部压长端 vs Fed控通胀，构成委托-代理冲突。多家机构公开指出此举可能人为压制收益率、增加Fed控通胀难度",
     "key_setup": "58%→约33%的重定价发生在Warsh未发一言的情况下。Jackson Hole主题演讲（8月28日周五上午）是他第一次有计划地确认或反驳这一重定价的场合",
-    "upcoming_before_settle": ["8月26日 7月PCE（Fed首选通胀指标，若核心PCE仍>3%，加息理由增强）"]
+    "upcoming_before_settle": [
+      "8月26日 7月PCE（Fed首选通胀指标，若核心PCE仍>3%，加息理由增强）"
+    ]
   },
-
   "reasoning_ex_ante": "【由Momo填写。要求：只写8月20日之前可得的信息；不得引用演讲内容或演讲后的市场反应。】",
-
   "candidate_mechanisms": {
     "_rule": "多因子强制：至少两个候选解释，不预设胜负",
     "A_官僚信誉框架": {
       "prediction": "YES（概率上升）",
       "logic": "Warsh已承认未充分强调价格稳定，Jackson Hole首秀是重建信誉的场合；且财政部刚刚公开挤压其空间，Fed独立性受挑战，他有动机以鹰派表态划清界限",
-      "supporting_ex_ante": ["7月9-3分裂", "Warsh自认沟通失误", "'必要时将在未来会议上使用'", "8月19日财政部越界"]
+      "supporting_ex_ante": [
+        "7月9-3分裂",
+        "Warsh自认沟通失误",
+        "'必要时将在未来会议上使用'",
+        "8月19日财政部越界"
+      ]
     },
     "B_数据依赖框架": {
       "prediction": "NO（概率持平或下降）",
       "logic": "8月12-14数据三连全面走软（CPI符合、PPI持平、零售-0.6%、信心51.0），Warsh若尊重数据则无理由反驳市场重定价；且取消前瞻指引本身意味着他倾向不预告",
-      "supporting_ex_ante": ["三项数据均不支持加息", "取消前瞻指引=不预先承诺", "零售-0.6%指向需求走弱"]
+      "supporting_ex_ante": [
+        "三项数据均不支持加息",
+        "取消前瞻指引=不预先承诺",
+        "零售-0.6%指向需求走弱"
+      ]
     },
     "C_压利息/金融抑制框架": {
       "prediction": "NO",
       "logic": "债务破40万亿、年化利息超1.15万亿、财政部已下场压长端；在此约束下加息的财政代价陡增，Fed实际空间被压缩",
-      "supporting_ex_ante": ["债务40万亿", "FY26前10月净利息9630亿", "8月19日回购翻倍"]
+      "supporting_ex_ante": [
+        "债务40万亿",
+        "FY26前10月净利息9630亿",
+        "8月19日回购翻倍"
+      ]
     }
   },
-
   "falsifiers": {
     "_rule": "以下任一发生，本预测的前提改变，须在结算记录中注明（但不改概率）",
     "F1": "8月26日核心PCE大幅超预期（>3.3%）→ 加息理由显著增强，A框架概率上升",
@@ -77,24 +106,23 @@
     "F4": "Warsh因故未发表主题演讲或推迟 → 本预测作废（VOID），不计入Brier样本",
     "F5": "财政部在演讲前进一步扩大回购或推出新工具 → Fed-财政冲突升级，A框架概率上升"
   },
-
   "what_this_discriminates": {
     "note": "本预测的价值不在于对错，在于它是两个竞争框架首次正面碰撞的公开场合",
     "if_YES": "官僚信誉框架加分。Fed在财政部挤压下仍守鹰派立场 → 老天花板重装 → 实际利率上行压力 → 黄金承压",
     "if_NO": "压利息/金融抑制框架加分。Fed退让或含糊 → C路径确认 → 实际利率被两只手（加息预期下修+财政部压长端）同时压低 → 黄金结构性支撑",
     "linked_rule": "rules.yaml F4_repression_signal"
   },
-
   "outcome": null,
   "settled_at": null,
   "actual_prob_before": null,
   "actual_prob_after": null,
   "settlement_note": null,
-
   "discipline": {
     "no_edit_after_lock": "probability 与 reasoning_ex_ante 填写并commit后不得修改。修改历史在git中可查。",
     "outcome_vs_quality": "结算时分两栏记录：(1) 结局分（对/错）(2) 决策质量分（事前信息下这个概率是否合理，可在结局公布前自评）。两条线分开累计。",
     "sample_threshold": "累计已结算样本 < 50 时，Brier score 只记录不解读。",
     "timestamp": "本文件的 git commit 时间戳即为预注册时间证明。可选：用 OpenTimestamps 加盖比特币锚定时间戳。"
-  }
+  },
+  "void_reason": "问题格式（单一概率数字）与推理者模式（情景排序）不匹配——预测系统设计发现，由情景图卡取代。不计入Brier样本。",
+  "voided_at": "2026-08-28T01:52:16Z"
 }
