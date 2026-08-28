@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <script>try{var th=localStorage.getItem("theme");if(th)document.documentElement.dataset.theme=th}catch(e){}</script>
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=7">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FFD84D">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -46,6 +46,13 @@
   <a href="#data" data-tab="data">🗃️ 数据</a>
 </nav>
 
+
+<!-- 0.-1 今日推理快报 -->
+<section data-page="home" class="card" id="digest-card">
+  <h2><span class="h-icon">◈</span> 今日推理 <span class="dim" id="digest-date">DAILY INFERENCE · 机械diff生成,非AI编造</span></h2>
+  <div id="digest-lines"></div>
+  <div id="digest-watch" class="dim note"></div>
+</section>
 
 <!-- 0. 地球：TIC 资金流主视觉 -->
 <section data-page="home" id="hero">
@@ -160,6 +167,6 @@
   所有数据来自官方一手渠道（美联储/财政部/CBOE等），每个数字都标注日期。过期数据不参与判定。非投资建议。
 </footer>
 
-<script src="app.js?v=10"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>

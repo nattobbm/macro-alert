@@ -12,6 +12,7 @@ chains:
     falsify_en: "30Y holds below 5.10 = suppression worked, spiral paused"
     one_liner: 政府欠债太多 → 出手压利息省钱 → 但打破70年老规矩，大家更不信任 → 要求更高利息 → 欠得更多
     falsify: 30年利率稳稳待在5.10以下 = 这次压住了，雪球暂停
+    falsify_rule: "us30y < 5.10"   # 单日判定，触发即标记待人工确认
     nodes:
       - {label_en: "Federal interest bill", label: "联邦政府利息支出", term: "净利息FY26前10月", value_text: "9630亿$(还在涨)", status: fact, note: "CBO官方账本"}
       - {label_en: "Total federal debt", label: "联邦债务总额", term: "公共债务", value_text: "40万亿$", status: fact, note: "2026-08-19突破"}

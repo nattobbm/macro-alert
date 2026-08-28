@@ -415,7 +415,8 @@ function renderChains(chains) {
         <div class="cn-dist dim">${dist || n.note?.slice(0, 14) || ""}</div>
       </div>`;
     }).join('<div class="carrow">→</div>');
-    return `<div class="chain card">
+    const dead = ch.life === "falsified";
+    return `<div class="chain card${dead ? " chain-dead" : ""}">
       <div class="chain-head" onclick="this.parentElement.classList.toggle('open')">
         <b title="${ch.term ?? ""}">${ch.emoji ?? ""} ${ch.name}</b> ${headBadge}
         <div class="dim">${ch.one_liner}</div>
@@ -520,6 +521,17 @@ function renderGexProfile(gex) {
   });
 }
 
+
+function renderDigest(dg) {
+  if (!dg) return;
+  $("#digest-date").textContent = `${dg.date} · 与上次运行的状态对比`;
+  const LV = { alert: "#ff4d6a", warn: "#ffb02e", info: "#5f7692" };
+  $("#digest-lines").innerHTML = (dg.lines || []).map(l =>
+    `<div style="color:${LV[l.level] ?? "#d8e6f5"};padding:2px 0">
+       <span class="mono">${l.icon}</span> ${l.text}</div>`).join("");
+  $("#digest-watch").textContent = "下一步观测：" + (dg.next_watch || []).join(" · ");
+}
+
 async function main() {
   let data;
   try {
@@ -529,6 +541,7 @@ async function main() {
     return;
   }
   $("#gen-time").textContent = `UPDATED ${data.generated_at} UTC`;
+  renderDigest(data.digest);
   renderHeroTic(data.tic, data.tic?.[0]?.as_of);
   renderGlobe(data.tic);
   renderRegime(data.regime);

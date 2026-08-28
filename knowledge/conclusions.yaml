@@ -52,6 +52,7 @@ conclusions:
     number: "日本−26.4bn / 英国−8.7bn / 中国−25.9bn"
     evidence: TIC slt_table5一手解析，与官方修订值精确一致
     source: macro-alert规则T2b（已触发）
+    review_date: 2026-10-16   # 8月TIC发布日，自动标记复核
     so_what: 官方买方退潮→与央行购金是同一笔钱的两端
 
   - id: integer_cluster_dead
@@ -70,5 +71,6 @@ conclusions:
     claim_en: "Positive-GEX pinning: spot sat 0.009% from the wall (n=1, logging only; daily GEX archive accruing)."
     number: "8/27实测：现价7675.7贴call墙7675(距0.009%)，净GEX+50bn"
     evidence: n=1只登记不推断；每日GEX快照自动累积中(data/gex/)
+    auto_n_dir: gex   # 加样器：自动统计data/gex/样本数
     source: fetchers/cboe_gex.py
     so_what: 样本≥8后可做正/负gamma日波动性质分层检验（M11 Phase 2变量）

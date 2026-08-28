@@ -229,6 +229,81 @@ def build_radar(ctx: dict) -> list[dict]:
     return out
 
 
+def _eval_rule(expr: str, ctx: dict):
+    """用simpleeval安全求值失效/复核条件；变量缺失返回None（不判定）"""
+    from core.engine import _rule_vars
+    from simpleeval import SimpleEval
+    needed = _rule_vars(expr)
+    if any(ctx.get(v) is None for v in needed):
+        return None
+    ev = SimpleEval()
+    ev.functions["abs"] = abs
+    ev.names = {k: ctx[k] for k in needed}
+    try:
+        return bool(ev.eval(expr))
+    except Exception:
+        return None
+
+
+def build_digest(ctx: dict, knowledge: dict, rule_results: list, radar: list,
+                 cal: list) -> dict:
+    """今日推理快报：与上次运行的状态diff，机械拼装（非AI生成）。
+    回答三个问题：什么变了 / 触碰了哪条链 / 下一步看哪。"""
+    st_file = DATA / "digest_state.json"
+    prev = json.loads(st_file.read_text(encoding="utf-8")) if st_file.exists() else {}
+    today = dt.date.today().isoformat()
+
+    # 当前节点状态表 {chain_id.label: status}
+    node_now = {}
+    for ch in knowledge.get("chains", []):
+        for nd in ch.get("nodes", []):
+            if nd.get("status") in ("crossed", "near", "quiet", "no_data"):
+                node_now[f"{ch['id']}·{nd['label']}"] = nd["status"]
+
+    lines = []
+    # 1) 规则新触发
+    fired = [r for r in rule_results if r["status"] == "fired"]
+    for r in fired:
+        lines.append({"icon": "▲", "text": f"规则触发：{r['name']}", "level": "alert"})
+    # 2) 链条节点状态变化（对比上次）
+    prev_nodes = prev.get("nodes", {})
+    order = {"quiet": 0, "near": 1, "crossed": 2}
+    for k, now_s in node_now.items():
+        old_s = prev_nodes.get(k)
+        if old_s and old_s != now_s and now_s in order and old_s in order:
+            worse = order[now_s] > order[old_s]
+            zh = {"quiet": "安静", "near": "逼近", "crossed": "突破"}
+            lines.append({"icon": "↗" if worse else "↘",
+                          "text": f"{k}：{zh[old_s]}→{zh[now_s]}",
+                          "level": "warn" if worse else "info"})
+    # 3) 链条失效
+    for ch in knowledge.get("chains", []):
+        if ch.get("life") == "falsified" and prev.get("chain_life", {}).get(ch["id"]) != "falsified":
+            lines.append({"icon": "⚰", "text": f"链条失效条件触发：{ch['name']}（已沉底待复核）",
+                          "level": "alert"})
+    # 4) 结论待复核
+    for c in knowledge.get("conclusions", []):
+        if c.get("live_flag") and c["id"] not in prev.get("flagged", []):
+            lines.append({"icon": "⏰", "text": f"结论待复核：{c['claim'][:30]}（{c['live_flag']}）",
+                          "level": "warn"})
+    if not lines:
+        lines.append({"icon": "·", "text": "与上次运行相比无状态变化", "level": "info"})
+
+    # 5) 下一步观测口：距离最近的3个雷达项 + 3日内日历
+    watch = [f"{r['label']}（距{abs(r['distance_pct']):.1f}%）"
+             for r in radar[:5] if r["distance_pct"] > 0][:3]
+    upcoming = [c for c in cal
+                if 0 <= (dt.date.fromisoformat(c["date"]) - dt.date.today()).days <= 3]
+    next_watch = watch + [f"{c['date']} {c['event']}" for c in upcoming[:2]]
+
+    st_file.write_text(json.dumps({
+        "date": today, "nodes": node_now,
+        "chain_life": {ch["id"]: ch.get("life", "active") for ch in knowledge.get("chains", [])},
+        "flagged": [c["id"] for c in knowledge.get("conclusions", []) if c.get("live_flag")],
+    }, ensure_ascii=False), encoding="utf-8")
+    return {"date": today, "lines": lines, "next_watch": next_watch}
+
+
 def build_knowledge(ctx: dict) -> dict:
     """knowledge/ → 推理页数据：链条节点状态自动判定 + 结论库 + inbox清单。
     节点状态：crossed(已突破,红) / near(距阈值<5%,黄) / quiet(安静,绿) / fact / manual / no_data
@@ -260,20 +335,43 @@ def build_knowledge(ctx: dict) -> dict:
                     node.update(status=nd.get("status", "fact"),
                                 value_text=nd.get("value_text", ""))
                 nodes.append(node)
+            # 失效条件自动复核（可绑定的才判；绑不上的=人工复核）
+            life = "active"
+            if ch.get("falsify_rule") and _eval_rule(ch["falsify_rule"], ctx):
+                life = "falsified"
             out["chains"].append({
                 "id": ch["id"], "name": ch["name"], "name_en": ch.get("name_en", ""), "emoji": ch.get("emoji", ""), "term": ch.get("term", ""), "one_liner": ch.get("one_liner", ""), "one_liner_en": ch.get("one_liner_en", ""), "falsify_en": ch.get("falsify_en", ""),
-                "falsify": ch.get("falsify", ""), "nodes": nodes,
+                "falsify": ch.get("falsify", ""), "nodes": nodes, "life": life,
                 "heat": crossed * 2 + near,   # 排序用：越热越靠前
             })
-        out["chains"].sort(key=lambda c: -c["heat"])
+        # 活链按热度；失效链沉底（标记不删除——防僵尸结论复活）
+        out["chains"].sort(key=lambda c: (c["life"] == "falsified", -c["heat"]))
 
     conf = kdir / "conclusions.yaml"
     if conf.exists():
         cons = yaml.safe_load(conf.read_text(encoding="utf-8")).get("conclusions", [])
+        today = dt.date.today()
         for c in cons:
             if c.get("date") is not None:
                 c["date"] = str(c["date"])
+            # 复核器：到期或条件触发 → 标记待复核（沉底，不删除）
+            flag = None
+            rd = c.get("review_date")
+            if rd and today >= (rd if isinstance(rd, dt.date) else dt.date.fromisoformat(str(rd))):
+                flag = f"复核日{rd}已到"
+            if c.get("review_rule") and _eval_rule(str(c["review_rule"]), ctx):
+                flag = f"失效条件触发:{c['review_rule']}"
+            if flag:
+                c["live_flag"] = flag
+            if isinstance(c.get("review_date"), dt.date):
+                c["review_date"] = str(c["review_date"])
+            # 加样器：假设(加样中)的样本数自动累计
+            if c.get("auto_n_dir"):
+                n = len(list((DATA / c["auto_n_dir"]).glob("*.json"))) if (DATA / c["auto_n_dir"]).exists() else 0
+                c["auto_n"] = n
+        # 组内按日期倒序，待复核的整体沉底（稳定排序两步实现）
         cons.sort(key=lambda c: c.get("date", ""), reverse=True)
+        cons.sort(key=lambda c: bool(c.get("live_flag")))
         out["conclusions"] = cons
 
     inbox = kdir / "inbox"
@@ -418,12 +516,19 @@ def main():
         news_items = []
     latest = build_latest(dps, rule_results, auctions, cal, scorecard_data,
                           news_items=news_items, ctx=ctx)
+    latest["digest"] = build_digest(ctx, latest["knowledge"], rule_results,
+                                    latest["radar"], cal)
     LATEST_FILE.write_text(json.dumps(latest, ensure_ascii=False), encoding="utf-8")
 
     metrics_by_key = {m["key"]: m for m in latest["metrics"]}
     cal_today = [c for c in cal if c["date"] == today]
     msg = notify.build_message(latest["health"], rule_results, auctions, cal_today,
                                metrics_by_key, today)
+    # 今日推理快报置顶到TG
+    dg = latest["digest"]
+    dg_txt = "\n".join(f"{l['icon']} {l['text']}" for l in dg["lines"][:8])
+    watch_txt = " / ".join(dg["next_watch"][:4])
+    msg = f"*今日推理*\n{dg_txt}\n_下一步观测：{watch_txt}_\n\n" + msg
     notify.send(msg, dry=args.dry_run)
 
     fired = [r for r in rule_results if r["status"] == "fired"]
