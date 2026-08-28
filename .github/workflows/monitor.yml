@@ -41,13 +41,19 @@ jobs:
           git add data/
           git diff --staged --quiet || git commit -m "data: $(date -u +%FT%H:%M)"
           git push
-      - name: Build site
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Build site (React)
         run: |
+          cd site && npm ci && npm run build && cd ..
           mkdir -p _site
-          cp -r web/. _site/
-          rm -rf _site/data _site/knowledge
+          cp -r site/dist/. _site/
           cp -r data _site/data
           cp -r knowledge _site/knowledge
+          cp -r web _site/classic
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

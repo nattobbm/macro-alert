@@ -39,14 +39,6 @@ conclusions:
     evidence: 200条周期腿(2000-2026)；下跌腿中位−8.5%/15日，上涨+11.0%/20日
     source: 周期分析/output/m1b_speed_asymmetry.md
 
-  - id: july_low_data_note
-    date: 2026-08-27
-    verdict: 事实
-    claim: 记忆中的7月低点7294在SPX现货上不存在
-    number: "SPX 7月窗口实际最低7313.9(07-29)；期货基差约16点"
-    evidence: 案例校验K15未识别→记为发现。7294大概率是ES期货价
-    source: 周期分析/output/report.md
-    so_what: 看盘与回测必须统一标的口径——ES价不能直接当SPX价用
 
   - id: tic_triple_decline
     date: 2026-08-17
