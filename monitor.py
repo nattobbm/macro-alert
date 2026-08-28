@@ -32,19 +32,19 @@ STATE_FILE = DATA / "state.json"
 LATEST_FILE = DATA / "latest.json"
 
 LABELS = {
-    "tips10y": "10Y TIPS实际利率", "us10y": "10Y国债", "us30y": "30Y国债",
-    "us20y": "20Y国债", "curve_10y2y": "10Y-2Y曲线", "breakeven10": "10Y盈亏平衡通胀",
-    "sofr": "SOFR", "iorb": "IORB", "rrp": "隔夜逆回购", "fed_assets": "Fed总资产",
-    "tga": "TGA(周)", "m2": "M2", "debt_total": "公共债务总额", "tga_daily": "TGA(日)",
-    "avg_rate": "平均发行利率", "tic_japan": "TIC日本", "tic_uk": "TIC英国",
-    "tic_china": "TIC中国", "cot_gold": "COT黄金净多", "cot_silver": "COT白银净多",
-    "cot_jpy": "COT日元净多", "repo_ops": "SRF用量", "sofr_nyfed": "SOFR(NYFed)",
-    "crude_stocks": "原油商业库存", "spx": "SPX", "vix": "VIX", "vix3m": "VIX3M",
+    "tips10y": "真利率(扣通胀)", "us10y": "10年国债利率", "us30y": "30年国债利率",
+    "us20y": "20年国债利率", "curve_10y2y": "利率曲线(10Y-2Y)", "breakeven10": "物价预期(债市定价)",
+    "sofr": "隔夜借钱利率SOFR", "iorb": "央行地板利率IORB", "rrp": "备用水池RRP", "fed_assets": "央行家底",
+    "tga": "政府账户(周)", "m2": "全社会的钱M2", "debt_total": "政府总欠债", "tga_daily": "政府账户(日)",
+    "avg_rate": "政府借钱平均利息", "tic_japan": "日本持有美债", "tic_uk": "英国持有美债",
+    "tic_china": "中国持有美债", "cot_gold": "黄金大户净多单", "cot_silver": "白银大户净多单",
+    "cot_jpy": "日元大户净多单", "repo_ops": "央行急救窗口用量", "sofr_nyfed": "SOFR(纽约联储版)",
+    "crude_stocks": "原油库存", "spx": "美股大盘SPX", "vix": "恐慌指数VIX", "vix3m": "3月期VIX",
     "gold": "黄金", "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
-    "usdjpy": "USDJPY", "brent": "Brent", "wti": "WTI", "move": "MOVE",
-    "auctions": "最新拍卖认购", "gex_net": "SPX净GEX", "fedwatch_zq_sep": "9月加息概率(ZQ自算)", "polymarket_sep_hike": "9月加息概率(Polymarket)", "fedwatch_sep_hike": "9月加息概率(手动)",
-    "fima_weekly_usd": "FIMA用量(手动)", "war_risk_premium": "战争险费率(手动)",
-    "auction_tail_bp": "拍卖tail(手动)",
+    "usdjpy": "美元兑日元", "brent": "油价Brent", "wti": "油价WTI", "move": "债市恐慌指数MOVE",
+    "auctions": "国债拍卖认购", "gex_net": "做市商GEX", "fedwatch_zq_sep": "9月加息概率(期货算)", "polymarket_sep_hike": "9月加息概率(押注市场)", "fedwatch_sep_hike": "9月加息概率(手动)",
+    "fima_weekly_usd": "外国央行借美元(手动)", "war_risk_premium": "战争险费率(手动)",
+    "auction_tail_bp": "拍卖尾差(手动)",
 }
 GROUPS = {
     "rates": ["tips10y", "us10y", "us30y", "us20y", "curve_10y2y", "breakeven10"],
@@ -158,25 +158,25 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
 # 观测点雷达：8-25传导分析报告的最高信息量观测点 + 规则阈值距离
 # direction: above=向上突破触发 / below=向下突破触发
 RADAR = [
-    ("30Y重上前高",       "us30y",            5.33, "above", "T5b_30y_retest"),
-    ("30Y失序区",         "us30y",            5.50, "above", "T5_30y_yield"),
-    ("准备金稀缺(SOFR-IORB)", "_sofr_iorb",   0.03, "above", "T7_sofr_iorb"),
-    ("9月加息预期回升",   "fedwatch_sep_hike", 0.65, "above", "F1_hike_odds_up"),
-    ("9月加息预期崩落",   "fedwatch_sep_hike", 0.25, "below", "F2_hike_odds_down"),
-    ("JPY干预临界",       "usdjpy",           163.0, "above", "J1_intervention_zone"),
-    ("JPY套息平仓",       "usdjpy",           157.0, "below", "J1b_carry_unwind"),
-    ("黄金上破",          "gold",             4700.0, "above", "X1_gold_breakout"),
-    ("黄金下破",          "gold",             4450.0, "below", "X1_gold_breakout"),
-    ("油价区间上沿",      "brent",            90.0, "above", "G1_oil_band_break"),
-    ("油价区间下沿",      "brent",            80.0, "below", "G1_oil_band_break"),
-    ("VIX应激区",         "vix",              30.0, "above", "S1_vix_regime"),
-    ("MOVE突破",          "move",             140.0, "above", "T4_move"),
-    ("COT净多极端",       "cot_gold_pctile",  90.0, "above", "P1_cot_extreme"),
-    ("r逼近g",            "avg_rate",         4.0, "above", "T6_rg_gap"),
+    ("30年利率回前高",       "us30y",            5.33, "above", "T5b_30y_retest"),
+    ("30年利率失控区",         "us30y",            5.50, "above", "T5_30y_yield"),
+    ("银行缺现金(SOFR冒头)", "_sofr_iorb",   0.03, "above", "T7_sofr_iorb"),
+    ("加息预期回升",   "fedwatch_sep_hike", 0.65, "above", "F1_hike_odds_up"),
+    ("加息预期崩落",   "fedwatch_sep_hike", 0.25, "below", "F2_hike_odds_down"),
+    ("日元弱到官方干预线",       "usdjpy",           163.0, "above", "J1_intervention_zone"),
+    ("日元强到撤资线",       "usdjpy",           157.0, "below", "J1b_carry_unwind"),
+    ("黄金冲上界",          "gold",             4700.0, "above", "X1_gold_breakout"),
+    ("黄金跌下界",          "gold",             4450.0, "below", "X1_gold_breakout"),
+    ("油价出上界",      "brent",            90.0, "above", "G1_oil_band_break"),
+    ("油价出下界",      "brent",            80.0, "below", "G1_oil_band_break"),
+    ("恐慌指数进应激区",         "vix",              30.0, "above", "S1_vix_regime"),
+    ("债市恐慌指数爆表",          "move",             140.0, "above", "T4_move"),
+    ("黄金大户仓位极端",       "cot_gold_pctile",  90.0, "above", "P1_cot_extreme"),
+    ("利息增速追上收入增速",            "avg_rate",         4.0, "above", "T6_rg_gap"),
     # GEX（距离本身就是%，阈值0=穿越）
-    ("跌破gamma flip(转负gamma)", "gex_flip_dist_pct",     0.0, "below", "GEX"),
-    ("上破call墙",               "gex_callwall_dist_pct", 0.0, "above", "GEX"),
-    ("跌破put墙",                "gex_putwall_dist_pct",  0.0, "below", "GEX"),
+    ("跌进放大器区(负gamma)", "gex_flip_dist_pct",     0.0, "below", "GEX"),
+    ("顶破天花板(call墙)",               "gex_callwall_dist_pct", 0.0, "above", "GEX"),
+    ("砸穿地板(put墙)",                "gex_putwall_dist_pct",  0.0, "below", "GEX"),
 ]
 
 
@@ -213,7 +213,7 @@ def build_knowledge(ctx: dict) -> dict:
             nodes = []
             crossed = near = 0
             for nd in ch.get("nodes", []):
-                node = {"label": nd["label"], "note": nd.get("note", "")}
+                node = {"label": nd["label"], "note": nd.get("note", ""), "term": nd.get("term", "")}
                 if "metric" in nd:
                     v = ctx.get(nd["metric"])
                     thr, direc = nd["threshold"], nd["direction"]
@@ -231,7 +231,7 @@ def build_knowledge(ctx: dict) -> dict:
                                 value_text=nd.get("value_text", ""))
                 nodes.append(node)
             out["chains"].append({
-                "id": ch["id"], "name": ch["name"], "one_liner": ch.get("one_liner", ""),
+                "id": ch["id"], "name": ch["name"], "emoji": ch.get("emoji", ""), "term": ch.get("term", ""), "one_liner": ch.get("one_liner", ""),
                 "falsify": ch.get("falsify", ""), "nodes": nodes,
                 "heat": crossed * 2 + near,   # 排序用：越热越靠前
             })

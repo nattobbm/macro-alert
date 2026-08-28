@@ -5,14 +5,14 @@ const fmt = (v, d = 2) => (v == null ? "—" : Number(v).toLocaleString("en-US",
 const SNAPSHOT_KEYS = ["spx", "vix", "gold", "silver", "dxy", "usdjpy", "brent",
   "us10y", "us30y", "tips10y", "move", "avg_rate"];
 
-const C = { cyan: "#00e5ff", green: "#2fe6a0", red: "#ff4d6a", amber: "#ffb02e",
-  gold: "#ffd166", blue: "#4da3ff", dim: "#5f7692", grid: "#16233c" };
+const C = { cyan: "#2F6FBF", green: "#2EC486", red: "#FF6B6B", amber: "#FFA928",
+  gold: "#E8A93D", blue: "#4DA3FF", dim: "#8A8375", grid: "#EFE6D0" };
 
 const DARK = {
-  textStyle: { color: C.dim, fontFamily: "Share Tech Mono" },
+  textStyle: { color: C.dim, fontFamily: "Baloo 2, Noto Sans SC" },
   grid: { left: 46, right: 46, top: 26, bottom: 26 },
   xAxis: { type: "category", axisLine: { lineStyle: { color: C.grid } }, axisLabel: { color: C.dim } },
-  tooltip: { trigger: "axis", backgroundColor: "rgba(10,16,30,.92)", borderColor: C.grid, textStyle: { color: "#d8e6f5" } },
+  tooltip: { trigger: "axis", backgroundColor: "#FFFFFF", borderColor: "#1E1E28", textStyle: { color: "#1E1E28" } },
 };
 const yAxis = (opts = {}) => ({
   type: "value", scale: true,
@@ -173,7 +173,7 @@ function renderSnapshot(metrics, series) {
       <div class="value" data-key="${k}">—</div>
       <div class="chg ${chgClass(m.chg_1d_pct ?? m.chg_1d)}">${chg}</div>
       <div class="asof">${m.as_of ?? ""} · ${m.source.split(":")[0]}</div>
-      ${sparkline(series[k], 64, 26, up ? C.green : C.red)}
+      ${sparkline(series[k], 64, 26, up ? "#2EC486" : "#FF6B6B")}
     </div>`;
   }).join("");
   // 数字滚动
@@ -190,8 +190,8 @@ function renderRules(rules) {
   const fired = rules.filter(r => r.status === "fired" || r.status === "fired_muted").length;
   $("#rules-count").textContent = `FIRED ${fired} / ${rules.length}`;
   $("#rules").innerHTML = sorted.map(r => {
-    const label = { fired: "▲ FIRED", fired_muted: "▲ FIRED·muted", not_fired: "● ok",
-      skipped: "○ skipped", manual: "◆ manual" }[r.status] ?? r.status;
+    const label = { fired: "🔥 响了", fired_muted: "🔕 响过(静音中)", not_fired: "🟢 正常",
+      skipped: "⏸️ 数据缺跳过", manual: "✍️ 人工盯" }[r.status] ?? r.status;
     const inputs = Object.entries(r.inputs || {}).map(([k, v]) => `${k}=${v}`).join(" ");
     return `<div class="rule ${r.status}">
       <div class="head" onclick="this.parentElement.classList.toggle('open')">
@@ -297,7 +297,7 @@ function renderPredictions(p) {
   if (!p) return;
   const rows = (p.open_list || []).map(o =>
     `<div class="cal-item">
-      <span class="badge ${o.locked ? "b-ok" : "b-stale"}">${o.locked ? "LOCKED" : "UNLOCKED"}</span>
+      <span class="badge ${o.locked ? "b-ok" : "b-stale"}">${o.locked ? "🔒 已锁定" : "🔓 没锁定"}</span>
       <span class="mono">${o.id}</span> <span class="dim">结算 ${o.settle_date ?? "—"} · p=${o.probability ?? "未填"}</span>
       <div class="cal-watch">${o.question ?? ""}</div>
     </div>`).join("");
@@ -306,10 +306,10 @@ function renderPredictions(p) {
     ? `<span class="badge" style="color:${color};border:1px solid ${color}44;background:${color}14">
         ${label} ${(o.value * 100).toFixed(1)}%<span class="dim"> ${o.as_of ?? ""}</span></span>` : "";
   const oddsRow = `<div style="margin:6px 0 10px">
-    <span class="dim">9月加息定价（三源三口径并列，不混用）：</span><br>
-    ${src("ZQ期货自算", mo.zq_auto, "#00e5ff")}
-    ${src("CME手读", mo.cme_manual, "#ffd166")}
-    ${src("Polymarket", mo.polymarket, "#2fe6a0")}
+    <span class="dim">9月会不会加息？三个地方的报价（口径不同，只并列不混）：</span><br>
+    ${src("期货算出来的", mo.zq_auto, "#2F6FBF")}
+    ${src("CME官网读的", mo.cme_manual, "#E8A93D")}
+    ${src("押注市场", mo.polymarket, "#2EC486")}
   </div>`;
   $("#predictions").innerHTML =
     `<div>开放 ${p.open} · 已结算 ${p.settled} · Brier <span class="mono">${p.brier ?? "—"}</span> (n=${p.n_for_brier})
@@ -323,7 +323,7 @@ function renderRegime(rg) {
   const detail = rg.detail.map(d =>
     `${d.met ? "✓" : "·"} ${d.cond}(${d.value ?? "—"})`).join("  ");
   $("#regime-chip").innerHTML =
-    `<span class="badge ${cls}" title="${rg.judge}">${rg.name} ${rg.met}/${rg.total}</span>
+    `<span class="badge ${cls}" title="${rg.judge}">🎬 当前剧本：${rg.name} ${rg.met}/${rg.total}条件成立</span>
      <span class="dim mono">${detail}</span>`;
 }
 
@@ -335,7 +335,7 @@ function renderRadar(radar) {
       <div class="label">${r.label} ${arrow}${fmt(r.threshold, 2)}</div>
       <div class="value">${fmt(r.value, Math.abs(r.value) > 100 ? 1 : 3)}</div>
       <div class="chg ${crossed ? "down" : "dim"}">${crossed
-        ? "已突破" : `距 ${fmt(Math.abs(r.distance_pct), 1)}%`}</div>
+        ? "🔥 越线了" : `还差 ${fmt(Math.abs(r.distance_pct), 1)}%`}</div>
     </div>`;
   }).join("");
 }
@@ -346,8 +346,8 @@ function relTime(iso) {
   return h < 1 ? `${Math.round(h * 60)}m` : h < 48 ? `${Math.round(h)}h` : `${Math.round(h / 24)}d`;
 }
 
-const TAG_COLOR = { "债务链": "#ff4d6a", "货币链": "#00e5ff", "日本链": "#ffd166",
-  "地缘链": "#ffb02e", "AI链": "#4da3ff", "黄金链": "#e3b341", "数据": "#2fe6a0", "其他": "#5f7692" };
+const TAG_COLOR = { "债务链": "#FF6B6B", "货币链": "#2F6FBF", "日本链": "#B4589B",
+  "地缘链": "#FFA928", "AI链": "#4DA3FF", "黄金链": "#E8A93D", "数据": "#2EC486", "其他": "#8A8375" };
 
 function renderNews(items) {
   $("#newslog").innerHTML = (items || []).slice(0, 25).map(n => {
@@ -382,7 +382,7 @@ function showPage(tab) {
 addEventListener("hashchange", () => showPage(location.hash.slice(1)));
 
 /* ---------- 推理页：逻辑链步进器 ---------- */
-const NODE_ICON = { crossed: "▲", near: "◐", quiet: "●", fact: "▪", manual: "✎", no_data: "○" };
+const NODE_ICON = { crossed: "🔥", near: "⚠️", quiet: "🟢", fact: "📌", manual: "✍️", no_data: "❔" };
 const NODE_CLS = { crossed: "n-crossed", near: "n-near", quiet: "n-quiet",
   fact: "n-fact", manual: "n-fact", no_data: "n-nodata" };
 
@@ -390,41 +390,41 @@ function renderChains(chains) {
   $("#chains").innerHTML = (chains || []).map(ch => {
     const hot = ch.nodes.filter(n => n.status === "crossed").length;
     const nearN = ch.nodes.filter(n => n.status === "near").length;
-    const headBadge = hot ? `<span class="badge b-fired">${hot}节点已突破</span>`
-      : nearN ? `<span class="badge b-stale">${nearN}节点逼近</span>`
-      : `<span class="badge b-ok">安静</span>`;
+    const headBadge = hot ? `<span class="badge b-fired">🔥 ${hot}环破了</span>`
+      : nearN ? `<span class="badge b-stale">⚠️ ${nearN}环快到了</span>`
+      : `<span class="badge b-ok">😴 安静</span>`;
     const nodes = ch.nodes.map(n => {
       const val = n.value != null
         ? `${fmt(n.value, Math.abs(n.value) > 100 ? 1 : 3)}<span class="dim">/${n.direction === "above" ? "↑" : "↓"}${fmt(n.threshold, Math.abs(n.threshold) > 100 ? 0 : 2)}</span>`
         : (n.value_text || "—");
       const dist = n.dist_pct != null
-        ? (n.dist_pct <= 0 ? "已突破" : `距${fmt(Math.abs(n.dist_pct), 1)}%`) : "";
+        ? (n.dist_pct <= 0 ? "破了！" : `还差${fmt(Math.abs(n.dist_pct), 1)}%`) : "";
       return `<div class="cnode ${NODE_CLS[n.status] ?? ""}" title="${n.note ?? ""}">
-        <div class="cn-top">${NODE_ICON[n.status] ?? "·"} ${n.label}</div>
+        <div class="cn-top" title="${n.term ?? ""} ${n.note ?? ""}">${NODE_ICON[n.status] ?? "·"} ${n.label}</div>
         <div class="cn-val mono">${val}</div>
         <div class="cn-dist dim">${dist || n.note?.slice(0, 14) || ""}</div>
       </div>`;
     }).join('<div class="carrow">→</div>');
     return `<div class="chain card">
       <div class="chain-head" onclick="this.parentElement.classList.toggle('open')">
-        <b>${ch.name}</b> ${headBadge}
+        <b title="${ch.term ?? ""}">${ch.emoji ?? ""} ${ch.name}</b> ${headBadge}
         <div class="dim">${ch.one_liner}</div>
       </div>
       <div class="chain-nodes">${nodes}</div>
-      <div class="chain-falsify dim">证伪条件：${ch.falsify}</div>
+      <div class="chain-falsify dim">🗝️ 什么时候这条链失效：${ch.falsify}</div>
     </div>`;
   }).join("");
 }
 
-const VERDICT_STYLE = { "已证实": ["✅", "b-ok"], "已证伪": ["❌", "b-fired"],
-  "未决": ["⏳", "b-stale"], "假设(加样中)": ["🧪", "b-stale"], "事实": ["▪", "b-ok"] };
+const VERDICT_STYLE = { "已证实": ["✅ 真的", "b-ok"], "已证伪": ["❌ 假的", "b-fired"],
+  "未决": ["⏳ 还没定", "b-stale"], "假设(加样中)": ["🧪 在攒样本", "b-stale"], "事实": ["📌 事实", "b-ok"] };
 
 function renderConclusions(list) {
   $("#conclusions").innerHTML = (list || []).map(c => {
     const [icon, cls] = VERDICT_STYLE[c.verdict] ?? ["·", "b-ok"];
     return `<div class="rule concl">
       <div class="head" onclick="this.parentElement.classList.toggle('open')">
-        <span><span class="badge ${cls}">${icon} ${c.verdict}</span> <b>${c.claim}</b></span>
+        <span><span class="badge ${cls}">${icon}</span> <b>${c.claim}</b></span>
         <span class="dim mono">${c.date ?? ""}</span>
       </div>
       <div class="detail">
@@ -450,37 +450,37 @@ function renderKline(ohlc, gex) {
   const el = $("#kline");
   if (!el || !window.LightweightCharts || !ohlc?.length) return;
   const chart = window.__kline = LightweightCharts.createChart(el, {
-    layout: { background: { color: "transparent" }, textColor: "#5f7692",
-      fontFamily: "Share Tech Mono" },
-    grid: { vertLines: { color: "#16233c" }, horzLines: { color: "#16233c" } },
-    rightPriceScale: { borderColor: "#16233c" },
-    timeScale: { borderColor: "#16233c" },
+    layout: { background: { color: "transparent" }, textColor: "#8A8375",
+      fontFamily: "Baloo 2" },
+    grid: { vertLines: { color: "#F3ECDA" }, horzLines: { color: "#F3ECDA" } },
+    rightPriceScale: { borderColor: "#E4D9BE" },
+    timeScale: { borderColor: "#E4D9BE" },
     crosshair: { mode: 0 },
     autoSize: true,
   });
   const series = chart.addCandlestickSeries({
-    upColor: "#2fe6a0", downColor: "#ff4d6a",
-    wickUpColor: "#2fe6a0", wickDownColor: "#ff4d6a",
+    upColor: "#2EC486", downColor: "#FF6B6B",
+    wickUpColor: "#2EC486", wickDownColor: "#FF6B6B",
     borderVisible: false,
   });
   series.setData(ohlc.map(([t, o, h, l, c]) => ({ time: t, open: o, high: h, low: l, close: c })));
   const lines = [];
   if (gex && !gex.stale) {
-    if (gex.call_wall) lines.push([gex.call_wall, "#2fe6a0", "CALL墙"]);
-    if (gex.put_wall && gex.put_wall !== gex.call_wall) lines.push([gex.put_wall, "#ff4d6a", "PUT墙"]);
-    if (gex.flip) lines.push([gex.flip, "#ffd166", "FLIP"]);
+    if (gex.call_wall) lines.push([gex.call_wall, "#2EC486", "天花板"]);
+    if (gex.put_wall && gex.put_wall !== gex.call_wall) lines.push([gex.put_wall, "#FF6B6B", "地板"]);
+    if (gex.flip) lines.push([gex.flip, "#E8A93D", "转性线"]);
   }
   for (const [price, color, title] of lines)
     series.createPriceLine({ price, color, title, lineStyle: 2, lineWidth: 1 });
   chart.timeScale().setVisibleLogicalRange({ from: ohlc.length - 60, to: ohlc.length + 2 });
 
   if (gex) {
-    $("#gex-head").textContent = `净GEX ${fmt(gex.net_gex_bn, 1)}bn/1% · 0DTE ${fmt(gex.gex_0dte_bn, 1)}bn · ${gex.date}`;
+    $("#gex-head").textContent = `磁力总量 ${fmt(gex.net_gex_bn, 1)}bn · 当日到期部分 ${fmt(gex.gex_0dte_bn, 1)}bn · ${gex.date}`;
     $("#gex-levels").innerHTML =
-      `<span class="badge ${gex.net_gex_bn >= 0 ? "b-ok" : "b-fired"}">${gex.net_gex_bn >= 0 ? "正GAMMA·压波动" : "负GAMMA·助趋势"}</span>` +
-      `FLIP <span class="mono" style="color:#ffd166">${gex.flip ?? "—"}</span> · ` +
-      `CALL墙 <span class="mono" style="color:#2fe6a0">${gex.call_wall ?? "—"}</span> · ` +
-      `PUT墙 <span class="mono" style="color:#ff4d6a">${gex.put_wall ?? "—"}</span> · ` +
+      `<span class="badge ${gex.net_gex_bn >= 0 ? "b-ok" : "b-fired"}">${gex.net_gex_bn >= 0 ? "🧲 吸铁石模式(压波动)" : "🚀 放大器模式(助趋势)"}</span>` +
+      `转性线 <span class="mono" style="color:#E8A93D">${gex.flip ?? "—"}</span> · ` +
+      `天花板 <span class="mono" style="color:#2EC486">${gex.call_wall ?? "—"}</span> · ` +
+      `地板 <span class="mono" style="color:#FF6B6B">${gex.put_wall ?? "—"}</span> · ` +
       `现价 <span class="mono">${fmt(gex.spot, 1)}</span>` +
       `<div class="dim">${gex.assumption ?? ""}</div>`;
   }

@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light">
 <title>CYPERMOW · MACRO TERMINAL</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#04070f">
+<meta name="theme-color" content="#FFD84D">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
@@ -23,20 +23,20 @@
 <header>
   <div class="brand">
     <span class="logo-dot"></span>
-    <h1>CYPERMOW <span class="accent">MACRO TERMINAL</span></h1>
+    <h1>🌍 CYPERMOW <span class="accent">看懂世界的小终端</span></h1>
   </div>
   <div class="sub">
     <span id="gen-time" class="mono"></span>
-    <span class="divider">|</span> 采集·阈值·播报自动化 · 推演由人签发
+    <span class="divider">|</span> 机器盯数据 · 人来做判断
     <span class="divider">|</span> <a href="https://github.com/nattobbm/macro-alert" target="_blank">SOURCE</a>
   </div>
 </header>
 
 <nav id="tabs">
-  <a href="#home" data-tab="home">总览</a>
-  <a href="#reason" data-tab="reason">推理</a>
-  <a href="#stock" data-tab="stock">正股</a>
-  <a href="#data" data-tab="data">数据</a>
+  <a href="#home" data-tab="home">🏠 总览</a>
+  <a href="#reason" data-tab="reason">🧠 推理</a>
+  <a href="#stock" data-tab="stock">📈 正股</a>
+  <a href="#data" data-tab="data">🗃️ 数据</a>
 </nav>
 
 
@@ -47,61 +47,61 @@
     <div class="hero-title">US TREASURY · FOREIGN HOLDERS FLOW</div>
     <div id="regime-chip"></div>
     <div id="hero-tic" class="hero-tic"></div>
-    <div class="hero-note dim">红弧 = 月度减持 · TIC月度数据滞后约6周 · <span id="hero-asof" class="mono"></span></div>
+    <div class="hero-note dim">红色光线 = 这个月在卖美债 · 官方数据慢约6周 · <span id="hero-asof" class="mono"></span></div>
   </div>
 </section>
 
 <!-- 0.5 观测点雷达 -->
 <section data-page="home">
-  <h2><span class="h-icon">◈</span> 观测点雷达 <span class="dim">THRESHOLD RADAR · 距触发线最近排前</span></h2>
+  <h2><span class="h-icon">◈</span> 🎯 警戒线雷达 <span class="dim">离警戒线最近的排前面 · 红色=已经越线</span></h2>
   <div id="radar" class="grid"></div>
 </section>
 
 <!-- 0.6 SPX K线 + GEX价位（GammaFrame式） -->
 <section data-page="stock" class="card">
-  <h2><span class="h-icon">◈</span> SPX × GAMMA地图 <span class="dim" id="gex-head"></span></h2>
+  <h2><span class="h-icon">◈</span> 🗺️ 大盘K线 + 做市商地图 <span class="dim" id="gex-head"></span></h2>
   <div id="kline" style="height:340px"></div>
   <div id="gex-levels" class="dim note"></div>
 </section>
 
 <!-- 0.7 GEX按行权价 -->
 <section data-page="stock" class="card">
-  <h2><span class="h-icon">◈</span> GEX BY STRIKE <span class="dim">CBOE延迟链自算 · dealer long-call/short-put启发式，符号不可验证</span></h2>
+  <h2><span class="h-icon">◈</span> 🧲 每个价位的磁力(GEX) <span class="dim">绿=吸住价格的位置 红=推开价格的位置 · 官方免费数据自算</span></h2>
   <div id="gex-profile" class="chart" style="height:300px"></div>
 </section>
 
 <!-- 1. 数据健康 -->
 <section data-page="data" id="health" class="card">
-  <h2><span class="h-icon">◈</span> 数据健康 <span class="dim">DATA INTEGRITY</span></h2>
+  <h2><span class="h-icon">◈</span> 🩺 数据体检 <span class="dim">哪些数据新鲜、哪些过期了</span></h2>
   <div id="health-summary"></div>
   <div id="stale-list"></div>
 </section>
 
 <!-- 2. 快照 -->
 <section data-page="home">
-  <h2><span class="h-icon">◈</span> 市场快照 <span class="dim">SNAPSHOT</span></h2>
+  <h2><span class="h-icon">◈</span> 📸 市场快照 <span class="dim">每个数字都标了日期和来源</span></h2>
   <div id="snapshot" class="grid"></div>
 </section>
 
 <!-- 3. 规则状态 -->
 <section data-page="stock">
-  <h2><span class="h-icon">◈</span> 规则引擎 <span class="dim" id="rules-count"></span></h2>
+  <h2><span class="h-icon">◈</span> 🚨 自动警报器 <span class="dim" id="rules-count"></span></h2>
   <div id="rules"></div>
 </section>
 
 <!-- 4. 拍卖 -->
 <section data-page="stock" class="card">
-  <h2><span class="h-icon">◈</span> 国债拍卖 <span class="dim">AUCTIONS · 近6场</span></h2>
+  <h2><span class="h-icon">◈</span> 🔨 国债拍卖 <span class="dim">政府借钱有没有人抢 · 近6场</span></h2>
   <div class="table-wrap"><table id="auctions">
     <thead><tr><th>期限</th><th>日期</th><th>规模</th><th>认购</th><th>indirect</th><th>dealer</th><th>tail</th></tr></thead>
     <tbody></tbody>
   </table></div>
-  <div class="dim note">tail 标"合成"= highYield−前日FRED同期限收盘的WI代理值，非真实打印价</div>
+  <div class="dim note">"尾差"=拍卖成交价比市场预期差多少（标"合成"的是估算值）</div>
 </section>
 
 <!-- 5. 图表区 -->
 <section data-page="data">
-  <h2><span class="h-icon">◈</span> 图表 <span class="dim">CHARTS</span></h2>
+  <h2><span class="h-icon">◈</span> 📊 走势图 <span class="dim">想细看再来这里</span></h2>
   <div class="chart-grid">
     <div class="card"><h3>TIPS实际利率 × 黄金</h3><div id="chart-tips-gold" class="chart"></div></div>
     <div class="card"><h3>30Y 收益率 · 5.33前高 / 5.5失序区</h3><div id="chart-30y" class="chart"></div></div>
@@ -115,45 +115,44 @@
 
 <!-- R1 逻辑链地图 -->
 <section data-page="reason">
-  <h2><span class="h-icon">◈</span> 逻辑链 <span class="dim">TRANSMISSION CHAINS · 节点绑实时数据自动判定 · 热度排序</span></h2>
+  <h2><span class="h-icon">◈</span> 🔗 逻辑链 <span class="dim">每一环都连着实时数据 · 最热闹的排最上面 · 点开看"什么时候失效"</span></h2>
   <div id="chains"></div>
 </section>
 
 <!-- R2 结论库 -->
 <section data-page="reason">
-  <h2><span class="h-icon">◈</span> 结论库 <span class="dim">VERDICT LEDGER · 已证实/已证伪/未决，git时间戳</span></h2>
+  <h2><span class="h-icon">◈</span> 📚 结论库 <span class="dim">我们验证过的东西：✅真的 ❌假的 ⏳还没定</span></h2>
   <div id="conclusions"></div>
 </section>
 
 <!-- R3 inbox -->
 <section data-page="reason" class="card">
-  <h2><span class="h-icon">◈</span> 待整理 <span class="dim">INBOX · 丢进knowledge/inbox的原料，未判定</span></h2>
+  <h2><span class="h-icon">◈</span> 📥 待整理 <span class="dim">丢进来的新材料，还没消化</span></h2>
   <div id="inbox"></div>
 </section>
 
 <!-- 5.5 事件流 -->
 <section data-page="reason" class="card">
-  <h2><span class="h-icon">◈</span> 事件流 <span class="dim">LOG · 官方源RSS · 词表分拣不解读</span></h2>
+  <h2><span class="h-icon">◈</span> 📰 官方消息流 <span class="dim">只分类不解读 · 标签=它连着哪条链</span></h2>
   <div id="newslog"></div>
 </section>
 
 <!-- 6. 日历 -->
 <section data-page="reason" class="card">
-  <h2><span class="h-icon">◈</span> 未来30天节点 <span class="dim">CALENDAR</span></h2>
+  <h2><span class="h-icon">◈</span> 📅 未来30天大事 <span class="dim">星星越多越重要</span></h2>
   <div id="calendar"></div>
 </section>
 
 <!-- 7. 预测记分卡 -->
 <section data-page="reason" class="card">
-  <h2><span class="h-icon">◈</span> 预测记分卡 <span class="dim">FORECAST LEDGER</span></h2>
+  <h2><span class="h-icon">◈</span> 🎯 预测记分卡 <span class="dim">写下判断 · 到期结算 · 不许赖账</span></h2>
   <div id="predictions"></div>
 </section>
 
 <footer class="dim">
-  数据源均为官方一手API（FRED / Treasury / TIC / CFTC / NY Fed）+ yfinance行情镜像。
-  每个数字带 as_of；stale 数据不参与规则判定。非投资建议。
+  所有数据来自官方一手渠道（美联储/财政部/CBOE等），每个数字都标注日期。过期数据不参与判定。非投资建议。
 </footer>
 
-<script src="app.js?v=7"></script>
+<script src="app.js?v=8"></script>
 </body>
 </html>
