@@ -34,11 +34,11 @@ LATEST_FILE = DATA / "latest.json"
 LABELS = {
     "tips10y": "真利率(扣通胀)", "us10y": "10年国债利率", "us30y": "30年国债利率",
     "us20y": "20年国债利率", "curve_10y2y": "利率曲线(10Y-2Y)", "breakeven10": "物价预期(债市定价)",
-    "sofr": "隔夜借钱利率SOFR", "iorb": "央行地板利率IORB", "rrp": "备用水池RRP", "fed_assets": "央行家底",
-    "tga": "政府账户(周)", "m2": "全社会的钱M2", "debt_total": "政府总欠债", "tga_daily": "政府账户(日)",
+    "sofr": "隔夜借钱利率SOFR", "iorb": "准备金利率IORB", "rrp": "隔夜逆回购RRP(备用资金)", "fed_assets": "美联储总资产",
+    "tga": "财政部账户TGA(周)", "m2": "货币供应量M2", "debt_total": "联邦债务总额", "tga_daily": "财政部账户TGA(日)",
     "avg_rate": "政府借钱平均利息", "tic_japan": "日本持有美债", "tic_uk": "英国持有美债",
     "tic_china": "中国持有美债", "cot_gold": "黄金大户净多单", "cot_silver": "白银大户净多单",
-    "cot_jpy": "日元大户净多单", "repo_ops": "央行急救窗口用量", "sofr_nyfed": "SOFR(纽约联储版)",
+    "cot_jpy": "日元大户净多单", "repo_ops": "常备回购SRF用量", "sofr_nyfed": "SOFR(纽约联储版)",
     "crude_stocks": "原油库存", "spx": "美股大盘SPX", "vix": "恐慌指数VIX", "vix3m": "3月期VIX",
     "gold": "黄金", "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
     "usdjpy": "美元兑日元", "brent": "油价Brent", "wti": "油价WTI", "move": "债市恐慌指数MOVE",
@@ -174,9 +174,9 @@ RADAR = [
     ("黄金大户仓位极端",       "cot_gold_pctile",  90.0, "above", "P1_cot_extreme"),
     ("利息增速追上收入增速",            "avg_rate",         4.0, "above", "T6_rg_gap"),
     # GEX（距离本身就是%，阈值0=穿越）
-    ("跌进放大器区(负gamma)", "gex_flip_dist_pct",     0.0, "below", "GEX"),
-    ("顶破天花板(call墙)",               "gex_callwall_dist_pct", 0.0, "above", "GEX"),
-    ("砸穿地板(put墙)",                "gex_putwall_dist_pct",  0.0, "below", "GEX"),
+    ("跌破gamma翻转位(波动放大区)", "gex_flip_dist_pct",     0.0, "below", "GEX"),
+    ("升破上方期权密集位(call墙)",               "gex_callwall_dist_pct", 0.0, "above", "GEX"),
+    ("跌破下方期权密集位(put墙)",                "gex_putwall_dist_pct",  0.0, "below", "GEX"),
 ]
 
 
@@ -269,7 +269,7 @@ def build_regime(ctx: dict) -> dict:
     detail = [{"cond": name, "value": v, "met": (v is not None and fn(v))}
               for name, v, fn in conds]
     met = sum(1 for d in detail if d["met"])
-    return {"name": "金融抑制链", "met": met, "total": len(detail), "detail": detail,
+    return {"name": "通胀偏高但不加息(金融抑制)", "met": met, "total": len(detail), "detail": detail,
             "judge": "判据(8-25报告)：若实际利率跳升而金不跌→确认主导；若金随实际利率同步回落→回到需求侧紧缩链"}
 
 

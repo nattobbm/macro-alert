@@ -333,7 +333,7 @@ function renderRegime(rg) {
   const detail = rg.detail.map(d =>
     `${d.met ? "✓" : "·"} ${d.cond}(${d.value ?? "—"})`).join("  ");
   $("#regime-chip").innerHTML =
-    `<span class="badge ${cls}" title="${rg.judge}">🎬 当前剧本：${rg.name} ${rg.met}/${rg.total}条件成立</span>
+    `<span class="badge ${cls}" title="${rg.judge}">当前状态：${rg.name} ${rg.met}/${rg.total}条件成立</span>
      <span class="dim mono">${detail}</span>`;
 }
 
@@ -476,21 +476,21 @@ function renderKline(ohlc, gex) {
   series.setData(ohlc.map(([t, o, h, l, c]) => ({ time: t, open: o, high: h, low: l, close: c })));
   const lines = [];
   if (gex && !gex.stale) {
-    if (gex.call_wall) lines.push([gex.call_wall, C.good, "天花板"]);
-    if (gex.put_wall && gex.put_wall !== gex.call_wall) lines.push([gex.put_wall, C.bad, "地板"]);
-    if (gex.flip) lines.push([gex.flip, C.warn, "转性线"]);
+    if (gex.call_wall) lines.push([gex.call_wall, C.good, "上方期权密集位"]);
+    if (gex.put_wall && gex.put_wall !== gex.call_wall) lines.push([gex.put_wall, C.bad, "下方期权密集位"]);
+    if (gex.flip) lines.push([gex.flip, C.warn, "gamma翻转位"]);
   }
   for (const [price, color, title] of lines)
     series.createPriceLine({ price, color, title, lineStyle: 2, lineWidth: 1 });
   chart.timeScale().setVisibleLogicalRange({ from: ohlc.length - 60, to: ohlc.length + 2 });
 
   if (gex) {
-    $("#gex-head").textContent = `磁力总量 ${fmt(gex.net_gex_bn, 1)}bn · 当日到期部分 ${fmt(gex.gex_0dte_bn, 1)}bn · ${gex.date}`;
+    $("#gex-head").textContent = `对冲压力总量 ${fmt(gex.net_gex_bn, 1)}bn/1% · 其中当日到期 ${fmt(gex.gex_0dte_bn, 1)}bn · ${gex.date}`;
     $("#gex-levels").innerHTML =
-      `<span class="badge ${gex.net_gex_bn >= 0 ? "b-ok" : "b-fired"}">${gex.net_gex_bn >= 0 ? "🧲 吸铁石模式(压波动)" : "🚀 放大器模式(助趋势)"}</span>` +
-      `转性线 <span class="mono" style="color:${C.warn}">${gex.flip ?? "—"}</span> · ` +
-      `天花板 <span class="mono" style="color:${C.good}">${gex.call_wall ?? "—"}</span> · ` +
-      `地板 <span class="mono" style="color:${C.bad}">${gex.put_wall ?? "—"}</span> · ` +
+      `<span class="badge ${gex.net_gex_bn >= 0 ? "b-ok" : "b-fired"}">${gex.net_gex_bn >= 0 ? "做市商对冲在压波动(正gamma)" : "做市商对冲在放大波动(负gamma)"}</span>` +
+      `gamma翻转位 <span class="mono" style="color:${C.warn}">${gex.flip ?? "—"}</span> · ` +
+      `上方密集位(call墙) <span class="mono" style="color:${C.good}">${gex.call_wall ?? "—"}</span> · ` +
+      `下方密集位(put墙) <span class="mono" style="color:${C.bad}">${gex.put_wall ?? "—"}</span> · ` +
       `现价 <span class="mono">${fmt(gex.spot, 1)}</span>` +
       `<div class="dim">${gex.assumption ?? ""}</div>`;
   }

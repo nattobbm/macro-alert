@@ -5,33 +5,33 @@
 chains:
   - id: debt_loop
     emoji: "💣"
-    name: 借钱雪球环
+    name: 政府债务和利息在互相推高
     term: 债务自我强化环
     one_liner: 政府欠债太多 → 出手压利息省钱 → 但打破70年老规矩，大家更不信任 → 要求更高利息 → 欠得更多
     falsify: 30年利率稳稳待在5.10以下 = 这次压住了，雪球暂停
     nodes:
-      - {label: "一年利息账单", term: "净利息FY26前10月", value_text: "9630亿$(还在涨)", status: fact, note: "CBO官方账本"}
-      - {label: "总共欠了多少", term: "公共债务", value_text: "40万亿$", status: fact, note: "2026-08-19突破"}
-      - {label: "官方下场买旧债", term: "财政部回购翻倍", value_text: "9/9开始", status: fact, note: "打破'规律且可预测'老传统"}
+      - {label: "联邦政府利息支出", term: "净利息FY26前10月", value_text: "9630亿$(还在涨)", status: fact, note: "CBO官方账本"}
+      - {label: "联邦债务总额", term: "公共债务", value_text: "40万亿$", status: fact, note: "2026-08-19突破"}
+      - {label: "财政部回购旧债(规模翻倍)", term: "财政部回购翻倍", value_text: "9/9开始", status: fact, note: "打破'规律且可预测'老传统"}
       - {label: "30年利率回到高点?", term: "us30y vs 前高5.33", metric: us30y, threshold: 5.33, direction: above, note: "回去=压制失败"}
       - {label: "30年利率失控区", term: "us30y vs 5.5", metric: us30y, threshold: 5.5, direction: above, note: "到这里政府必须出大招"}
       - {label: "国债还有人买吗", term: "长债拍卖认购倍数", metric: long_btc, threshold: 2.2, direction: below, note: "低于2.2=买家不足"}
 
   - id: liquidity
     emoji: "💧"
-    name: 钱池子水位
+    name: 市场备用资金快用完了
     term: 货币链（净流动性）
     one_liner: 市场的备用水池已经空了 → 再抽水就直接抽银行的家底 → 隔夜借钱利率冒头=最早的缺水信号
     falsify: 财政部往外放水+央行续买 = 水位回升，警报解除
     nodes:
-      - {label: "备用水池", term: "隔夜逆回购RRP余额", metric: rrp, threshold: 50, direction: below, note: "从2.55万亿抽干到快见底"}
-      - {label: "隔夜借钱贵不贵", term: "SOFR vs IORB", metric: sofr, threshold: 3.68, direction: above, note: "持续冒头=银行缺现金"}
-      - {label: "央行急救窗口有人用吗", term: "SRF常备回购用量", metric: repo_ops, threshold: 1, direction: above, note: "有人用=真缺钱实锤"}
-      - {label: "政府的活期账户", term: "TGA余额", metric: tga_daily, threshold: 500000, direction: below, note: "大幅下降=在往市场放水"}
+      - {label: "隔夜逆回购余额(市场备用资金)", term: "隔夜逆回购RRP余额", metric: rrp, threshold: 50, direction: below, note: "从2.55万亿抽干到快见底"}
+      - {label: "银行间隔夜利率 vs 央行下限", term: "SOFR vs IORB", metric: sofr, threshold: 3.68, direction: above, note: "持续冒头=银行缺现金"}
+      - {label: "常备回购工具SRF有人用吗", term: "SRF常备回购用量", metric: repo_ops, threshold: 1, direction: above, note: "有人用=真缺钱实锤"}
+      - {label: "财政部现金账户TGA", term: "TGA余额", metric: tga_daily, threshold: 500000, direction: below, note: "大幅下降=在往市场放水"}
 
   - id: repression
     emoji: "🪙"
-    name: 「通胀不管了」剧本
+    name: 通胀偏高，但市场不信央行会加息
     term: 金融抑制链
     one_liner: 物价预期在涨 + 长期利率在涨 + 但市场不信央行会加息管 = 存钱的人悄悄亏钱替政府还债 → 黄金是这个剧本的受益者
     falsify: 真利率跳升而黄金跟着跌 = 剧本换了，回到正常紧缩
@@ -44,7 +44,7 @@ chains:
 
   - id: geo
     emoji: "🛢️"
-    name: 石油多米诺
+    name: 石油通道不稳 → 油价牵动物价和利率
     term: 地缘链
     one_liner: 海峡通不通 → 油价 → 物价 → 央行加不加息 → 真利率 → 黄金（注意：避险和利率两条路对黄金方向相反）
     falsify: 协议落地+油价稳在80以下 = 这张多米诺暂时放倒
@@ -56,7 +56,7 @@ chains:
 
   - id: japan
     emoji: "🎌"
-    name: 日本连锁反应
+    name: 日本若加息，借日元的全球资金要回流
     term: 日本链（尾部通道）
     one_liner: 日本若加息 → 日元变强 → 全球借日元炒美股的钱(约5000亿$)要撤 → 卖美债卖股票 → 全球一起去杠杆
     falsify: 日本加息后反而连续两月增持美债 = 这条链断了
@@ -68,7 +68,7 @@ chains:
 
   - id: ai_credit
     emoji: "🤖"
-    name: AI烧钱链
+    name: AI大厂靠借债扩张，借钱在变难
     term: AI融资链
     one_liner: 大厂账本外还藏着9690亿$的机房租约 → 靠发债和私募借新钱 → 借钱越来越难 → 谁先出事看Oracle → 出事则芯片和大盘一起抖
     falsify: 发债重新被抢购+Oracle保险费降回150以下 = 借钱顺畅，本链降权

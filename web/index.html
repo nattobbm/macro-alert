@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <script>try{var th=localStorage.getItem("theme");if(th)document.documentElement.dataset.theme=th}catch(e){}</script>
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FFD84D">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,7 +24,7 @@
 <header>
   <div class="brand">
     <span class="logo-dot"></span>
-    <h1>🌍 CYPERMOW <span class="accent">看懂世界的小终端</span></h1>
+    <h1>🌍 CYPERMOW <span class="accent">宏观数据 · 逻辑链 · 预测记录</span></h1>
     <span id="themes" title="换配色">
       <button class="sw-paper" data-set-theme="paper" title="纸墨"></button>
       <button class="sw-latte" data-set-theme="latte" title="拿铁"></button>
@@ -66,14 +66,14 @@
 
 <!-- 0.6 SPX K线 + GEX价位（GammaFrame式） -->
 <section data-page="stock" class="card">
-  <h2><span class="h-icon">◈</span> 🗺️ 大盘K线 + 做市商地图 <span class="dim" id="gex-head"></span></h2>
+  <h2><span class="h-icon">◈</span> 📈 SPX K线 + 期权密集价位 <span class="dim" id="gex-head"></span></h2>
   <div id="kline" style="height:340px"></div>
   <div id="gex-levels" class="dim note"></div>
 </section>
 
 <!-- 0.7 GEX按行权价 -->
 <section data-page="stock" class="card">
-  <h2><span class="h-icon">◈</span> 🧲 每个价位的磁力(GEX) <span class="dim">绿=吸住价格的位置 红=推开价格的位置 · 官方免费数据自算</span></h2>
+  <h2><span class="h-icon">◈</span> 🧮 各价位期权持仓的对冲压力(GEX) <span class="dim">绿=call持仓 红=put持仓 · CBOE官方免费数据自算 · 符号为行业惯例假设</span></h2>
   <div id="gex-profile" class="chart" style="height:300px"></div>
 </section>
 
@@ -92,7 +92,7 @@
 
 <!-- 3. 规则状态 -->
 <section data-page="stock">
-  <h2><span class="h-icon">◈</span> 🚨 自动警报器 <span class="dim" id="rules-count"></span></h2>
+  <h2><span class="h-icon">◈</span> 🚨 规则警报 <span class="dim" id="rules-count"></span></h2>
   <div id="rules"></div>
 </section>
 
@@ -160,6 +160,6 @@
   所有数据来自官方一手渠道（美联储/财政部/CBOE等），每个数字都标注日期。过期数据不参与判定。非投资建议。
 </footer>
 
-<script src="app.js?v=9"></script>
+<script src="app.js?v=10"></script>
 </body>
 </html>
