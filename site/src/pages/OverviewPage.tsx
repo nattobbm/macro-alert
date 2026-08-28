@@ -160,7 +160,7 @@ export default function OverviewPage() {
                       boxShadow: 'inset 2px 2px 4px var(--shadow-dark)',
                     }}
                   >
-                    差{Math.abs(a.distance_pct).toFixed(1)}%
+                    {tr('gap')}{Math.abs(a.distance_pct).toFixed(1)}%
                   </div>
                 )}
               </div>

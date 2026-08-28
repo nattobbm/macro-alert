@@ -12,5 +12,26 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- 自动翻译兜底层：字典(i18n.ts)管框架词，translate.js 翻数据层漏网字符串。
+         机制：逐文本节点检测语种，与目标语种不同才翻；数字/符号不动；结果缓存在 localStorage。 -->
+    <script src="https://res.zvo.cn/translate/translate.js"></script>
+    <script>
+      (function () {
+        if (typeof translate === 'undefined') return; // CDN 挂了则静默降级，站点不受影响
+        translate.language.setLocal('chinese_simplified'); // 页面原文以中文为主
+        translate.service.use('client.edge');   // 纯前端走微软免费通道，无需自建服务
+        translate.selectLanguageTag.show = false; // 隐藏它自带的语言下拉，用我们自己的 中/EN 按钮
+        translate.ignore.class.push('notranslate');
+        // 术语表：防止金融黑话被直译歪
+        translate.nomenclature.append('chinese_simplified', 'english',
+          'put墙=put wall\ncall墙=call wall\ngamma翻转位=gamma flip\n期权密集单位=option cluster\n尾差=auction tail\nGamma翻负=gamma flips negative\n金银比=gold-silver ratio');
+        var lang = 'zh';
+        try { lang = localStorage.getItem('lang') || 'zh' } catch (e) {}
+        // 与 i18n.ts 的开关联动：EN→全页翻英文；中→英文数据串翻回中文
+        translate.to = lang === 'en' ? 'english' : 'chinese_simplified';
+        translate.listener.start(); // 监听 React 动态渲染，新节点自动补翻
+        translate.execute();
+      })();
+    </script>
   </body>
 </html>

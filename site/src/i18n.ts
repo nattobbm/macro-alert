@@ -36,6 +36,8 @@ const dict: Record<string, [string, string]> = {
   r_fire: ['响了', 'Fired'], r_muted: ['响过(静音)', 'Muted'], r_ok: ['正常', 'OK'], r_skip: ['数据缺跳过', 'Skipped'], r_manual: ['人工盯', 'Manual'],
   health_title: ['数据体检', 'Data Health'], charts_title: ['走势图', 'Trends'],
   stale: ['过期', 'stale'], fresh: ['新鲜', 'fresh'],
+  tab_contact: ['联系', 'Contact'],
+  contact_footer: ['数据每日自动更新 · 非投资建议', 'Data auto-updates daily · Not investment advice'],
   target: ['目标', 'target'], source_w: ['来源', 'source'], evidence_w: ['证据', 'evidence'],
 }
 export function t(k: string): string {

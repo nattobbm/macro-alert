@@ -4,15 +4,17 @@ import OverviewPage from './pages/OverviewPage'
 import ReasoningPage from './pages/ReasoningPage'
 import EquityPage from './pages/EquityPage'
 import DataPage from './pages/DataPage'
+import ContactPage from './pages/ContactPage'
 
 type Theme = 'default' | 'latte' | 'mocha' | 'nord'
-type Tab = 'overview' | 'reasoning' | 'equity' | 'data'
+type Tab = 'overview' | 'reasoning' | 'equity' | 'data' | 'contact'
 
 const TABS: { id: Tab; emoji: string; label: string }[] = [
   { id: 'overview',  emoji: '🏠', label: t('tab_overview') },
   { id: 'reasoning', emoji: '🧠', label: t('tab_reasoning') },
   { id: 'equity',    emoji: '📈', label: t('tab_equity') },
   { id: 'data',      emoji: '🗃️', label: t('tab_data') },
+  { id: 'contact',   emoji: '📮', label: t('tab_contact') },
 ]
 
 const THEMES: { id: Theme; label: string }[] = [
@@ -110,6 +112,7 @@ export default function App() {
         {tab === 'reasoning' && <ReasoningPage />}
         {tab === 'equity'    && <EquityPage />}
         {tab === 'data'      && <DataPage />}
+        {tab === 'contact'   && <ContactPage />}
       </main>
 
       {/* ── Mobile bottom nav ────────────────────────────── */}
