@@ -4,6 +4,7 @@ import {
   Tooltip, ResponsiveContainer,
 } from 'recharts'
 import { genSPX, gexData, auctions, alertRules } from '../data/live'
+import { t as tr, isEN } from '../i18n'
 import { asOfMarket, asOfAuction, gexIsPositive, gexSpot, genAt } from '../data/live'
 
 const spxData = genSPX()
@@ -143,7 +144,7 @@ export default function EquityPage() {
           ))}
         </div>
         <div className="text-xs mt-2 text-right" style={{ color: 'var(--text-muted)' }}>
-          做市商状态: {gexIsPositive ? <span style={{ color: 'var(--green)' }}>🟢 正Gamma（价格磁吸，波动小）</span> : <span style={{ color: 'var(--red)' }}>🔴 负Gamma（放大波动）</span>} · as of {genAt} · CBOE延迟链自算
+          {tr('mm_state')}: {gexIsPositive ? <span style={{ color: 'var(--green)' }}>🟢 {tr('pos_gamma')}</span> : <span style={{ color: 'var(--red)' }}>🔴 {tr('neg_gamma')}</span>} · as of {genAt} · CBOE延迟链自算
         </div>
       </div>
 
@@ -218,7 +219,7 @@ export default function EquityPage() {
       {/* ── Auction Table ────────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>🏦</span> 国债拍卖记录
+          <span>🏦</span> {tr('auction_title')}记录
           <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（近6场）</span>
         </h2>
         <div className="neu p-4 overflow-x-auto">
@@ -267,7 +268,7 @@ export default function EquityPage() {
             </table>
           </div>
           <div className="text-xs mt-2 text-right" style={{ color: 'var(--text-muted)' }}>
-            美国财政部拍卖结果 · 最近 {asOfAuction}
+            {tr('auction_src')} {asOfAuction}
           </div>
         </div>
       </section>

@@ -3,6 +3,7 @@ import {
   ReferenceLine, ComposedChart,
 } from 'recharts'
 import { dataSources, trendRealRate, trend30Y, trendSPXGold } from '../data/live'
+import { t as tr, isEN } from '../i18n'
 import { asOfMarket, asOfTic, asOfCot, genAt } from '../data/live'
 
 const CHART_TOOLTIP_STYLE = {
@@ -52,7 +53,7 @@ export default function DataPage() {
       {/* ── Data Health ──────────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>🔬</span> 数据体检
+          <span>🔬</span> {tr('health_title')}
           <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>
             ({dataSources.length} 个数据源)
           </span>
@@ -163,7 +164,7 @@ export default function DataPage() {
       {/* ── Trend Charts ─────────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>📉</span> 走势图组
+          <span>📉</span> {tr('charts_title')}组
         </h2>
         <div
           className="grid gap-4"

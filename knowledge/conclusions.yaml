@@ -8,6 +8,7 @@ conclusions:
     date: 2026-08-27
     verdict: 已证实
     claim: 快速超卖（≤10日内跌≥5%）后5日反弹幅度系统性高于普通日子
+    claim_en: "Fast oversold (>=5% drop within 10d) -> next-5d bounce beats baseline by +0.84% (95%CI all>0). Verified."
     number: "中位差+0.84%，95%CI[+0.47%,+1.60%]全>0"
     evidence: SPX 2000-2026，block bootstrap B=5000块长≥h，基线剔除事件日+h日
     source: 周期分析/output/report.md
@@ -17,6 +18,7 @@ conclusions:
     date: 2026-08-27
     verdict: 已证伪
     claim: 「日线压缩后必有大行情」——实测方向相反
+    claim_en: "'Daily compression -> big move' is FALSE: moves after compression are 0.65% SMALLER than vol-matched control."
     number: "压缩结束后|位移|比波动率匹配组低0.65%，95%CI[−1.55%,−0.11%]全<0"
     evidence: 对照组=同等低波动但无≥5日持续性的日子（K3修订后）
     source: 周期分析/output/report.md
@@ -26,6 +28,7 @@ conclusions:
     date: 2026-08-27
     verdict: 未决
     claim: 创252日新高后10日收益与普通日子等价（±0.3%内）
+    claim_en: "After 252-day highs, 10d returns neither punished nor proven equivalent (90%CI slightly beyond band). Undecided."
     number: "90%CI[−0.44%,+0.08%]，略超等价界下沿"
     evidence: TOST等价检验，预注册界±0.3%
     source: 周期分析/output/report.md
@@ -35,6 +38,7 @@ conclusions:
     date: 2026-08-27
     verdict: 已证实
     claim: 「上涨磨、下跌快」成立但幅度温和
+    claim_en: "'Down fast, up slow' holds but mildly: |down|/up median speed = 1.26x (200 legs, 2000-2026)."
     number: "|下跌|/上涨中位速度比=1.26×（非碾压级）"
     evidence: 200条周期腿(2000-2026)；下跌腿中位−8.5%/15日，上涨+11.0%/20日
     source: 周期分析/output/m1b_speed_asymmetry.md
@@ -44,6 +48,7 @@ conclusions:
     date: 2026-08-17
     verdict: 事实
     claim: 三大海外持有人2026-06同时减持美债
+    claim_en: "Japan/UK/China all cut US Treasury holdings in 2026-06 (-26.4/-8.7/-25.9 bn USD). Primary-source verified."
     number: "日本−26.4bn / 英国−8.7bn / 中国−25.9bn"
     evidence: TIC slt_table5一手解析，与官方修订值精确一致
     source: macro-alert规则T2b（已触发）
@@ -53,6 +58,7 @@ conclusions:
     date: 2026-08-20
     verdict: 已证伪
     claim: 整数价位聚集效应（含80/20价位族的先验）
+    claim_en: "Round-number clustering effect: z=+24.4 collapses to ~+1.0 after tick-grid correction. Falsified."
     number: "z=+24.4修正后≈+1.0"
     evidence: tick网格伪影；H5检验必须用同一修正
     source: 前阶段研究（登记册§4已证伪清单）
@@ -61,6 +67,7 @@ conclusions:
     date: 2026-08-27
     verdict: 假设(加样中)
     claim: 正GEX下价格被钉在墙位附近（pinning）
+    claim_en: "Positive-GEX pinning: spot sat 0.009% from the wall (n=1, logging only; daily GEX archive accruing)."
     number: "8/27实测：现价7675.7贴call墙7675(距0.009%)，净GEX+50bn"
     evidence: n=1只登记不推断；每日GEX快照自动累积中(data/gex/)
     source: fetchers/cboe_gex.py

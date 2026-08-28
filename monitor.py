@@ -46,6 +46,36 @@ LABELS = {
     "fima_weekly_usd": "外国央行借美元(手动)", "war_risk_premium": "战争险费率(手动)",
     "auction_tail_bp": "拍卖尾差(手动)",
 }
+
+LABELS_EN = {
+    "tips10y": "Real Yield (10Y TIPS)", "us10y": "10Y Treasury", "us30y": "30Y Treasury",
+    "us20y": "20Y Treasury", "curve_10y2y": "Yield Curve (10Y-2Y)", "breakeven10": "Breakeven Inflation (10Y)",
+    "sofr": "SOFR Overnight Rate", "iorb": "IORB Floor Rate", "rrp": "Reverse Repo (RRP)", "fed_assets": "Fed Balance Sheet",
+    "tga": "Treasury Account (W)", "m2": "Money Supply M2", "debt_total": "Total Public Debt", "tga_daily": "Treasury Account (D)",
+    "avg_rate": "Avg Interest on Debt", "tic_japan": "Japan UST Holdings", "tic_uk": "UK UST Holdings",
+    "tic_china": "China UST Holdings", "cot_gold": "Gold Net Longs (COT)", "cot_silver": "Silver Net Longs (COT)",
+    "cot_jpy": "JPY Net Longs (COT)", "repo_ops": "SRF Usage", "sofr_nyfed": "SOFR (NY Fed)",
+    "crude_stocks": "Crude Inventories", "spx": "S&P 500", "vix": "VIX Fear Index", "vix3m": "VIX 3M",
+    "gold": "Gold", "silver": "Silver", "platinum": "Platinum", "dxy": "Dollar Index",
+    "usdjpy": "USD/JPY", "brent": "Brent Oil", "wti": "WTI Oil", "move": "MOVE Bond Vol",
+    "auctions": "Auction Bid-to-Cover", "gex_net": "Dealer GEX", "fedwatch_zq_sep": "Sep Hike Odds (Futures)",
+    "polymarket_sep_hike": "Sep Hike Odds (Polymarket)", "fedwatch_sep_hike": "Sep Hike Odds (Manual)",
+    "fima_weekly_usd": "FIMA Usage (Manual)", "war_risk_premium": "War Risk Premium (Manual)",
+    "auction_tail_bp": "Auction Tail (Manual)",
+}
+
+RADAR_EN = {
+    "30年利率回前高": "30Y back to prior high", "30年利率失控区": "30Y danger zone",
+    "银行缺现金(SOFR冒头)": "Reserve scarcity (SOFR>IORB)", "加息预期回升": "Hike odds rebound",
+    "加息预期崩落": "Hike odds collapse", "日元弱到官方干预线": "JPY at intervention line",
+    "日元强到撤资线": "JPY at carry-unwind line", "黄金冲上界": "Gold upper break",
+    "黄金跌下界": "Gold lower break", "油价出上界": "Oil above band", "油价出下界": "Oil below band",
+    "恐慌指数进应激区": "VIX stress zone", "债市恐慌指数爆表": "MOVE breakout",
+    "黄金大户仓位极端": "Gold COT extreme", "利息增速追上收入增速": "r catching up to g",
+    "跌进放大器区(负gamma)": "Below gamma flip (neg gamma)", "顶破天花板(call墙)": "Above call wall",
+    "砸穿地板(put墙)": "Below put wall",
+}
+
 GROUPS = {
     "rates": ["tips10y", "us10y", "us30y", "us20y", "curve_10y2y", "breakeven10"],
     "liquidity": ["sofr", "sofr_nyfed", "iorb", "rrp", "fed_assets", "tga", "tga_daily", "m2", "repo_ops"],
@@ -192,7 +222,7 @@ def build_radar(ctx: dict) -> list[dict]:
         # 距离%：>0 未到阈值，<=0 已突破。阈值0时变量本身已是%距离，分母取100抵消后面的×100
         denom = abs(thr) or 100.0
         dist = (thr - v) / denom if direction == "above" else (v - thr) / denom
-        out.append({"label": label, "key": key, "value": v, "threshold": thr,
+        out.append({"label": label, "label_en": RADAR_EN.get(label, label), "key": key, "value": v, "threshold": thr,
                     "direction": direction, "rule_id": rule_id,
                     "distance_pct": round(dist * 100, 2)})
     out.sort(key=lambda x: x["distance_pct"])
@@ -213,7 +243,7 @@ def build_knowledge(ctx: dict) -> dict:
             nodes = []
             crossed = near = 0
             for nd in ch.get("nodes", []):
-                node = {"label": nd["label"], "note": nd.get("note", ""), "term": nd.get("term", "")}
+                node = {"label": nd["label"], "label_en": nd.get("label_en", ""), "note": nd.get("note", ""), "term": nd.get("term", "")}
                 if "metric" in nd:
                     v = ctx.get(nd["metric"])
                     thr, direc = nd["threshold"], nd["direction"]
@@ -231,7 +261,7 @@ def build_knowledge(ctx: dict) -> dict:
                                 value_text=nd.get("value_text", ""))
                 nodes.append(node)
             out["chains"].append({
-                "id": ch["id"], "name": ch["name"], "emoji": ch.get("emoji", ""), "term": ch.get("term", ""), "one_liner": ch.get("one_liner", ""),
+                "id": ch["id"], "name": ch["name"], "name_en": ch.get("name_en", ""), "emoji": ch.get("emoji", ""), "term": ch.get("term", ""), "one_liner": ch.get("one_liner", ""), "one_liner_en": ch.get("one_liner_en", ""), "falsify_en": ch.get("falsify_en", ""),
                 "falsify": ch.get("falsify", ""), "nodes": nodes,
                 "heat": crossed * 2 + near,   # 排序用：越热越靠前
             })
@@ -286,6 +316,7 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
             "key": dp.key, "label": LABELS.get(dp.key, dp.key), "value": dp.value,
             "unit": dp.unit, "as_of": dp.as_of, "source": dp.source, "tier": dp.tier,
             "stale": dp.stale, "stale_reason": dp.stale_reason,
+            "label_en": LABELS_EN.get(dp.key, dp.key),
             "chg_1d": dp.extra.get("chg_1d"), "chg_1d_pct": dp.extra.get("chg_1d_pct"),
             "chg_20d": dp.extra.get("chg_20d"), "chg_bn": dp.extra.get("chg_bn"),
             "pctile_52w": dp.extra.get("pctile_52w"),

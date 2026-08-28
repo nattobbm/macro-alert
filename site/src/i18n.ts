@@ -1,0 +1,43 @@
+// 轻量i18n：localStorage('lang') = 'zh' | 'en'，切换后reload
+export const lang: 'zh' | 'en' =
+  ((): 'zh' | 'en' => { try { return (localStorage.getItem('lang') as any) || 'zh' } catch { return 'zh' } })()
+export const isEN = lang === 'en'
+export function setLang(l: 'zh' | 'en') { try { localStorage.setItem('lang', l) } catch {}; location.reload() }
+
+const dict: Record<string, [string, string]> = {
+  subtitle: ['宏观监控系统', 'Macro Monitor'],
+  tab_overview: ['总览', 'Home'], tab_reasoning: ['推理', 'Logic'], tab_equity: ['正股', 'Equity'], tab_data: ['数据', 'Data'],
+  tic_title: ['持有美债 · 三国动向', 'US Treasury Holdings · Top 3'],
+  tic_hint: ['拖拽可旋转 · 红线=卖出方向', 'Red arcs = selling flows'],
+  regime_fallback: ['金融抑制监控', 'Repression Monitor'],
+  regime_scenario: ['当前剧本', 'Current Script'],
+  conds_met: ['条件成立', 'conditions met'],
+  active_alerts: ['活跃警报', 'Breached'], near_threshold: ['临近阈值', 'Near'], status_ok: ['状态正常', 'OK'],
+  radar_title: ['警戒线雷达', 'Threshold Radar'], radar_n: ['项监控', 'monitored'],
+  breached: ['越线了', 'Breached'], warning_w: ['快到了', 'Close'], ok_w: ['安静', 'Quiet'],
+  line: ['线', 'line'], gap: ['差', 'gap'],
+  snapshot_title: ['市场快照', 'Market Snapshot'],
+  chains_title: ['逻辑链', 'Logic Chains'], chains_hint: ['按热度排序，横向滚动', 'sorted by heat, scroll →'],
+  fired_n: ['环破了', 'link(s) breached'], invalidation: ['失效条件', 'Invalidation'],
+  verdicts_title: ['结论库', 'Verdict Ledger'],
+  v_true: ['已验证', 'Verified'], v_false: ['已证伪', 'Falsified'], v_pending: ['待定中', 'Pending'],
+  v_testing: ['攒样本', 'Sampling'], v_fact: ['基本事实', 'Fact'],
+  pred_title: ['预测记分卡', 'Forecast Ledger'],
+  locked: ['已锁定', 'Locked'], unlocked: ['未锁定', 'Open'], settle: ['结算', 'Settles'],
+  odds_title: ['9月加息概率 · 三源对照', 'Sep Hike Odds · 3 Sources'],
+  news_title: ['官方消息流', 'Official Feed'], cal_title: ['未来30天大事', 'Next 30 Days'],
+  kline_title: ['大盘K线 + 做市商地图', 'SPX + Dealer Map'],
+  gex_title: ['每个价位的磁力(GEX)', 'GEX by Strike'],
+  pos_gamma: ['正Gamma（价格磁吸，波动小）', 'Positive gamma (pinning, low vol)'],
+  neg_gamma: ['负Gamma（放大波动）', 'Negative gamma (amplifies moves)'],
+  mm_state: ['做市商状态', 'Dealer state'],
+  auction_title: ['国债拍卖', 'Treasury Auctions'], auction_src: ['美国财政部拍卖结果 · 最近', 'US Treasury results · latest'],
+  rules_title: ['自动警报器', 'Alert Rules'],
+  r_fire: ['响了', 'Fired'], r_muted: ['响过(静音)', 'Muted'], r_ok: ['正常', 'OK'], r_skip: ['数据缺跳过', 'Skipped'], r_manual: ['人工盯', 'Manual'],
+  health_title: ['数据体检', 'Data Health'], charts_title: ['走势图', 'Trends'],
+  stale: ['过期', 'stale'], fresh: ['新鲜', 'fresh'],
+  target: ['目标', 'target'], source_w: ['来源', 'source'], evidence_w: ['证据', 'evidence'],
+}
+export function t(k: string): string {
+  const e = dict[k]; return e ? (isEN ? e[1] : e[0]) : k
+}

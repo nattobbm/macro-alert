@@ -49,7 +49,7 @@ def evaluate(rules: dict, ctx: dict, stale_keys: set[str], state: dict,
         for r in items:
             rid = r["id"]
             expr = r.get("rule", "")
-            base = {"id": rid, "name": r.get("name", rid), "domain": domain,
+            base = {"id": rid, "name": r.get("name", rid), "name_en": r.get("name_en", ""), "domain": domain,
                     "severity": r.get("severity", "info"),
                     "chain": r.get("chain", ""), "falsify": r.get("falsify", ""),
                     "baseline": r.get("baseline", "")}

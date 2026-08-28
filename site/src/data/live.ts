@@ -2,6 +2,7 @@
 // main.tsx 在渲染前 fetch 并挂到 window.__LATEST；本模块同步读取。
 // 任一字段缺失时回落到 mock，保证页面永不空白。
 import * as mock from './mock'
+import { isEN } from '../i18n'
 import type { OHLC, Snapshot, Alert, Chain, ChainNode, Verdict, Prediction, NewsItem, CalEvent, AuctionRow, AlertRule, GexBar, DataSource } from './mock'
 
 const L: any = (globalThis as any).__LATEST ?? null
@@ -19,7 +20,7 @@ export const snapshots: Snapshot[] = L
   ? SNAP_KEYS.filter(k => byKey[k]).map(k => {
       const m = byKey[k]
       return {
-        key: k, label: m.label, value: fmt(m.value) + (m.unit === '%' ? '%' : ''),
+        key: k, label: (isEN && m.label_en) ? m.label_en : m.label, value: fmt(m.value) + (m.unit === '%' ? '%' : ''),
         change: m.chg_1d_pct ?? m.chg_1d ?? 0,
         unit: m.unit === '%' ? '' : (m.unit ?? ''),
         as_of: m.as_of ?? '—', source: (m.source ?? '').split(':')[0],
@@ -32,7 +33,7 @@ export const snapshots: Snapshot[] = L
 export const alerts: Alert[] = L
   ? (L.radar ?? []).map((r: any, i: number) => ({
       id: `${r.rule_id}_${i}`,
-      name: `${r.label} ${r.direction === 'above' ? '↑' : '↓'}${fmt(r.threshold)}`,
+      name: `${(isEN && r.label_en) ? r.label_en : r.label} ${r.direction === 'above' ? '↑' : '↓'}${fmt(r.threshold)}`,
       current: fmt(r.value),
       threshold: fmt(r.threshold),
       distance_pct: -r.distance_pct,   // mock语义：负=未到，正/0=越线
@@ -48,11 +49,11 @@ const NODE_STATUS: Record<string, ChainNode['status']> = {
 export const chains: Chain[] = L
   ? (L.knowledge?.chains ?? []).map((c: any) => ({
       id: c.id,
-      title: `${c.emoji ?? ''} ${c.name} — ${c.one_liner?.slice(0, 42) ?? ''}`,
+      title: `${c.emoji ?? ''} ${(isEN && c.name_en) ? c.name_en : c.name} — ${((isEN && c.one_liner_en) ? c.one_liner_en : c.one_liner)?.slice(0, 60) ?? ''}`,
       heat: Math.min(100, 20 + (c.heat ?? 0) * 20),
-      invalidation: c.falsify ?? '',
+      invalidation: (isEN && c.falsify_en) ? c.falsify_en : (c.falsify ?? ''),
       nodes: (c.nodes ?? []).map((n: any): ChainNode => ({
-        label: n.label,
+        label: (isEN && n.label_en) ? n.label_en : n.label,
         value: n.value != null ? fmt(n.value) : (n.value_text ?? '—'),
         threshold: n.threshold != null ? `${n.direction === 'above' ? '↑' : '↓'}${fmt(n.threshold)}` : '',
         status: NODE_STATUS[n.status] ?? 'fact',
@@ -68,7 +69,7 @@ const VERDICT_MAP: Record<string, Verdict['status']> = {
 export const verdicts: Verdict[] = L
   ? (L.knowledge?.conclusions ?? []).map((c: any) => ({
       id: c.id, status: VERDICT_MAP[c.verdict] ?? 'pending',
-      claim: c.claim,
+      claim: (isEN && c.claim_en) ? c.claim_en : c.claim,
       evidence: [c.number, c.evidence].filter(Boolean).join('；'),
       source: c.source ?? '',
     }))
@@ -163,7 +164,7 @@ const RULE_STATUS: Record<string, AlertRule['status']> = {
 }
 export const alertRules: AlertRule[] = L
   ? (L.rules ?? []).map((r: any) => ({
-      id: r.id, name: r.name,
+      id: r.id, name: (isEN && r.name_en) ? r.name_en : r.name,
       status: RULE_STATUS[r.status] ?? 'ok',
       triggered: Object.entries(r.inputs ?? {}).slice(0, 3).map(([k, v]) => `${k}=${v}`).join(' ') || (r.reason ?? '—'),
       cause: r.chain ?? '', invalidation: r.falsify || '—',

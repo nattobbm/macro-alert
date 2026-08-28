@@ -1,19 +1,20 @@
 import { useState } from 'react'
 import { chains, verdicts, predictions, rateProbabilities, news, calEvents } from '../data/live'
+import { t as tr, isEN } from '../i18n'
 
 const STATUS_META = {
-  fire:    { icon: '🔥', label: '破了', color: 'var(--red)' },
-  warning: { icon: '⚠️', label: '快到',  color: 'var(--yellow)' },
-  ok:      { icon: '🟢', label: '安静',  color: 'var(--green)' },
-  fact:    { icon: '📌', label: '事实',  color: 'var(--accent)' },
+  fire:    { icon: '🔥', label: tr('breached'), color: 'var(--red)' },
+  warning: { icon: '⚠️', label: tr('warning_w'),  color: 'var(--yellow)' },
+  ok:      { icon: '🟢', label: tr('ok_w'),  color: 'var(--green)' },
+  fact:    { icon: '📌', label: tr('v_fact'),  color: 'var(--accent)' },
 }
 
 const VERDICT_META = {
-  true:    { icon: '✅', label: '已验证', color: '#6bb89a' },
-  false:   { icon: '❌', label: '已证伪', color: '#e07878' },
-  pending: { icon: '⏳', label: '待定中', color: '#d4a848' },
-  testing: { icon: '🧪', label: '攒样本', color: '#5b9eb8' },
-  fact:    { icon: '📌', label: '基本事实', color: '#88a0b8' },
+  true:    { icon: '✅', label: tr('v_true'), color: '#6bb89a' },
+  false:   { icon: '❌', label: tr('v_false'), color: '#e07878' },
+  pending: { icon: '⏳', label: tr('v_pending'), color: '#d4a848' },
+  testing: { icon: '🧪', label: tr('v_testing'), color: '#5b9eb8' },
+  fact:    { icon: '📌', label: tr('v_fact'), color: '#88a0b8' },
 }
 
 const CHAIN_COLORS = [
@@ -32,8 +33,8 @@ export default function ReasoningPage() {
       {/* ── Logic Chains ─────────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>🔗</span> 逻辑链
-          <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（按热度排序，横向滚动）</span>
+          <span>🔗</span> {tr('chains_title')}
+          <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（{tr('chains_hint')}）</span>
         </h2>
         <div className="space-y-4">
           {sorted.map((chain, ci) => {
@@ -135,7 +136,7 @@ export default function ReasoningPage() {
       {/* ── Verdict Library ──────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>📚</span> 结论库
+          <span>📚</span> {tr('verdicts_title')}
         </h2>
         <div className="neu p-4 space-y-2">
           {verdicts.map(v => {
@@ -179,7 +180,7 @@ export default function ReasoningPage() {
       {/* ── Prediction Scorecard ─────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>🎯</span> 预测记分卡
+          <span>🎯</span> {tr('pred_title')}
         </h2>
         <div className="neu p-4 space-y-4">
           {/* Rate probability comparison */}

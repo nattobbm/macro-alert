@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { lang, setLang, t } from './i18n'
 import OverviewPage from './pages/OverviewPage'
 import ReasoningPage from './pages/ReasoningPage'
 import EquityPage from './pages/EquityPage'
@@ -8,10 +9,10 @@ type Theme = 'default' | 'latte' | 'mocha' | 'nord'
 type Tab = 'overview' | 'reasoning' | 'equity' | 'data'
 
 const TABS: { id: Tab; emoji: string; label: string }[] = [
-  { id: 'overview',  emoji: '🏠', label: '总览' },
-  { id: 'reasoning', emoji: '🧠', label: '推理' },
-  { id: 'equity',    emoji: '📈', label: '正股' },
-  { id: 'data',      emoji: '🗃️', label: '数据' },
+  { id: 'overview',  emoji: '🏠', label: t('tab_overview') },
+  { id: 'reasoning', emoji: '🧠', label: t('tab_reasoning') },
+  { id: 'equity',    emoji: '📈', label: t('tab_equity') },
+  { id: 'data',      emoji: '🗃️', label: t('tab_data') },
 ]
 
 const THEMES: { id: Theme; label: string }[] = [
@@ -52,7 +53,7 @@ export default function App() {
                 CYPERMOW
               </div>
               <div className="text-xs leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>
-                宏观监控系统
+                {t('subtitle')}
               </div>
             </div>
           </div>
@@ -74,6 +75,16 @@ export default function App() {
               </button>
             ))}
           </div>
+
+          {/* Language toggle */}
+          <button
+            onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
+            className="neu-sm px-3 py-1.5 text-xs font-bold rounded-xl"
+            style={{ color: 'var(--accent)' }}
+            title="中/EN"
+          >
+            {lang === 'zh' ? 'EN' : '中'}
+          </button>
         </div>
 
         {/* Desktop tab bar */}

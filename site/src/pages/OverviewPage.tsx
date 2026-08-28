@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Globe from '../components/Globe'
 import Sparkline from '../components/Sparkline'
 import { snapshots, alerts, ticLive, regimeLive } from '../data/live'
+import { t as tr, isEN } from '../i18n'
 
 const STATUS_ICON = { breached: '🔥', warning: '⚠️', ok: '🟢' }
 const STATUS_COLOR: Record<string, string> = {
@@ -26,11 +27,11 @@ export default function OverviewPage() {
         {/* Globe */}
         <div className="neu p-4 flex-shrink-0 flex flex-col items-center gap-3">
           <div className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
-            持有美债 · 三国动向
+            {tr('tic_title')}
           </div>
           <Globe tic={ticLive?.rows} asOf={ticLive?.as_of} />
           <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
-            拖拽可旋转 · 红线=卖出方向
+            {tr('tic_hint')}
           </div>
         </div>
 
@@ -42,7 +43,7 @@ export default function OverviewPage() {
               <span className="text-3xl">⚠️</span>
               <div>
                 <div className="font-bold text-base" style={{ color: 'var(--text)' }}>
-                  {regimeLive ? `${regimeLive.name} · 当前剧本` : '金融抑制监控'}
+                  {regimeLive ? `${regimeLive.name} · ${tr('regime_scenario')}` : tr('regime_fallback')}
                 </div>
                 <div
                   className="font-num text-xs mt-0.5 px-3 py-0.5 rounded-full inline-block"
@@ -52,7 +53,7 @@ export default function OverviewPage() {
                     boxShadow: '2px 2px 5px var(--shadow-dark)',
                   }}
                 >
-                  {regimeLive ? `${regimeLive.met} / ${regimeLive.total} 条件成立` : '1 / 3 条件成立'}
+                  {regimeLive ? `${regimeLive.met} / ${regimeLive.total} ${tr('conds_met')}` : '1 / 3'}
                 </div>
               </div>
             </div>
@@ -93,9 +94,9 @@ export default function OverviewPage() {
           {/* Quick numbers */}
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: '活跃警报', value: String(alerts.filter(a => a.status === 'breached').length), color: 'var(--red)', icon: '🔥' },
-              { label: '临近阈值', value: String(alerts.filter(a => a.status === 'warning').length), color: 'var(--yellow)', icon: '⚠️' },
-              { label: '状态正常', value: String(alerts.filter(a => a.status === 'ok').length), color: 'var(--green)', icon: '🟢' },
+              { label: tr('active_alerts'), value: String(alerts.filter(a => a.status === 'breached').length), color: 'var(--red)', icon: '🔥' },
+              { label: tr('near_threshold'), value: String(alerts.filter(a => a.status === 'warning').length), color: 'var(--yellow)', icon: '⚠️' },
+              { label: tr('status_ok'), value: String(alerts.filter(a => a.status === 'ok').length), color: 'var(--green)', icon: '🟢' },
             ].map(s => (
               <div key={s.label} className="neu p-3 text-center">
                 <div className="text-xl mb-1">{s.icon}</div>
@@ -110,8 +111,8 @@ export default function OverviewPage() {
       {/* ── 18 Alert Cards ───────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>🎯</span> 警戒线雷达
-          <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（18项监控）</span>
+          <span>🎯</span> {tr('radar_title')}
+          <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（18 {tr('radar_n')}）</span>
         </h2>
         <div
           className="grid gap-3"
@@ -131,7 +132,7 @@ export default function OverviewPage() {
                   className="text-xs font-medium"
                   style={{ color: STATUS_COLOR[a.status] }}
                 >
-                  {a.status === 'breached' ? '越线了' : a.status === 'warning' ? '快到了' : '安静'}
+                  {a.status === 'breached' ? tr('breached') : a.status === 'warning' ? tr('warning_w') : tr('ok_w')}
                 </span>
               </div>
 
@@ -187,7 +188,7 @@ export default function OverviewPage() {
       {/* ── 12 Market Snapshots ──────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>📊</span> 市场快照
+          <span>📊</span> {tr('snapshot_title')}
           <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（as of {snapshots[0]?.as_of ?? '—'}）</span>
         </h2>
         <div
