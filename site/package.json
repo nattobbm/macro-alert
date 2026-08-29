@@ -10,11 +10,13 @@
     "format": "oxfmt"
   },
   "dependencies": {
+    "lightweight-charts": "^5.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^3.10.1"
   },
   "devDependencies": {
+    "@iconify-json/mingcute": "^1.2.8",
     "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",

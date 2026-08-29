@@ -6,21 +6,27 @@ html, body, #root {
 }
 
 /* ── Theme tokens ─────────────────────────────────────────── */
+/* 状态色语义（全主题统一）：--st-ok=正常(蓝系) --st-warn=接近(浅粉) --st-fire=触发(深粉) --st-mute=跳过/静音(中性)
+   每个带 -text(可读文字) 和 -bg(浅底) 变体；数据图表仍用 --green/--red（红绿语义豁免） */
 :root, [data-theme="default"] {
-  --bg:           #d8e8f4;
-  --bg2:          #ccdae8;
-  --card:         #d8e8f4;
-  --shadow-light: #eef6ff;
-  --shadow-dark:  #b8c8d8;
-  --text:         #2d4a63;
-  --text-muted:   #6a88a0;
-  --accent:       #5b9eb8;
-  --accent-soft:  #b8d8ea;
-  --green:        #6bb89a;
-  --yellow:       #d4a848;
-  --red:          #e07878;
-  --border:       #c0d0e0;
-  --globe-bg:     #0a1628;
+  --bg:           #FAF0DC;
+  --bg2:          #F3E7CC;
+  --card:         #FAF0DC;
+  --shadow-light: #FFFDF5;
+  --shadow-dark:  #E0D2B4;
+  --text:         #6B5E4F;
+  --text-muted:   #A5947C;
+  --accent:       #4EA8DE;
+  --accent-soft:  #C9E5F5;
+  --green:        #7DBE8E;
+  --yellow:       #E0B04B;
+  --red:          #E8737F;
+  --border:       #E8DCC3;
+  --globe-bg:     #1a2436;
+  --st-ok:        #4EA8DE; --st-ok-text:   #1D6FA5; --st-ok-bg:   #E3F4FB;
+  --st-warn:      #FFB3C1; --st-warn-text: #C9587A; --st-warn-bg: #FFEAF0;
+  --st-fire:      #FF8FA3; --st-fire-text: #A4133C; --st-fire-bg: #FFE0E6;
+  --st-mute:      #D9C9A3; --st-mute-text: #8A7A63; --st-mute-bg: #F3E9D2;
 }
 
 [data-theme="latte"] {
@@ -38,6 +44,10 @@ html, body, #root {
   --red:          #d20f39;
   --border:       #dce0e8;
   --globe-bg:     #0a1628;
+  --st-ok:        #209fb5; --st-ok-text:   #147a8c; --st-ok-bg:   #d9eef3;
+  --st-warn:      #ea76cb; --st-warn-text: #b0509a; --st-warn-bg: #f8e3f3;
+  --st-fire:      #d20f39; --st-fire-text: #a30c2d; --st-fire-bg: #f7d9e0;
+  --st-mute:      #9ca0b0; --st-mute-text: #6c6f85; --st-mute-bg: #e6e9ef;
 }
 
 [data-theme="mocha"] {
@@ -55,6 +65,10 @@ html, body, #root {
   --red:          #f38ba8;
   --border:       #313244;
   --globe-bg:     #0d0d1a;
+  --st-ok:        #89dceb; --st-ok-text:   #89dceb; --st-ok-bg:   #2a3a45;
+  --st-warn:      #f5c2e7; --st-warn-text: #f5c2e7; --st-warn-bg: #3d3140;
+  --st-fire:      #f38ba8; --st-fire-text: #f38ba8; --st-fire-bg: #402836;
+  --st-mute:      #7f849c; --st-mute-text: #a6adc8; --st-mute-bg: #2a2a3a;
 }
 
 [data-theme="nord"] {
@@ -72,6 +86,17 @@ html, body, #root {
   --red:          #bf616a;
   --border:       #3b4252;
   --globe-bg:     #0d1117;
+  --st-ok:        #88c0d0; --st-ok-text:   #88c0d0; --st-ok-bg:   #2f3d47;
+  --st-warn:      #d08770; --st-warn-text: #d08770; --st-warn-bg: #3d3138;
+  --st-fire:      #bf616a; --st-fire-text: #bf616a; --st-fire-bg:  #402e34;
+  --st-mute:      #6b7a91; --st-mute-text: #94a3b8; --st-mute-bg: #333b4a;
+}
+
+/* ── 状态点（替代🟢🔴🟡等emoji） ─────────────────────────── */
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  border-radius: 999px; padding: 2px 10px; font-size: 11px; white-space: nowrap;
 }
 
 /* ── Base ─────────────────────────────────────────────────── */

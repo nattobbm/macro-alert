@@ -53,7 +53,7 @@ export default function DataPage() {
       {/* ── Data Health ──────────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>🔬</span> {tr('health_title')}
+          {tr('health_title')}
           <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>
             ({dataSources.length} 个数据源)
           </span>
@@ -64,25 +64,25 @@ export default function DataPage() {
             <div
               className="neu-sm flex items-center gap-2 px-4 py-2"
             >
-              <span className="text-xl">🟢</span>
+              <span className="dot" style={{ backgroundColor: 'var(--st-ok)' }} />
               <div>
-                <div className="font-num font-bold text-xl" style={{ color: 'var(--green)' }}>
+                <div className="font-num font-bold text-xl" style={{ color: 'var(--st-ok-text)' }}>
                   {okCount}
                 </div>
                 <div className="text-xs" style={{ color: 'var(--text-muted)' }}>数据正常</div>
               </div>
             </div>
             <div className="neu-sm flex items-center gap-2 px-4 py-2">
-              <span className="text-xl">⏳</span>
+              <span className="dot" style={{ backgroundColor: 'var(--st-warn)' }} />
               <div>
-                <div className="font-num font-bold text-xl" style={{ color: 'var(--yellow)' }}>
+                <div className="font-num font-bold text-xl" style={{ color: 'var(--st-warn-text)' }}>
                   {staleCount}
                 </div>
                 <div className="text-xs" style={{ color: 'var(--text-muted)' }}>数据过期</div>
               </div>
             </div>
             <div className="neu-sm flex items-center gap-2 px-4 py-2">
-              <span className="text-xl">📊</span>
+              <span className="dot" style={{ backgroundColor: 'var(--accent)' }} />
               <div>
                 <div className="font-num font-bold text-xl" style={{ color: 'var(--accent)' }}>
                   {Math.round(okCount / dataSources.length * 100)}%
@@ -110,8 +110,8 @@ export default function DataPage() {
           {/* Stale list */}
           {staleList.length > 0 && (
             <div>
-              <div className="text-xs font-medium mb-2" style={{ color: 'var(--yellow)' }}>
-                ⏳ 过期数据清单
+              <div className="text-xs font-medium mb-2" style={{ color: 'var(--st-warn-text)' }}>
+                过期数据清单
               </div>
               <div className="space-y-1.5">
                 {staleList.map(d => (
@@ -120,7 +120,7 @@ export default function DataPage() {
                     className="neu-inset-sm px-4 py-2.5 flex items-center gap-3"
                     style={{ opacity: 0.85 }}
                   >
-                    <span className="text-base">⏳</span>
+                    <span className="dot" style={{ backgroundColor: 'var(--st-warn)' }} />
                     <div className="flex-1">
                       <div className="text-xs font-medium" style={{ color: 'var(--text)' }}>{d.name}</div>
                       <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
@@ -151,7 +151,7 @@ export default function DataPage() {
                   className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs"
                   style={{ opacity: d.status === 'stale' ? 0.7 : 1 }}
                 >
-                  <span>{d.status === 'ok' ? '🟢' : '⏳'}</span>
+                  <span className="dot" style={{ backgroundColor: d.status === 'ok' ? 'var(--st-ok)' : 'var(--st-warn)' }} />
                   <span className="flex-1" style={{ color: 'var(--text)' }}>{d.name}</span>
                   <span className="font-num" style={{ color: 'var(--text-muted)' }}>{d.last_updated}</span>
                 </div>
@@ -164,7 +164,7 @@ export default function DataPage() {
       {/* ── Trend Charts ─────────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>📉</span> {tr('charts_title')}组
+          {tr('charts_title')}组
         </h2>
         <div
           className="grid gap-4"

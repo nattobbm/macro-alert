@@ -1,23 +1,77 @@
 import { useState } from 'react'
 import Globe from '../components/Globe'
 import Sparkline from '../components/Sparkline'
-import { snapshots, alerts, ticLive, regimeLive } from '../data/live'
+import { snapshots, alerts, alertsNoBands, radarBands, ticLive, regimeLive } from '../data/live'
+import type { RadarBand } from '../data/live'
 import { t as tr, isEN } from '../i18n'
 
-const STATUS_ICON = { breached: '🔥', warning: '⚠️', ok: '🟢' }
 const STATUS_COLOR: Record<string, string> = {
-  breached: 'var(--red)',
-  warning:  'var(--yellow)',
-  ok:       'var(--green)',
+  breached: 'var(--st-fire-text)',
+  warning:  'var(--st-warn-text)',
+  ok:       'var(--st-ok-text)',
+}
+const STATUS_DOT: Record<string, string> = {
+  breached: 'var(--st-fire)',
+  warning:  'var(--st-warn)',
+  ok:       'var(--st-ok)',
+}
+
+// ── 双边警戒带：一条带子两个出口，通向两条不同推理链 ──
+function BandBar({ b }: { b: RadarBand }) {
+  const pos = Math.max(0, Math.min(1, b.position)) * 100
+  const danger = b.status === 'breached_lo' || b.status === 'breached_hi'
+  const near = b.status === 'near'
+  const fmtV = (v: number) =>
+    b.key === 'fedwatch_sep_hike' ? `${(v * 100).toFixed(0)}%`
+      : v >= 1000 ? Math.round(v).toLocaleString('en-US') : v.toFixed(1)
+  const statusText = b.status === 'breached_hi' ? (isEN ? 'above band' : '已破上界')
+    : b.status === 'breached_lo' ? (isEN ? 'below band' : '已破下界')
+    : b.dist_hi_pct <= b.dist_lo_pct
+      ? (isEN ? `${b.dist_hi_pct.toFixed(1)}% to upper` : `离上界差${b.dist_hi_pct.toFixed(1)}%`)
+      : (isEN ? `${b.dist_lo_pct.toFixed(1)}% to lower` : `离下界差${b.dist_lo_pct.toFixed(1)}%`)
+  const mainColor = danger ? 'var(--st-fire-text)' : near ? 'var(--st-warn-text)' : 'var(--st-ok-text)'
+  return (
+    <div className="neu-sm p-4">
+      <div className="flex items-baseline justify-between gap-2 flex-wrap">
+        <span className="text-sm font-medium" style={{ color: 'var(--text)' }}>{b.label}</span>
+        <span className="font-num text-sm font-bold" style={{ color: mainColor }}>
+          {fmtV(b.value)}{b.unit ? ` ${b.unit}` : ''} · {statusText}
+        </span>
+      </div>
+      <div className="relative my-2.5" style={{ height: 14 }}>
+        <div className="absolute inset-0 rounded-full" style={{ backgroundColor: 'var(--st-ok-bg)' }} />
+        <div className="absolute left-0 top-0 bottom-0 rounded-l-full" style={{ width: '10%', backgroundColor: b.status === 'breached_lo' ? 'var(--st-fire)' : 'var(--st-warn-bg)' }} />
+        <div className="absolute right-0 top-0 bottom-0 rounded-r-full" style={{ width: '10%', backgroundColor: b.status === 'breached_hi' ? 'var(--st-fire)' : 'var(--st-warn-bg)' }} />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 18, height: 18, top: -2, left: `calc(${pos}% - 9px)`,
+            backgroundColor: 'var(--card)',
+            border: `3px solid ${danger ? 'var(--st-fire-text)' : near ? 'var(--st-warn-text)' : 'var(--st-ok)'}`,
+            boxShadow: '2px 2px 5px var(--shadow-dark)',
+          }}
+        />
+      </div>
+      <div className="flex justify-between gap-3 text-xs" style={{ color: 'var(--text-muted)' }}>
+        <span>{b.lo_note}</span>
+        <span className="text-right">{b.hi_note}</span>
+      </div>
+      <div className="text-xs mt-1.5" style={{ color: 'var(--text-muted)', opacity: 0.8 }}>
+        {isEN ? 'basis: ' : '依据：'}{b.origin}
+      </div>
+    </div>
+  )
 }
 
 export default function OverviewPage() {
   const [hoveredAlert, setHoveredAlert] = useState<string | null>(null)
+  const [showStandard, setShowStandard] = useState(false)
 
-  const sorted = [...alerts].sort((a, b) => {
+  const sorted = [...alertsNoBands].sort((a, b) => {
     const order = { breached: 0, warning: 1, ok: 2 }
     return order[a.status] - order[b.status]
   })
+  const nWatch = alertsNoBands.length + radarBands.length
 
   return (
     <div className="space-y-6">
@@ -40,49 +94,37 @@ export default function OverviewPage() {
           {/* Regime chip */}
           <div className="neu p-5">
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-3xl">⚠️</span>
               <div>
                 <div className="font-bold text-base" style={{ color: 'var(--text)' }}>
                   {regimeLive ? `${regimeLive.name} · ${tr('regime_scenario')}` : tr('regime_fallback')}
                 </div>
                 <div
-                  className="font-num text-xs mt-0.5 px-3 py-0.5 rounded-full inline-block"
+                  className="font-num text-xs mt-1 px-3 py-0.5 rounded-full inline-block"
                   style={{
-                    backgroundColor: 'var(--yellow)',
-                    color: '#fff',
-                    boxShadow: '2px 2px 5px var(--shadow-dark)',
+                    backgroundColor: 'var(--st-warn-bg)',
+                    color: 'var(--st-warn-text)',
                   }}
                 >
-                  {regimeLive ? `${regimeLive.met} / ${regimeLive.total} ${tr('conds_met')}` : '1 / 3'}
+                  {regimeLive ? `${regimeLive.met} / ${regimeLive.total} ${tr('conds_met')}` : '— / —'}
                 </div>
               </div>
             </div>
 
             <div className="space-y-2">
-              {(regimeLive
-                ? regimeLive.conds.map(c => ({ label: c.label, value: c.value, threshold: '', met: c.met, term: '' }))
-                : [
-                { label: '债务利息 / 财政收入', value: '13.1%', threshold: '> 12%', met: true,  term: 'Interest/Revenue Ratio' },
-                { label: '真实利率', value: '2.07%', threshold: '< 0% (理想)', met: false, term: 'Real Yield' },
-                { label: '联储直接购债', value: '不在QE期间', threshold: '持续净购买',    met: false, term: 'Quantitative Easing' },
-              ]).map((c, i) => (
+              {(regimeLive?.conds ?? []).map((c, i) => (
                 <div
                   key={i}
                   className="neu-inset-sm flex items-center gap-3 px-4 py-3"
-                  title={c.term}
                 >
-                  <span className="text-lg">{c.met ? '🔥' : '⭕'}</span>
+                  <span className="dot" style={{ backgroundColor: c.met ? 'var(--st-fire)' : 'var(--st-mute)' }} />
                   <div className="flex-1">
                     <div className="text-sm font-medium" style={{ color: 'var(--text)' }}>
                       {c.label}
                     </div>
-                    <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
-                      目标: {c.threshold}
-                    </div>
                   </div>
                   <div
                     className="font-num text-sm font-bold"
-                    style={{ color: c.met ? 'var(--red)' : 'var(--text-muted)' }}
+                    style={{ color: c.met ? 'var(--st-fire-text)' : 'var(--text-muted)' }}
                   >
                     {c.value}
                   </div>
@@ -94,12 +136,12 @@ export default function OverviewPage() {
           {/* Quick numbers */}
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: tr('active_alerts'), value: String(alerts.filter(a => a.status === 'breached').length), color: 'var(--red)', icon: '🔥' },
-              { label: tr('near_threshold'), value: String(alerts.filter(a => a.status === 'warning').length), color: 'var(--yellow)', icon: '⚠️' },
-              { label: tr('status_ok'), value: String(alerts.filter(a => a.status === 'ok').length), color: 'var(--green)', icon: '🟢' },
+              { label: tr('active_alerts'), value: String(alerts.filter(a => a.status === 'breached').length), color: 'var(--st-fire-text)', dot: 'var(--st-fire)' },
+              { label: tr('near_threshold'), value: String(alerts.filter(a => a.status === 'warning').length), color: 'var(--st-warn-text)', dot: 'var(--st-warn)' },
+              { label: tr('status_ok'), value: String(alerts.filter(a => a.status === 'ok').length), color: 'var(--st-ok-text)', dot: 'var(--st-ok)' },
             ].map(s => (
               <div key={s.label} className="neu p-3 text-center">
-                <div className="text-xl mb-1">{s.icon}</div>
+                <div className="flex justify-center mb-1.5"><span className="dot" style={{ backgroundColor: s.dot }} /></div>
                 <div className="font-num font-bold text-2xl" style={{ color: s.color }}>{s.value}</div>
                 <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>{s.label}</div>
               </div>
@@ -108,12 +150,60 @@ export default function OverviewPage() {
         </div>
       </div>
 
-      {/* ── 18 Alert Cards ───────────────────────────── */}
+      {/* ── Radar ────────────────────────────────────── */}
       <section>
-        <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>🎯</span> {tr('radar_title')}
-          <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（18 {tr('radar_n')}）</span>
-        </h2>
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
+          <h2 className="text-base font-bold" style={{ color: 'var(--text)' }}>
+            {tr('radar_title')}
+            <span className="text-xs font-normal ml-2" style={{ color: 'var(--text-muted)' }}>（{nWatch} {tr('radar_n')}）</span>
+          </h2>
+          <button
+            onClick={() => setShowStandard(v => !v)}
+            className="neu-sm px-3 py-1 text-xs ml-auto"
+            style={{ color: 'var(--accent)' }}
+          >
+            {isEN ? 'How are lines set?' : '警戒线怎么定的？'} {showStandard ? '▲' : '▼'}
+          </button>
+        </div>
+
+        {/* 标准说明卡（回答"阈值有没有标准"） */}
+        {showStandard && (
+          <div className="neu-inset p-4 mb-4 text-xs space-y-2" style={{ color: 'var(--text)' }}>
+            <div className="font-bold">{isEN ? 'Every line has a documented basis, one of four types:' : '每条线都有出处（标在各卡片底部），共四类：'}</div>
+            <div style={{ color: 'var(--text-muted)' }}>
+              {isEN
+                ? 'Event level (an actual past trigger, e.g. JPY 163 = Jul-31 intervention) · Scenario band (from a dated report) · Mechanism (a math flip point, e.g. avg rate 4% = r overtaking g) · Statistical (e.g. 90th percentile positioning).'
+                : '① 历史事件位——真实发生过的触发价（如日元163=7-31官方干预位）；② 报告情景区间——来自注明日期的分析报告；③ 机制阈值——数学上的翻转点（如平均付息率4%=利息增速追上收入增速）；④ 统计分位——如大户仓位90分位。'}
+            </div>
+            <div className="font-bold pt-1">{isEN ? 'Why upper and lower bounds can never fire together:' : '为什么上界下界不可能同时触发：'}</div>
+            <div style={{ color: 'var(--text-muted)' }}>
+              {isEN
+                ? 'A band is one corridor with two exits — each exit leads to a different reasoning chain. Price can only leave through one side.'
+                : '双边线不是两个警报，是一条带子的两个出口，两端通向不同的推理链——价格永远只能从一边出去。'}
+            </div>
+            <div className="font-bold pt-1">{isEN ? 'Combination alarms:' : '组合警报（多条同亮才算数的）：'}</div>
+            <div style={{ color: 'var(--text-muted)' }}>
+              {isEN
+                ? 'Financial-repression signal = inflation expectations >2.8% + 30Y >5.2% + market not pricing hikes, all at once (highest severity). Foreign-official retreat = Japan, UK and China all cutting Treasury holdings in the same month. All other combination logic lives in the six reasoning chains (see the reasoning tab).'
+                : '金融抑制信号＝通胀预期>2.8%＋30年利率>5.2%＋市场不预期加息，三条同亮（最高级警报）；官方买方退潮＝日英中同月同时减持美债。其余组合语义由六条推理链承担（见推理页）。'}
+            </div>
+            <div className="font-bold pt-1">{isEN ? 'Severity ladder:' : '警报分四级：'}</div>
+            <div style={{ color: 'var(--text-muted)' }}>
+              {isEN
+                ? 'record → watch → push to Telegram → push and pin.'
+                : '记录 → 留意 → 推送TG → 推送并置顶。'}
+            </div>
+          </div>
+        )}
+
+        {/* 双边警戒带 */}
+        {radarBands.length > 0 && (
+          <div className="grid gap-3 mb-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
+            {radarBands.map(b => <BandBar key={b.id} b={b} />)}
+          </div>
+        )}
+
+        {/* 单边警戒线 */}
         <div
           className="grid gap-3"
           style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))' }}
@@ -127,7 +217,7 @@ export default function OverviewPage() {
             >
               {/* Status badge */}
               <div className="flex items-center gap-1.5 mb-2">
-                <span className="text-base">{STATUS_ICON[a.status]}</span>
+                <span className="dot" style={{ backgroundColor: STATUS_DOT[a.status] }} />
                 <span
                   className="text-xs font-medium"
                   style={{ color: STATUS_COLOR[a.status] }}
@@ -165,6 +255,13 @@ export default function OverviewPage() {
                 )}
               </div>
 
+              {/* 来源标签 */}
+              {a.origin && (
+                <div className="text-xs mt-2 leading-tight" style={{ color: 'var(--text-muted)', opacity: 0.8 }}>
+                  {a.origin}
+                </div>
+              )}
+
               {/* Hover tooltip */}
               {hoveredAlert === a.id && (
                 <div
@@ -176,7 +273,7 @@ export default function OverviewPage() {
                     border: '1px solid var(--border)',
                   }}
                 >
-                  <div className="font-medium mb-1">📖 规则来源</div>
+                  <div className="font-medium mb-1">规则来源</div>
                   <div style={{ color: 'var(--text-muted)' }}>{a.rule_source}</div>
                 </div>
               )}
@@ -188,7 +285,7 @@ export default function OverviewPage() {
       {/* ── 12 Market Snapshots ──────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>📊</span> {tr('snapshot_title')}
+          {tr('snapshot_title')}
           <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（as of {snapshots[0]?.as_of ?? '—'}）</span>
         </h2>
         <div

@@ -64,7 +64,7 @@ export default function CalendarPage() {
     <div className="space-y-3">
       <div className="neu p-4">
         <div className="font-bold" style={{ color: 'var(--accent)' }}>
-          📅 {t('cal_page')}
+          {t('cal_page')}
         </div>
         <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
           {t('cal_page_hint')}

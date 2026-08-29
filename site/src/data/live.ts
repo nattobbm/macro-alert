@@ -39,8 +39,30 @@ export const alerts: Alert[] = L
       distance_pct: -r.distance_pct,   // mock语义：负=未到，正/0=越线
       status: r.distance_pct <= 0 ? 'breached' : r.distance_pct < 5 ? 'warning' : 'ok',
       rule_source: r.rule_id,
+      origin: (isEN && r.origin_en) ? r.origin_en : (r.origin ?? ''),
+      key: r.key,
     }))
   : mock.alerts
+
+// ── 双边警戒带（油/金/日元/加息概率：一条带子两个出口） ──
+export type RadarBand = {
+  id: string; key: string; lo: number; hi: number; unit: string
+  label: string; lo_note: string; hi_note: string; origin: string
+  value: number; position: number; dist_lo_pct: number; dist_hi_pct: number
+  status: 'in_band' | 'near' | 'breached_lo' | 'breached_hi'
+}
+export const radarBands: RadarBand[] = (L?.radar_bands ?? []).map((b: any) => ({
+  ...b,
+  label: (isEN && b.label_en) ? b.label_en : b.label,
+  lo_note: (isEN && b.lo_note_en) ? b.lo_note_en : b.lo_note,
+  hi_note: (isEN && b.hi_note_en) ? b.hi_note_en : b.hi_note,
+  origin: (isEN && b.origin_en) ? b.origin_en : b.origin,
+}))
+// 已并入带子的雷达行，从单行列表里去掉（band成员key）
+const BAND_KEYS = new Set(radarBands.map(b => b.key))
+export const alertsNoBands: Alert[] = radarBands.length
+  ? alerts.filter((a: any) => !BAND_KEYS.has(a.key))
+  : alerts
 
 // ── 逻辑链 ──
 const NODE_STATUS: Record<string, ChainNode['status']> = {
@@ -85,7 +107,7 @@ export const predictions: Prediction[] = L
       ...(L.predictions?.settled_list ?? []).map((s: any) => ({
         id: s.id, question: s.id, locked: true, settle_date: '—',
         status: 'settled' as const,
-        result: s.outcome === 1 ? '✅ 正确' : s.outcome === 0 ? '❌ 错误' : '—',
+        result: s.outcome === 1 ? '判对了' : s.outcome === 0 ? '判错了' : '—',
       })),
     ]
   : mock.predictions
@@ -153,7 +175,8 @@ export const auctions: AuctionRow[] = L
         term: TERM_CN[a.term] ?? a.term, date: a.auction_date,
         size: `$${Math.round((a.offering_bn ?? 0) * 10)}亿`,
         bid_cover: a.bid_to_cover, indirect: a.indirect_pct ?? 0, tail,
-        result: a.bid_to_cover >= 2.5 ? 'good' : a.bid_to_cover >= 2.3 ? 'ok' : 'weak',
+        // 与规则引擎T1对齐：<2.2触发恶化 / >2.4证伪(=健康)
+        result: a.bid_to_cover >= 2.4 ? 'good' : a.bid_to_cover >= 2.2 ? 'ok' : 'weak',
       }
     })
   : mock.auctions
@@ -224,3 +247,9 @@ export const asOfAuction: string = L?.auctions?.[0]?.auction_date ?? '—'
 export const gexIsPositive: boolean = (L?.gex?.net_gex_bn ?? 1) >= 0
 export const gexSpot: number | null = L?.gex?.spot ?? null
 export const gexFlip: number | null = L?.gex?.flip ?? null
+export const gexNetBn: number | null = L?.gex?.net_gex_bn ?? null
+export const gexCallWall: number | null = L?.gex?.call_wall ?? null
+export const gexPutWall: number | null = L?.gex?.put_wall ?? null
+// 墙位每日轨迹（2026-08-27起自建存档，逐日生长）
+export const gexHistory: { date: string; flip: number | null; call_wall: number | null; put_wall: number | null; net_gex_bn: number | null }[] =
+  L?.gex_history ?? []

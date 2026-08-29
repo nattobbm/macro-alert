@@ -3,18 +3,18 @@ import { chains, verdicts, predictions, rateProbabilities, news, calEvents } fro
 import { t as tr, isEN } from '../i18n'
 
 const STATUS_META = {
-  fire:    { icon: '🔥', label: tr('breached'), color: 'var(--red)' },
-  warning: { icon: '⚠️', label: tr('warning_w'),  color: 'var(--yellow)' },
-  ok:      { icon: '🟢', label: tr('ok_w'),  color: 'var(--green)' },
-  fact:    { icon: '📌', label: tr('v_fact'),  color: 'var(--accent)' },
+  fire:    { dot: 'var(--st-fire)', label: tr('breached'), color: 'var(--st-fire-text)' },
+  warning: { dot: 'var(--st-warn)', label: tr('warning_w'),  color: 'var(--st-warn-text)' },
+  ok:      { dot: 'var(--st-ok)',   label: tr('ok_w'),  color: 'var(--st-ok-text)' },
+  fact:    { dot: 'var(--accent)',  label: tr('v_fact'),  color: 'var(--accent)' },
 }
 
 const VERDICT_META = {
-  true:    { icon: '✅', label: tr('v_true'), color: '#6bb89a' },
-  false:   { icon: '❌', label: tr('v_false'), color: '#e07878' },
-  pending: { icon: '⏳', label: tr('v_pending'), color: '#d4a848' },
-  testing: { icon: '🧪', label: tr('v_testing'), color: '#5b9eb8' },
-  fact:    { icon: '📌', label: tr('v_fact'), color: '#88a0b8' },
+  true:    { dot: 'var(--st-ok)',   label: tr('v_true'), color: 'var(--st-ok-text)' },
+  false:   { dot: 'var(--st-fire)', label: tr('v_false'), color: 'var(--st-fire-text)' },
+  pending: { dot: 'var(--st-mute)', label: tr('v_pending'), color: 'var(--st-mute-text)' },
+  testing: { dot: 'var(--accent)',  label: tr('v_testing'), color: 'var(--accent)' },
+  fact:    { dot: 'var(--st-mute)', label: tr('v_fact'), color: 'var(--st-mute-text)' },
 }
 
 const CHAIN_COLORS = [
@@ -33,7 +33,7 @@ export default function ReasoningPage() {
       {/* ── Logic Chains ─────────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>🔗</span> {tr('chains_title')}
+          {tr('chains_title')}
           <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（{tr('chains_hint')}）</span>
         </h2>
         <div className="space-y-4">
@@ -57,12 +57,11 @@ export default function ReasoningPage() {
                   <div
                     className="font-num text-xs font-bold px-2.5 py-1 rounded-full"
                     style={{
-                      backgroundColor: chain.heat > 70 ? 'var(--red)' : chain.heat > 50 ? 'var(--yellow)' : 'var(--green)',
-                      color: '#fff',
-                      boxShadow: '2px 2px 5px var(--shadow-dark)',
+                      backgroundColor: chain.heat > 70 ? 'var(--st-fire-bg)' : chain.heat > 50 ? 'var(--st-warn-bg)' : 'var(--st-ok-bg)',
+                      color: chain.heat > 70 ? 'var(--st-fire-text)' : chain.heat > 50 ? 'var(--st-warn-text)' : 'var(--st-ok-text)',
                     }}
                   >
-                    🌡️ {chain.heat}
+                    热度 {chain.heat}
                   </div>
                   {/* Expand toggle */}
                   <button
@@ -80,7 +79,7 @@ export default function ReasoningPage() {
                     className="neu-inset-sm px-4 py-2 mb-3 text-xs"
                     style={{ color: 'var(--text-muted)' }}
                   >
-                    ⚠️ 何时失效：{chain.invalidation}
+                    何时失效：{chain.invalidation}
                   </div>
                 )}
 
@@ -97,7 +96,7 @@ export default function ReasoningPage() {
                             title={node.term}
                           >
                             <div className="flex items-center gap-1.5 mb-1">
-                              <span className="text-sm">{meta.icon}</span>
+                              <span className="dot" style={{ backgroundColor: meta.dot }} />
                               <span className="text-xs font-medium" style={{ color: meta.color }}>
                                 {meta.label}
                               </span>
@@ -136,7 +135,7 @@ export default function ReasoningPage() {
       {/* ── Verdict Library ──────────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>📚</span> {tr('verdicts_title')}
+          {tr('verdicts_title')}
         </h2>
         <div className="neu p-4 space-y-2">
           {verdicts.map(v => {
@@ -148,10 +147,10 @@ export default function ReasoningPage() {
                   className="w-full text-left neu-sm px-4 py-3 flex items-center gap-3 transition-all"
                   onClick={() => setExpandedVerdict(isOpen ? null : v.id)}
                 >
-                  <span className="text-lg flex-shrink-0">{meta.icon}</span>
+                  <span className="dot flex-shrink-0" style={{ backgroundColor: meta.dot }} />
                   <span
                     className="text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0"
-                    style={{ backgroundColor: meta.color + '25', color: meta.color }}
+                    style={{ backgroundColor: 'var(--bg2)', color: meta.color }}
                   >
                     {meta.label}
                   </span>
@@ -167,8 +166,8 @@ export default function ReasoningPage() {
                     className="neu-inset-sm mx-2 mt-1 px-4 py-3 text-xs space-y-1"
                     style={{ color: 'var(--text-muted)' }}
                   >
-                    <div><span className="font-medium" style={{ color: 'var(--text)' }}>📊 证据：</span>{v.evidence}</div>
-                    <div><span className="font-medium" style={{ color: 'var(--text)' }}>📖 来源：</span>{v.source}</div>
+                    <div><span className="font-medium" style={{ color: 'var(--text)' }}>证据：</span>{v.evidence}</div>
+                    <div><span className="font-medium" style={{ color: 'var(--text)' }}>来源：</span>{v.source}</div>
                   </div>
                 )}
               </div>
@@ -180,7 +179,7 @@ export default function ReasoningPage() {
       {/* ── Prediction Scorecard ─────────────────────── */}
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-          <span>🎯</span> {tr('pred_title')}
+          {tr('pred_title')}
         </h2>
         <div className="neu p-4 space-y-4">
           {/* Rate probability comparison */}
@@ -212,7 +211,15 @@ export default function ReasoningPage() {
                 className="neu-sm px-4 py-3 flex items-center gap-3"
                 style={p.status === 'settled' ? { opacity: 0.7 } : {}}
               >
-                <span className="text-base">{p.locked ? '🔒' : '🔓'}</span>
+                <span
+                  className="text-xs px-2 py-0.5 rounded-full flex-shrink-0"
+                  style={{
+                    backgroundColor: p.locked ? 'var(--st-ok-bg)' : 'var(--st-warn-bg)',
+                    color: p.locked ? 'var(--st-ok-text)' : 'var(--st-warn-text)',
+                  }}
+                >
+                  {p.locked ? '已锁定' : '未锁定'}
+                </span>
                 <div className="flex-1">
                   <div className="text-sm" style={{ color: 'var(--text)' }}>{p.question}</div>
                   <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
@@ -240,7 +247,7 @@ export default function ReasoningPage() {
         {/* News */}
         <section>
           <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-            <span>📡</span> 官方消息流
+            官方消息流
           </h2>
           <div className="neu p-4 space-y-3">
             {news.map(n => (
@@ -270,7 +277,7 @@ export default function ReasoningPage() {
         {/* Calendar */}
         <section>
           <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
-            <span>📅</span> 未来30天大事
+            未来30天大事
           </h2>
           <div className="neu p-4 space-y-3">
             {calEvents.map((e, i) => (
@@ -283,7 +290,7 @@ export default function ReasoningPage() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-1.5">
-                    <span>{'⭐'.repeat(e.importance)}</span>
+                    <span style={{ color: 'var(--yellow)' }}>{'★'.repeat(e.importance)}</span>
                     <span className="text-xs font-medium" style={{ color: 'var(--text)' }}>
                       {e.event}
                     </span>

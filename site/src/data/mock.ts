@@ -79,6 +79,7 @@ export const snapshots: Snapshot[] = [
 export interface Alert {
   id: string; name: string; current: string; threshold: string;
   distance_pct: number; status: 'breached' | 'warning' | 'ok'; rule_source: string;
+  origin?: string; key?: string;
 }
 
 export const alerts: Alert[] = [

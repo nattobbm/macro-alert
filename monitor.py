@@ -72,9 +72,77 @@ RADAR_EN = {
     "黄金跌下界": "Gold lower break", "油价出上界": "Oil above band", "油价出下界": "Oil below band",
     "恐慌指数进应激区": "VIX stress zone", "债市恐慌指数爆表": "MOVE breakout",
     "黄金大户仓位极端": "Gold COT extreme", "利息增速追上收入增速": "r catching up to g",
-    "跌进放大器区(负gamma)": "Below gamma flip (neg gamma)", "顶破天花板(call墙)": "Above call wall",
-    "砸穿地板(put墙)": "Below put wall",
+    "跌破gamma翻转位(波动放大区)": "Below gamma flip (neg gamma)",
+    "升破上方期权密集位(call墙)": "Above call wall",
+    "跌破下方期权密集位(put墙)": "Below put wall",
 }
+
+# 警戒线来源四分类（回答"阈值有没有标准"：每条线的出处都在 rules.yaml，此处做展示用短语）
+RADAR_ORIGIN = {
+    "30年利率回前高":       ("历史事件位 · 8-18的19年高点5.33%", "Event level: Aug-18 19yr high 5.33%"),
+    "30年利率失控区":       ("机制阈值 · 触发政策救市的水位",     "Mechanism: policy-response level"),
+    "银行缺现金(SOFR冒头)": ("机制阈值 · 准备金稀缺最早信号",     "Mechanism: earliest reserve-scarcity signal"),
+    "加息预期回升":         ("报告情景区间 · 8-25报告",           "Scenario band: Aug-25 report"),
+    "加息预期崩落":         ("报告情景区间 · 8-25报告",           "Scenario band: Aug-25 report"),
+    "日元弱到官方干预线":   ("历史事件位 · 7-31联合干预位",       "Event level: Jul-31 joint intervention"),
+    "日元强到撤资线":       ("机制阈值 · 套息平仓启动位",         "Mechanism: carry-unwind trigger"),
+    "黄金冲上界":           ("报告情景区间 · 8-25报告",           "Scenario band: Aug-25 report"),
+    "黄金跌下界":           ("报告情景区间 · 8-25报告",           "Scenario band: Aug-25 report"),
+    "油价出上界":           ("报告情景区间 · 区间控制假说(加样中)", "Scenario band: range-control hypothesis"),
+    "油价出下界":           ("报告情景区间 · 区间控制假说(加样中)", "Scenario band: range-control hypothesis"),
+    "恐慌指数进应激区":     ("统计分位 · 历史应激区间",           "Statistical: historical stress zone"),
+    "债市恐慌指数爆表":     ("历史事件位 · basis trade平仓风险位", "Event level: basis-trade unwind risk"),
+    "黄金大户仓位极端":     ("统计分位 · 52周90分位",             "Statistical: 52w 90th percentile"),
+    "利息增速追上收入增速": ("机制阈值 · r>g债务动力学翻转点",    "Mechanism: r>g debt-dynamics flip"),
+    "跌破gamma翻转位(波动放大区)": ("机制阈值 · 穿越即状态切换",  "Mechanism: crossing = regime switch"),
+    "升破上方期权密集位(call墙)":  ("机制阈值 · 穿越即状态切换",  "Mechanism: crossing = regime switch"),
+    "跌破下方期权密集位(put墙)":   ("机制阈值 · 穿越即状态切换",  "Mechanism: crossing = regime switch"),
+}
+
+# 双边警戒带：一条带子两个出口，通向两条不同推理链（雷达里合并展示）
+RADAR_BANDS = [
+    {"id": "brent_band", "key": "brent", "lo": 80.0, "hi": 90.0, "unit": "美元",
+     "label": "油价(布伦特)", "label_en": "Oil (Brent)",
+     "lo_note": "跌破80 → 对手行动更大胆", "hi_note": "涨破90 → 美方倾向缓和",
+     "lo_note_en": "Below 80 → adversaries act bolder", "hi_note_en": "Above 90 → US leans to de-escalate",
+     "origin": "报告情景区间 · 区间控制假说(加样中)", "origin_en": "Scenario band: range-control hypothesis",
+     "rule_id": "G1_oil_band_break"},
+    {"id": "gold_band", "key": "gold", "lo": 4450.0, "hi": 4700.0, "unit": "美元",
+     "label": "黄金", "label_en": "Gold",
+     "lo_note": "跌破4450 → 紧缩逻辑回归", "hi_note": "涨破4700 → 上行情景确认",
+     "lo_note_en": "Below 4450 → tightening chain returns", "hi_note_en": "Above 4700 → upside scenario confirmed",
+     "origin": "报告情景区间 · 8-25报告", "origin_en": "Scenario band: Aug-25 report",
+     "rule_id": "X1_gold_breakout"},
+    {"id": "jpy_band", "key": "usdjpy", "lo": 157.0, "hi": 163.0, "unit": "",
+     "label": "日元(USDJPY)", "label_en": "Yen (USDJPY)",
+     "lo_note": "跌破157 → 套息平仓启动(全球撤资)", "hi_note": "涨破163 → 触及7-31官方干预位",
+     "lo_note_en": "Below 157 → carry unwind starts", "hi_note_en": "Above 163 → Jul-31 intervention level",
+     "origin": "历史事件位+机制阈值", "origin_en": "Event level + mechanism",
+     "rule_id": "J1_intervention_zone"},
+    {"id": "hike_band", "key": "fedwatch_sep_hike", "lo": 0.25, "hi": 0.65, "unit": "",
+     "label": "9月加息概率", "label_en": "Sep hike odds",
+     "lo_note": "跌破25% → 宽松预期回归，黄金受支撑", "hi_note": "涨破65% → 两个解释框架正面对决",
+     "lo_note_en": "Below 25% → easing expectations return", "hi_note_en": "Above 65% → frameworks clash head-on",
+     "origin": "报告情景区间 · 8-25报告", "origin_en": "Scenario band: Aug-25 report",
+     "rule_id": "F1_hike_odds_up"},
+]
+
+
+def build_radar_bands(ctx: dict) -> list[dict]:
+    out = []
+    for b in RADAR_BANDS:
+        v = ctx.get(b["key"])
+        if v is None:
+            continue
+        lo, hi = b["lo"], b["hi"]
+        pos = (v - lo) / (hi - lo)          # <0 破下界, >1 破上界
+        status = "breached_lo" if v < lo else "breached_hi" if v > hi \
+            else "near" if (pos < 0.1 or pos > 0.9) else "in_band"
+        out.append({**b, "value": v, "position": round(max(-0.15, min(1.15, pos)), 4),
+                    "dist_lo_pct": round((v - lo) / lo * 100, 2),
+                    "dist_hi_pct": round((hi - v) / hi * 100, 2),
+                    "status": status})
+    return out
 
 GROUPS = {
     "rates": ["tips10y", "us10y", "us30y", "us20y", "curve_10y2y", "breakeven10"],
@@ -223,8 +291,10 @@ def build_radar(ctx: dict) -> list[dict]:
         # 距离%：>0 未到阈值，<=0 已突破。阈值0时变量本身已是%距离，分母取100抵消后面的×100
         denom = abs(thr) or 100.0
         dist = (thr - v) / denom if direction == "above" else (v - thr) / denom
+        org = RADAR_ORIGIN.get(label, ("", ""))
         out.append({"label": label, "label_en": RADAR_EN.get(label, label), "key": key, "value": v, "threshold": thr,
                     "direction": direction, "rule_id": rule_id,
+                    "origin": org[0], "origin_en": org[1],
                     "distance_pct": round(dist * 100, 2)})
     out.sort(key=lambda x: x["distance_pct"])
     return out
@@ -405,6 +475,23 @@ def build_regime(ctx: dict) -> dict:
             "judge": "判据(8-25报告)：若实际利率跳升而金不跌→确认主导；若金随实际利率同步回落→回到需求侧紧缩链"}
 
 
+def _load_gex_history() -> list[dict]:
+    """墙位每日轨迹：CBOE免费链只有当天快照，历史从我们2026-08-27自建存档起步，逐日生长。"""
+    out = []
+    gdir = DATA / "gex"
+    if not gdir.exists():
+        return out
+    for f in sorted(gdir.glob("????-??-??.json")):
+        try:
+            g = json.loads(f.read_text(encoding="utf-8"))
+            out.append({"date": f.stem, "flip": g.get("flip"),
+                        "call_wall": g.get("call_wall"), "put_wall": g.get("put_wall"),
+                        "net_gex_bn": g.get("net_gex_bn"), "spot": g.get("spot")})
+        except Exception:
+            continue
+    return out[-250:]
+
+
 def build_latest(dps, rule_results, auctions, cal, scorecard_data,
                  news_items=None, ctx=None) -> dict:
     by_key = {dp.key: dp for dp in dps}
@@ -449,7 +536,9 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
         "predictions": scorecard_data,
         "news": news_items or [],
         "radar": build_radar(ctx or {}),
+        "radar_bands": build_radar_bands(ctx or {}),
         "regime": build_regime(ctx or {}),
+        "gex_history": _load_gex_history(),
         "gex": (by_key["gex_net"].extra | {"net_gex_bn": by_key["gex_net"].value,
                                            "stale": by_key["gex_net"].stale})
                if "gex_net" in by_key else None,
