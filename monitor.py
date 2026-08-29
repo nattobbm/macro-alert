@@ -23,7 +23,7 @@ import yaml
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket  # noqa: E402
+from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict  # noqa: E402
 
@@ -110,6 +110,7 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps += manual.fetch_all(DATA / "manual.json")
     dps.append(cboe_gex.fetch(DATA / "gex"))
     dps.append(fedwatch_zq.fetch(DATA / "fedwatch"))
+    dps.append(econ_calendar.fetch(DATA / "econ_cal"))
     dps.append(polymarket.fetch())
     return dps
 
@@ -295,6 +296,9 @@ def build_digest(ctx: dict, knowledge: dict, rule_results: list, radar: list,
     upcoming = [c for c in cal
                 if 0 <= (dt.date.fromisoformat(c["date"]) - dt.date.today()).days <= 3]
     next_watch = watch + [f"{c['date']} {c['event']}" for c in upcoming[:2]]
+    # 经济日历：3日内High事件并入观测口
+    for e in (knowledge.get("_econ_events") or [])[:3]:
+        next_watch.append(e)
 
     st_file.write_text(json.dumps({
         "date": today, "nodes": node_now,
@@ -451,6 +455,8 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
                if "gex_net" in by_key else None,
         "spx_ohlc": by_key["spx"].extra.get("ohlc") if "spx" in by_key else None,
         "knowledge": build_knowledge(ctx or {}),
+        "econ_calendar": (by_key["econ_calendar"].extra.get("events", [])
+                          if "econ_calendar" in by_key and not by_key["econ_calendar"].stale else []),
     }
 
 
@@ -516,6 +522,13 @@ def main():
         news_items = []
     latest = build_latest(dps, rule_results, auctions, cal, scorecard_data,
                           news_items=news_items, ctx=ctx)
+    # 3日内High重要度经济事件 → 快报观测口
+    _today = dt.date.today()
+    latest["knowledge"]["_econ_events"] = [
+        f"{e['date'][5:]} {e['country']} {e['title']}"
+        for e in latest.get("econ_calendar", [])
+        if e.get("impact") == "High" and e.get("date")
+        and 0 <= (dt.date.fromisoformat(e["date"]) - _today).days <= 3][:3]
     latest["digest"] = build_digest(ctx, latest["knowledge"], rule_results,
                                     latest["radar"], cal)
     LATEST_FILE.write_text(json.dumps(latest, ensure_ascii=False), encoding="utf-8")

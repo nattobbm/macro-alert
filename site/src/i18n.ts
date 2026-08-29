@@ -37,6 +37,8 @@ const dict: Record<string, [string, string]> = {
   health_title: ['数据体检', 'Data Health'], charts_title: ['走势图', 'Trends'],
   stale: ['过期', 'stale'], fresh: ['新鲜', 'fresh'],
   tab_contact: ['联系', 'Contact'],
+  cal_page: ['经济日历', 'Economic Calendar'],
+  cal_page_hint: ['TradingView官方免费日历 · 星级=重要度 · 时间已按你时区', 'TradingView free widget · stars = importance · your timezone'],
   contact_footer: ['数据每日自动更新 · 非投资建议', 'Data auto-updates daily · Not investment advice'],
   target: ['目标', 'target'], source_w: ['来源', 'source'], evidence_w: ['证据', 'evidence'],
 }

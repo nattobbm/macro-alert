@@ -5,16 +5,17 @@ import ReasoningPage from './pages/ReasoningPage'
 import EquityPage from './pages/EquityPage'
 import DataPage from './pages/DataPage'
 import ContactPage from './pages/ContactPage'
+import CalendarPage from './pages/CalendarPage'
 
 type Theme = 'default' | 'latte' | 'mocha' | 'nord'
-type Tab = 'overview' | 'reasoning' | 'equity' | 'data' | 'contact'
+type Tab = 'overview' | 'reasoning' | 'equity' | 'data' | 'contact' | 'calendar'
 
+// 联系/日历不占主导航——主屏只展示数据，入口收进右上角小按钮
 const TABS: { id: Tab; emoji: string; label: string }[] = [
   { id: 'overview',  emoji: '🏠', label: t('tab_overview') },
   { id: 'reasoning', emoji: '🧠', label: t('tab_reasoning') },
   { id: 'equity',    emoji: '📈', label: t('tab_equity') },
   { id: 'data',      emoji: '🗃️', label: t('tab_data') },
-  { id: 'contact',   emoji: '📮', label: t('tab_contact') },
 ]
 
 const THEMES: { id: Theme; label: string }[] = [
@@ -78,15 +79,34 @@ export default function App() {
             ))}
           </div>
 
-          {/* Language toggle */}
-          <button
-            onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
-            className="neu-sm px-3 py-1.5 text-xs font-bold rounded-xl"
-            style={{ color: 'var(--accent)' }}
-            title="中/EN"
-          >
-            {lang === 'zh' ? 'EN' : '中'}
-          </button>
+          {/* 右上角小工具：日历 / 联系 / 语言 */}
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => setTab('calendar')}
+              className="neu-sm px-2.5 py-1.5 text-sm rounded-xl notranslate"
+              style={{ color: tab === 'calendar' ? 'var(--accent)' : 'var(--text-muted)' }}
+              title={t('cal_page')}
+            >
+              📅
+            </button>
+            <button
+              onClick={() => setTab('contact')}
+              className="neu-sm px-2.5 py-1.5 text-sm rounded-xl notranslate"
+              style={{ color: tab === 'contact' ? 'var(--accent)' : 'var(--text-muted)' }}
+              title={t('tab_contact')}
+            >
+              📮
+            </button>
+            {/* Language toggle：notranslate=按钮自身文案不参与整页机翻 */}
+            <button
+              onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
+              className="neu-sm px-3 py-1.5 text-xs font-bold rounded-xl notranslate"
+              style={{ color: 'var(--accent)' }}
+              title="中/EN"
+            >
+              {lang === 'zh' ? 'EN' : '中'}
+            </button>
+          </div>
         </div>
 
         {/* Desktop tab bar */}
@@ -113,6 +133,7 @@ export default function App() {
         {tab === 'equity'    && <EquityPage />}
         {tab === 'data'      && <DataPage />}
         {tab === 'contact'   && <ContactPage />}
+        {tab === 'calendar'  && <CalendarPage />}
       </main>
 
       {/* ── Mobile bottom nav ────────────────────────────── */}
