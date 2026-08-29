@@ -1,5 +1,36 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { isEN, t } from '../i18n'
+
+/** 双时钟：中国 + 美东 实时时间（月-日 时:分:秒），秒级刷新 */
+function DualClock() {
+  const [now, setNow] = useState(() => new Date())
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  const fmt = (tz: string) =>
+    new Intl.DateTimeFormat(isEN ? 'en-US' : 'zh-CN', {
+      timeZone: tz, month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+    }).format(now)
+  let localTz = ''
+  try { localTz = Intl.DateTimeFormat().resolvedOptions().timeZone } catch {}
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 notranslate">
+      <span className="font-num text-sm" style={{ color: 'var(--text)' }}>
+        🇨🇳 {t('cn_time')} <b>{fmt('Asia/Shanghai')}</b>
+      </span>
+      <span className="font-num text-sm" style={{ color: 'var(--text)' }}>
+        🇺🇸 {t('us_time')} <b>{fmt('America/New_York')}</b>
+      </span>
+      {localTz && (
+        <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+          {t('your_tz')}: {localTz}
+        </span>
+      )}
+    </div>
+  )
+}
 
 /** 经济日历页：TradingView 官方免费 events widget（合法嵌入，零成本）。
  *  深色主题(mocha/nord)自动用 dark 皮肤；语言跟随 中/EN 开关。 */
@@ -38,6 +69,7 @@ export default function CalendarPage() {
         <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
           {t('cal_page_hint')}
         </div>
+        <DualClock />
       </div>
       {/* widget 容器：外链内容，标 notranslate 防止整页机翻二次处理 */}
       <div className="neu p-2 notranslate">

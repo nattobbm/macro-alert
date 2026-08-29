@@ -38,7 +38,8 @@ const dict: Record<string, [string, string]> = {
   stale: ['过期', 'stale'], fresh: ['新鲜', 'fresh'],
   tab_contact: ['联系', 'Contact'],
   cal_page: ['经济日历', 'Economic Calendar'],
-  cal_page_hint: ['TradingView官方免费日历 · 星级=重要度 · 时间已按你时区', 'TradingView free widget · stars = importance · your timezone'],
+  cal_page_hint: ['TradingView官方免费日历 · 星级=重要度 · 表内时间=下方你的本地时区', 'TradingView free widget · stars = importance · event times use your local timezone below'],
+  cn_time: ['中国', 'China'], us_time: ['美东', 'US East'], your_tz: ['你的时区', 'Your timezone'],
   contact_footer: ['数据每日自动更新 · 非投资建议', 'Data auto-updates daily · Not investment advice'],
   target: ['目标', 'target'], source_w: ['来源', 'source'], evidence_w: ['证据', 'evidence'],
 }

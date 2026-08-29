@@ -61,24 +61,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Theme switcher */}
-          <div className="neu-sm flex items-center gap-1 p-1.5">
-            {THEMES.map(t => (
-              <button
-                key={t.id}
-                onClick={() => setTheme(t.id)}
-                className="px-2.5 py-1 text-xs rounded-xl transition-all"
-                style={
-                  theme === t.id
-                    ? { backgroundColor: 'var(--accent)', color: '#fff', boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.25)' }
-                    : { color: 'var(--text-muted)' }
-                }
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
-
           {/* 右上角小工具：日历 / 联系 / 语言 */}
           <div className="flex items-center gap-1.5">
             <button
@@ -106,6 +88,24 @@ export default function App() {
             >
               {lang === 'zh' ? 'EN' : '中'}
             </button>
+          </div>
+
+          {/* Theme switcher */}
+          <div className="neu-sm flex items-center gap-1 p-1.5">
+            {THEMES.map(t => (
+              <button
+                key={t.id}
+                onClick={() => setTheme(t.id)}
+                className="px-2.5 py-1 text-xs rounded-xl transition-all"
+                style={
+                  theme === t.id
+                    ? { backgroundColor: 'var(--accent)', color: '#fff', boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.25)' }
+                    : { color: 'var(--text-muted)' }
+                }
+              >
+                {t.label}
+              </button>
+            ))}
           </div>
         </div>
 
