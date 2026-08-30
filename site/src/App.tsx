@@ -7,9 +7,10 @@ import EquityPage from './pages/EquityPage'
 import DataPage from './pages/DataPage'
 import ContactPage from './pages/ContactPage'
 import CalendarPage from './pages/CalendarPage'
+import EnginePage from './pages/EnginePage'
 
 type Theme = 'default' | 'balloon' | 'latte' | 'mocha' | 'nord'
-type Tab = 'overview' | 'reasoning' | 'equity' | 'data' | 'contact' | 'calendar'
+type Tab = 'overview' | 'reasoning' | 'equity' | 'data' | 'contact' | 'calendar' | 'engine'
 
 // 联系/日历不占主导航——主屏只展示数据，入口收进右上角小按钮
 const TABS: { id: Tab; icon: string; label: string }[] = [
@@ -135,7 +136,8 @@ export default function App() {
 
       {/* ── Page ─────────────────────────────────────────── */}
       <main className="max-w-5xl mx-auto px-4 py-2">
-        {tab === 'overview'  && <OverviewPage onGlobeClick={() => setTab('reasoning')} />}
+        {tab === 'overview'  && <OverviewPage onGlobeClick={() => setTab('engine')} />}
+        {tab === 'engine'    && <EnginePage />}
         {tab === 'reasoning' && <ReasoningPage />}
         {tab === 'equity'    && <EquityPage />}
         {tab === 'data'      && <DataPage />}

@@ -264,6 +264,26 @@ export const trendTaylorGold: { date: string; taylor: number; gold: number | nul
 export const asOfTaylor: string = (L?.series?.taylor_gap ?? []).slice(-1)[0]?.[0] ?? '—'
 export const asOfCurve: string = (L?.series?.curve_10y2y ?? []).slice(-1)[0]?.[0] ?? '—'
 
+// ── 引擎页：接线图节点的实时读数（整合我们分析出来的活数据） ──
+const curVal = (k: string): number | null => byKey[k]?.value ?? null
+const curAsOf = (k: string): string => byKey[k]?.as_of ?? '—'
+export const engineLive = {
+  // 常规周期引擎
+  sahm: curVal('sahm_rule'),                 // 衰退报警器
+  sahmAsOf: curAsOf('sahm_rule'),
+  taylor: (L?.series?.taylor_gap ?? []).slice(-1)[0]?.[1] ?? null,  // 泰勒缺口(桥)
+  taylorAsOf: (L?.series?.taylor_gap ?? []).slice(-1)[0]?.[0] ?? '—',
+  us30y: curVal('us30y'),                    // 长端利率
+  usdjpy: curVal('usdjpy'),                  // 汇率(利率平价)
+  tips10y: curVal('tips10y'),                // 实际利率(费雪/黄金锚)
+  // 债务动力学引擎
+  longBtc: (L?.auctions ?? [])[0]?.bid_to_cover ?? null,   // 拍卖需求
+  avgRate: curVal('avg_rate'),               // r (r vs g)
+  gold: curVal('gold'),                      // 黄金支撑
+  brent: curVal('brent'),                    // 油价
+  generatedAt: L?.generated_at?.slice(0, 10) ?? '—',
+}
+
 // ── TIC三国 + 当前剧本 ──
 export const ticLive = L?.tic?.length
   ? {
