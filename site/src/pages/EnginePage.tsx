@@ -14,20 +14,23 @@ function Node({ x, y, w, h, engine, title, reading, sub, dashed }: {
   x: number; y: number; w: number; h: number
   engine: 'a' | 'b' | 'bridge'; title: string; reading?: string; sub?: string; dashed?: boolean
 }) {
+  // 坐标强制转数字：调用处若传字符串，"30"+59 会变成"3059"字符串拼接，把字画到界外
+  const X = +x, Y = +y, W = +w, H = +h
+  const cx = X + W / 2
   const fill = engine === 'a' ? 'var(--accent-soft)' : engine === 'b' ? 'var(--st-fire-bg)' : 'var(--st-warn-bg)'
   const stroke = engine === 'a' ? 'var(--accent)' : engine === 'b' ? 'var(--st-fire)' : 'var(--yellow)'
   return (
     <g>
-      <rect x={x} y={y} width={w} height={h} rx={11} fill={fill} stroke={stroke}
+      <rect x={X} y={Y} width={W} height={H} rx={11} fill={fill} stroke={stroke}
         strokeWidth={1.2} strokeDasharray={dashed ? '4 3' : undefined} />
-      <text x={x + w / 2} y={y + (reading ? 20 : h / 2 + 4)} textAnchor="middle"
+      <text x={cx} y={Y + (reading ? 20 : H / 2 + 4)} textAnchor="middle"
         fontSize={13} fontWeight={700} fill="var(--text)">{title}</text>
       {reading && (
-        <text x={x + w / 2} y={y + 38} textAnchor="middle" fontSize={14} fontWeight={700}
+        <text x={cx} y={Y + 38} textAnchor="middle" fontSize={14} fontWeight={700}
           fill={stroke} fontFamily="'Baloo 2', sans-serif">{reading}</text>
       )}
       {sub && (
-        <text x={x + w / 2} y={y + h - 6} textAnchor="middle" fontSize={9.5}
+        <text x={cx} y={Y + H - 6} textAnchor="middle" fontSize={9.5}
           fill="var(--text-muted)">{sub}</text>
       )}
     </g>
