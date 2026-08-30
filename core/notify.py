@@ -147,25 +147,39 @@ def build_message(health: dict, rule_results: list[dict], auctions: list[dict],
 
 
 def send(text: str, dry: bool = False) -> bool:
+    """推送。
+
+    安全：bot token 出现在请求URL里，requests 的异常文本会带上完整URL。
+    本仓库是公开仓库，GitHub Actions 日志对所有人可见——网络抖动一次就会把
+    token 印到公开日志里。因此所有异常与响应文本一律过 redact() 再输出。
+    （同源事故：2026-08-27 FRED密钥经 stale_reason 泄露进公开仓库）
+    """
+    from fetchers.base import redact
+
     token, chat = os.getenv("TG_BOT_TOKEN"), os.getenv("TG_CHAT_ID")
     if dry or not token or not chat:
         print(text)
         if not dry:
             print("[warn] 缺少 TG_BOT_TOKEN / TG_CHAT_ID，未推送", file=sys.stderr)
         return False
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
     ok = True
     for i in range(0, len(text), 3900):
-        r = requests.post(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            json={"chat_id": chat, "text": text[i:i + 3900],
-                  "parse_mode": "Markdown", "disable_web_page_preview": True},
-            timeout=30)
-        if not r.ok:
-            # Markdown 解析失败时降级纯文本重试
-            r = requests.post(
-                f"https://api.telegram.org/bot{token}/sendMessage",
-                json={"chat_id": chat, "text": text[i:i + 3900]}, timeout=30)
-        if not r.ok:
-            print(f"[error] tg: {r.text[:200]}", file=sys.stderr)
+        chunk = text[i:i + 3900]
+        try:
+            r = requests.post(url, timeout=30, json={
+                "chat_id": chat, "text": chunk,
+                "parse_mode": "Markdown", "disable_web_page_preview": True})
+            if not r.ok:
+                # Markdown 解析失败时降级纯文本重试
+                r = requests.post(url, timeout=30,
+                                  json={"chat_id": chat, "text": chunk})
+            if not r.ok:
+                print(f"[error] tg: {redact(r.text)[:200]}", file=sys.stderr)
+                ok = False
+        except Exception as e:
+            # 异常文本含请求URL(带token)，必须脱敏后再进日志
+            print(f"[error] tg: {redact(f'{type(e).__name__}: {e}')[:200]}",
+                  file=sys.stderr)
             ok = False
     return ok
