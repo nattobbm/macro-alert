@@ -33,6 +33,12 @@ sources:
                lookback_days: 1200, desc: "CBO潜在GDP(季)，产出缺口分母。未来预测观测在抓取层裁掉"}
   fedfunds:   {tier: 1, provider: fred, series: FEDFUNDS,   unit: "%",  max_staleness_days: 75,
                lookback_days: 1200, desc: "联邦基金实际利率(月均)，泰勒缺口的实际政策利率"}
+  # FIMA回购便利用量：H.4.1 资产侧"Repurchase Agreements - Foreign Official"。
+  # 2026-08-31 由人工每周四读H.4.1改为FRED自动（核对无误：近10周全为0，
+  # 与手记"截至2026-08-05连续8周为零"吻合）。周三口径，周四发布→窗口12天。
+  fima_weekly_usd: {tier: 1, provider: fred, series: H41RESPPALGTRFNWW, unit: "mn",
+                    max_staleness_days: 12,
+                    desc: "FIMA回购便利用量(周)。>0=外国央行以美债换美元而非抛售，T3规则触发点"}
 
   # ---- Treasury Fiscal Data (无需key) ----
   debt_total: {tier: 1, provider: fiscaldata, unit: usd, max_staleness_days: 4}
@@ -62,12 +68,15 @@ sources:
   # ---- 行情 yfinance (tier 2) ----
   market:     {tier: 2, provider: yfinance, max_staleness_days: 4}
 
-  # ---- 手动录入 data/manual.json ----
-  fedwatch_sep_hike: {tier: 3, provider: manual, max_staleness_days: 10,
-                      desc: "CME FedWatch网页人工读数。替代口径Atlanta Fed需并列标注"}
-  fima_weekly_usd:   {tier: 3, provider: manual, max_staleness_days: 10}
-  war_risk_premium:  {tier: 3, provider: manual, max_staleness_days: 14}
-  auction_tail_bp:   {tier: 3, provider: manual, max_staleness_days: 30}
+  # ---- 手动录入 data/manual.json（全部 optional：不填不报警、不计入数据健康）----
+  # 2026-08-31：fima_weekly_usd 已改为 FRED 自动抓取（见上 H41RESPPALGTRFNWW），
+  # 不再需要每周四人工读 H.4.1。其余三项均有自动替代或仅为精修，缺失不影响判定。
+  fedwatch_sep_hike: {tier: 3, provider: manual, max_staleness_days: 10, optional: true,
+                      desc: "CME FedWatch网页人工读数（三源对照用）。缺失时规则自动回落 ZQ 自算值"}
+  war_risk_premium:  {tier: 3, provider: manual, max_staleness_days: 14, optional: true,
+                      desc: "霍尔木兹航运战争险费率。无免费源，纯人工标注，缺失不影响任何规则"}
+  auction_tail_bp:   {tier: 3, provider: manual, max_staleness_days: 30, optional: true,
+                      desc: "长债拍卖真实tail（精修）。缺失时用 tail_bp_synthetic 合成值"}
 
   # ---- CBOE 延迟期权链 (无需key, 15-20分钟延迟) ----
   gex_net:    {tier: 1, provider: cboe, max_staleness_days: 3,

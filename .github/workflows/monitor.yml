@@ -38,8 +38,10 @@ jobs:
         run: |
           git config user.name  "macro-bot"
           git config user.email "bot@users.noreply.github.com"
+          # 留痕：monitor.py 写的一行摘要（源健康/触发规则/延迟/日历条数/行情变化）
+          MSG=$(cat data/_commit_msg.txt 2>/dev/null || echo "data: $(date -u +%FT%H:%M)")
           git add data/
-          git diff --staged --quiet || git commit -m "data: $(date -u +%FT%H:%M)"
+          git diff --staged --quiet || git commit -m "$MSG"
           git push
       - uses: actions/setup-node@v4
         with:

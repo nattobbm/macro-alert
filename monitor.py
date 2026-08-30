@@ -317,6 +317,17 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
             if spot and level:
                 ctx[f"gex_{name}_dist_pct"] = round((spot - level) / spot * 100, 3)
 
+    # 加息概率自动兜底：人工没填/过期时，回落到 ZQ 期货自算值，规则照常判定。
+    # （口径不同必须留痕：ctx 里记来源，看板/推送显示"ZQ自算"而非冒充CME读数）
+    if ctx.get("fedwatch_sep_hike") is None:
+        zq = by_key.get("fedwatch_zq_sep")
+        if zq and not zq.stale and zq.value is not None:
+            ctx["fedwatch_sep_hike"] = zq.value
+            ctx["_fedwatch_source"] = f"ZQ自算(回落) as_of={zq.as_of}"
+            stale_keys.discard("fedwatch_sep_hike")
+    else:
+        ctx["_fedwatch_source"] = "CME人工读数"
+
     # 数据健康标志（tier1/2 才算；手动源缺录不触发H1）
     tier12_stale = [k for k in stale_keys
                     if by_key[k].tier <= 2 and by_key[k].stale_reason != "missing_EIA_API_KEY"]
@@ -547,6 +558,68 @@ def build_regime(ctx: dict) -> dict:
             "judge": "判据(8-25报告)：若实际利率跳升而金不跌→确认主导；若金随实际利率同步回落→回到需求侧紧缩链"}
 
 
+# 发布日程对账：官方已经发了，我们的数据跟上了吗？
+# key = 日历事件人话名（econ_calendar.TITLE_ZH/FRED_KEY 里的），value = 应随之更新的指标
+RELEASE_WATCH = {
+    "非农就业报告": ["unrate", "sahm_rule"],
+    "非农就业人数": ["unrate", "sahm_rule"],
+    "失业率": ["unrate", "sahm_rule"],
+    "个人收支(含核心PCE)": ["core_pce"],
+    "核心PCE物价": ["core_pce"],
+    "GDP": ["gdp_real"],
+    "美联储资产负债表H.4.1": ["fima_weekly_usd", "fed_assets", "tga"],
+    "初请失业金": ["icsa"],
+    "职位空缺JOLTS": [],
+}
+GRACE_DAYS = 2          # 发布后给2天缓冲，避开时区与抓取窗口
+
+
+def _check_late(dps: list, econ_events: list[dict]) -> list[dict]:
+    """官方已发布但我们的数还停在旧周期 → 延迟。
+
+    as_of 是"数据周期"不是"发布日"：非农9-04发布的是8月数据(as_of 2026-08-01)，
+    所以不能拿 as_of 直接比发布日，要比"这次发布应该覆盖到的周期"。
+    """
+    by_key = {dp.key: dp for dp in dps}
+    today = dt.date.today()
+    out = []
+    for ev in econ_events:
+        keys = RELEASE_WATCH.get(ev.get("title"))
+        if not keys or ev.get("estimated"):
+            continue
+        try:
+            rel = dt.date.fromisoformat(ev["date"])
+        except Exception:
+            continue
+        if not (rel < today and (today - rel).days <= 14):   # 只查近两周内已发生的
+            continue
+        if (today - rel).days < GRACE_DAYS:
+            continue
+        # 该次发布应覆盖到的最早周期：周频取发布前8天，月/季频取上一个月1号
+        weekly = "H.4.1" in ev["title"] or "初请" in ev["title"]
+        expect = (rel - dt.timedelta(days=8)) if weekly else \
+            (rel.replace(day=1) - dt.timedelta(days=1)).replace(day=1)
+        for k in keys:
+            dp = by_key.get(k)
+            if not dp or not dp.as_of:
+                continue
+            if dt.date.fromisoformat(dp.as_of) < expect:
+                out.append({
+                    "key": k, "label": LABELS.get(k, k),
+                    "release": ev["title"], "released_on": ev["date"],
+                    "days_late": (today - rel).days,
+                    "as_of": dp.as_of, "expected_period": expect.isoformat(),
+                    "msg": f"{ev['title']} {ev['date']} 已发布{(today - rel).days}天，"
+                           f"但「{LABELS.get(k, k)}」还停在 {dp.as_of}",
+                })
+    # 同一指标只报最新一次
+    dedup = {}
+    for x in out:
+        if x["key"] not in dedup or x["released_on"] > dedup[x["key"]]["released_on"]:
+            dedup[x["key"]] = x
+    return list(dedup.values())
+
+
 def _load_gex_history() -> list[dict]:
     """墙位每日轨迹：CBOE免费链只有当天快照，历史从我们2026-08-27自建存档起步，逐日生长。"""
     out = []
@@ -567,8 +640,16 @@ def _load_gex_history() -> list[dict]:
 def build_latest(dps, rule_results, auctions, cal, scorecard_data,
                  news_items=None, ctx=None) -> dict:
     by_key = {dp.key: dp for dp in dps}
-    stale_list = [{"key": dp.key, "as_of": dp.as_of, "reason": dp.stale_reason}
-                  for dp in dps if dp.stale]
+    # 健康统计只算"应该自动更新的源"。可选人工字段没填不是故障，单独归类不报警。
+    auto_dps = [dp for dp in dps if not dp.extra.get("optional")]
+    optional_dps = [dp for dp in dps if dp.extra.get("optional")]
+    stale_list = [{"key": dp.key, "as_of": dp.as_of, "reason": dp.stale_reason,
+                   "label": LABELS.get(dp.key, dp.key)}
+                  for dp in auto_dps if dp.stale]
+    optional_list = [{"key": dp.key, "label": LABELS.get(dp.key, dp.key),
+                      "filled": dp.value is not None, "as_of": dp.as_of,
+                      "desc": dp.extra.get("desc", "")}
+                     for dp in optional_dps]
     metrics = []
     series = {}
     group_of = {k: g for g, keys in GROUPS.items() for k in keys}
@@ -594,6 +675,11 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
     upcoming = [c for c in cal
                 if 0 <= (dt.date.fromisoformat(c["date"]) - today).days <= 30]
 
+    # 发布日程对账：官方发了但我们没跟上 → 延迟清单
+    _econ = (by_key["econ_calendar"].extra.get("events", [])
+             if "econ_calendar" in by_key else [])
+    late_list = _check_late(dps, _econ)
+
     tic_rows = [{"country": by_key[k].extra.get("country", k), "holdings_bn": by_key[k].value,
                  "chg_bn": by_key[k].extra.get("chg_bn"), "as_of": by_key[k].as_of,
                  "stale": by_key[k].stale}
@@ -601,8 +687,10 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
 
     return {
         "generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "health": {"total_sources": len(dps), "ok": len(dps) - len(stale_list),
-                   "stale": len(stale_list), "stale_list": stale_list},
+        "health": {"total_sources": len(auto_dps), "ok": len(auto_dps) - len(stale_list),
+                   "stale": len(stale_list), "stale_list": stale_list,
+                   "optional": optional_list,
+                   "late": late_list},
         "metrics": metrics,
         "rules": rule_results,
         "auctions": auctions,
@@ -690,12 +778,12 @@ def main():
         news_items = []
     latest = build_latest(dps, rule_results, auctions, cal, scorecard_data,
                           news_items=news_items, ctx=ctx)
-    # 3日内High重要度经济事件 → 快报观测口
+    # 3日内三星事件 → 快报观测口（新日历用 importance:1-3，非旧的 impact 字符串）
     _today = dt.date.today()
     latest["knowledge"]["_econ_events"] = [
-        f"{e['date'][5:]} {e['country']} {e['title']}"
+        f"{e['date'][5:]} {e['title']}"
         for e in latest.get("econ_calendar", [])
-        if e.get("impact") == "High" and e.get("date")
+        if e.get("importance", 0) >= 3 and e.get("date")
         and 0 <= (dt.date.fromisoformat(e["date"]) - _today).days <= 3][:3]
     latest["digest"] = build_digest(ctx, latest["knowledge"], rule_results,
                                     latest["radar"], cal)
@@ -703,14 +791,41 @@ def main():
 
     metrics_by_key = {m["key"]: m for m in latest["metrics"]}
     cal_today = [c for c in cal if c["date"] == today]
+    # 今明两天的经济日历事件（★★+），并入推送日程段
+    _tm = (dt.date.today() + dt.timedelta(days=1)).isoformat()
+    econ_today = [e for e in latest.get("econ_calendar", [])
+                  if e.get("date") in (today, _tm) and e.get("importance", 0) >= 2]
     msg = notify.build_message(latest["health"], rule_results, auctions, cal_today,
-                               metrics_by_key, today)
-    # 今日推理快报置顶到TG
-    dg = latest["digest"]
-    dg_txt = "\n".join(f"{l['icon']} {l['text']}" for l in dg["lines"][:8])
-    watch_txt = " / ".join(dg["next_watch"][:4])
-    msg = f"*今日推理*\n{dg_txt}\n_下一步观测：{watch_txt}_\n\n" + msg
+                               metrics_by_key, today,
+                               digest=latest["digest"], radar=latest["radar"],
+                               econ_today=econ_today)
     notify.send(msg, dry=args.dry_run)
+
+    # 提交留痕：让 GitHub 历史一眼看出这次跑动了什么，而不是清一色 "data: 时间戳"
+    _f = [r for r in rule_results if r["status"] == "fired"]
+    h = latest["health"]
+    def _mv(k, name, fmt="{:.0f}"):
+        m = metrics_by_key.get(k)
+        if not m or m.get("value") is None:
+            return None
+        c = m.get("chg_1d_pct")
+        return f"{name}{fmt.format(m['value'])}" + (
+            f"({'+' if c > 0 else ''}{c:.1f}%)" if c is not None else "")
+    bits = [x for x in (_mv("spx", "SPX"), _mv("gold", "金"),
+                        _mv("us30y", "30Y", "{:.2f}")) if x]
+    parts = [f"{h['ok']}/{h['total_sources']}源"]
+    if _f:
+        parts.append("触发:" + "/".join(r["name"].split("（")[0] for r in _f[:2]))
+    if h.get("late"):
+        parts.append(f"延迟{len(h['late'])}项")
+    if h.get("stale_list"):
+        parts.append(f"停更{len(h['stale_list'])}项")
+    parts.append(f"日历{len(latest.get('econ_calendar', []))}条")
+    if bits:
+        parts.append(" ".join(bits))
+    (DATA / "_commit_msg.txt").write_text(
+        f"data {dt.datetime.now(dt.timezone.utc):%m-%d %H:%M}Z | " + " | ".join(parts),
+        encoding="utf-8")
 
     fired = [r for r in rule_results if r["status"] == "fired"]
     print(f"\n[summary] sources={latest['health']['ok']}/{latest['health']['total_sources']} ok, "
