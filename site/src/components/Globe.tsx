@@ -1,6 +1,6 @@
 // Cute animated SVG globe with arc flight lines
 interface TicRow { country: string; sub: string; chg: number }
-export default function Globe({ tic, asOf }: { tic?: TicRow[]; asOf?: string }) {
+export default function Globe({ tic, asOf, onClick }: { tic?: TicRow[]; asOf?: string; onClick?: () => void }) {
   const subOf = (name: string, fallback: string) => {
     const row = tic?.find(r => r.country.includes(name))
     return row ? row.sub : fallback
@@ -27,11 +27,15 @@ export default function Globe({ tic, asOf }: { tic?: TicRow[]; asOf?: string }) 
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden"
+      className="relative rounded-3xl overflow-hidden transition-transform hover:scale-[1.015]"
+      onClick={onClick}
+      role={onClick ? 'button' : undefined}
+      title={onClick ? '点击看引擎' : undefined}
       style={{
         background: 'var(--globe-bg)',
         boxShadow: 'inset 5px 5px 15px #00000050, inset -3px -3px 10px #ffffff08',
         width: 300, height: 300,
+        cursor: onClick ? 'pointer' : 'default',
       }}
     >
       <svg width={300} height={300} viewBox="0 0 300 300">

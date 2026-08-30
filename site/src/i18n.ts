@@ -8,7 +8,7 @@ const dict: Record<string, [string, string]> = {
   subtitle: ['宏观监控系统', 'Macro Monitor'],
   tab_overview: ['总览', 'Home'], tab_reasoning: ['推理', 'Logic'], tab_equity: ['正股', 'Equity'], tab_data: ['数据', 'Data'],
   tic_title: ['持有美债 · 三国动向', 'US Treasury Holdings · Top 3'],
-  tic_hint: ['拖拽可旋转 · 红线=卖出方向', 'Red arcs = selling flows'],
+  tic_hint: ['点击看引擎 · 红线=三国在卖美债', 'Tap to open the engine · red arcs = selling'],
   regime_fallback: ['金融抑制监控', 'Repression Monitor'],
   regime_scenario: ['当前剧本', 'Current Script'],
   conds_met: ['条件成立', 'conditions met'],

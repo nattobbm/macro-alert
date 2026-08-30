@@ -42,35 +42,38 @@ export default function ReasoningPage() {
             const isExpanded = expandedChain === chain.id
             return (
               <div key={chain.id} className="neu p-4">
-                {/* Chain header */}
-                <div className="flex items-center gap-3 mb-3">
+                {/* Chain header：标题独占一行，热度+失效条件下移到第二行（手机端标题不被挤） */}
+                <div className="flex gap-3 mb-3">
                   <div
-                    className="w-2 h-8 rounded-full flex-shrink-0"
+                    className="w-1.5 rounded-full flex-shrink-0"
                     style={{ backgroundColor: color }}
                   />
-                  <div className="flex-1">
-                    <div className="font-medium text-sm" style={{ color: 'var(--text)' }}>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-sm leading-snug" style={{ color: 'var(--text)' }}>
                       {chain.title}
                     </div>
+                    <div className="flex items-center gap-2 mt-2">
+                      {/* Heat badge */}
+                      <div
+                        className="font-num text-xs font-bold px-2.5 py-1 rounded-full"
+                        style={{
+                          backgroundColor: chain.heat > 70 ? 'var(--st-fire-bg)' : chain.heat > 50 ? 'var(--st-warn-bg)' : 'var(--st-ok-bg)',
+                          color: chain.heat > 70 ? 'var(--st-fire-text)' : chain.heat > 50 ? 'var(--st-warn-text)' : 'var(--st-ok-text)',
+                        }}
+                      >
+                        热度 {chain.heat}
+                      </div>
+                      <span className="flex-1" />
+                      {/* Expand toggle */}
+                      <button
+                        className="neu-btn px-3 py-1 text-xs flex-shrink-0"
+                        style={{ color: 'var(--accent)' }}
+                        onClick={() => setExpandedChain(isExpanded ? null : chain.id)}
+                      >
+                        {isExpanded ? '收起' : '失效条件 ▼'}
+                      </button>
+                    </div>
                   </div>
-                  {/* Heat badge */}
-                  <div
-                    className="font-num text-xs font-bold px-2.5 py-1 rounded-full"
-                    style={{
-                      backgroundColor: chain.heat > 70 ? 'var(--st-fire-bg)' : chain.heat > 50 ? 'var(--st-warn-bg)' : 'var(--st-ok-bg)',
-                      color: chain.heat > 70 ? 'var(--st-fire-text)' : chain.heat > 50 ? 'var(--st-warn-text)' : 'var(--st-ok-text)',
-                    }}
-                  >
-                    热度 {chain.heat}
-                  </div>
-                  {/* Expand toggle */}
-                  <button
-                    className="neu-btn px-3 py-1 text-xs"
-                    style={{ color: 'var(--text-muted)' }}
-                    onClick={() => setExpandedChain(isExpanded ? null : chain.id)}
-                  >
-                    {isExpanded ? '收起' : '失效条件'}
-                  </button>
                 </div>
 
                 {/* Invalidation condition */}

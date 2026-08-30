@@ -186,11 +186,37 @@ export const auctions: AuctionRow[] = L
 const RULE_STATUS: Record<string, AlertRule['status']> = {
   fired: 'fire', fired_muted: 'muted', not_fired: 'ok', skipped: 'skip', manual: 'manual',
 }
+// 规则读数里的变量名 → 人话（避免 indirect_falling_3=false 这种裸变量漏到界面）
+const VAR_LABELS: Record<string, string> = {
+  indirect_falling_3: '海外间接投标连降3场', long_indirect_pct: '长债海外占比',
+  long_btc: '长债认购倍数', long_tail_bp: '长债尾差', indirect_pct: '海外占比',
+  sahm_rule: '衰退报警器', taylor_gap: '泰勒缺口', icsa_4wk_chg_pct: '初请4周环比',
+  curve_10y2y: '利率曲线10Y-2Y', curve_10y2y_prev_60d_min: '曲线前60日最低',
+  us30y: '30年利率', us20y: '20年利率', us10y: '10年利率', tips10y: '真实利率',
+  breakeven10: '物价预期', avg_rate: '政府平均付息率', sofr: '隔夜利率SOFR', iorb: '准备金利率',
+  brent: '油价(布伦特)', gold: '黄金', silver: '白银', usdjpy: '日元USDJPY', vix: '恐慌指数VIX',
+  vix3m: '3月VIX', move: '债市波动MOVE', dxy: '美元指数', spx: '美股SPX',
+  fedwatch_sep_hike: '9月加息概率', cot_gold_pctile: '黄金大户仓位分位',
+  gex_flip_dist_pct: '距gamma翻转', gex_callwall_dist_pct: '距call墙', gex_putwall_dist_pct: '距put墙',
+  tic_japan_chg: '日本增减持', tic_uk_chg: '英国增减持', tic_china_chg: '中国增减持',
+  any_stale: '有数据过期', repo_ops: 'SRF回购用量', fima_weekly_usd: 'FIMA用量',
+}
+// 单个 变量=值 → "标签：值"；布尔转是/否，概率(0-1)转百分比
+function humanReading(k: string, v: any): string {
+  const label = VAR_LABELS[k] ?? k
+  let val: string
+  if (v === true) val = '是'
+  else if (v === false) val = '否'
+  else if (k === 'fedwatch_sep_hike' && typeof v === 'number') val = `${Math.round(v * 100)}%`
+  else if (typeof v === 'number') val = String(Math.round(v * 100) / 100)
+  else val = String(v)
+  return `${label}：${val}`
+}
 export const alertRules: AlertRule[] = L
   ? (L.rules ?? []).map((r: any) => ({
       id: r.id, name: (isEN && r.name_en) ? r.name_en : r.name,
       status: RULE_STATUS[r.status] ?? 'ok',
-      triggered: Object.entries(r.inputs ?? {}).slice(0, 3).map(([k, v]) => `${k}=${v}`).join(' ') || (r.reason ?? '—'),
+      triggered: Object.entries(r.inputs ?? {}).slice(0, 3).map(([k, v]) => humanReading(k, v)).join(' · ') || (r.reason ?? '—'),
       cause: r.chain ?? '', invalidation: r.falsify || '—',
     }))
   : mock.alertRules

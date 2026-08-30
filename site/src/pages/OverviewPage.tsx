@@ -63,7 +63,7 @@ function BandBar({ b }: { b: RadarBand }) {
   )
 }
 
-export default function OverviewPage() {
+export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => void }) {
   const [hoveredAlert, setHoveredAlert] = useState<string | null>(null)
   const [showStandard, setShowStandard] = useState(false)
 
@@ -83,7 +83,7 @@ export default function OverviewPage() {
           <div className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
             {tr('tic_title')}
           </div>
-          <Globe tic={ticLive?.rows} asOf={ticLive?.as_of} />
+          <Globe tic={ticLive?.rows} asOf={ticLive?.as_of} onClick={onGlobeClick} />
           <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
             {tr('tic_hint')}
           </div>
