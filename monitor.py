@@ -622,6 +622,9 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
         "knowledge": build_knowledge(ctx or {}),
         "econ_calendar": (by_key["econ_calendar"].extra.get("events", [])
                           if "econ_calendar" in by_key and not by_key["econ_calendar"].stale else []),
+        # 日历三层里 ForexFactory 层的健康度（ok / fallback_cache(日期) / unavailable(原因)）
+        "econ_calendar_status": (by_key["econ_calendar"].extra.get("ff_status")
+                                 if "econ_calendar" in by_key else None),
     }
 
 

@@ -318,3 +318,17 @@ export const gexPutWall: number | null = L?.gex?.put_wall ?? null
 // 墙位每日轨迹（2026-08-27起自建存档，逐日生长）
 export const gexHistory: { date: string; flip: number | null; call_wall: number | null; put_wall: number | null; net_gex_bn: number | null }[] =
   L?.gex_history ?? []
+
+// ── 经济日历（自建三层：ForexFactory本周精确 + FRED官方日程 + 中国规则日程）──
+// 数据在 Actions(美国服务器) 侧抓好写进 latest.json，浏览器零外部请求 → 国内可见
+export type EconEvent = {
+  title: string; title_en: string; country: string
+  datetime: string; date: string; importance: number
+  forecast: string | null; previous: string | null
+  estimated: boolean; org: string; note: string; chain: string; src: string
+}
+export const econEvents: EconEvent[] = (L?.econ_calendar ?? []) as EconEvent[]
+export const econAsOf: string = L?.metrics?.find?.((m: any) => m.key === 'econ_calendar')?.as_of ?? genAt
+// ForexFactory层健康度：ok / fallback_cache(日期) / unavailable(原因)
+// 该层挂掉时只丢"预期/前值"，FRED官方日期与中国日程仍在（降级不失效）
+export const econFFStatus: string | null = L?.econ_calendar_status ?? null
