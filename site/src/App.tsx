@@ -143,6 +143,12 @@ export default function App() {
         {tab === 'data'      && <DataPage />}
         {tab === 'contact'   && <ContactPage />}
         {tab === 'calendar'  && <CalendarPage />}
+
+        {/* 版权与授权声明：站点公开后的归属标记 */}
+        <div className="text-xs text-center mt-8 mb-2 px-2 leading-relaxed"
+          style={{ color: 'var(--text-muted)', opacity: 0.8 }}>
+          {t('copyright')}
+        </div>
       </main>
 
       {/* ── Mobile bottom nav ────────────────────────────── */}

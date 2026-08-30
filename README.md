@@ -2,6 +2,10 @@
 
 宏观监控：官方一手API采集 → 新鲜度断言 → 规则引擎 → Telegram告警 + [cypermow.com](https://cypermow.com) 看板。
 
+> **作者** nattobbm（纳豆）· [cypermow.com](https://cypermow.com)
+> **代码** AGPL-3.0 ｜ **研究内容**（推理链/结论库/预测单）CC BY-NC-SA 4.0，见 [LICENSE-CONTENT.md](./LICENSE-CONTENT.md)
+> 欢迎阅读、学习、自建。商用请先联系；转载研究内容请署名并注明出处。
+
 **设计边界：本系统只做采集、阈值触发、状态播报，不自动生成推演。** 推演由人签发（`predictions/` 预注册 + git commit 时间戳），自动化只负责在结算日把实际数据摆到面前。
 
 ## 起因

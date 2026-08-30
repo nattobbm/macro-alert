@@ -45,6 +45,8 @@ const dict: Record<string, [string, string]> = {
   cal_page_hint: ['自建日历 · 星级=重要度 · 点开看"这条为什么重要" · 时间已换成你的本地时区', 'Self-hosted · stars = importance · tap a row for why it matters · times in your local timezone'],
   cn_time: ['中国', 'China'], us_time: ['美东', 'US East'], your_tz: ['你的时区', 'Your timezone'],
   contact_footer: ['数据每日自动更新 · 非投资建议', 'Data auto-updates daily · Not investment advice'],
+  copyright: ['© 2026 纳豆 · 代码 AGPL-3.0 · 推理链与结论库 CC BY-NC-SA 4.0（转载请署名）',
+              '© 2026 nattobbm · Code AGPL-3.0 · Research content CC BY-NC-SA 4.0 (attribution required)'],
   target: ['目标', 'target'], source_w: ['来源', 'source'], evidence_w: ['证据', 'evidence'],
 }
 export function t(k: string): string {
