@@ -17,6 +17,22 @@ sources:
   fed_assets: {tier: 1, provider: fred, series: WALCL,      unit: "mn", max_staleness_days: 10}
   tga:        {tier: 1, provider: fred, series: WTREGEN,    unit: "mn", max_staleness_days: 10}
   m2:         {tier: 1, provider: fred, series: M2SL,       unit: "bn", max_staleness_days: 75}
+  # ---- 2026-08-30 宏观指标框架整合(设计书1.1/1.2)：就业先行 + 泰勒缺口原料 ----
+  # 注意：FRED月/季序列 as_of=周期起始日(7月值标07-01,8月底发布)，窗口按"起始日+发布滞后"给
+  sahm_rule:  {tier: 1, provider: fred, series: SAHMREALTIME, unit: "pp", max_staleness_days: 75,
+               desc: "萨姆规则实时值：失业率3月均值-过去12月低点。>=0.5触发衰退信号"}
+  unrate:     {tier: 1, provider: fred, series: UNRATE,     unit: "%",  max_staleness_days: 75,
+               desc: "失业率(滞后指标)。注意分母失真：劳动力收缩时被动走低"}
+  icsa:       {tier: 1, provider: fred, series: ICSA,       unit: "k",  max_staleness_days: 12,
+               desc: "初请失业金(周四发布)，周频最灵敏就业先行"}
+  core_pce:   {tier: 1, provider: fred, series: PCEPILFE,   unit: "idx", max_staleness_days: 75,
+               lookback_days: 1200, desc: "核心PCE物价指数，monitor算同比，泰勒缺口的π"}
+  gdp_real:   {tier: 1, provider: fred, series: GDPC1,      unit: "bn", max_staleness_days: 210,
+               lookback_days: 1200, desc: "实际GDP(季,起始日标注+发布滞后约1季)，产出缺口分子"}
+  gdp_pot:    {tier: 1, provider: fred, series: GDPPOT,     unit: "bn", max_staleness_days: 400,
+               lookback_days: 1200, desc: "CBO潜在GDP(季)，产出缺口分母。未来预测观测在抓取层裁掉"}
+  fedfunds:   {tier: 1, provider: fred, series: FEDFUNDS,   unit: "%",  max_staleness_days: 75,
+               lookback_days: 1200, desc: "联邦基金实际利率(月均)，泰勒缺口的实际政策利率"}
 
   # ---- Treasury Fiscal Data (无需key) ----
   debt_total: {tier: 1, provider: fiscaldata, unit: usd, max_staleness_days: 4}

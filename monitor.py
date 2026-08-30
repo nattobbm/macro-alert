@@ -36,7 +36,11 @@ LABELS = {
     "us20y": "20年国债利率", "curve_10y2y": "利率曲线(10Y-2Y)", "breakeven10": "物价预期(债市定价)",
     "sofr": "隔夜借钱利率SOFR", "iorb": "准备金利率IORB", "rrp": "隔夜逆回购RRP(备用资金)", "fed_assets": "美联储总资产",
     "tga": "财政部账户TGA(周)", "m2": "货币供应量M2", "debt_total": "联邦债务总额", "tga_daily": "财政部账户TGA(日)",
-    "avg_rate": "政府借钱平均利息", "tic_japan": "日本持有美债", "tic_uk": "英国持有美债",
+    "avg_rate": "政府借钱平均利息",
+    "sahm_rule": "衰退报警器(萨姆规则)", "unrate": "失业率", "icsa": "初请失业金(周)",
+    "core_pce": "核心物价指数PCE", "gdp_real": "实际GDP", "gdp_pot": "潜在GDP(CBO)",
+    "fedfunds": "联邦基金利率(月均)",
+    "tic_japan": "日本持有美债", "tic_uk": "英国持有美债",
     "tic_china": "中国持有美债", "cot_gold": "黄金大户净多单", "cot_silver": "白银大户净多单",
     "cot_jpy": "日元大户净多单", "repo_ops": "常备回购SRF用量", "sofr_nyfed": "SOFR(纽约联储版)",
     "crude_stocks": "原油库存", "spx": "美股大盘SPX", "vix": "恐慌指数VIX", "vix3m": "3月期VIX",
@@ -52,7 +56,11 @@ LABELS_EN = {
     "us20y": "20Y Treasury", "curve_10y2y": "Yield Curve (10Y-2Y)", "breakeven10": "Breakeven Inflation (10Y)",
     "sofr": "SOFR Overnight Rate", "iorb": "IORB Floor Rate", "rrp": "Reverse Repo (RRP)", "fed_assets": "Fed Balance Sheet",
     "tga": "Treasury Account (W)", "m2": "Money Supply M2", "debt_total": "Total Public Debt", "tga_daily": "Treasury Account (D)",
-    "avg_rate": "Avg Interest on Debt", "tic_japan": "Japan UST Holdings", "tic_uk": "UK UST Holdings",
+    "avg_rate": "Avg Interest on Debt",
+    "sahm_rule": "Sahm Rule (Recession Gauge)", "unrate": "Unemployment Rate", "icsa": "Initial Claims (W)",
+    "core_pce": "Core PCE Index", "gdp_real": "Real GDP", "gdp_pot": "Potential GDP (CBO)",
+    "fedfunds": "Fed Funds Rate (Mo Avg)",
+    "tic_japan": "Japan UST Holdings", "tic_uk": "UK UST Holdings",
     "tic_china": "China UST Holdings", "cot_gold": "Gold Net Longs (COT)", "cot_silver": "Silver Net Longs (COT)",
     "cot_jpy": "JPY Net Longs (COT)", "repo_ops": "SRF Usage", "sofr_nyfed": "SOFR (NY Fed)",
     "crude_stocks": "Crude Inventories", "spx": "S&P 500", "vix": "VIX Fear Index", "vix3m": "VIX 3M",
@@ -75,6 +83,8 @@ RADAR_EN = {
     "跌破gamma翻转位(波动放大区)": "Below gamma flip (neg gamma)",
     "升破上方期权密集位(call墙)": "Above call wall",
     "跌破下方期权密集位(put墙)": "Below put wall",
+    "衰退报警器(萨姆规则)": "Sahm rule (recession gauge)",
+    "央行欠账的紧缩(泰勒缺口)": "Taylor gap (repression gauge)",
 }
 
 # 警戒线来源四分类（回答"阈值有没有标准"：每条线的出处都在 rules.yaml，此处做展示用短语）
@@ -97,6 +107,8 @@ RADAR_ORIGIN = {
     "跌破gamma翻转位(波动放大区)": ("机制阈值 · 穿越即状态切换",  "Mechanism: crossing = regime switch"),
     "升破上方期权密集位(call墙)":  ("机制阈值 · 穿越即状态切换",  "Mechanism: crossing = regime switch"),
     "跌破下方期权密集位(put墙)":   ("机制阈值 · 穿越即状态切换",  "Mechanism: crossing = regime switch"),
+    "衰退报警器(萨姆规则)":       ("统计分位 · 历史高准确率衰退信号", "Statistical: high-accuracy recession signal"),
+    "央行欠账的紧缩(泰勒缺口)":   ("机制阈值 · 泰勒应然-实际>100bp", "Mechanism: Taylor-implied minus actual >100bp"),
 }
 
 # 双边警戒带：一条带子两个出口，通向两条不同推理链（雷达里合并展示）
@@ -148,6 +160,7 @@ GROUPS = {
     "rates": ["tips10y", "us10y", "us30y", "us20y", "curve_10y2y", "breakeven10"],
     "liquidity": ["sofr", "sofr_nyfed", "iorb", "rrp", "fed_assets", "tga", "tga_daily", "m2", "repo_ops"],
     "fiscal": ["debt_total", "avg_rate"],
+    "economy": ["sahm_rule", "unrate", "icsa", "core_pce", "gdp_real", "gdp_pot", "fedfunds"],
     "tic": ["tic_japan", "tic_uk", "tic_china"],
     "positioning": ["cot_gold", "cot_silver", "cot_jpy"],
     "market": ["spx", "vix", "vix3m", "gold", "silver", "platinum", "dxy", "usdjpy", "brent", "wti", "move"],
@@ -237,6 +250,55 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
             ctx["indirect_falling_3"] = len(inds) >= 4 and all(
                 inds[i] < inds[i + 1] for i in range(3))
 
+    # 就业衍生变量（设计书1.1）：初请4周均值环比 / 曲线前60日最低（不含最新）
+    icsa_dp = by_key.get("icsa")
+    if icsa_dp and not icsa_dp.stale and len(icsa_dp.extra.get("series") or []) >= 8:
+        vals = [v for _, v in icsa_dp.extra["series"]]
+        m1 = sum(vals[-4:]) / 4
+        m0 = sum(vals[-8:-4]) / 4
+        if m0:
+            ctx["icsa_4wk_chg_pct"] = round((m1 / m0 - 1) * 100, 2)
+    curve_dp = by_key.get("curve_10y2y")
+    if curve_dp and not curve_dp.stale and len(curve_dp.extra.get("series") or []) >= 2:
+        hist = [v for _, v in curve_dp.extra["series"][:-1]][-60:]
+        if hist:
+            ctx["curve_10y2y_prev_60d_min"] = min(hist)
+
+    # 泰勒缺口（设计书1.2）：应然利率-实际政策利率=央行欠账的紧缩幅度
+    # r*=0.75(LW区间0.5-1.0中值，口径必须在看板标注)；产出缺口用GDPC1/GDPPOT按季对齐
+    _tay = [by_key.get(k) for k in ("core_pce", "fedfunds", "gdp_real", "gdp_pot")]
+    if all(d and not d.stale and d.extra.get("series") for d in _tay):
+        pce_dp, ff_dp, gr_dp, gp_dp = _tay
+        R_STAR = 0.75
+        idx = {d[:7]: v for d, v in pce_dp.extra["series"]}
+        yoy = []
+        for d, v in pce_dp.extra["series"]:
+            y, m = int(d[:4]), int(d[5:7])
+            prev = idx.get(f"{y - 1:04d}-{m:02d}")
+            if prev:
+                yoy.append([d, round((v / prev - 1) * 100, 3)])
+        pot = {d: v for d, v in gp_dp.extra["series"]}
+        gaps = [[d, round((v - pot[d]) / pot[d] * 100, 3)]
+                for d, v in gr_dp.extra["series"] if pot.get(d)]
+        ff_m = {d[:7]: v for d, v in ff_dp.extra["series"]}
+        series = []
+        for d, py in yoy:
+            g = None
+            for gd, gv in gaps:
+                if gd <= d:
+                    g = gv
+            f = ff_m.get(d[:7])
+            if g is None or f is None:
+                continue
+            need = R_STAR + py + 0.5 * (py - 2.0) + 0.5 * g
+            series.append([d, round(need - f, 3)])
+        if series:
+            ctx["taylor_gap"] = series[-1][1]
+            ctx["core_pce_yoy"] = yoy[-1][1]
+            ctx["output_gap"] = gaps[-1][1] if gaps else None
+            ctx["_taylor_series"] = series[-30:]
+            ctx["_taylor_note"] = "r*=0.75(LW区间中值)；π=核心PCE同比；缺口=GDPC1 vs GDPPOT"
+
     # GEX 衍生变量（雷达用）：距flip/墙的百分比距离
     gex_dp = by_key.get("gex_net")
     if gex_dp and not gex_dp.stale:
@@ -272,6 +334,8 @@ RADAR = [
     ("债市恐慌指数爆表",          "move",             140.0, "above", "T4_move"),
     ("黄金大户仓位极端",       "cot_gold_pctile",  90.0, "above", "P1_cot_extreme"),
     ("利息增速追上收入增速",            "avg_rate",         4.0, "above", "T6_rg_gap"),
+    ("衰退报警器(萨姆规则)",            "sahm_rule",        0.5, "above", "E1_sahm_trigger"),
+    ("央行欠账的紧缩(泰勒缺口)",        "taylor_gap",       1.0, "above", "F5_taylor_gap"),
     # GEX（距离本身就是%，阈值0=穿越）
     ("跌破gamma翻转位(波动放大区)", "gex_flip_dist_pct",     0.0, "below", "GEX"),
     ("升破上方期权密集位(call墙)",               "gex_callwall_dist_pct", 0.0, "above", "GEX"),
@@ -513,6 +577,9 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
         })
         if dp.extra.get("series"):
             series[dp.key] = dp.extra["series"][-250:]
+    # 泰勒缺口合成序列（build_ctx算好，看板画图+口径标注）
+    if ctx and ctx.get("_taylor_series"):
+        series["taylor_gap"] = ctx["_taylor_series"]
 
     today = dt.date.today()
     upcoming = [c for c in cal

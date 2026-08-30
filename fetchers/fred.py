@@ -33,6 +33,8 @@ def fetch_series(key: str, series: str, unit: str, max_staleness_days: int,
     if not obs.empty:
         obs["value"] = pd.to_numeric(obs["value"], errors="coerce")
         obs = obs.dropna(subset=["value"])
+        # 裁掉未来观测（GDPPOT等含CBO预测），"最新值"必须是已发生的
+        obs = obs[obs["date"].astype(str).str[:10] <= dt.date.today().isoformat()]
         if not obs.empty:
             last = obs.iloc[-1]
             dp.value = float(last["value"])
@@ -57,7 +59,8 @@ def fetch_all(sources: dict) -> list[DataPoint]:
             continue
         try:
             out.append(fetch_series(key, cfg["series"], cfg.get("unit", ""),
-                                    cfg["max_staleness_days"]))
+                                    cfg["max_staleness_days"],
+                                    lookback_days=cfg.get("lookback_days", 400)))
         except Exception as e:
             out.append(DataPoint(key=key, value=None, as_of=None,
                                  source=f"FRED:{cfg.get('series','?')}", tier=1,

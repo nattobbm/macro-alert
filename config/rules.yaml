@@ -268,6 +268,54 @@ spx:
     severity: alert
     chain: "事件驱动。检查是否伴随A类政策行动（真实资金流）还是C类口头噪音——后者历史均值回归"
 
+# 2026-08-30 宏观指标框架整合（设计书1.1/1.2/1.4）：常规周期regime的可判定规则
+economy:
+  - id: E1_sahm_trigger
+    name: "衰退报警器响了（萨姆规则≥0.5）"
+    name_en: "Sahm rule triggered (recession signal)"
+    requires: [sahm_rule]
+    rule: "sahm_rule >= 0.5"
+    severity: critical
+    chain: "失业率动量式恶化→历史高准确率衰退信号→政策被迫转向宽松→与'不能加息'约束叠加=C路径加速"
+    falsify: "触发后6个月内NBER未认定衰退且指标回落至0.3以下"
+    note: "失业率失真警告：劳动力供给收缩(移民减少/退休)时分母变小、失业率被动走低，需就业增量+参与率(CIVPART)交叉验证"
+
+  - id: E2_sahm_warning
+    name: "衰退报警器逼近阈值（0.3-0.5）"
+    name_en: "Sahm rule approaching threshold"
+    requires: [sahm_rule]
+    rule: "sahm_rule >= 0.3 and sahm_rule < 0.5"
+    severity: watch
+    chain: "预警区。配合初请失业金周频数据交叉验证"
+
+  - id: E3_claims_spike
+    name: "初请失业金跳升（裁员潮信号）"
+    name_en: "Jobless claims spiking"
+    requires: [icsa]
+    rule: "icsa_4wk_chg_pct is not None and icsa_4wk_chg_pct > 15"
+    severity: alert
+    chain: "周频最早的就业拐点信号。区分'低失业低招聘温和降温'vs'裁员潮式恶化'的关键"
+
+  - id: F5_taylor_gap
+    name: "央行欠账的紧缩（泰勒缺口>100bp）"
+    name_en: "Taylor gap >100bp (repression gauge)"
+    requires: [core_pce, gdp_real, gdp_pot, fedfunds]
+    rule: "taylor_gap is not None and taylor_gap > 1.0"
+    consecutive: 2
+    severity: alert
+    chain: "泰勒应然利率高出实际>100bp且持续=通胀要求紧缩而央行不动=金融抑制量化确认→黄金结构性支撑"
+    falsify: "缺口收敛至50bp内（央行跟进加息或通胀回落）"
+    note: "r*取0.75(LW区间0.5-1.0中值)，口径影响绝对水位；缺口的方向和变化比绝对值可靠"
+
+  - id: R1_curve_uninvert
+    name: "利率曲线解除倒挂（衰退前奏的经典时序）"
+    name_en: "Yield curve un-inverting"
+    requires: [curve_10y2y]
+    rule: "curve_10y2y > 0 and curve_10y2y_prev_60d_min is not None and curve_10y2y_prev_60d_min < -0.1"
+    severity: watch
+    once_per: 30d
+    chain: "历史模式：倒挂预示衰退，但衰退往往在解除倒挂(短端因降息预期塌落)后数月到来。解除倒挂比倒挂本身更接近拐点"
+
 data_health:
   - id: H1_stale
     name: "数据源陈旧"

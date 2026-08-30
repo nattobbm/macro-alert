@@ -2,7 +2,7 @@
  "counters": {
   "T1_auction_long": 0,
   "T2_auction_indirect": 0,
-  "T2b_tic_decline": 28,
+  "T2b_tic_decline": 30,
   "T3_fima_used": 0,
   "T3b_srf_used": 0,
   "T4_move": 0,
@@ -27,10 +27,15 @@
   "S3_vix_collapse": 0,
   "S4_spx_drawdown": 0,
   "H1_stale": 0,
-  "H2_sofr_conflict": 0
+  "H2_sofr_conflict": 0,
+  "E1_sahm_trigger": 0,
+  "E2_sahm_warning": 0,
+  "E3_claims_spike": 0,
+  "F5_taylor_gap": 1,
+  "R1_curve_uninvert": 0
  },
  "last_fired": {
   "T2b_tic_decline": "2026-08-27T01:26:58.216199+00:00",
-  "H1_stale": "2026-08-27T05:34:01.840627+00:00"
+  "H1_stale": "2026-08-30T09:07:37.032277+00:00"
  }
 }
