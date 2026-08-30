@@ -15,7 +15,7 @@ const byKey: Record<string, any> = {}
 if (L) for (const m of L.metrics ?? []) byKey[m.key] = m
 
 // ── 快照 ──
-const SNAP_KEYS = ['spx', 'vix', 'gold', 'silver', 'dxy', 'usdjpy', 'brent', 'us10y', 'us30y', 'tips10y', 'move', 'avg_rate']
+const SNAP_KEYS = ['spx', 'vix', 'gold', 'silver', 'dxy', 'usdjpy', 'brent', 'us10y', 'us30y', 'tips10y', 'move', 'avg_rate', 'curve_10y2y', 'icsa', 'sahm_rule', 'unrate', 'core_pce']
 export const snapshots: Snapshot[] = L
   ? SNAP_KEYS.filter(k => byKey[k]).map(k => {
       const m = byKey[k]
@@ -25,6 +25,7 @@ export const snapshots: Snapshot[] = L
         unit: m.unit === '%' ? '' : (m.unit ?? ''),
         as_of: m.as_of ?? '—', source: (m.source ?? '').split(':')[0],
         spark: (L.series?.[k] ?? []).slice(-40).map((p: any) => p[1]),
+        role: m.role ?? null,
       }
     })
   : mock.snapshots
@@ -218,6 +219,24 @@ export const trend30Y = L?.series?.us30y
 export const trendSPXGold = L?.series?.spx
   ? joined(L.series.spx, L.series.gold, (a, b) => +(a / b).toFixed(4)).map(r => ({ date: r.date, ratio: r.calc }))
   : mock.trendSPXGold
+// 10Y-2Y曲线时序（R1解除倒挂规则的可视化）
+export const trendCurve: { date: string; v: number }[] =
+  (L?.series?.curve_10y2y ?? []).map((p: any) => ({ date: p[0], v: p[1] }))
+// 黄金大户净多单52周（真数据，替换掉Math.sin假曲线）
+export const trendCotGold: { date: string; net: number }[] =
+  (L?.series?.cot_gold ?? []).map((p: any) => ({ date: p[0], net: p[1] }))
+// 泰勒缺口 × 黄金（月度对齐；C路径的可视化证据链，r*=0.75口径）
+export const trendTaylorGold: { date: string; taylor: number; gold: number | null }[] = (() => {
+  const tay: any[] = L?.series?.taylor_gap ?? []
+  if (!tay.length) return []
+  const goldByMonth: Record<string, number> = {}
+  for (const [d, v] of (L?.series?.gold ?? [])) goldByMonth[String(d).slice(0, 7)] = v
+  return tay.map(([d, v]: any) => ({
+    date: String(d).slice(0, 7), taylor: v, gold: goldByMonth[String(d).slice(0, 7)] ?? null,
+  }))
+})()
+export const asOfTaylor: string = (L?.series?.taylor_gap ?? []).slice(-1)[0]?.[0] ?? '—'
+export const asOfCurve: string = (L?.series?.curve_10y2y ?? []).slice(-1)[0]?.[0] ?? '—'
 
 // ── TIC三国 + 当前剧本 ──
 export const ticLive = L?.tic?.length

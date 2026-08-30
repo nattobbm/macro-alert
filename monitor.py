@@ -156,6 +156,14 @@ def build_radar_bands(ctx: dict) -> list[dict]:
                     "status": status})
     return out
 
+# 时序角色（设计书2.1）：领先=预判用 / 同步=确认当前 / 滞后=只能验证不能预测
+# 只标有文献依据的，不硬贴
+ROLE = {
+    "curve_10y2y": "leading", "icsa": "leading", "move": "leading",
+    "spx": "coincident",
+    "unrate": "lagging", "core_pce": "lagging",
+}
+
 GROUPS = {
     "rates": ["tips10y", "us10y", "us30y", "us20y", "curve_10y2y", "breakeven10"],
     "liquidity": ["sofr", "sofr_nyfed", "iorb", "rrp", "fed_assets", "tga", "tga_daily", "m2", "repo_ops"],
@@ -574,6 +582,7 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
             "chg_20d": dp.extra.get("chg_20d"), "chg_bn": dp.extra.get("chg_bn"),
             "pctile_52w": dp.extra.get("pctile_52w"),
             "group": group_of.get(dp.key, "other"),
+            "role": ROLE.get(dp.key),
         })
         if dp.extra.get("series"):
             series[dp.key] = dp.extra["series"][-250:]

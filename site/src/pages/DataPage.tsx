@@ -2,9 +2,9 @@ import {
   LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer,
   ReferenceLine, ComposedChart,
 } from 'recharts'
-import { dataSources, trendRealRate, trend30Y, trendSPXGold } from '../data/live'
+import { dataSources, trendRealRate, trend30Y, trendSPXGold, trendCurve, trendCotGold, trendTaylorGold } from '../data/live'
 import { t as tr, isEN } from '../i18n'
-import { asOfMarket, asOfTic, asOfCot, genAt } from '../data/live'
+import { asOfMarket, asOfTic, asOfCot, asOfTaylor, asOfCurve, genAt } from '../data/live'
 
 const CHART_TOOLTIP_STYLE = {
   contentStyle: {
@@ -224,55 +224,64 @@ export default function DataPage() {
             </ResponsiveContainer>
           </MiniChart>
 
-          {/* Yield curve */}
-          <MiniChart
-            title="利率曲线（快照对比）"
-            subtitle="1M / 3M / 6M / 1Y / 2Y / 5Y / 10Y / 30Y"
-            source="FRED" as_of={asOfMarket}
-          >
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                data={[
-                  { term: '1M', rate: 5.30 },
-                  { term: '3M', rate: 5.28 },
-                  { term: '6M', rate: 5.20 },
-                  { term: '1Y', rate: 5.05 },
-                  { term: '2Y', rate: 4.56 },
-                  { term: '5Y', rate: 4.52 },
-                  { term: '10Y', rate: 4.64 },
-                  { term: '30Y', rate: 4.88 },
-                ]}
-                margin={{ top: 5, right: 5, left: -30, bottom: 0 }}
-              >
-                <XAxis dataKey="term" tick={{ fontSize: 8, fill: 'var(--text-muted)' }} tickLine={false} axisLine={false} />
-                <YAxis domain={[4.4, 5.4]} tick={{ fontSize: 8, fill: 'var(--text-muted)' }} tickLine={false} axisLine={false} />
-                <Tooltip {...CHART_TOOLTIP_STYLE} />
-                <Line dataKey="rate" stroke="var(--accent)" strokeWidth={2} dot={{ r: 3, fill: 'var(--accent)' }} name="利率%" />
-              </LineChart>
-            </ResponsiveContainer>
-          </MiniChart>
+          {/* 泰勒缺口 × 黄金：C路径(金融抑制)的可视化证据链 */}
+          {trendTaylorGold.length > 0 && (
+            <MiniChart
+              title="泰勒缺口 × 黄金"
+              subtitle="央行欠账的紧缩幅度(应然-实际利率) · r*=0.75口径"
+              source="FRED自算(PCEPILFE/GDPC1/GDPPOT/FEDFUNDS)" as_of={asOfTaylor}
+            >
+              <ResponsiveContainer width="100%" height="100%">
+                <ComposedChart data={trendTaylorGold} margin={{ top: 5, right: 5, left: -30, bottom: 0 }}>
+                  <XAxis dataKey="date" hide />
+                  <YAxis yAxisId="tay" domain={['auto', 'auto']} tick={{ fontSize: 8, fill: 'var(--text-muted)' }} tickLine={false} axisLine={false} />
+                  <YAxis yAxisId="gold" orientation="right" domain={['auto', 'auto']} tick={{ fontSize: 8, fill: 'var(--text-muted)' }} tickLine={false} axisLine={false} />
+                  <Tooltip {...CHART_TOOLTIP_STYLE} />
+                  <ReferenceLine yAxisId="tay" y={1.0} stroke="var(--red)" strokeDasharray="4 3" strokeWidth={1.2} label={{ value: '警戒线 +1.0pp', fill: 'var(--red)', fontSize: 8 }} />
+                  <ReferenceLine yAxisId="tay" y={0} stroke="var(--text-muted)" strokeDasharray="2 3" strokeWidth={1} />
+                  <Line yAxisId="tay" dataKey="taylor" stroke="var(--accent)" strokeWidth={1.8} dot={false} name="泰勒缺口pp" />
+                  <Line yAxisId="gold" dataKey="gold" stroke="var(--yellow)" strokeWidth={1.8} dot={false} connectNulls={false} name="黄金$/oz" />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </MiniChart>
+          )}
 
-          {/* Gold positioning */}
-          <MiniChart
-            title="黄金大户持仓（CFTC）"
-            subtitle="托管所净多头合约数"
-            source="CFTC" as_of={asOfCot}
-          >
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                data={Array.from({ length: 52 }, (_, i) => ({
-                  week: i,
-                  net: Math.round(180000 + Math.sin(i * 0.25) * 60000 + i * 1200),
-                }))}
-                margin={{ top: 5, right: 5, left: -30, bottom: 0 }}
-              >
-                <XAxis dataKey="week" hide />
-                <YAxis domain={['auto', 'auto']} tick={{ fontSize: 8, fill: 'var(--text-muted)' }} tickLine={false} axisLine={false} />
-                <Tooltip {...CHART_TOOLTIP_STYLE} />
-                <Line dataKey="net" stroke="var(--yellow)" strokeWidth={1.8} dot={false} name="净多头" />
-              </LineChart>
-            </ResponsiveContainer>
-          </MiniChart>
+          {/* 10Y-2Y 曲线时序（R1解除倒挂规则的可视化） */}
+          {trendCurve.length > 0 && (
+            <MiniChart
+              title="利率曲线 10Y-2Y"
+              subtitle="0轴以下=倒挂；解除倒挂比倒挂更接近拐点"
+              source="FRED" as_of={asOfCurve}
+            >
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={trendCurve} margin={{ top: 5, right: 5, left: -30, bottom: 0 }}>
+                  <XAxis dataKey="date" hide />
+                  <YAxis domain={['auto', 'auto']} tick={{ fontSize: 8, fill: 'var(--text-muted)' }} tickLine={false} axisLine={false} />
+                  <Tooltip {...CHART_TOOLTIP_STYLE} />
+                  <ReferenceLine y={0} stroke="var(--red)" strokeDasharray="4 3" strokeWidth={1.2} label={{ value: '倒挂线 0', fill: 'var(--red)', fontSize: 8 }} />
+                  <Line dataKey="v" stroke="var(--accent)" strokeWidth={1.8} dot={false} name="10Y-2Y %" />
+                </LineChart>
+              </ResponsiveContainer>
+            </MiniChart>
+          )}
+
+          {/* Gold positioning（CFTC真数据） */}
+          {trendCotGold.length > 0 && (
+            <MiniChart
+              title="黄金大户持仓（CFTC）"
+              subtitle="Managed Money净多头合约数 · 52周"
+              source="CFTC" as_of={asOfCot}
+            >
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={trendCotGold} margin={{ top: 5, right: 5, left: -30, bottom: 0 }}>
+                  <XAxis dataKey="date" hide />
+                  <YAxis domain={['auto', 'auto']} tick={{ fontSize: 8, fill: 'var(--text-muted)' }} tickLine={false} axisLine={false} />
+                  <Tooltip {...CHART_TOOLTIP_STYLE} />
+                  <Line dataKey="net" stroke="var(--yellow)" strokeWidth={1.8} dot={false} name="净多头" />
+                </LineChart>
+              </ResponsiveContainer>
+            </MiniChart>
+          )}
 
           {/* Three countries UST holdings */}
           <MiniChart

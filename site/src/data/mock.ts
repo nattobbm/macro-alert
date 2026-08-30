@@ -58,6 +58,7 @@ export function genSPX(): OHLC[] {
 export interface Snapshot {
   key: string; label: string; value: string; change: number;
   unit: string; as_of: string; source: string; spark: number[];
+  role?: 'leading' | 'coincident' | 'lagging' | null;
 }
 
 export const snapshots: Snapshot[] = [

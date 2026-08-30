@@ -294,11 +294,28 @@ export default function OverviewPage() {
         >
           {snapshots.map(s => {
             const up = s.change >= 0
+            // 时序角色标签：领先=预判 / 同步=确认 / 滞后=勿当预测用（悬停看提示）
+            const roleMeta = s.role === 'leading'
+              ? { label: tr('role_leading'), tip: tr('role_leading_tip'), color: 'var(--st-ok-text)', bg: 'var(--st-ok-bg)' }
+              : s.role === 'coincident'
+              ? { label: tr('role_coincident'), tip: tr('role_coincident_tip'), color: 'var(--text-muted)', bg: 'var(--bg2)' }
+              : s.role === 'lagging'
+              ? { label: tr('role_lagging'), tip: tr('role_lagging_tip'), color: 'var(--st-warn-text)', bg: 'var(--st-warn-bg)' }
+              : null
             return (
               <div key={s.key} className="neu-sm p-4 flex flex-col gap-1">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
-                    {s.label}
+                <div className="flex items-center justify-between gap-1">
+                  <span className="text-xs font-medium flex items-center gap-1.5 min-w-0" style={{ color: 'var(--text-muted)' }}>
+                    <span className="truncate">{s.label}</span>
+                    {roleMeta && (
+                      <span
+                        className="px-1.5 rounded-full flex-shrink-0 cursor-help"
+                        style={{ fontSize: 10, backgroundColor: roleMeta.bg, color: roleMeta.color }}
+                        title={roleMeta.tip}
+                      >
+                        {roleMeta.label}
+                      </span>
+                    )}
                   </span>
                   <span
                     className="font-num text-xs px-1.5 py-0.5 rounded-lg"
