@@ -7,8 +7,26 @@
 from __future__ import annotations
 
 import datetime as dt
+import re
 from dataclasses import dataclass, asdict, field
 from typing import Optional, Callable
+
+# 密钥脱敏：2026-08-27 事故——FRED抓取失败时 requests 把完整URL(含api_key)写进
+# 异常文本 → 存进 stale_reason → 随 data/latest.json 提交进公开仓库，泄露FRED密钥。
+# 凡是可能进入持久化字段或日志的外部文本，一律先过这里。
+_SECRET_PAT = re.compile(
+    r"(api_key|apikey|api-key|token|access_token|key|secret|password)"
+    r"(=|%3D|:\s*|\"\s*:\s*\")([^&\s\"',)]{8,})", re.IGNORECASE)
+
+
+def redact(text: str) -> str:
+    """把 URL/文本里的密钥值替换成 ***。用于所有错误信息落盘前。"""
+    if not text:
+        return text
+    out = _SECRET_PAT.sub(lambda m: f"{m.group(1)}{m.group(2)}***", str(text))
+    # Telegram bot token 形如 123456789:AAH...（URL里常写作 /bot123456789:AAH，
+    # 数字前无词边界，故不能用 \b）
+    return re.sub(r"\d{8,12}:[A-Za-z0-9_-]{30,}", "***", out)
 
 
 @dataclass
@@ -23,6 +41,13 @@ class DataPoint:
     stale_reason: str = ""
     unit: str = ""
     extra: dict = field(default_factory=dict)   # 附加结构化数据（序列、成分等）
+
+    def __setattr__(self, name, value):
+        # stale_reason 是唯一会把外部异常文本落盘的字段，在赋值口做兜底脱敏，
+        # 这样任何 fetcher 忘记手动调 redact() 也不会再泄露密钥。
+        if name == "stale_reason" and value:
+            value = redact(value)
+        object.__setattr__(self, name, value)
 
     def to_dict(self):
         return asdict(self)
