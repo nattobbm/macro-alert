@@ -9,6 +9,28 @@ html, body, #root {
 /* 状态色语义（全主题统一）：--st-ok=正常(蓝系) --st-warn=接近(浅粉) --st-fire=触发(深粉) --st-mute=跳过/静音(中性)
    每个带 -text(可读文字) 和 -bg(浅底) 变体；数据图表仍用 --green/--red（红绿语义豁免） */
 :root, [data-theme="default"] {
+  --bg:           #d8e8f4;
+  --bg2:          #ccdae8;
+  --card:         #d8e8f4;
+  --shadow-light: #eef6ff;
+  --shadow-dark:  #b8c8d8;
+  --text:         #2d4a63;
+  --text-muted:   #6a88a0;
+  --accent:       #5b9eb8;
+  --accent-soft:  #b8d8ea;
+  --green:        #6bb89a;
+  --yellow:       #d4a848;
+  --red:          #e07878;
+  --border:       #c0d0e0;
+  --globe-bg:     #0a1628;
+  --st-ok:        #5b9eb8; --st-ok-text:   #3a7d99; --st-ok-bg:   #c3ddec;
+  --st-warn:      #e8a5b5; --st-warn-text: #b85c74; --st-warn-bg: #f2dbe1;
+  --st-fire:      #e07878; --st-fire-text: #b04a4a; --st-fire-bg: #f2d5d5;
+  --st-mute:      #a8b8c8; --st-mute-text: #6a88a0; --st-mute-bg: #ccdae8;
+}
+
+/* 气球村（奶油+草莓粉+天空蓝）：可选主题 */
+[data-theme="balloon"] {
   --bg:           #FAF0DC;
   --bg2:          #F3E7CC;
   --card:         #FAF0DC;

@@ -8,7 +8,7 @@ import DataPage from './pages/DataPage'
 import ContactPage from './pages/ContactPage'
 import CalendarPage from './pages/CalendarPage'
 
-type Theme = 'default' | 'latte' | 'mocha' | 'nord'
+type Theme = 'default' | 'balloon' | 'latte' | 'mocha' | 'nord'
 type Tab = 'overview' | 'reasoning' | 'equity' | 'data' | 'contact' | 'calendar'
 
 // 联系/日历不占主导航——主屏只展示数据，入口收进右上角小按钮
@@ -21,7 +21,8 @@ const TABS: { id: Tab; icon: string; label: string }[] = [
 
 // 主题切换圆点：外圈=底色 内点=主色（缩小版，手机上不占地）
 const THEMES: { id: Theme; label: string; bg: string; fg: string }[] = [
-  { id: 'default', label: '气球村', bg: '#FAF0DC', fg: '#FF8FA3' },
+  { id: 'default', label: '浅灰蓝', bg: '#d8e8f4', fg: '#5b9eb8' },
+  { id: 'balloon', label: '气球村', bg: '#FAF0DC', fg: '#FF8FA3' },
   { id: 'latte',   label: 'Latte',  bg: '#eff1f5', fg: '#1e66f5' },
   { id: 'mocha',   label: 'Mocha',  bg: '#1e1e2e', fg: '#89b4fa' },
   { id: 'nord',    label: 'Nord',   bg: '#2e3440', fg: '#88c0d0' },
