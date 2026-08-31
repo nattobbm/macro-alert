@@ -82,6 +82,29 @@ chains:
       - {label_en: "Yen strong enough to unwind carry?", label: "日元强到撤资线?", term: "USDJPY vs 157", metric: usdjpy, threshold: 157, direction: below, note: "跌破157=撤资开始"}
       - {label_en: "Yen weak enough for intervention?", label: "日元弱到干预线?", term: "USDJPY vs 163", metric: usdjpy, threshold: 163, direction: above, note: "7/31官方出手过的位置"}
 
+  # 2026-08-31 新增。Momo：「还有一个链条是国家利益争夺，中美日等全球关系，国家博弈」
+  # 设计约束（K11 意图vs路径）：本链只收**可数的官方动作与价格**，
+  # 不收"某国想干什么"这类意图判断——意图不可测，动作可测。
+  # 随机性声明：国家博弈含不可约的随机成分（决策者更替、突发事件、误判），
+  # 本链不预测走向，只标记"筹码有没有被动用"。节点全亮也不等于结论成立。
+  - id: statecraft
+    emoji: "🌐"
+    name: 大国拿筹码互相博弈
+    term: 国家博弈链
+    name_en: "Great-power bargaining with financial chips"
+    one_liner: 各国手里的筹码是汇率、利率、买不买美债、卖不卖油 → 谁先动谁后动都是谈判 → 结果反过来决定美方还有多少政策空间
+    one_liner_en: "Chips are FX, policy rates, Treasury holdings and oil flows -> the order of moves is itself the negotiation -> the outcome sets how much room US policy still has"
+    falsify: 三大海外持有人连续两月同时增持美债 + 日元稳在157-163区间内 = 筹码没在动，本链降权
+    falsify_en: "Top-3 foreign holders all adding for two straight months + JPY holding inside 157-163 = chips not in play, chain deprioritized"
+    nodes:
+      - {label_en: "US-Japan-Korea FX coordination", label: "美日韩汇率协同", term: "三方协调机制", value_text: "7月联合干预;8月日韩东京会谈", status: fact, note: "艾丽8-27：植田缺席杰克逊霍尔,派鹰派田村直树代行"}
+      - {label_en: "Japan selling Treasuries?", label: "日本在卖美债吗", term: "TIC日本持仓环比", metric: tic_japan_chg, threshold: 0, direction: below, note: "最大海外持有人的态度"}
+      - {label_en: "China selling Treasuries?", label: "中国在卖美债吗", term: "TIC中国持仓环比", metric: tic_china_chg, threshold: 0, direction: below, note: "减持=用持债做筹码"}
+      - {label_en: "UK selling Treasuries?", label: "英国在卖美债吗", term: "TIC英国持仓环比", metric: tic_uk_chg, threshold: 0, direction: below, note: "含离岸账户,三方同减才算信号"}
+      - {label_en: "Yen at intervention line", label: "日元逼近干预线", term: "USDJPY 163", metric: usdjpy, threshold: 163, direction: above, note: "7-31联合干预实际触发位"}
+      - {label_en: "Oil out of comfort band", label: "油价出美方舒适区", term: "布伦特>90", metric: brent, threshold: 90, direction: above, note: "产油方的筹码;破位即压力"}
+      - {label_en: "Foreign central banks borrowing USD", label: "外国央行借美元(FIMA)", term: "FIMA回购用量", metric: fima_weekly_usd, threshold: 0, direction: above, note: ">0=以美债换美元而非抛售,合作侧信号"}
+
   - id: ai_credit
     emoji: "🤖"
     name: AI大厂靠借债扩张，借钱在变难

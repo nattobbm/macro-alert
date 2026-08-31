@@ -493,7 +493,10 @@ def build_knowledge(ctx: dict) -> dict:
                     else:
                         denom = abs(thr) or 100.0
                         dist = (thr - v) / denom if direc == "above" else (v - thr) / denom
-                        st = "crossed" if dist <= 0 else ("near" if dist < 0.05 else "quiet")
+                        # 严格不等号：恰好等于阈值不算已穿，与规则引擎的 > / < 保持一致。
+                        # 2026-08-31 修：阈值为0的节点（FIMA用量、GEX穿越位）此前用 <=，
+                        # 导致 FIMA=0（"没人用"，属安静）被显示成"已穿"，并虚增链条热度。
+                        st = "crossed" if dist < 0 else ("near" if dist < 0.05 else "quiet")
                         crossed += st == "crossed"; near += st == "near"
                         node.update(status=st, value=v, threshold=thr,
                                     direction=direc, dist_pct=round(dist * 100, 2))
