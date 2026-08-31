@@ -10,6 +10,7 @@ import {
   gexCallWall, gexPutWall, gexNetBn, gexHistory, genAt,
 } from '../data/live'
 import Kline from '../components/Kline'
+import TradingStrip from '../components/TradingStrip'
 
 const spxData = genSPX()
 
@@ -39,6 +40,9 @@ export default function EquityPage() {
 
   return (
     <div className="space-y-6">
+
+      {/* ── 盘口：实际交易的标的（2026-09-01 从总览页移来） ───── */}
+      <TradingStrip />
 
       {/* ── Stat Strip（CBOE延迟链自算，全真数据） ───── */}
       <div className="neu p-4">

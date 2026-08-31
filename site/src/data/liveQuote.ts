@@ -138,6 +138,23 @@ export const TRADING_ORDER: { key: string; label: string; note: string; dp: numb
   { key: 'oil', label: '布伦特原油',  note: '', dp: 2 },
 ]
 
+// 快照卡的指标key ← 实时报价key 的对照表。
+// 2026-09-01 修：两层命名不一致导致黄金/白银/油价的快照卡拿不到实时值
+// （快照用 gold/silver/brent，实时用 gc/xag/oil），表现为"卡片不动"。
+// 口径必须严格同名对应：gold 是 COMEX 期货，对应实时的 gc（也是 COMEX），
+// 不能错配成 xau（伦敦金现）——那是另一个标的，差约50美元。
+export const SNAPSHOT_ALIAS: Record<string, string> = {
+  gold: 'gc',      // 快照的"黄金(COMEX期货)" ← 实时 COMEX 黄金
+  silver: 'xag',   // 快照的"白银" ← 伦敦银现（yfinance SI=F 是COMEX，口径略差，仅显示用）
+  brent: 'oil',    // 快照的"油价Brent" ← 腾讯布伦特
+  xauusd: 'xau',   // 快照的"黄金(伦敦金现)" ← 实时伦敦金现
+}
+
+/** 取某个快照指标对应的实时报价（自动处理命名差异） */
+export function liveFor(quotes: Record<string, LiveQuote>, snapshotKey: string): LiveQuote | undefined {
+  return quotes[snapshotKey] ?? quotes[SNAPSHOT_ALIAS[snapshotKey] ?? '']
+}
+
 /** 与官方值的偏离（%）。超阈值时调用方应并列显示两个数，不择一。 */
 export const DIVERGE_PCT = 0.5
 
