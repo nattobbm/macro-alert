@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Globe from '../components/Globe'
 import Sparkline from '../components/Sparkline'
+import { fetchLiveQuotes, diverges } from '../data/liveQuote'
+import type { LiveQuote } from '../data/liveQuote'
 import { snapshots, alerts, alertsNoBands, radarBands, ticLive, regimeLive } from '../data/live'
 import type { RadarBand } from '../data/live'
 import { t as tr, isEN } from '../i18n'
@@ -66,6 +68,29 @@ function BandBar({ b }: { b: RadarBand }) {
 export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => void }) {
   const [hoveredAlert, setHoveredAlert] = useState<string | null>(null)
   const [showStandard, setShowStandard] = useState(false)
+
+  // 实时参考价：进页面拉一次，之后每60秒刷新。拿不到就静默用官方值。
+  const [live, setLive] = useState<Record<string, LiveQuote>>({})
+  const [liveAt, setLiveAt] = useState<number>(0)
+  useEffect(() => {
+    let alive = true
+    const pull = async () => {
+      const q = await fetchLiveQuotes()
+      if (alive && Object.keys(q).length) { setLive(q); setLiveAt(Date.now()) }
+    }
+    pull()
+    const id = setInterval(pull, 60_000)
+    // 切回标签页时立刻补一次（后台标签的定时器会被浏览器降频）
+    const onVis = () => { if (document.visibilityState === 'visible') pull() }
+    document.addEventListener('visibilitychange', onVis)
+    return () => { alive = false; clearInterval(id); document.removeEventListener('visibilitychange', onVis) }
+  }, [])
+  const liveAgo = liveAt
+    ? (() => {
+        const s = Math.round((Date.now() - liveAt) / 1000)
+        return s < 90 ? (isEN ? 'just now' : '刚刚') : `${Math.round(s / 60)}${isEN ? 'm ago' : '分钟前'}`
+      })()
+    : ''
 
   const sorted = [...alertsNoBands].sort((a, b) => {
     const order = { breached: 0, warning: 1, ok: 2 }
@@ -284,16 +309,33 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
 
       {/* ── 12 Market Snapshots ──────────────────────── */}
       <section>
-        <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
+        <h2 className="text-base font-bold mb-3 flex items-center gap-2 flex-wrap" style={{ color: 'var(--text)' }}>
           {tr('snapshot_title')}
           <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（as of {snapshots[0]?.as_of ?? '—'}）</span>
+          {Object.keys(live).length > 0 && (
+            <span className="badge" style={{
+              backgroundColor: 'var(--st-ok-bg)', color: 'var(--st-ok-text)',
+            }}>
+              <span className="dot pulse-dot" style={{ backgroundColor: 'var(--st-ok)' }} />
+              {isEN ? `live · ${liveAgo}` : `实时参考价 · ${liveAgo}`}
+            </span>
+          )}
         </h2>
         <div
           className="grid gap-3"
           style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(170px, 1fr))' }}
         >
           {snapshots.map(s => {
-            const up = s.change >= 0
+            // 实时参考价（东方财富，仅显示用，不进判定）；与官方值背离则并列不择一
+            const q = live[s.key]
+            const officialNum = Number(String(s.value).replace(/,/g, ''))
+            const conflict = q ? diverges(q.value, officialNum) : false
+            const showLive = !!q && !conflict
+            const up = showLive && q.chg_1d_pct != null ? q.chg_1d_pct >= 0 : s.change >= 0
+            const chg = showLive && q.chg_1d_pct != null ? q.chg_1d_pct : s.change
+            const disp = showLive
+              ? q.value.toLocaleString('en-US', { maximumFractionDigits: q.value >= 1000 ? 0 : 2 })
+              : s.value
             // 时序角色标签：领先=预判 / 同步=确认 / 滞后=勿当预测用（悬停看提示）
             const roleMeta = s.role === 'leading'
               ? { label: tr('role_leading'), tip: tr('role_leading_tip'), color: 'var(--st-ok-text)', bg: 'var(--st-ok-bg)' }
@@ -324,23 +366,36 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
                       color: up ? 'var(--green)' : 'var(--red)',
                     }}
                   >
-                    {up ? '▲' : '▼'} {Math.abs(s.change).toFixed(2)}%
+                    {up ? '▲' : '▼'} {Math.abs(chg).toFixed(2)}%
                   </span>
                 </div>
 
-                <div className="font-num font-bold text-2xl leading-tight" style={{ color: 'var(--text)' }}>
-                  {s.value}
+                <div className="font-num font-bold text-2xl leading-tight flex items-baseline gap-1.5"
+                  style={{ color: 'var(--text)' }}>
+                  {disp}
                   {s.unit && (
-                    <span className="text-xs font-normal ml-1" style={{ color: 'var(--text-muted)' }}>
+                    <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>
                       {s.unit}
                     </span>
                   )}
+                  {showLive && (
+                    <span className="dot pulse-dot" style={{ backgroundColor: 'var(--st-ok)' }}
+                      title={isEN ? 'live reference price' : '实时参考价'} />
+                  )}
                 </div>
+
+                {/* 两源冲突：并列显示，不静默择一（沿用SOFR双源纪律） */}
+                {conflict && q && (
+                  <div className="text-xs" style={{ color: 'var(--st-warn-text)' }}>
+                    {isEN ? 'live quote differs: ' : '实时源不一致：'}
+                    {q.value.toLocaleString('en-US', { maximumFractionDigits: 2 })}
+                  </div>
+                )}
 
                 <div className="flex items-end justify-between">
                   <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                    <div>{s.as_of}</div>
-                    <div>{s.source}</div>
+                    <div>{showLive ? (isEN ? 'live' : '实时') : s.as_of}</div>
+                    <div>{showLive ? (isEN ? 'ref. quote' : '参考报价') : s.source}</div>
                   </div>
                   <div className="neu-inset-sm p-1.5">
                     <Sparkline data={s.spark} positive={up} width={72} height={24} />

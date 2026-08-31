@@ -717,6 +717,58 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
     }
 
 
+# 盘中高频刷新的行情项（只这些会变，宏观月频/周频数据不需要高频拉）
+QUOTE_TICKERS = {
+    "spx": "^GSPC", "vix": "^VIX", "gold": "GC=F", "silver": "SI=F",
+    "dxy": "DX-Y.NYB", "usdjpy": "JPY=X", "brent": "BZ=F", "move": "^MOVE",
+}
+
+
+def run_quotes_only() -> None:
+    """轻量模式：只抓行情最新价 → data/quotes.json。
+
+    为什么单独一条通道：完整流水线要跑51个源+规则引擎+推送，几分钟一次不现实；
+    而盘中真正在变的只有行情价。拆开后可以每20分钟刷一次价，
+    重活仍旧每天两次。前端优先读 quotes.json，比 latest.json 新才覆盖。
+    """
+    import yfinance as yf
+    DATA.mkdir(exist_ok=True)
+    out, failed = {}, []
+    for key, sym in QUOTE_TICKERS.items():
+        try:
+            h = yf.Ticker(sym).history(period="5d", auto_adjust=False)
+            closes = h["Close"].dropna()
+            if closes.empty:
+                failed.append(key)
+                continue
+            v = round(float(closes.iloc[-1]), 4)
+            prev = float(closes.iloc[-2]) if len(closes) > 1 else None
+            out[key] = {
+                "value": v,
+                "as_of": closes.index[-1].date().isoformat(),
+                "chg_1d_pct": round((v / prev - 1) * 100, 3) if prev else None,
+                "source": f"yfinance:{sym}",
+            }
+        except Exception as e:
+            failed.append(f"{key}({type(e).__name__})")
+    payload = {
+        "generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "quotes": out,
+        "failed": failed,
+        "note": "盘中轻量刷新；行情源本身约15分钟延迟，非逐笔实时",
+    }
+    (DATA / "quotes.json").write_text(json.dumps(payload, ensure_ascii=False),
+                                      encoding="utf-8")
+    spx = out.get("spx", {}).get("value")
+    (DATA / "_commit_msg.txt").write_text(
+        f"quotes {dt.datetime.now(dt.timezone.utc):%m-%d %H:%M}Z"
+        + (f" | SPX {spx:.0f}" if spx else "")
+        + (f" | 失败 {len(failed)}" if failed else ""),
+        encoding="utf-8")
+    print(f"[quotes] {len(out)}/{len(QUOTE_TICKERS)} ok"
+          + (f", failed: {failed}" if failed else ""), file=sys.stderr)
+
+
 def main():
     # Windows 控制台默认GBK，统一UTF-8
     for stream in (sys.stdout, sys.stderr):
@@ -725,9 +777,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--no-fetch", action="store_true")
+    ap.add_argument("--quotes-only", action="store_true",
+                    help="轻量模式：只刷行情价写 data/quotes.json，不跑规则/不推TG。盘中高频用")
     args = ap.parse_args()
 
     load_env()
+    if args.quotes_only:
+        run_quotes_only()
+        return
     sources = yaml.safe_load((ROOT / "config" / "sources.yaml").read_text(encoding="utf-8"))["sources"]
     rules = yaml.safe_load((ROOT / "config" / "rules.yaml").read_text(encoding="utf-8"))
 

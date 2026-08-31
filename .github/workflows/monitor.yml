@@ -6,6 +6,9 @@ on:
     - cron: '0 13 * * 1-5'
     # 美东 16:30 收盘后（UTC 20:30），覆盖当日拍卖结果
     - cron: '30 20 * * 1-5'
+    # 盘中轻量刷价（只跑 --quotes-only，约20分钟一次，UTC 13-21点=美东9-17点）
+    # 注：GitHub 定时任务不精确，免费额度下常延迟5-20分钟，实际间隔约20-40分钟
+    - cron: '20,50 13-20 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -27,13 +30,22 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
+      # 盘中的 :20/:50 场次只刷行情价(约15秒)，不跑规则不推TG；其余为完整流水线
+      - name: Decide mode
+        id: mode
+        run: |
+          if [ "${{ github.event.schedule }}" = "20,50 13-20 * * 1-5" ]; then
+            echo "flag=--quotes-only" >> $GITHUB_OUTPUT
+          else
+            echo "flag=" >> $GITHUB_OUTPUT
+          fi
       - name: Run monitor
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
           EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-        run: python monitor.py
+        run: python monitor.py ${{ steps.mode.outputs.flag }}
       - name: Commit data
         run: |
           git config user.name  "macro-bot"
