@@ -2,8 +2,7 @@
  "id": "2026-09-16_fomc_hike_scenario",
  "created_at": "2026-08-31T16:42:42Z",
  "created_by": "Momo",
- "status": "DRAFT",
- "_status_note": "待Momo填 momo_ranking + reasoning_ex_ante 后改为 LOCKED。未签发不计入任何统计。",
+ "status": "LOCKED",
  "format": "scenario_map",
  "format_note": "情景图预注册。取代 2026-09-17_fomc_hike（ex-ante窗口过期+日期写错，已VOID）。此格式在 Jackson Hole 一役验证可用：不要求给概率数字，只要排序+一句为什么。",
  "question": "9月FOMC（2026-09-15/16，决议9-16下午2点ET）：Warsh会走哪条路？市场反应是否与该情景的预期路径一致？",
@@ -68,9 +67,9 @@
    "expected_path": "加息定价大幅回落(<30%) · 黄金↑ · 美元↓ · 长端↓ · 金融抑制叙事强化(F4方向)"
   }
  },
- "momo_ranking": null,
+ "momo_ranking": "S2>S1>S3",
  "_ranking_note": "由Momo填写，格式如 'S2>S1>S3'。锁定后不得修改。不要求给概率数字。",
- "reasoning_ex_ante": null,
+ "reasoning_ex_ante": "他不给指引就是要留余地，选举前不会自缚",
  "_reasoning_note": "由Momo填写一句：为什么这么排（只用2026-09-01前信息）。",
  "what_this_discriminates": {
   "S1命中": "官僚信誉框架加分；艾丽'选举前行动暂缓'框架重伤；市场69%定价被验证",
@@ -98,5 +97,7 @@
   "outcome_vs_quality": "分两栏记录",
   "sample_threshold": "累计<50只记录不解读",
   "no_copy_market": "排序不得直接照抄市场隐含概率——抄了则本卡无信息量"
- }
+ },
+ "signed_at": "2026-08-31T16:49:20Z",
+ "_lock_note": "Momo 亲笔签发，原话一字未改。锁定后 momo_ranking / reasoning_ex_ante / ex_ante_snapshot 一律不得修改；git commit 时间戳即签发时刻证明。"
 }
