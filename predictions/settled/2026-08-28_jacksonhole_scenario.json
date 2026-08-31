@@ -1,0 +1,127 @@
+{
+  "id": "2026-08-28_jacksonhole_scenario",
+  "created_at": "2026-08-27T00:00:00Z",
+  "created_by": "Momo",
+  "status": "SETTLED",
+  "format": "scenario_map",
+  "format_note": "情景图预注册（非概率单）。取代 2026-08-28_jacksonhole_warsh（该概率单因'问题格式与推理者模式不匹配'于演讲前作废，登记为预测系统设计发现，不计入Brier）",
+  "question": "Warsh在Jackson Hole主题演讲（2026-08-28上午10点ET）会扣哪条逻辑链，市场反应是否与该情景的预期路径一致？",
+  "ex_ante_snapshot": {
+    "_note": "锁定时机器自动记录，结算时对照",
+    "as_of": "2026-08-27",
+    "hike_odds_zq_auto": 0.369,
+    "hike_odds_cme_manual_0826": 0.381,
+    "hike_odds_polymarket": 0.305,
+    "gold": 4661.5,
+    "us30y": 5.17,
+    "us10y": 4.64,
+    "tips10y": 2.32,
+    "vix": 15.2,
+    "usdjpy": 159.3,
+    "gex": "净+50bn正gamma，现价7675.7钉在call/put墙7675",
+    "core_pce_jul": "环比+0.25% 同比+3.34%（F1擦线触发，市场当日仅-1.5pp消化）"
+  },
+  "scenarios": {
+    "S1_信誉链": {
+      "script": "他扣「价格稳定/机构信誉」逻辑：强调通胀警惕、为9月加息留门、与财政部划清界限",
+      "expected_path": "加息定价↑(>+1pp) · 2Y收益率↑ · 黄金↓ · 美元↑"
+    },
+    "S2_支付链": {
+      "script": "他扣「支付创新」主题不碰宏观：宏观一笔带过、不给任何利率信号",
+      "expected_path": "加息定价漂移±1pp内 · 低波动 · gamma钉价延续"
+    },
+    "S3_配合链": {
+      "script": "他扣「配合财政/淡化加息」逻辑：暗示利率非主要工具、容忍长端压制",
+      "expected_path": "加息定价↓ · 黄金↑ · 长端先↓ · 金融抑制叙事强化(F4方向)"
+    }
+  },
+  "momo_ranking": "S2>S3>S1",
+  "_ranking_note": "由Momo填写，如 'S2>S3>S1'。锁定后不得修改。",
+  "reasoning_ex_ante": "支付主题+他不预告的风格，含糊最维稳。（维稳剧本理论：能同时稳住债市/股市/财政部三个听众的剧本=不给明确利率信号；理由句采自工作表选项，其底层逻辑为Momo 8-27两条消息中自述的\"扣逻辑链维稳\"理论）",
+  "_reasoning_note": "由Momo填写一句：按维稳逻辑他为什么最可能扣该链（只用8-28演讲前信息）",
+  "settle_date": "2026-08-29",
+  "settle_rule": "演讲后首个交易日收盘，机器记录实际值（ZQ定价变动/金/30Y/VIX/JPY），对照三情景的expected_path判定哪个命中；话语内容由Momo读演讲稿标注他实际扣的链。双向验证：话语强度 vs 实际波幅并列记录。",
+  "settle_source": "federalreserve.gov演讲稿 + data/fedwatch每日存档 + data/snapshots",
+  "what_this_discriminates": {
+    "S1命中": "官僚信誉框架加分；老天花板重装；实际利率上行压金",
+    "S2命中": "「话术剧本服务多听众维稳」理论加分；单一框架均减权",
+    "S3命中": "金融抑制/压利息框架加分；F4路径确认方向"
+  },
+
+  "outcome": "S1_信誉链",
+  "settled_at": "2026-08-30T00:00:00Z",
+  "settled_by": "Code（机器侧全部；话语侧标注待Momo签字确认）",
+  "settle_date_actual": "2026-08-28",
+  "settle_date_note": "卡内 settle_date 写成 2026-08-29 = 周六，无收盘。按 settle_rule 文字「演讲后首个交易日收盘」取 2026-08-28（周五）收盘。规格缺陷已登记。",
+
+  "actual_path": {
+    "_baseline": "对照基准用卡内 ex_ante_snapshot（预注册值）；括号内为同日机器快照收盘值，口径差异见 spec_defects",
+    "hike_odds_zq_auto": {
+      "ex_ante": 0.369,
+      "actual": 0.600,
+      "change": "+23.1pp",
+      "source": "data/fedwatch/2026-08-28.json（ZQ自算，CME方法论近似，tier2）"
+    },
+    "gold_gcf": {
+      "ex_ante": 4661.5,
+      "actual": 4504.1,
+      "change": "-157.4 / -3.38%（按机器08-27收盘4636.20计为 -132.1 / -2.85%）",
+      "source": "yfinance:GC=F"
+    },
+    "dxy": { "ex_ante": 99.148, "actual": 99.677, "change": "+0.53%", "source": "yfinance:DX-Y.NYB（卡内未列，取机器快照）" },
+    "usdjpy": { "ex_ante": 159.3, "actual": 160.038, "change": "+0.74", "source": "yfinance:JPY=X" },
+    "vix": { "ex_ante": 15.2, "actual": 14.43, "change": "-0.77（机器08-27为14.51，则-0.08）", "source": "yfinance:^VIX" },
+    "spx": { "ex_ante": 7730.99, "actual": 7711.76, "change": "-0.25%", "source": "yfinance:^GSPC" },
+    "us30y": { "ex_ante": 5.17, "actual": null, "change": null, "source": "FRED:DGS30 as_of仍为2026-08-27（5.19）——事件日当天收盘未入库，滞后一日" },
+    "us10y": { "ex_ante": 4.64, "actual": null, "change": null, "source": "FRED:DGS10 as_of仍为2026-08-27（4.67）——同上" },
+    "tips10y": { "ex_ante": 2.32, "actual": null, "change": null, "source": "FRED:DFII10 as_of仍为2026-08-27（2.34）——同上" },
+    "us2y": { "ex_ante": null, "actual": null, "change": null, "source": "未在fetcher集合内 → S1的「2Y收益率↑」分项无法验证" }
+  },
+
+  "scenario_match": {
+    "S1_信誉链": "命中。加息定价 +23.1pp（门槛 >+1pp，超出23倍）· 黄金 -3.38% ↓ · 美元 +0.53% ↑ —— 可验证的三个分项方向全部一致；第四项2Y因无数据未验证。",
+    "S2_支付链": "证伪。要求加息定价漂移在 ±1pp 内，实际 +23.1pp。",
+    "S3_配合链": "证伪。要求加息定价↓、黄金↑，实际两项方向全反。"
+  },
+
+  "momo_ranking_result": {
+    "verdict": "未命中，且排序完全颠倒",
+    "detail": "Momo排 S2>S3>S1；实际命中的是排在最后的 S1。排第一的 S2 被证伪。",
+    "series": "机制判别命中率（新序列，n=1，不计Brier）；按纪律 n<50 只记录不解读"
+  },
+
+  "speech_side": {
+    "_status": "待Momo签字确认（卡内规定话语侧由Momo读稿标注）",
+    "code_reading": "S1_信誉链",
+    "evidence": "语料分析/output/warsh_jacksonhole_20260828.md：'we have work to do'、'hard pressed to describe broad financial conditions as restrictive'（=当前3.50-3.75%不算紧，加息有正当性）、把65个月通胀责任揽给央行（信誉重建的抵押品）、签名句'I stand here today committed to a discipline, not to a decision.'",
+    "counter_reading": "旧词典对同一篇给出 hawk_score -0.027（微鸽）、226句只认出26句——词典法读数与人读判定相反，本卡采人读，并已单独登记词典法对Warsh语料失效。"
+  },
+
+  "two_way_check": {
+    "话语强度": "当日最鹰（S1，人读）",
+    "实际波幅": "加息定价 +23.1pp、黄金收 -3.38%（拆解稿记盘中10:00即顶 -326bp）、SPX 11:01见顶收 -0.25%",
+    "一致性": "一致。话语侧与价格侧同指 S1，无背离。"
+  },
+
+  "framework_update": "按 what_this_discriminates：官僚信誉框架（Warsh为信誉可加息）加分；竞争框架艾丽（服务压利息、不收紧）减分。直接影响 2026-09-17_fomc_hike 卡的事前概率——该卡仍未锁定，此条为其可用的事前信息。",
+
+  "failure_mode": "机制错（非时点/数据/随机）。事前理由所依据的「维稳剧本理论」——能同时稳住债市/股市/财政部三个听众的剧本=不给明确利率信号——在本例被证伪：Warsh给了明确信号并接受了波动。反证来自他本人同一篇演讲：'we should not indulge a regime in which market participants are looking primarily to the Fed for their next trade'——他的目标函数里不含「稳住市场」，因此以维稳为前提的推理链在他身上系统性失效。",
+
+  "quality_self_score": null,
+  "quality_self_score_note": "由Momo自评1-5（事前信息下该排序是否合理），README规定可在结局公布后仍单独打分；结果偏差禁令：S1命中不自动等于该排序是坏决策。",
+
+  "spec_defects": [
+    "settle_date 填了 2026-08-29（周六，无收盘）——预注册时未核对交易日历。下次建卡自动校验 settle_date 是否为交易日。",
+    "ex_ante_snapshot 与同日机器快照不一致（gold 4661.5 vs 4636.20 / vix 15.2 vs 14.51 / us10y 4.64 vs 4.66）：签卡时点 2026-08-28T01:52Z = 08-27 21:52 ET 为夜盘价，与快照的收盘价口径不同。判定用卡内值，两套并列记录。建议锁定时由机器写入快照值并标口径。",
+    "us2y 不在 fetcher 集合内，S1 expected_path 的一个分项无法验证 → 建议 sources.yaml 加 FRED:DGS2。",
+    "FRED 国债系列滞后一日，事件日当天收盘无法当日结算 → 事件卡的收益率读数应改用 yfinance ^TNX/^TYX，或把 settle 口径明写为 T+1。"
+  ],
+
+  "discipline": {
+    "no_edit_after_lock": "momo_ranking与reasoning_ex_ante填写commit后不得修改",
+    "void_condition": "演讲前未填ranking则本卡作废（VOID）",
+    "sample_note": "情景图不计Brier；计入'机制判别命中率'新序列（n<50只记录不解读同规矩）",
+    "settlement_integrity": "本次结算未改动 momo_ranking / reasoning_ex_ante / scenarios / ex_ante_snapshot 任一字段，仅追加结算段。"
+  },
+  "signed_at": "2026-08-28T01:52:16Z"
+}
