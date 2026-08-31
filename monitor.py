@@ -325,16 +325,29 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
             if spot and level:
                 ctx[f"gex_{name}_dist_pct"] = round((spot - level) / spot * 100, 3)
 
-    # 加息概率自动兜底：人工没填/过期时，回落到 ZQ 期货自算值，规则照常判定。
-    # （口径不同必须留痕：ctx 里记来源，看板/推送显示"ZQ自算"而非冒充CME读数）
-    if ctx.get("fedwatch_sep_hike") is None:
-        zq = by_key.get("fedwatch_zq_sep")
-        if zq and not zq.stale and zq.value is not None:
-            ctx["fedwatch_sep_hike"] = zq.value
-            ctx["_fedwatch_source"] = f"ZQ自算(回落) as_of={zq.as_of}"
-            stale_keys.discard("fedwatch_sep_hike")
-    else:
-        ctx["_fedwatch_source"] = "CME人工读数"
+    # 加息概率：取**较新**的那个，不是手动优先。
+    # 2026-08-31 事故：手动值停留在 8-26（杰克逊霍尔之前）38.1%，而 ZQ 期货自算
+    # 8-27→8-31 从 36.9% 单调升到 69.2%（Warsh讲话+美伊开打的真实重定价）。
+    # 旧逻辑"手动优先"让规则一直吃 5 天前的旧数，F1「加息概率回升>65%」该触发未触发。
+    # 口径不同必须留痕：ctx 记来源，看板/推送显示"ZQ自算"而非冒充CME读数。
+    _mn = by_key.get("fedwatch_sep_hike")
+    _zq = by_key.get("fedwatch_zq_sep")
+    cands = []
+    if _mn and _mn.value is not None and _mn.as_of:
+        cands.append((_mn.as_of, _mn.value, "CME人工读数"))
+    if _zq and not _zq.stale and _zq.value is not None and _zq.as_of:
+        cands.append((_zq.as_of, _zq.value, "ZQ期货自算"))
+    if cands:
+        as_of, val, src = max(cands, key=lambda x: x[0])
+        ctx["fedwatch_sep_hike"] = val
+        ctx["_fedwatch_source"] = f"{src} as_of={as_of}"
+        stale_keys.discard("fedwatch_sep_hike")
+        if len(cands) > 1:
+            lo, hi = min(c[1] for c in cands), max(c[1] for c in cands)
+            # 两源分歧大时留痕（不阻断判定：取新的那个是有依据的选择，但要可查账）
+            if hi - lo > 0.10:
+                ctx["_fedwatch_conflict"] = "; ".join(
+                    f"{s}={v:.1%}({a})" for a, v, s in sorted(cands))
 
     # 数据健康标志（tier1/2 才算；手动源缺录不触发H1）
     tier12_stale = [k for k in stale_keys
