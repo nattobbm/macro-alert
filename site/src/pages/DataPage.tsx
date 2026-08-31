@@ -2,7 +2,7 @@ import {
   LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer,
   ReferenceLine, ComposedChart,
 } from 'recharts'
-import { dataSources, trendRealRate, trend30Y, trendSPXGold, trendCurve, trendCotGold, trendTaylorGold } from '../data/live'
+import { dataSources, optionalSources, lateSources, trendRealRate, trend30Y, trendSPXGold, trendCurve, trendCotGold, trendTaylorGold } from '../data/live'
 import { t as tr, isEN } from '../i18n'
 import { asOfMarket, asOfTic, asOfCot, asOfTaylor, asOfCurve, genAt } from '../data/live'
 
@@ -134,6 +134,53 @@ export default function DataPage() {
                 ))}
               </div>
             </div>
+          )}
+
+          {/* 发布日程对账：官方已发布但我们的数没跟上（真问题，要显眼） */}
+          {lateSources.length > 0 && (
+            <div>
+              <div className="text-xs font-medium mb-2" style={{ color: 'var(--st-fire-text)' }}>
+                {isEN ? 'Behind official release schedule' : '官方已发布但数据未跟上'}
+              </div>
+              <div className="space-y-1.5">
+                {lateSources.map(x => (
+                  <div key={x.key} className="neu-inset-sm px-4 py-2.5 flex items-center gap-3">
+                    <span className="dot" style={{ backgroundColor: 'var(--st-fire)' }} />
+                    <div className="flex-1 text-xs" style={{ color: 'var(--text)' }}>{x.msg}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 可选人工字段：没填不是故障，单独列不计入过期数 */}
+          {optionalSources.length > 0 && (
+            <details>
+              <summary className="neu-btn px-4 py-2 text-xs cursor-pointer list-none"
+                style={{ color: 'var(--text-muted)' }}>
+                {isEN
+                  ? `Optional manual fields (${optionalSources.filter(o => o.filled).length}/${optionalSources.length} filled) — not counted as failures ▼`
+                  : `可选人工字段（${optionalSources.filter(o => o.filled).length}/${optionalSources.length} 已填）· 不填不算故障 ▼`}
+              </summary>
+              <div className="mt-2 space-y-1.5">
+                {optionalSources.map(o => (
+                  <div key={o.key} className="neu-inset-sm px-4 py-2.5 flex items-start gap-3">
+                    <span className="dot mt-1" style={{
+                      backgroundColor: o.filled ? 'var(--st-ok)' : 'var(--st-mute)',
+                    }} />
+                    <div className="flex-1">
+                      <div className="text-xs font-medium" style={{ color: 'var(--text)' }}>
+                        {o.label}
+                        <span className="ml-2" style={{ color: 'var(--text-muted)' }}>
+                          {o.filled ? o.as_of : (isEN ? 'not filled' : '未录入')}
+                        </span>
+                      </div>
+                      <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>{o.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </details>
           )}
 
           {/* All sources accordion */}

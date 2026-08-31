@@ -222,14 +222,29 @@ export const alertRules: AlertRule[] = L
   : mock.alertRules
 
 // ── 数据体检 ──
+// 只统计"应该自动更新的源"。可选人工字段没填不是故障，不进过期数、不进告警清单
+// （否则 war_risk_premium 这类永远没人填的字段会长期把体检显示成"2 数据过期"）。
+const OPTIONAL_KEYS = new Set(
+  ((L?.health?.optional ?? []) as any[]).map(o => o.key)
+)
 export const dataSources: DataSource[] = L
-  ? (L.metrics ?? []).map((m: any) => ({
-      name: `${(m.source ?? '').split(':')[0]} - ${m.label}`,
-      status: m.stale ? 'stale' : 'ok',
-      last_updated: m.as_of ?? '—',
-      reason: m.stale ? m.stale_reason : undefined,
-    }))
+  ? (L.metrics ?? [])
+      .filter((m: any) => !OPTIONAL_KEYS.has(m.key))
+      .map((m: any) => ({
+        name: `${(m.source ?? '').split(':')[0]} - ${m.label}`,
+        status: m.stale ? 'stale' : 'ok',
+        last_updated: m.as_of ?? '—',
+        reason: m.stale ? m.stale_reason : undefined,
+      }))
   : mock.dataSources
+
+// 可选人工字段单独列（填了就显示，没填标"未录入"，不算故障）
+export const optionalSources: { key: string; label: string; filled: boolean; as_of: string | null; desc: string }[] =
+  L?.health?.optional ?? []
+
+// 发布日程对账：官方已发布但我们的数还停在旧周期
+export const lateSources: { key: string; label: string; msg: string; days_late: number }[] =
+  L?.health?.late ?? []
 
 // ── 走势图 ──
 function joined(s1: any[], s2: any[], f: (a: number, b: number) => number) {
