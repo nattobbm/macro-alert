@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import Globe from '../components/Globe'
 import Sparkline from '../components/Sparkline'
-import { fetchLiveQuotes, diverges } from '../data/liveQuote'
+import { fetchLiveQuotes, diverges, TRADING_ORDER } from '../data/liveQuote'
 import type { LiveQuote } from '../data/liveQuote'
-import { snapshots, alerts, alertsNoBands, radarBands, ticLive, regimeLive } from '../data/live'
+import { snapshots, alerts, alertsNoBands, radarBands, ticLive, regimeLive, backendQuotes } from '../data/live'
 import type { RadarBand } from '../data/live'
 import { t as tr, isEN } from '../i18n'
 
@@ -98,8 +98,63 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
   })
   const nWatch = alertsNoBands.length + radarBands.length
 
+  // 浏览器端优先；取不到的标的（如国内无源的BTC）回落到后台20分钟通道
+  const tradeRows = TRADING_ORDER.map(t => {
+    const q = live[t.key]
+    if (q) return { ...t, q, live: true }
+    const b = backendQuotes[t.key]
+    return b ? { ...t, q: { value: b.value, chg_1d_pct: b.chg_1d_pct } as LiveQuote, live: false }
+             : { ...t, q: undefined, live: false }
+  }).filter(x => x.q)
+
   return (
     <div className="space-y-6">
+
+      {/* ── 盘口：她实际交易的标的（期货/现货/CFD口径，非指数）──── */}
+      {tradeRows.length > 0 && (
+        <section>
+          <h2 className="text-base font-bold mb-2 flex items-center gap-2 flex-wrap" style={{ color: 'var(--text)' }}>
+            {isEN ? 'What you trade' : '盘口'}
+            <span className="badge" style={{ backgroundColor: 'var(--st-ok-bg)', color: 'var(--st-ok-text)' }}>
+              <span className="dot pulse-dot" style={{ backgroundColor: 'var(--st-ok)' }} />
+              {isEN ? `live · ${liveAgo}` : `实时 · ${liveAgo}`}
+            </span>
+          </h2>
+          <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))' }}>
+            {tradeRows.map(({ key, label, note, dp, q }) => {
+              const up = (q!.chg_1d_pct ?? 0) >= 0
+              return (
+                <div key={key} className="neu-sm px-3 py-2.5">
+                  <div className="flex items-baseline justify-between gap-1">
+                    <span className="text-xs font-medium notranslate" style={{ color: 'var(--text-muted)' }}>
+                      {label}
+                    </span>
+                    {q!.chg_1d_pct != null && (
+                      <span className="font-num" style={{
+                        fontSize: 11,
+                        color: up ? 'var(--green)' : 'var(--red)',
+                      }}>
+                        {up ? '▲' : '▼'}{Math.abs(q!.chg_1d_pct).toFixed(2)}%
+                      </span>
+                    )}
+                  </div>
+                  <div className="font-num font-bold text-lg leading-tight notranslate" style={{ color: 'var(--text)' }}>
+                    {q!.value.toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp })}
+                  </div>
+                  {note && (
+                    <div style={{ fontSize: 10, color: 'var(--text-muted)', opacity: 0.85 }}>{note}</div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+          <div className="text-xs mt-1.5" style={{ color: 'var(--text-muted)', opacity: 0.8 }}>
+            {isEN
+              ? 'Live reference quotes for display only — never used in rule evaluation. Futures / spot / index are different instruments; each is labeled.'
+              : '实时参考报价，仅供显示，不参与任何规则判定。期货/现货/指数是不同标的，已分别标注口径。'}
+          </div>
+        </section>
+      )}
 
       {/* ── Hero: Globe + Regime chip ────────────────── */}
       <div className="flex flex-col md:flex-row gap-5 items-start">

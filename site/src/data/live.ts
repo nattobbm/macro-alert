@@ -332,3 +332,7 @@ export const econAsOf: string = L?.metrics?.find?.((m: any) => m.key === 'econ_c
 // ForexFactory层健康度：ok / fallback_cache(日期) / unavailable(原因)
 // 该层挂掉时只丢"预期/前值"，FRED官方日期与中国日程仍在（降级不失效）
 export const econFFStatus: string | null = L?.econ_calendar_status ?? null
+
+// ── 后台20分钟通道的行情（浏览器端取不到的标的从这里兜底，如国内无源的BTC）──
+export const backendQuotes: Record<string, { value: number; chg_1d_pct: number | null }> =
+  L?.quotes ?? {}

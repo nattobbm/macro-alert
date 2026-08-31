@@ -718,9 +718,13 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
 
 
 # 盘中高频刷新的行情项（只这些会变，宏观月频/周频数据不需要高频拉）
+# btc 特别说明：国内门户2021年加密禁令后全下架行情，境外交易所被墙，
+# 浏览器端在国内取不到。故走本通道——穿墙在 Actions(美国服务器)完成，
+# 数据落到自有域名，国内外都能看到（代价：20分钟粒度而非实时）。
 QUOTE_TICKERS = {
     "spx": "^GSPC", "vix": "^VIX", "gold": "GC=F", "silver": "SI=F",
     "dxy": "DX-Y.NYB", "usdjpy": "JPY=X", "brent": "BZ=F", "move": "^MOVE",
+    "btc": "BTC-USD", "es": "ES=F", "nq": "NQ=F",
 }
 
 
