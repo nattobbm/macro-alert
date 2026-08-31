@@ -103,6 +103,8 @@ chains:
       - {label_en: "UK selling Treasuries?", label: "英国在卖美债吗", term: "TIC英国持仓环比", metric: tic_uk_chg, threshold: 0, direction: below, note: "含离岸账户,三方同减才算信号"}
       - {label_en: "Yen at intervention line", label: "日元逼近干预线", term: "USDJPY 163", metric: usdjpy, threshold: 163, direction: above, note: "7-31联合干预实际触发位"}
       - {label_en: "Oil out of comfort band", label: "油价出美方舒适区", term: "布伦特>90", metric: brent, threshold: 90, direction: above, note: "产油方的筹码;破位即压力"}
+      - {label_en: "Korea policy rate (ally tightening)", label: "韩国利率(盟友在加息)", term: "韩国央行政策利率", metric: kr_rate, threshold: 2.75, direction: above, note: "艾丽8-27：美方需盟友先加息才能接住他放的水。8-27已连续第二次加至3%"}
+      - {label_en: "Japan policy rate (ally tightening)", label: "日本利率(盟友在加息)", term: "日本央行政策利率", metric: jp_rate, threshold: 0.85, direction: above, note: "9/17-18会议;副行长公开施压加息,植田缺席杰克逊霍尔派鹰派田村代行"}
       - {label_en: "Foreign central banks borrowing USD", label: "外国央行借美元(FIMA)", term: "FIMA回购用量", metric: fima_weekly_usd, threshold: 0, direction: above, note: ">0=以美债换美元而非抛售,合作侧信号"}
 
   - id: ai_credit
@@ -116,6 +118,11 @@ chains:
     falsify: 发债重新被抢购+Oracle保险费降回150以下 = 借钱顺畅，本链降权
     nodes:
       - {label_en: "Off-book commitments", label: "藏在账本外的承诺", term: "表外数据中心租约", value_text: "9690亿$(五巨头)", status: fact, note: "Moody's统计"}
-      - {label_en: "Oracle default insurance (CDS)", label: "Oracle的违约保险费", term: "Oracle 5Y CDS", value_text: "约200bp(涨了4倍)", status: manual, note: "过250=危险,人工跟踪"}
+      # 2026-08-31 增：原来只有拿不到的 Oracle CDS，链条长期"没数据所以不知道"。
+      # 改用可测的信用利差。阈值依据：2023-09起 n=785 的分位数（见 note）。
+      - {label_en: "Weakest borrowers cut off (CCC-HY)", label: "最差的借款人被抛弃了吗", term: "质量利差 CCC−高收益债", metric: quality_spread, threshold: 7.0, direction: above, note: "当前7.66=分位99.4%,且单调走阔12个月(5.63→7.66)。阈值7.0≈分位90%。整体利差低是被优质债拉下来的平均数假象"}
+      - {label_en: "Overall HY spread", label: "整体借钱环境", term: "高收益债利差", metric: hy_oas, threshold: 3.8, direction: above, note: "当前2.60=分位0.1%(空前宽松)。阈值3.8≈分位90%"}
+      - {label_en: "Banks tightening lending", label: "银行在收紧放贷吗", term: "工商贷款标准净收紧%", metric: bank_tight, threshold: 0, direction: above, note: "季频,1990年起。>0=在收紧。当前0.0=既不收紧也不放松"}
+      - {label_en: "Oracle default insurance (CDS)", label: "Oracle的违约保险费", term: "Oracle 5Y CDS", value_text: "约200bp(涨了4倍)", status: manual, note: "过250=危险,人工跟踪(无免费源)"}
       - {label_en: "Would banks get dragged in?", label: "银行会被拖下水吗", term: "银行敞口", value_text: "直接借的少,承诺的多", status: fact, note: "芝加哥联储:已借≈0.8%资产,承诺≈25%核心资本"}
       - {label_en: "Index one-day plunge", label: "大盘单日大跌", term: "SPX单日<-2%", metric: spx_1d_pct, threshold: -2, direction: below, note: "出事时的第一反应口"}

@@ -10,6 +10,8 @@ TICKERS = {
     "gold": "GC=F", "silver": "SI=F", "platinum": "PL=F",
     "dxy": "DX-Y.NYB", "usdjpy": "JPY=X",
     "brent": "BZ=F", "wti": "CL=F", "move": "^MOVE",
+    # AI融资链的价格侧：英伟达是这条链的核心标的（5000亿融资平台、算力期货挂钩其GPU）
+    "nvda": "NVDA", "sox": "^SOX",
 }
 
 

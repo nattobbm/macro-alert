@@ -23,6 +23,7 @@ def fetch_series(key: str, series: str, unit: str, max_staleness_days: int,
     """拉单条序列，返回最新非NaN值；历史序列放 extra['series']（看板用）。"""
     api_key = os.environ["FRED_API_KEY"]
     start = (dt.date.today() - dt.timedelta(days=lookback_days)).isoformat()
+    # http_get 内含 5xx/429 重试：FRED 偶发 502 不该让指标停更到下一次定时跑
     js = http_get(API, {
         "series_id": series, "api_key": api_key, "file_type": "json",
         "observation_start": start, "sort_order": "asc",

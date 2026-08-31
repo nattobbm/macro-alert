@@ -92,6 +92,26 @@ sources:
   auction_tail_bp:   {tier: 3, provider: manual, max_staleness_days: 30, optional: true,
                       desc: "长债拍卖真实tail（精修）。缺失时用 tail_bp_synthetic 合成值"}
 
+  # ---- 信用利差（AI融资链的"借钱难不难"可测代理）----
+  # 2026-08-31 增。原链条靠 Oracle CDS 判断融资难度，但无免费源、长期空着。
+  # 改用 ICE BofA 期权调整利差：整体 HY 看总体环境，CCC 看最差借款人。
+  # 关键是两者之差（质量利差）——整体低位可能只是被优质债拉下来的平均数假象。
+  hy_oas:     {tier: 1, provider: fred, series: BAMLH0A0HYM2, unit: "%", max_staleness_days: 6,
+               desc: "高收益债期权调整利差。低=融资容易"}
+  ccc_oas:    {tier: 1, provider: fred, series: BAMLH0A3HYC,  unit: "%", max_staleness_days: 6,
+               desc: "CCC及以下评级利差。最差借款人的融资成本"}
+  bank_tight: {tier: 1, provider: fred, series: DRTSCILM,     unit: "%", max_staleness_days: 120,
+               desc: "银行收紧工商贷款标准的净百分比(季)。>0=在收紧"}
+
+  # ---- 盟友政策利率（国家博弈链）----
+  # 艾丽8-27判断：美方需要盟友先把息加起来，才能接住他放出来的水。
+  # 美日韩已是三方外汇协调机制（7月联合干预、8月日韩东京会谈）。
+  # 月频OECD口径，滞后约2个月——只作"方向确认"不作即时触发。
+  kr_rate:    {tier: 1, provider: fred, series: IRSTCI01KRM156N, unit: "%", max_staleness_days: 100,
+               desc: "韩国央行即期政策利率(OECD口径)。8-27连续第二次加息至3%"}
+  jp_rate:    {tier: 1, provider: fred, series: IRSTCI01JPM156N, unit: "%", max_staleness_days: 100,
+               desc: "日本央行即期政策利率(OECD口径)。9/17-18会议为观测点"}
+
   # ---- 伦敦金现 XAUUSD (无需key) ----
   # 判定层的黄金口径。8-25报告的4450-4700带子写的是XAUUSD，此前误用COMEX期货判定。
   # 免费官方级现货金源不存在（FRED的LBMA定盘价已停更、yfinance无现货代码、

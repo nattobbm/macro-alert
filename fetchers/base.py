@@ -98,13 +98,37 @@ def check_freshness(dp: DataPoint, max_staleness_days: int,
     return dp
 
 
+# 值得重试的瞬时故障：服务端5xx与限流。4xx（密钥错/参数错/不存在）重试无意义。
+_RETRY_STATUS = {429, 500, 502, 503, 504}
+
+
 def http_get(url: str, params: dict | None = None, timeout: int = 30,
-             as_json: bool = True):
-    """统一 GET：常规 UA（TreasuryDirect 会拒默认 UA）+ 抛错。"""
+             as_json: bool = True, retries: int = 2, backoff: float = 1.5):
+    """统一 GET：常规 UA（TreasuryDirect 会拒默认 UA）+ 瞬时故障重试 + 抛错。
+
+    2026-08-31：FRED 一次 502 就让 sahm_rule/payems 停更，进而 E1/E2 规则整整
+    12小时（到下一次定时跑）无法判定。服务端抖动不该等同于"数据没了"，故加重试。
+    只重试 5xx/429 与网络异常；4xx 是我们自己的问题，重试只会浪费时间。
+    """
+    import time
     import requests
-    r = requests.get(url, params=params, timeout=timeout, headers={
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) macro-alert/2.0",
-        "Accept": "application/json,text/plain,*/*",
-    })
-    r.raise_for_status()
-    return r.json() if as_json else r.text
+    last = None
+    for attempt in range(retries + 1):
+        try:
+            r = requests.get(url, params=params, timeout=timeout, headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) macro-alert/2.0",
+                "Accept": "application/json,text/plain,*/*",
+            })
+            if r.status_code in _RETRY_STATUS and attempt < retries:
+                last = requests.HTTPError(f"{r.status_code} {r.reason}", response=r)
+                time.sleep(backoff * (attempt + 1))
+                continue
+            r.raise_for_status()
+            return r.json() if as_json else r.text
+        except (requests.Timeout, requests.ConnectionError) as e:
+            last = e
+            if attempt < retries:
+                time.sleep(backoff * (attempt + 1))
+                continue
+            raise
+    raise last if last else RuntimeError("http_get: unreachable")

@@ -39,11 +39,13 @@ LABELS = {
     "avg_rate": "政府借钱平均利息",
     "sahm_rule": "衰退报警器(萨姆规则)", "unrate": "失业率", "icsa": "初请失业金(周)",
     "core_pce": "核心物价指数PCE", "gdp_real": "实际GDP", "gdp_pot": "潜在GDP(CBO)",
-    "fedfunds": "联邦基金利率(月均)",
+    "fedfunds": "联邦基金利率(月均)", "kr_rate": "韩国政策利率", "jp_rate": "日本政策利率",
     "tic_japan": "日本持有美债", "tic_uk": "英国持有美债",
     "tic_china": "中国持有美债", "cot_gold": "黄金大户净多单", "cot_silver": "白银大户净多单",
     "cot_jpy": "日元大户净多单", "repo_ops": "常备回购SRF用量", "sofr_nyfed": "SOFR(纽约联储版)",
     "crude_stocks": "原油库存", "spx": "美股大盘SPX", "vix": "恐慌指数VIX", "vix3m": "3月期VIX",
+    "hy_oas": "高收益债利差", "ccc_oas": "CCC级利差", "bank_tight": "银行收紧放贷%",
+    "quality_spread": "质量利差(CCC−HY)", "nvda": "英伟达", "sox": "费城半导体指数",
     "gold": "黄金(COMEX期货)", "xauusd": "黄金(伦敦金现XAUUSD)",
     "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
     "usdjpy": "美元兑日元", "brent": "油价Brent", "wti": "油价WTI", "move": "债市恐慌指数MOVE",
@@ -60,11 +62,13 @@ LABELS_EN = {
     "avg_rate": "Avg Interest on Debt",
     "sahm_rule": "Sahm Rule (Recession Gauge)", "unrate": "Unemployment Rate", "icsa": "Initial Claims (W)",
     "core_pce": "Core PCE Index", "gdp_real": "Real GDP", "gdp_pot": "Potential GDP (CBO)",
-    "fedfunds": "Fed Funds Rate (Mo Avg)",
+    "fedfunds": "Fed Funds Rate (Mo Avg)", "kr_rate": "Korea Policy Rate", "jp_rate": "Japan Policy Rate",
     "tic_japan": "Japan UST Holdings", "tic_uk": "UK UST Holdings",
     "tic_china": "China UST Holdings", "cot_gold": "Gold Net Longs (COT)", "cot_silver": "Silver Net Longs (COT)",
     "cot_jpy": "JPY Net Longs (COT)", "repo_ops": "SRF Usage", "sofr_nyfed": "SOFR (NY Fed)",
     "crude_stocks": "Crude Inventories", "spx": "S&P 500", "vix": "VIX Fear Index", "vix3m": "VIX 3M",
+    "hy_oas": "High Yield OAS", "ccc_oas": "CCC OAS", "bank_tight": "Banks Tightening %",
+    "quality_spread": "Quality Spread (CCC-HY)", "nvda": "NVIDIA", "sox": "PHLX Semiconductor",
     "gold": "Gold (COMEX futures)", "xauusd": "Gold (XAUUSD spot)",
     "silver": "Silver", "platinum": "Platinum", "dxy": "Dollar Index",
     "usdjpy": "USD/JPY", "brent": "Brent Oil", "wti": "WTI Oil", "move": "MOVE Bond Vol",
@@ -265,6 +269,13 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
             inds = [a["indirect_pct"] for a in longs[:4] if a["indirect_pct"] is not None]
             ctx["indirect_falling_3"] = len(inds) >= 4 and all(
                 inds[i] < inds[i + 1] for i in range(3))
+
+    # 质量利差 = CCC级 − 高收益债整体。衡量"最差的借款人是不是在被区别对待"。
+    # 2026-08-31：整体HY 2.60（3年分位0.1%，空前低）但CCC 10.26（分位96.3%），
+    # 差值7.66（分位99.4%）且单调走阔12个月（5.63→7.66）。
+    # 整体利差低是被优质债拉下来的平均数假象——只看总体会把"边缘融资在收紧"读反。
+    if ctx.get("ccc_oas") is not None and ctx.get("hy_oas") is not None:
+        ctx["quality_spread"] = round(ctx["ccc_oas"] - ctx["hy_oas"], 3)
 
     # 就业衍生变量（设计书1.1）：初请4周均值环比 / 曲线前60日最低（不含最新）
     icsa_dp = by_key.get("icsa")
