@@ -47,7 +47,7 @@ LABELS = {
     "gold": "黄金", "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
     "usdjpy": "美元兑日元", "brent": "油价Brent", "wti": "油价WTI", "move": "债市恐慌指数MOVE",
     "auctions": "国债拍卖认购", "gex_net": "做市商GEX", "fedwatch_zq_sep": "9月加息概率(期货算)", "polymarket_sep_hike": "9月加息概率(押注市场)", "fedwatch_sep_hike": "9月加息概率(手动)",
-    "fima_weekly_usd": "外国央行借美元(手动)", "war_risk_premium": "战争险费率(手动)",
+    "fima_weekly_usd": "外国央行借美元(FIMA)", "war_risk_premium": "战争险费率(手动)",
     "auction_tail_bp": "拍卖尾差(手动)",
 }
 
@@ -68,7 +68,7 @@ LABELS_EN = {
     "usdjpy": "USD/JPY", "brent": "Brent Oil", "wti": "WTI Oil", "move": "MOVE Bond Vol",
     "auctions": "Auction Bid-to-Cover", "gex_net": "Dealer GEX", "fedwatch_zq_sep": "Sep Hike Odds (Futures)",
     "polymarket_sep_hike": "Sep Hike Odds (Polymarket)", "fedwatch_sep_hike": "Sep Hike Odds (Manual)",
-    "fima_weekly_usd": "FIMA Usage (Manual)", "war_risk_premium": "War Risk Premium (Manual)",
+    "fima_weekly_usd": "FIMA Repo Usage", "war_risk_premium": "War Risk Premium (Manual)",
     "auction_tail_bp": "Auction Tail (Manual)",
 }
 
@@ -172,7 +172,8 @@ GROUPS = {
     "tic": ["tic_japan", "tic_uk", "tic_china"],
     "positioning": ["cot_gold", "cot_silver", "cot_jpy"],
     "market": ["spx", "vix", "vix3m", "gold", "silver", "platinum", "dxy", "usdjpy", "brent", "wti", "move"],
-    "manual": ["fedwatch_sep_hike", "fima_weekly_usd", "war_risk_premium", "auction_tail_bp"],
+    # fima_weekly_usd 已于 2026-08-31 改为 FRED 自动抓取，移出 manual 组
+    "manual": ["fedwatch_sep_hike", "war_risk_premium", "auction_tail_bp"],
 }
 
 
