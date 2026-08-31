@@ -74,3 +74,28 @@ conclusions:
     auto_n_dir: gex   # 加样器：自动统计data/gex/样本数
     source: fetchers/cboe_gex.py
     so_what: 样本≥8后可做正/负gamma日波动性质分层检验（M11 Phase 2变量）
+
+  - id: warsh_hawkish_talk_delayed_action
+    date: 2026-09-01
+    verdict: 未决
+    claim: Warsh在杰克逊霍尔"该说的狠话说到位，但短期未必动手"——表态偏鹰、行动暂缓
+    claim_en: "Warsh talked hawkish at Jackson Hole but may not act soon: rhetoric tightening is the cheapest option before midterms. Undecided until Sep 16 FOMC."
+    number: "市场不同意：ZQ隐含9月加息概率 8-27 36.9% → 8-28 60.0%(讲话当日+23.1pp) → 9-01 73.8%"
+    evidence: >
+      讲话可核实内容(federalreserve.gov 2026-08-28)：①2%目标不调整不松动
+      ②短期政策利率仍是主要工具、未推新非常规工具 ③不给前瞻指引，看数据临时判断
+      ④近期通胀回落不足以证明底层趋势好转、保留加息选项。
+      "行动暂缓"部分是推断不是讲话内容——依据为中期选举(11-03)前加息的三个代价
+      （打压美股、推高美元压日元、抬美债付息）与五大工作组报告未出。
+    source: 艾丽 8-29/8-30 视频（外部观点，非本库测量）；讲话原文经 federalreserve.gov 核实
+    falsify: >
+      ①9-16 FOMC 实际加息25bp → 本条证伪（"行动暂缓"错），官僚信誉框架加分；
+      ②9-16 维持且声明保留加息选项 → 本条支持（说狠话与不动手并存）；
+      ③9-16 维持且措辞软化转鸽 → 本条部分支持但"偏鹰"部分减分；
+      ④中期选举(11-03)前任一次会议加息 → "选举前推迟实质动作"的核心机制证伪。
+    review_date: 2026-09-16
+    linked_prediction: 2026-09-16_fomc_hike_scenario
+    so_what: >
+      这是全库最高信息量判别点：艾丽框架(选举前口头紧缩)vs 官僚信誉框架(为信誉真加息)
+      的正面冲突。市场用真金白银押了后者(73.8%)。注意本条是**别人的判断**不是本库测量，
+      记录它是为了让它可被证伪——不是因为它更可信。
