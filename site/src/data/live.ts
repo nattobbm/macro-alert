@@ -325,6 +325,8 @@ export type EconEvent = {
   title: string; title_en: string; country: string
   datetime: string; date: string; importance: number
   forecast: string | null; previous: string | null
+  // 实际值：由我们自己抓的官方序列现算（不用金十等登录墙/禁转载源）
+  actual?: string | null; actual_as_of?: string; actual_src?: string
   estimated: boolean; org: string; note: string; chain: string; src: string
 }
 export const econEvents: EconEvent[] = (L?.econ_calendar ?? []) as EconEvent[]

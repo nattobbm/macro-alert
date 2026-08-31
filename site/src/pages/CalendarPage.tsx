@@ -56,6 +56,22 @@ function EventRow({ e, open, onToggle }: { e: EconEvent; open: boolean; onToggle
   let localIsET = false
   try { localIsET = Intl.DateTimeFormat().resolvedOptions().timeZone === 'America/New_York' } catch {}
   const past = d.getTime() < Date.now()
+  // 超预期/不及预期：市场交易的是"实际 vs 预期"的差，不是绝对水位
+  // （CPI 3.6% 在预期3.8%时是利好——只看绝对值会读反）
+  const num = (s?: string | null) => {
+    if (!s) return null
+    const m = String(s).replace(/,/g, '').match(/-?\d+(\.\d+)?/)
+    if (!m) return null
+    let v = parseFloat(m[0])
+    if (/^-|^\D*-/.test(String(s).trim())) v = -Math.abs(v)
+    if (/[Kk]$/.test(String(s).trim())) v = v            // K 单位两边一致，不换算
+    if (/[Mm]$/.test(String(s).trim())) v = v * 1000
+    return v
+  }
+  const a = num(e.actual), f = num(e.forecast)
+  const beat = a != null && f != null
+    ? (Math.abs(a - f) < 1e-9 ? 0 : (a > f ? 1 : -1))
+    : 0
   const impColor = e.importance >= 3 ? 'var(--st-fire-text)'
     : e.importance === 2 ? 'var(--st-warn-text)' : 'var(--text-muted)'
   const hasDetail = !!(e.note || e.chain || e.title_en !== e.title)
@@ -96,17 +112,33 @@ function EventRow({ e, open, onToggle }: { e: EconEvent; open: boolean; onToggle
                 {isEN ? 'est.' : '预计'}
               </span>
             )}
+            {e.actual != null && beat !== 0 && (
+              <span className="text-xs px-1.5 rounded notranslate" style={{
+                backgroundColor: beat > 0 ? 'var(--st-ok-bg)' : 'var(--st-fire-bg)',
+                color: beat > 0 ? 'var(--st-ok-text)' : 'var(--st-fire-text)',
+              }}>
+                {beat > 0 ? (isEN ? 'above est.' : '超预期') : (isEN ? 'below est.' : '不及预期')}
+              </span>
+            )}
           </div>
           <div className="text-sm font-medium leading-snug mt-0.5" style={{ color: 'var(--text)' }}>
             {isEN ? e.title_en : e.title}
           </div>
         </div>
 
-        {/* 预期 / 前值 */}
+        {/* 实际 / 预期 / 前值。实际值来自我们自己的官方序列，发布后自动补上 */}
         <div className="flex-shrink-0 text-right">
+          {e.actual != null && (
+            <div className="font-num text-sm font-bold notranslate"
+              title={`${isEN ? 'actual' : '实际'} · ${e.actual_src ?? ''} · ${e.actual_as_of ?? ''}`}
+              style={{ color: beat === 0 ? 'var(--text)' : beat > 0 ? 'var(--green)' : 'var(--red)' }}>
+              {e.actual}
+            </div>
+          )}
           {e.forecast != null && (
-            <div className="font-num text-sm notranslate" style={{ color: 'var(--accent)' }}>
-              {e.forecast}
+            <div className={`font-num notranslate ${e.actual != null ? 'text-xs' : 'text-sm'}`}
+              style={{ color: e.actual != null ? 'var(--text-muted)' : 'var(--accent)' }}>
+              {isEN ? 'est ' : '预 '}{e.forecast}
             </div>
           )}
           {e.previous != null && (
@@ -114,7 +146,7 @@ function EventRow({ e, open, onToggle }: { e: EconEvent; open: boolean; onToggle
               {isEN ? 'prev ' : '前 '}{e.previous}
             </div>
           )}
-          {e.forecast == null && e.previous == null && (
+          {e.forecast == null && e.previous == null && e.actual == null && (
             <div className="text-xs" style={{ color: 'var(--text-muted)' }}>—</div>
           )}
         </div>

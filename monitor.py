@@ -574,6 +574,109 @@ RELEASE_WATCH = {
 }
 GRACE_DAYS = 2          # 发布后给2天缓冲，避开时区与抓取窗口
 
+# 日历「实际值」自建映射（2026-08-31）
+# 背景：ForexFactory 免费feed只有预期/前值没有实际；金十有实际但要登录且
+# 页面明文"未经授权不得将资讯数据用于AI训练或其他商业用途"——不碰。
+# 做法：实际值从我们已在抓的官方序列现算，发布后FRED自动更新，比二手转发更近源头。
+#   (指标key, 变换, 显示格式)
+#   level   = 直接取值          level_k = 取值/1000（ICSA是人数）
+#   diff_k  = 与上期之差（PAYEMS单位已是千人，差值即"非农新增"）
+#   mom_pct = 环比%            yoy_pct = 同比%
+ACTUAL_MAP: dict[str, tuple[str, str, str]] = {
+    "非农就业人数":        ("payems",   "diff_k",  "{:+.0f}K"),
+    "非农就业报告":        ("payems",   "diff_k",  "{:+.0f}K"),
+    "失业率":              ("unrate",   "level",   "{:.1f}%"),
+    "初请失业金":          ("icsa",     "level_k", "{:.0f}K"),
+    "消费者物价CPI(月)":   ("cpi",      "mom_pct", "{:+.1f}%"),
+    "消费者物价CPI":       ("cpi",      "mom_pct", "{:+.1f}%"),
+    "消费者物价CPI(年)":   ("cpi",      "yoy_pct", "{:.1f}%"),
+    "核心CPI(月)":         ("core_cpi", "mom_pct", "{:+.1f}%"),
+    "核心CPI(年)":         ("core_cpi", "yoy_pct", "{:.1f}%"),
+    "生产者物价PPI(月)":   ("ppi",      "mom_pct", "{:+.1f}%"),
+    "生产者物价PPI":       ("ppi",      "mom_pct", "{:+.1f}%"),
+    "核心PCE物价":         ("core_pce", "mom_pct", "{:+.1f}%"),
+    "个人收支(含核心PCE)": ("core_pce", "mom_pct", "{:+.1f}%"),
+    "零售销售(月)":        ("retail",   "mom_pct", "{:+.1f}%"),
+    "零售销售":            ("retail",   "mom_pct", "{:+.1f}%"),
+}
+
+
+def _series_map(dp) -> dict[str, float]:
+    return {d: v for d, v in (dp.extra.get("series") or [])} if dp else {}
+
+
+def _compute_actual(dp, period: str, how: str, fmt: str) -> tuple[str, str] | None:
+    """按 period(数据周期起始日) 从官方序列算出实际值。返回 (显示串, as_of)。"""
+    s = _series_map(dp)
+    if not s:
+        return None
+    dates = sorted(s)
+    # 月频：精确匹配周期；周频：取<=周期末的最后一个观测
+    if period in s:
+        i = dates.index(period)
+    else:
+        cand = [d for d in dates if d <= period]
+        if not cand:
+            return None
+        i = dates.index(cand[-1])
+    cur, d0 = s[dates[i]], dates[i]
+    prev = s[dates[i - 1]] if i > 0 else None
+    try:
+        if how == "level":
+            v = cur
+        elif how == "level_k":
+            v = cur / 1000
+        elif how == "diff_k":
+            if prev is None:
+                return None
+            v = cur - prev
+        elif how == "mom_pct":
+            if not prev:
+                return None
+            v = (cur / prev - 1) * 100
+        elif how == "yoy_pct":
+            y, m = int(d0[:4]) - 1, d0[5:7]
+            base = s.get(f"{y:04d}-{m}-01")
+            if not base:
+                return None
+            v = (cur / base - 1) * 100
+        else:
+            return None
+        return fmt.format(v), d0
+    except Exception:
+        return None
+
+
+def _fill_actuals(dps: list, econ_events: list[dict]) -> int:
+    """给已发布的日历事件补上「实际值」。原地修改 econ_events，返回补上的条数。"""
+    by_key = {dp.key: dp for dp in dps}
+    today = dt.date.today()
+    n = 0
+    for ev in econ_events:
+        m = ACTUAL_MAP.get(ev.get("title"))
+        if not m or ev.get("actual"):
+            continue
+        try:
+            rel = dt.date.fromisoformat(ev["date"])
+        except Exception:
+            continue
+        if rel >= today:                      # 还没发布，没有实际值
+            continue
+        key, how, fmt = m
+        dp = by_key.get(key)
+        if not dp or dp.stale:
+            continue
+        # 该次发布覆盖的数据周期：周频取发布前一周，月频取上一个月1号
+        weekly = how == "level_k" or "初请" in ev["title"]
+        period = ((rel - dt.timedelta(days=5)).isoformat() if weekly
+                  else (rel.replace(day=1) - dt.timedelta(days=1)).replace(day=1).isoformat())
+        got = _compute_actual(dp, period, how, fmt)
+        if got:
+            ev["actual"], ev["actual_as_of"] = got
+            ev["actual_src"] = dp.source        # 留痕：实际值来自哪条官方序列
+            n += 1
+    return n
+
 
 def _check_late(dps: list, econ_events: list[dict]) -> list[dict]:
     """官方已发布但我们的数还停在旧周期 → 延迟。
@@ -680,6 +783,10 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
     _econ = (by_key["econ_calendar"].extra.get("events", [])
              if "econ_calendar" in by_key else [])
     late_list = _check_late(dps, _econ)
+    # 日历补「实际值」（来自我们自己抓的官方序列，凑齐 实际/预期/前值 三栏）
+    _n_actual = _fill_actuals(dps, _econ)
+    if _n_actual:
+        print(f"[calendar] 补上实际值 {_n_actual} 条", file=sys.stderr)
 
     tic_rows = [{"country": by_key[k].extra.get("country", k), "holdings_bn": by_key[k].value,
                  "chg_bn": by_key[k].extra.get("chg_bn"), "as_of": by_key[k].as_of,

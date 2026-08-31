@@ -33,6 +33,20 @@ sources:
                lookback_days: 1200, desc: "CBO潜在GDP(季)，产出缺口分母。未来预测观测在抓取层裁掉"}
   fedfunds:   {tier: 1, provider: fred, series: FEDFUNDS,   unit: "%",  max_staleness_days: 75,
                lookback_days: 1200, desc: "联邦基金实际利率(月均)，泰勒缺口的实际政策利率"}
+  # ---- 2026-08-31 日历「实际值」自建（不碰金十等登录墙/禁转载源）----
+  # 用途：日历上凑齐 实际/预期/前值 三栏。预期与前值来自ForexFactory，
+  # 实际值来自下列官方序列——发布后FRED自动更新，比二手站转发更接近源头。
+  payems:     {tier: 1, provider: fred, series: PAYEMS,     unit: "k",  max_staleness_days: 75,
+               lookback_days: 800, desc: "非农就业总人数(千人)。月度差值=市场看的非农新增"}
+  cpi:        {tier: 1, provider: fred, series: CPIAUCSL,   unit: "idx", max_staleness_days: 75,
+               lookback_days: 1200, desc: "CPI物价指数。monitor算环比/同比"}
+  core_cpi:   {tier: 1, provider: fred, series: CPILFESL,   unit: "idx", max_staleness_days: 75,
+               lookback_days: 1200, desc: "核心CPI(剔食品能源)"}
+  ppi:        {tier: 1, provider: fred, series: PPIFIS,     unit: "idx", max_staleness_days: 75,
+               lookback_days: 1200, desc: "PPI最终需求"}
+  retail:     {tier: 1, provider: fred, series: RSAFS,      unit: "mn", max_staleness_days: 75,
+               lookback_days: 1200, desc: "零售与食品服务销售额"}
+
   # FIMA回购便利用量：H.4.1 资产侧"Repurchase Agreements - Foreign Official"。
   # 2026-08-31 由人工每周四读H.4.1改为FRED自动（核对无误：近10周全为0，
   # 与手记"截至2026-08-05连续8周为零"吻合）。周三口径，周四发布→窗口12天。
