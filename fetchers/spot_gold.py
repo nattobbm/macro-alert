@@ -68,8 +68,10 @@ def fetch(comex_price: float | None = None, max_staleness_days: int = 5) -> Data
         raw = http_get(TX, timeout=20, as_json=False)
         f = raw.split('"')[1].split(",")
         tv = float(f[0])
+        # 腾讯 hf_ 字段：[6]=时刻HH:MM:SS [12]=日期YYYY-MM-DD，取日期才能与其他源同日比对
+        tdate = f[12].strip() if len(f) > 12 and f[12].strip().count("-") == 2 else ""
         if 500 < tv < 50000:
-            quotes["tencent:hf_XAU"] = (tv, (f[12] if len(f) > 12 else ""))
+            quotes["tencent:hf_XAU"] = (tv, tdate or dt.date.today().isoformat())
     except Exception:
         pass
 
@@ -79,23 +81,29 @@ def fetch(comex_price: float | None = None, max_staleness_days: int = 5) -> Data
         return dp
 
     dp.extra["quotes"] = {k: {"value": round(a, 2), "date": b} for k, (a, b) in quotes.items()}
-    vals = [a for a, _ in quotes.values()]
-    spread_pct = (max(vals) - min(vals)) / min(vals) * 100
-    dp.extra["spread_pct"] = round(spread_pct, 3)
 
-    # 取日期最新的那条作为值（同数据集两端点日期常差一天）
-    best = max(quotes.items(), key=lambda kv: (kv[1][1], kv[0] != "tencent:hf_XAU"))
-    dp.value = round(best[1][0], 2)
-    dp.as_of = best[1][1] or dt.date.today().isoformat()
-    dp.extra["picked"] = best[0]
+    # 取值优先级：实时现货 > 开源数据集日频。
+    # Momo 交易的是 XAUUSD CFD，看盘看的就是实时现货价，判定必须与她看的同一个数。
+    # 2026-08-31 修：先前把"同一数据集的两个不同日期快照"（xau.json 08-30 与
+    # usd.json 08-31）当成两个源在打架，误判为 source_conflict 而拒绝判定。
+    # 那不是冲突，是新旧不同。真正的独立校验只有一个：与 COMEX 的基差是否合理。
+    order = ["tencent:hf_XAU", "currency-api:usd_inv", "currency-api:xau"]
+    pick = next((k for k in order if k in quotes), None)
+    dp.value = round(quotes[pick][0], 2)
+    dp.as_of = quotes[pick][1] or dt.date.today().isoformat()
+    dp.extra["picked"] = pick
 
-    # 跨源分歧过大 → 不判定（沿用 H2_sofr_conflict：不静默择一）
-    if len(vals) > 1 and spread_pct > MAX_SPREAD_PCT:
-        dp.stale = True
-        dp.stale_reason = (f"source_conflict({spread_pct:.2f}%>"
-                           f"{MAX_SPREAD_PCT}%): " +
-                           " / ".join(f"{k.split(':')[0]}={a:.0f}" for k, (a, _) in quotes.items()))
-        return dp
+    # 同日多源之间的一致性（仅记录，不阻断——日期不同不构成冲突）
+    same_day = [a for _, (a, b) in quotes.items() if b == dp.as_of]
+    if len(same_day) > 1:
+        sp = (max(same_day) - min(same_day)) / min(same_day) * 100
+        dp.extra["same_day_spread_pct"] = round(sp, 3)
+        if sp > MAX_SPREAD_PCT:
+            dp.stale = True
+            dp.stale_reason = (f"same_day_source_conflict({sp:.2f}%>{MAX_SPREAD_PCT}%): " +
+                               " / ".join(f"{k.split(':')[0]}={a:.0f}"
+                                          for k, (a, b) in quotes.items() if b == dp.as_of))
+            return dp
 
     # 与 COMEX 交叉校验：基差离谱 → 判 stale，不参与规则
     if comex_price:
