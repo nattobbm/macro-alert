@@ -201,12 +201,18 @@ gold:
   - id: X1_gold_breakout
     name: "黄金突破关键位"
     name_en: "Gold key-level break"
-    requires: [gold]
-    rule: "gold > 4700 or gold < 4450"
+    requires: [xauusd]
+    rule: "xauusd > 4700 or xauusd < 4450"
     severity: alert
     once_per: 7d
     chain: "8-25报告基线区间4450-4700。上破=上行情景确认；下破=需求侧紧缩链回归"
-    note: "阈值由v1的4400/4000更新（2026-08-26，依据8-25报告情景区间）"
+    note: >
+      阈值由v1的4400/4000更新（2026-08-26，依据8-25报告情景区间）。
+      2026-08-31 口径修正：本规则原用 gold(COMEX期货GC=F)，但8-25报告原文写的是
+      「预期区间【推断】：XAUUSD 4,450–4,700」——带子是按伦敦金现定的。
+      两者差约50美元，导致离下界距离被系统性低估约1个百分点
+      （COMEX 4508→离下界1.30%显示"安静"；XAUUSD 4458→0.18%几乎贴线）。
+      阈值数字未改，只把输入换成与阈值同口径的 xauusd。
 
   - id: X2_metals_divergence
     name: "贵金属板块背离"

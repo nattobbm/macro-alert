@@ -92,6 +92,13 @@ sources:
   auction_tail_bp:   {tier: 3, provider: manual, max_staleness_days: 30, optional: true,
                       desc: "长债拍卖真实tail（精修）。缺失时用 tail_bp_synthetic 合成值"}
 
+  # ---- 伦敦金现 XAUUSD (无需key) ----
+  # 判定层的黄金口径。8-25报告的4450-4700带子写的是XAUUSD，此前误用COMEX期货判定。
+  # 免费官方级现货金源不存在（FRED的LBMA定盘价已停更、yfinance无现货代码、
+  # Stooq 404、metals.dev需密钥），故用 CC0 开源数据集并强制与COMEX基差校验。
+  xauusd:     {tier: 2, provider: spot_gold, unit: usd, max_staleness_days: 5,
+               desc: "伦敦金现。currency-api(CC0)日频；基差落在COMEX±合理区间外即判stale"}
+
   # ---- CBOE 延迟期权链 (无需key, 15-20分钟延迟) ----
   gex_net:    {tier: 1, provider: cboe, max_staleness_days: 3,
                desc: "SPX净GEX(bn$/1%)。dealer long call/short put启发式+BS重定价flip。每日快照存data/gex/"}

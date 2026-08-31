@@ -23,7 +23,7 @@ import yaml
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar  # noqa: E402
+from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar, spot_gold  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict  # noqa: E402
 
@@ -44,7 +44,8 @@ LABELS = {
     "tic_china": "中国持有美债", "cot_gold": "黄金大户净多单", "cot_silver": "白银大户净多单",
     "cot_jpy": "日元大户净多单", "repo_ops": "常备回购SRF用量", "sofr_nyfed": "SOFR(纽约联储版)",
     "crude_stocks": "原油库存", "spx": "美股大盘SPX", "vix": "恐慌指数VIX", "vix3m": "3月期VIX",
-    "gold": "黄金", "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
+    "gold": "黄金(COMEX期货)", "xauusd": "黄金(伦敦金现XAUUSD)",
+    "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
     "usdjpy": "美元兑日元", "brent": "油价Brent", "wti": "油价WTI", "move": "债市恐慌指数MOVE",
     "auctions": "国债拍卖认购", "gex_net": "做市商GEX", "fedwatch_zq_sep": "9月加息概率(期货算)", "polymarket_sep_hike": "9月加息概率(押注市场)", "fedwatch_sep_hike": "9月加息概率(手动)",
     "fima_weekly_usd": "外国央行借美元(FIMA)", "war_risk_premium": "战争险费率(手动)",
@@ -64,7 +65,8 @@ LABELS_EN = {
     "tic_china": "China UST Holdings", "cot_gold": "Gold Net Longs (COT)", "cot_silver": "Silver Net Longs (COT)",
     "cot_jpy": "JPY Net Longs (COT)", "repo_ops": "SRF Usage", "sofr_nyfed": "SOFR (NY Fed)",
     "crude_stocks": "Crude Inventories", "spx": "S&P 500", "vix": "VIX Fear Index", "vix3m": "VIX 3M",
-    "gold": "Gold", "silver": "Silver", "platinum": "Platinum", "dxy": "Dollar Index",
+    "gold": "Gold (COMEX futures)", "xauusd": "Gold (XAUUSD spot)",
+    "silver": "Silver", "platinum": "Platinum", "dxy": "Dollar Index",
     "usdjpy": "USD/JPY", "brent": "Brent Oil", "wti": "WTI Oil", "move": "MOVE Bond Vol",
     "auctions": "Auction Bid-to-Cover", "gex_net": "Dealer GEX", "fedwatch_zq_sep": "Sep Hike Odds (Futures)",
     "polymarket_sep_hike": "Sep Hike Odds (Polymarket)", "fedwatch_sep_hike": "Sep Hike Odds (Manual)",
@@ -119,8 +121,9 @@ RADAR_BANDS = [
      "lo_note_en": "Below 80 → adversaries act bolder", "hi_note_en": "Above 90 → US leans to de-escalate",
      "origin": "报告情景区间 · 区间控制假说(加样中)", "origin_en": "Scenario band: range-control hypothesis",
      "rule_id": "G1_oil_band_break"},
-    {"id": "gold_band", "key": "gold", "lo": 4450.0, "hi": 4700.0, "unit": "美元",
-     "label": "黄金", "label_en": "Gold",
+    # 口径与阈值同源：8-25报告写的是「XAUUSD 4,450–4,700」，故用伦敦金现不用COMEX期货
+    {"id": "gold_band", "key": "xauusd", "lo": 4450.0, "hi": 4700.0, "unit": "美元",
+     "label": "黄金(伦敦金现XAUUSD)", "label_en": "Gold (XAUUSD spot)",
      "lo_note": "跌破4450 → 紧缩逻辑回归", "hi_note": "涨破4700 → 上行情景确认",
      "lo_note_en": "Below 4450 → tightening chain returns", "hi_note_en": "Above 4700 → upside scenario confirmed",
      "origin": "报告情景区间 · 8-25报告", "origin_en": "Scenario band: Aug-25 report",
@@ -171,7 +174,7 @@ GROUPS = {
     "economy": ["sahm_rule", "unrate", "icsa", "core_pce", "gdp_real", "gdp_pot", "fedfunds"],
     "tic": ["tic_japan", "tic_uk", "tic_china"],
     "positioning": ["cot_gold", "cot_silver", "cot_jpy"],
-    "market": ["spx", "vix", "vix3m", "gold", "silver", "platinum", "dxy", "usdjpy", "brent", "wti", "move"],
+    "market": ["spx", "vix", "vix3m", "gold", "xauusd", "silver", "platinum", "dxy", "usdjpy", "brent", "wti", "move"],
     # fima_weekly_usd 已于 2026-08-31 改为 FRED 自动抓取，移出 manual 组
     "manual": ["fedwatch_sep_hike", "war_risk_premium", "auction_tail_bp"],
 }
@@ -197,6 +200,10 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps.append(nyfed.fetch_sofr())
     dps.append(eia.fetch_crude_stocks())
     dps += market.fetch_all(sources.get("market", {}).get("max_staleness_days", 4))
+    # 伦敦金现：判定层的黄金口径（8-25报告的4450-4700带子是按XAUUSD定的）。
+    # 传入COMEX价做基差交叉校验，基差离谱则判stale不参与规则。
+    _gc = next((d.value for d in dps if d.key == "gold" and not d.stale), None)
+    dps.append(spot_gold.fetch(comex_price=_gc))
     dps += manual.fetch_all(DATA / "manual.json")
     dps.append(cboe_gex.fetch(DATA / "gex"))
     dps.append(fedwatch_zq.fetch(DATA / "fedwatch"))
@@ -346,8 +353,9 @@ RADAR = [
     ("加息预期崩落",   "fedwatch_sep_hike", 0.25, "below", "F2_hike_odds_down"),
     ("日元弱到官方干预线",       "usdjpy",           163.0, "above", "J1_intervention_zone"),
     ("日元强到撤资线",       "usdjpy",           157.0, "below", "J1b_carry_unwind"),
-    ("黄金冲上界",          "gold",             4700.0, "above", "X1_gold_breakout"),
-    ("黄金跌下界",          "gold",             4450.0, "below", "X1_gold_breakout"),
+    # 口径与阈值同源：8-25报告的4450-4700是按XAUUSD定的，不能用COMEX期货量
+    ("黄金冲上界",          "xauusd",           4700.0, "above", "X1_gold_breakout"),
+    ("黄金跌下界",          "xauusd",           4450.0, "below", "X1_gold_breakout"),
     ("油价出上界",      "brent",            90.0, "above", "G1_oil_band_break"),
     ("油价出下界",      "brent",            80.0, "below", "G1_oil_band_break"),
     ("恐慌指数进应激区",         "vix",              30.0, "above", "S1_vix_regime"),
