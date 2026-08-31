@@ -19,7 +19,23 @@ FEEDS = [
     ("Fed讲话", "https://www.federalreserve.gov/feeds/speeches.xml"),
     ("EIA", "https://www.eia.gov/rss/todayinenergy.xml"),
     ("BEA", "https://apps.bea.gov/rss/rss.xml"),
+    # 2026-08-31 增地缘源。起因：霍尔木兹再起冲突、美军打击伊朗布雷火箭发射器、
+    # 布伦特+2.93%破80-90区间上界，而本系统新闻流里一条相关消息都没有——
+    # 地缘链有节点有阈值却没有事件输入，等于瞎的。
+    #
+    # 口径说明（与"二手聚合站一律不作为数据源"不冲突）：
+    #   那条铁律针对的是**数字**（2026-08-17 二手站回收旧TIC数据事故）。
+    #   本层取的是**事件通报**——"发生了什么"，不取任何数字。
+    #   所有数字仍然只认官方API源，一条都不从新闻里读。
+    # 已试过并否决的官方源：美国防部RSS(内容是宣传稿与人物故事，无中东行动)、
+    #   美中央司令部(RSS返回空、直链403)、国务院(Technical Difficulties)、OFAC(403)。
+    ("BBC世界", "https://feeds.bbci.co.uk/news/world/rss.xml"),
+    ("CNBC能源", "https://search.cnbc.com/rs/search/combinedcms/view.xml"
+                "?partnerId=wrss01&id=19836768"),
+    ("OilPrice", "https://oilprice.com/rss/main"),
+    ("AlJazeera", "https://www.aljazeera.com/xml/rss/all.xml"),
     # 已测不可用（2026-08-27）：Treasury/BLS/NYFed 的RSS均403/404，GDELT超时。
+    # 已测不可用（2026-08-31）：Reuters/AP 的RSS域名已停止解析。
     # 词表打标不解读；数字仍只认官方API源。
 ]
 
@@ -28,7 +44,12 @@ TAGS = {
     "债务链": r"treasury|auction|refunding|buyback|debt|deficit|bond|yield|issuance|QRA",
     "货币链": r"\bfed\b|fomc|rate|federal funds|reserve|repo|QT|balance sheet|SOFR|IORB|liquidity|discount",
     "日本链": r"japan|boj|yen|jgb",
-    "地缘链": r"iran|hormuz|sanction|strike|missile|opec|\boil\b|crude|israel|tanker",
+    # strike 单独一词误报太多（Global Strike Command / strike fighter 等美军建制名），
+    # 故要求它与地缘对象连用；air/miss​ile strike 这类明确军事行动仍单独收。
+    "地缘链": (r"iran|hormuz|sanction|missile|opec|\boil\b|crude|israel|tanker|"
+             r"houthi|red sea|persian gulf|tehran|"
+             r"(air|missile|drone|retaliat\w*|military)\s+strikes?|"
+             r"strikes?\s+(on|against|in)\b"),
     "AI链": r"nvidia|\bai\b|artificial intelligence|datacenter|data center|oracle|hyperscaler|chip",
     "黄金链": r"gold|bullion|comex|precious",
     "数据": r"\bcpi\b|\bppi\b|\bpce\b|payroll|employment|unemployment|gdp|retail sales|inflation",

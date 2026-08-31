@@ -13,6 +13,31 @@ TICKERS = {
 }
 
 
+def _bar_is_malformed(row) -> str | None:
+    """OHLC自洽性检查。返回违例说明，正常返回None。
+
+    2026-08-31 事故：周日夜盘刚开时 yfinance 的 BZ=F 日线给出
+    开89.31/高89.09/低86.90/收88.47——最高价低于开盘价，物理上不可能。
+    该坏数据让 Brent 显示 −0.83%，而真实是 +2.93%（霍尔木兹冲突推高油价），
+    导致 G1「油价出上界」漏报了一次真实突破。
+    未成形的当日K线对所有标的都可能这样，故做通用校验。
+    """
+    try:
+        o, h, l, c = (float(row["Open"]), float(row["High"]),
+                      float(row["Low"]), float(row["Close"]))
+    except Exception:
+        return None
+    if not all(x > 0 for x in (o, h, l, c)):
+        return "non_positive_price"
+    if h < max(o, c) - 1e-9:
+        return f"high({h:g})<max(open,close)({max(o, c):g})"
+    if l > min(o, c) + 1e-9:
+        return f"low({l:g})>min(open,close)({min(o, c):g})"
+    if h < l:
+        return f"high({h:g})<low({l:g})"
+    return None
+
+
 def fetch_all(max_staleness_days: int = 4, tickers: dict | None = None) -> list[DataPoint]:
     import yfinance as yf
     tickers = tickers or TICKERS
@@ -26,6 +51,18 @@ def fetch_all(max_staleness_days: int = 4, tickers: dict | None = None) -> list[
             h = yf.Ticker(sym).history(period="2y" if key == "spx" else "1y",
                                        auto_adjust=False)
             if not h.empty:
+                # 末根K线自洽性校验：坏了就退回上一根完整K线，并记原委。
+                # 宁可用昨天的真数，也不用今天的坏数（坏数会让方向反向）。
+                bad = _bar_is_malformed(h.iloc[-1]) if len(h) else None
+                if bad and len(h) > 1:
+                    dp.extra["dropped_bar"] = {
+                        "date": h.index[-1].date().isoformat(), "reason": bad}
+                    h = h.iloc[:-1]
+                elif bad:
+                    dp.stale = True
+                    dp.stale_reason = f"malformed_bar:{bad}"
+                    out.append(dp)
+                    continue
                 closes = h["Close"].dropna()
                 dp.value = round(float(closes.iloc[-1]), 4)
                 dp.as_of = closes.index[-1].date().isoformat()
