@@ -71,3 +71,13 @@ export function diverges(live: number, official: number | null | undefined): boo
   if (official == null || !isFinite(official) || official === 0) return false
   return Math.abs(live / official - 1) * 100 > DIVERGE_PCT
 }
+
+// 备选方案与否决理由（2026-08-31 实测，留档避免以后重复调研）：
+// - iframe嵌别人的行情组件：今天上午刚拆掉TradingView日历就是这条路——
+//   对方被墙你就是白屏，且你无法察觉。另外iframe是密封盒子，
+//   跨域读不出里面的数，没法与官方值交叉校验，样式也套不进本站设计。
+// - Yahoo/Stooq/新浪/Finnhub 浏览器直连：全部被同源策略挡下，与是否外国站无关。
+// - Yahoo 经公共CORS代理(allorigins)：能通，但多一个不受控的第三方，
+//   且免费代理不保证可用性。收益(第二实时源)不抵复杂度，否决。
+// - Twelve Data / exchangerate.host 等需密钥的：跨域可通，但客户端密钥在
+//   公开站点必然暴露，且配额被所有访客共用——几十个访客几分钟烧干，否决。
