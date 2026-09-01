@@ -332,8 +332,19 @@ export const ticLive = L?.tic?.length
 export const regimeLive = L?.regime
   ? {
       name: L.regime.name, met: L.regime.met, total: L.regime.total,
+      unknown: L.regime.unknown ?? 0,
+      plain: L.regime.plain as string | undefined,
+      sourceNote: L.regime.source_note as string | undefined,
+      // 8-25报告写的判据，现在真算了（monitor._judge_regime），不再是一句摆设
+      judge: L.regime.judge_result as
+        | { verdict: string; plain: string; window_days: number
+            tips_chg_bp: number; gold_chg_pct: number; rule: string }
+        | null | undefined,
+      // known=false 是"这条没数"，不是"不成立"——两者必须分开显示，
+      // 否则条件数会在 0/3↔1/3 之间跳，看的人以为网站在乱跳
       conds: (L.regime.detail ?? []).map((d: any) => ({
-        label: d.cond, value: d.value != null ? fmt(d.value) : '—', met: !!d.met,
+        label: d.cond, value: d.value != null ? fmt(d.value) : '—',
+        met: !!d.met, known: d.known !== false,
       })),
     }
   : null

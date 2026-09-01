@@ -95,26 +95,26 @@ RADAR_EN = {
 
 # 警戒线来源四分类（回答"阈值有没有标准"：每条线的出处都在 rules.yaml，此处做展示用短语）
 RADAR_ORIGIN = {
-    "30年利率回前高":       ("历史事件位 · 8-18的19年高点5.33%", "Event level: Aug-18 19yr high 5.33%"),
-    "30年利率失控区":       ("机制阈值 · 触发政策救市的水位",     "Mechanism: policy-response level"),
-    "银行缺现金(SOFR冒头)": ("机制阈值 · 准备金稀缺最早信号",     "Mechanism: earliest reserve-scarcity signal"),
+    "30年利率回前高":       ("真出过事的位置 · 8-18创下19年最高5.33%", "Event level: Aug-18 19yr high 5.33%"),
+    "30年利率失控区":       ("机制线 · 到这个位置官方通常得出手",     "Mechanism: policy-response level"),
+    "银行缺现金(SOFR冒头)": ("机制线 · 银行缺钱最早露头的地方",     "Mechanism: earliest reserve-scarcity signal"),
     "加息预期回升":         ("报告情景区间 · 8-25报告",           "Scenario band: Aug-25 report"),
     "加息预期崩落":         ("报告情景区间 · 8-25报告",           "Scenario band: Aug-25 report"),
-    "日元弱到官方干预线":   ("历史事件位 · 7-31联合干预位",       "Event level: Jul-31 joint intervention"),
-    "日元强到撤资线":       ("机制阈值 · 套息平仓启动位",         "Mechanism: carry-unwind trigger"),
+    "日元弱到官方干预线":   ("真出过事的位置 · 7-31各国联手干预就在这",       "Event level: Jul-31 joint intervention"),
+    "日元强到撤资线":       ("机制线 · 借日元的钱开始撤的位置",         "Mechanism: carry-unwind trigger"),
     "黄金冲上界":           ("报告情景区间 · 8-25报告",           "Scenario band: Aug-25 report"),
     "黄金跌下界":           ("报告情景区间 · 8-25报告",           "Scenario band: Aug-25 report"),
     "油价出上界":           ("报告情景区间 · 区间控制假说(加样中)", "Scenario band: range-control hypothesis"),
     "油价出下界":           ("报告情景区间 · 区间控制假说(加样中)", "Scenario band: range-control hypothesis"),
     "恐慌指数进应激区":     ("统计分位 · 历史应激区间",           "Statistical: historical stress zone"),
-    "债市恐慌指数爆表":     ("历史事件位 · basis trade平仓风险位", "Event level: basis-trade unwind risk"),
+    "债市恐慌指数爆表":     ("真出过事的位置 · 上次对冲基金爆仓就在这个水平", "Event level: basis-trade unwind risk"),
     "黄金大户仓位极端":     ("统计分位 · 52周90分位",             "Statistical: 52w 90th percentile"),
-    "利息增速追上收入增速": ("机制阈值 · r>g债务动力学翻转点",    "Mechanism: r>g debt-dynamics flip"),
-    "跌破gamma翻转位(波动放大区)": ("机制阈值 · 穿越即状态切换",  "Mechanism: crossing = regime switch"),
-    "升破上方期权密集位(call墙)":  ("机制阈值 · 穿越即状态切换",  "Mechanism: crossing = regime switch"),
-    "跌破下方期权密集位(put墙)":   ("机制阈值 · 穿越即状态切换",  "Mechanism: crossing = regime switch"),
+    "利息增速追上收入增速": ("机制线 · 利息涨得比收入快，债就开始自己滚大",    "Mechanism: r>g debt-dynamics flip"),
+    "跌破gamma翻转位(波动放大区)": ("机制线 · 穿过去，市场的脾气就变了",  "Mechanism: crossing = regime switch"),
+    "升破上方期权密集位(call墙)":  ("机制线 · 穿过去，市场的脾气就变了",  "Mechanism: crossing = regime switch"),
+    "跌破下方期权密集位(put墙)":   ("机制线 · 穿过去，市场的脾气就变了",  "Mechanism: crossing = regime switch"),
     "衰退报警器(萨姆规则)":       ("统计分位 · 历史高准确率衰退信号", "Statistical: high-accuracy recession signal"),
-    "央行欠账的紧缩(泰勒缺口)":   ("机制阈值 · 泰勒应然-实际>100bp", "Mechanism: Taylor-implied minus actual >100bp"),
+    "央行欠账的紧缩(泰勒缺口)":   ("机制线 · 该定的利率比实际高出1个百分点以上", "Mechanism: Taylor-implied minus actual >100bp"),
 }
 
 # 双边警戒带：一条带子两个出口，通向两条不同推理链（雷达里合并展示）
@@ -136,7 +136,7 @@ RADAR_BANDS = [
      "label": "日元(USDJPY)", "label_en": "Yen (USDJPY)",
      "lo_note": "跌破157 → 套息平仓启动(全球撤资)", "hi_note": "涨破163 → 触及7-31官方干预位",
      "lo_note_en": "Below 157 → carry unwind starts", "hi_note_en": "Above 163 → Jul-31 intervention level",
-     "origin": "历史事件位+机制阈值", "origin_en": "Event level + mechanism",
+     "origin": "真出过事的位置 + 机制线", "origin_en": "Event level + mechanism",
      "rule_id": "J1_intervention_zone"},
     {"id": "hike_band", "key": "fedwatch_sep_hike", "lo": 0.25, "hi": 0.65, "unit": "",
      "label": "9月加息概率", "label_en": "Sep hike odds",
@@ -341,13 +341,28 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
     # 8-27→8-31 从 36.9% 单调升到 69.2%（Warsh讲话+美伊开打的真实重定价）。
     # 旧逻辑"手动优先"让规则一直吃 5 天前的旧数，F1「加息概率回升>65%」该触发未触发。
     # 口径不同必须留痕：ctx 记来源，看板/推送显示"ZQ自算"而非冒充CME读数。
-    _mn = by_key.get("fedwatch_sep_hike")
-    _zq = by_key.get("fedwatch_zq_sep")
+    #
+    # 2026-09-01 追加：加保质期 + 收编 Polymarket。
+    # 现象：首页「当前剧本」在 0/3 和 1/3 之间来回跳，用户以为网站在乱跳。
+    # 真因：ZQ 抓取偶发失败时，静默退回 8-26 的人工值 38.1%(<0.4 → 条件成立)；
+    #       ZQ 正常时是 64.6%(不成立)。同一天同一条件，因为抓取成没成而翻面。
+    # 处理：① 三源都进候选（Polymarket 是"加息25bp"的YES价，同一件事的另一个场子）
+    #       ② 超过 MAX_AGE 天的读数一律不用——宁可显示"没数"，不拿一周前的数冒充今天
+    _MAX_AGE_D = 3
+    _today = dt.date.today()
     cands = []
-    if _mn and _mn.value is not None and _mn.as_of:
-        cands.append((_mn.as_of, _mn.value, "CME人工读数"))
-    if _zq and not _zq.stale and _zq.value is not None and _zq.as_of:
-        cands.append((_zq.as_of, _zq.value, "ZQ期货自算"))
+    for _k, _label in (("fedwatch_sep_hike", "CME人工读数"),
+                       ("fedwatch_zq_sep",   "ZQ期货自算"),
+                       ("polymarket_sep_hike", "Polymarket押注")):
+        _dp = by_key.get(_k)
+        if not _dp or _dp.stale or _dp.value is None or not _dp.as_of:
+            continue
+        try:
+            if (_today - dt.date.fromisoformat(_dp.as_of[:10])).days > _MAX_AGE_D:
+                continue        # 过期作废，不进候选
+        except ValueError:
+            continue
+        cands.append((_dp.as_of, _dp.value, _label))
     if cands:
         as_of, val, src = max(cands, key=lambda x: x[0])
         ctx["fedwatch_sep_hike"] = val
@@ -359,6 +374,12 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
             if hi - lo > 0.10:
                 ctx["_fedwatch_conflict"] = "; ".join(
                     f"{s}={v:.1%}({a})" for a, v, s in sorted(cands))
+    else:
+        # 三个源都过期/都没抓到 → 明确置空。ctx 在上面已经填过原始值，
+        # 不清掉的话就会拿过期数继续判定，这正是 0/3↔1/3 来回跳的机制。
+        ctx["fedwatch_sep_hike"] = None
+        ctx["_fedwatch_source"] = f"三源均超过{_MAX_AGE_D}天，判定按缺数处理"
+        stale_keys.add("fedwatch_sep_hike")
 
     # 数据健康标志（tier1/2 才算；手动源缺录不触发H1）
     tier12_stale = [k for k in stale_keys
@@ -617,17 +638,64 @@ def build_knowledge(ctx: dict) -> dict:
     return out
 
 
-def build_regime(ctx: dict) -> dict:
+JUDGE_WIN_D = 7        # 回看窗口（日历日）
+JUDGE_TIPS_BP = 6      # 真利率"跳升"的门槛：窗口内 ≥ +6bp
+JUDGE_GOLD_PCT = -1.5  # 黄金"同步回落"的门槛：窗口内 ≤ -1.5%
+
+
+def _judge_regime(series: dict) -> dict | None:
+    """把 8-25 报告那条判据真算出来，别只当一句摆设。
+
+    原文：「若实际利率跳升而金不跌 → 确认主导；若金随实际利率同步回落 → 回到需求侧紧缩链」
+    这句话一直只是 regime['judge'] 里的静态字符串，从来没被计算过——
+    等于我们写了个判据然后从不看它。现在按上面三个常量机械求值。
+
+    只做模板填空，不生成叙事：门槛写死在常量里，结论只有三种可能，一句话也不多编。
+    """
+    tips = [v for _, v in (series.get("tips10y") or [])]
+    gold = [v for _, v in (series.get("gold") or [])]
+    if len(tips) < 2 or len(gold) < 2:
+        return None
+    # 窗口内的首末差。序列已是按日排的，取最后 JUDGE_WIN_D 个点（含节假日空档，宁可短不要长）
+    tw, gw = tips[-JUDGE_WIN_D:], gold[-JUDGE_WIN_D:]
+    d_tips_bp = round((tw[-1] - tw[0]) * 100, 1)          # 真利率是%，差×100=bp
+    d_gold_pct = round((gw[-1] / gw[0] - 1) * 100, 2)
+    tips_jumped = d_tips_bp >= JUDGE_TIPS_BP
+    gold_fell = d_gold_pct <= JUDGE_GOLD_PCT
+    if tips_jumped and gold_fell:
+        verdict, plain = "回到需求侧紧缩链", "真利率抬头、黄金跟着跌 —— 这不是金融抑制的样子，是市场在为「更紧」定价。"
+    elif tips_jumped and not gold_fell:
+        verdict, plain = "确认金融抑制主导", "真利率抬头黄金却没跌 —— 钱在躲，说明大家不信这个利率能维持住。"
+    else:
+        verdict, plain = "判据未触发", "真利率这几天没明显抬头，这条判据现在还看不出方向。"
+    return {"verdict": verdict, "plain": plain,
+            "window_days": JUDGE_WIN_D,
+            "tips_chg_bp": d_tips_bp, "gold_chg_pct": d_gold_pct,
+            "rule": f"真利率{JUDGE_TIPS_BP}bp以上算跳升；黄金{JUDGE_GOLD_PCT}%以下算同步回落"}
+
+
+def build_regime(ctx: dict, series: dict | None = None) -> dict:
     """主导链判定（8-25报告链条6判据的条件计数版，不做叙事）。"""
+    # 条件名写成大白话：看的人没有金融背景，"盈亏平衡通胀>2.8"等于没说。
+    # 数字保留在句子里，能对着上面的快照卡自己核。
     conds = [
-        ("加息预期<0.4", ctx.get("fedwatch_sep_hike"), lambda v: v < 0.4),
-        ("30Y>5.2",      ctx.get("us30y"),             lambda v: v > 5.2),
-        ("盈亏平衡通胀>2.8", ctx.get("breakeven10"),   lambda v: v > 2.8),
+        ("市场认为9月加息的可能性 低于40%", ctx.get("fedwatch_sep_hike"), lambda v: v < 0.4),
+        ("政府借30年的钱，年息 高于5.2%",   ctx.get("us30y"),             lambda v: v > 5.2),
+        ("市场押注未来10年物价年涨 高于2.8%", ctx.get("breakeven10"),     lambda v: v > 2.8),
     ]
-    detail = [{"cond": name, "value": v, "met": (v is not None and fn(v))}
+    # known=False 表示"这条没数"，和"有数但不成立"要分开显示。
+    # 两者都画成灰点的话，条件数在 0/3↔1/3 之间跳，看的人只会觉得网站在乱跳。
+    detail = [{"cond": name, "value": v, "met": (v is not None and fn(v)),
+               "known": v is not None}
               for name, v, fn in conds]
     met = sum(1 for d in detail if d["met"])
-    return {"name": "通胀偏高但不加息(金融抑制)", "met": met, "total": len(detail), "detail": detail,
+    unknown = sum(1 for d in detail if not d["known"])
+    return {"name": "通胀偏高但不加息(金融抑制)", "met": met, "total": len(detail),
+            "unknown": unknown, "detail": detail,
+            "source_note": ctx.get("_fedwatch_source"),
+            "plain": "三条同时成立，说明「东西在涨价、政府借钱很贵，但央行还是不打算加息」。"
+                     "钱放在银行会被物价慢慢吃掉——历史上这种时候，钱会往黄金和实物跑。",
+            "judge_result": _judge_regime(series or {}),
             "judge": "判据(8-25报告)：若实际利率跳升而金不跌→确认主导；若金随实际利率同步回落→回到需求侧紧缩链"}
 
 
@@ -881,7 +949,7 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
         "news": news_items or [],
         "radar": build_radar(ctx or {}),
         "radar_bands": build_radar_bands(ctx or {}),
-        "regime": build_regime(ctx or {}),
+        "regime": build_regime(ctx or {}, series),
         "gex_history": _load_gex_history(),
         "gex": (by_key["gex_net"].extra | {"net_gex_bn": by_key["gex_net"].value,
                                            "stale": by_key["gex_net"].stale})

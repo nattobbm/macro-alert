@@ -217,7 +217,7 @@ export default function EquityPage() {
         <div className="flex items-center gap-3 mb-3">
           <h2 className="text-base font-bold flex items-center gap-2" style={{ color: 'var(--text)' }}>
             规则警报
-            <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（{alertRules.length}条）</span>
+            <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>{isEN ? ` (${alertRules.length} rules)` : `（${alertRules.length}条）`}</span>
           </h2>
           <div className="neu-sm flex gap-1 p-1 ml-auto">
             {([['all', '全部'], ['fire', '触发'], ['ok', '正常']] as const).map(([v, l]) => (

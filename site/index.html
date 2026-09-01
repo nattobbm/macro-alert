@@ -22,9 +22,46 @@
         translate.service.use('client.edge');   // 纯前端走微软免费通道，无需自建服务
         translate.selectLanguageTag.show = false; // 隐藏它自带的语言下拉，用我们自己的 中/EN 按钮
         translate.ignore.class.push('notranslate');
-        // 术语表：防止金融黑话被直译歪
-        translate.nomenclature.append('chinese_simplified', 'english',
-          'put墙=put wall\ncall墙=call wall\ngamma翻转位=gamma flip\n期权密集单位=option cluster\n尾差=auction tail\nGamma翻负=gamma flips negative\n金银比=gold-silver ratio');
+        // ── 词库 / Term table ─────────────────────────────────────────
+        // 英文不是另写一套，是机翻中文。所以：中文写好，英文自动好；
+        // 唯一会出错的是比喻词和专有名词——机翻会直译歪。这张表就是兜这个的。
+        // 2026-09-01 实测抓到的错译：
+        //   剧本→Script(应为regime) ／ 金融抑制→financial suppression(应为repression)
+        //   持续减持→Continued share reduction(听着像减少股份) ／ 萨姆规则→Sam rule(人名Sahm)
+        //   盘口→handicap(赌博术语！) ／ 前提已翻→premise turned over
+        // 新增界面词一律先在这里登记，不要指望机翻猜对。
+        translate.nomenclature.append('chinese_simplified', 'english', [
+          // 期权 / 盘面
+          'put墙=put wall', 'call墙=call wall', 'gamma翻转位=gamma flip',
+          '期权密集单位=option cluster', '尾差=auction tail',
+          'Gamma翻负=gamma flips negative', '金银比=gold-silver ratio',
+          '盘口=live quotes', '认购倍数=bid-to-cover', '海外占比=indirect bidders',
+          // 链条状态词（首页/推理页每条链都要用）
+          '越线了=crossed', '快到了=near', '安静=quiet',
+          '前提已翻=premise broken', '前提成立=premises met',
+          '越线=crossed', '快到=near', '共用=shared by',
+          '看推理步骤=see the steps', '收起=collapse',
+          // 框架词
+          '剧本=regime', '当前剧本=current regime', '金融抑制=financial repression',
+          '逻辑链=logic chain', '结论库=verdict library', '预测记分卡=prediction scorecard',
+          '警戒线=threshold', '警戒线雷达=threshold radar', '自动警报器=auto alerts',
+          '数据体检=data health', '官方消息流=official feed',
+          // 指标专名（人名/机构名不能意译）
+          '萨姆规则=Sahm Rule', '衰退报警器=recession alarm (Sahm Rule)',
+          '泰勒缺口=Taylor gap', '菲利普斯曲线=Phillips curve',
+          '初请失业金=initial jobless claims', '真利率=real yield',
+          '物价预期=breakeven inflation', '隔夜借钱利率=overnight rate',
+          '准备金利率=interest on reserves', '隔夜逆回购=reverse repo',
+          '财政部账户=Treasury General Account', '常备回购=standing repo facility',
+          '外国央行借美元=FIMA repo', '国债拍卖认购=auction bid-to-cover',
+          '大户净多单=managed-money net long', '恐慌指数=VIX',
+          '债市恐慌指数=MOVE index', '美元指数=dollar index',
+          // 持仓 / 动作（机翻最容易译成股票"减持股份"）
+          '持续减持=still selling', '增减持=net change in holdings',
+          '持有美债=US Treasury holdings',
+          // 语气词
+          '大白话=in plain words', '这是什么=what is this', '暂无数据=no data',
+        ].join('\n'));
         var lang = 'zh';
         try { lang = localStorage.getItem('lang') || 'zh' } catch (e) {}
         // 与 i18n.ts 的开关联动：EN→全页翻英文；中→英文数据串翻回中文

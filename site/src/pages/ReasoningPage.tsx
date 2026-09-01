@@ -24,6 +24,7 @@ const CHAIN_COLORS = [
 export default function ReasoningPage() {
   const [expandedChain, setExpandedChain] = useState<string | null>(null)
   const [expandedVerdict, setExpandedVerdict] = useState<string | null>(null)
+  const [showAllNews, setShowAllNews] = useState(false)
 
   const sorted = [...chains].sort((a, b) => b.heat - a.heat)
 
@@ -34,7 +35,7 @@ export default function ReasoningPage() {
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
           {tr('chains_title')}
-          <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（{tr('chains_hint')}）</span>
+          <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>{isEN ? ` (${tr('chains_hint')})` : `（${tr('chains_hint')}）`}</span>
         </h2>
         <div className="space-y-4">
           {sorted.map((chain, ci) => {
@@ -56,13 +57,15 @@ export default function ReasoningPage() {
                       {/* Heat badge */}
                       {/* 用真实构成代替"热度100"：越线几个、快到几个，一眼可比 */}
                       <div
-                        className="font-num text-xs font-bold px-2.5 py-1 rounded-full notranslate"
+                        className="font-num text-xs font-bold px-2.5 py-1 rounded-full"
                         style={{
                           backgroundColor: (chain.nCrossed ?? 0) >= 2 ? 'var(--st-fire-bg)' : (chain.nCrossed ?? 0) >= 1 ? 'var(--st-warn-bg)' : 'var(--st-ok-bg)',
                           color: (chain.nCrossed ?? 0) >= 2 ? 'var(--st-fire-text)' : (chain.nCrossed ?? 0) >= 1 ? 'var(--st-warn-text)' : 'var(--st-ok-text)',
                         }}
                       >
-                        越线{chain.nCrossed ?? 0} · 快到{chain.nNear ?? 0}
+                        {isEN
+                          ? `${chain.nCrossed ?? 0} crossed · ${chain.nNear ?? 0} near`
+                          : `越线${chain.nCrossed ?? 0} · 快到${chain.nNear ?? 0}`}
                       </div>
                       {/* 前提被推翻：链条"没穿线"和"根基没了"是两回事，必须分开显示 */}
                       {(chain.nBroken ?? 0) > 0 && (
@@ -72,25 +75,30 @@ export default function ReasoningPage() {
                         </div>
                       )}
                       {chain.premise && (
-                        <div className="text-xs px-2 py-1 rounded-full notranslate"
+                        <div className="text-xs px-2 py-1 rounded-full"
                           style={{ backgroundColor: 'var(--bg2)', color: 'var(--text-muted)' }}>
                           {isEN ? 'premises ' : '前提成立 '}{chain.premise}
                         </div>
                       )}
                       <span className="flex-1" />
-                      {/* Expand toggle */}
+                      {/* 展开/收起：一次只开一条。
+                          折叠态只留"标题+这条链现在什么状况"，节点和失效条件都收起来。
+                          原来节点链一直摊开，6条链在手机上要滑十几屏，
+                          等于把主线埋在细节里——工具网站要先给主题，细节由人点 */}
                       <button
                         className="neu-btn px-3 py-1 text-xs flex-shrink-0"
                         style={{ color: 'var(--accent)' }}
                         onClick={() => setExpandedChain(isExpanded ? null : chain.id)}
+                        aria-expanded={isExpanded}
                       >
-                        {isExpanded ? '收起' : '失效条件 ▼'}
+                        {isExpanded ? (isEN ? 'collapse ▲' : '收起 ▲')
+                                    : (isEN ? `${chain.nodes.length} steps ▼` : `看${chain.nodes.length}步推理 ▼`)}
                       </button>
                     </div>
                   </div>
                 </div>
 
-                {/* Invalidation condition */}
+                {/* 以下全部属于"细节"，只在展开时出现 */}
                 {isExpanded && (
                   <div
                     className="neu-inset-sm px-4 py-2 mb-3 text-xs"
@@ -99,62 +107,76 @@ export default function ReasoningPage() {
                     何时失效：{chain.invalidation}
                   </div>
                 )}
-
-                {/* Nodes — horizontal scroll */}
-                <div className="overflow-x-auto pb-2">
-                  <div className="flex items-center gap-2" style={{ minWidth: 'max-content' }}>
+                {/* 节点链：手机竖排（↓），桌面横排（→）。
+                    原来一律横排定宽160px，375px屏只看得到2个节点——
+                    "A→B→C"的C看不到，等于这条链没讲完。链最长有9个节点，
+                    所以手机版把卡片压成一行（左边名字、右边读数），别堆成9个大方块 */}
+                {isExpanded && (
+                <div className="sm:overflow-x-auto pb-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:min-w-max">
                     {chain.nodes.map((node, ni) => {
                       const meta = STATUS_META[node.status]
                       return (
-                        <div key={ni} className="flex items-center gap-2">
+                        <div key={ni} className="flex flex-col sm:flex-row sm:items-center gap-2">
                           {/* Node card */}
                           <div
-                            className="neu-inset-sm px-4 py-3 w-40 flex-shrink-0"
+                            className="neu-inset-sm px-4 py-3 w-full sm:w-40 flex-shrink-0
+                                       flex sm:block items-center gap-3"
                             title={node.term}
                           >
-                            <div className="flex items-center gap-1.5 mb-1 flex-wrap">
-                              {/* 前提已翻：这个前提不是"还没到"，是明确反了——
-                                  金融抑制链假设"市场不信加息"，实际71.5%，根基没了 */}
-                              <span className="dot" style={{
-                                backgroundColor: node.premiseBroken ? 'var(--st-fire)' : meta.dot }} />
-                              <span className="text-xs font-medium" style={{
-                                color: node.premiseBroken ? 'var(--st-fire-text)' : meta.color }}>
-                                {node.premiseBroken ? (isEN ? 'premise broken' : '前提已翻') : meta.label}
-                              </span>
-                              {(node.sharedWith ?? 0) > 0 && (
-                                <span className="text-xs px-1 rounded notranslate"
-                                  style={{ backgroundColor: 'var(--bg2)', color: 'var(--text-muted)', fontSize: 10 }}
-                                  title={isEN ? 'this reading also drives other chains'
-                                             : '同一个读数也是其他链的节点——它动，那几条链一起动'}>
-                                  共用{node.sharedWith}
+                            <div className="flex-1 min-w-0 sm:flex-none">
+                              <div className="flex items-center gap-1.5 mb-1 flex-wrap">
+                                {/* 前提已翻：这个前提不是"还没到"，是明确反了——
+                                    金融抑制链假设"市场不信加息"，实际71.5%，根基没了 */}
+                                <span className="dot" style={{
+                                  backgroundColor: node.premiseBroken ? 'var(--st-fire)' : meta.dot }} />
+                                <span className="text-xs font-medium" style={{
+                                  color: node.premiseBroken ? 'var(--st-fire-text)' : meta.color }}>
+                                  {node.premiseBroken ? (isEN ? 'premise broken' : '前提已翻') : meta.label}
                                 </span>
-                              )}
-                            </div>
-                            <div className="text-xs font-medium leading-tight" style={{ color: 'var(--text)' }}>
-                              {node.label}
-                            </div>
-                            <div className="font-num text-sm font-bold mt-1" style={{ color: meta.color }}>
-                              {node.value}
-                            </div>
-                            {node.threshold && (
-                              <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
-                                线: {node.threshold}
+                                {(node.sharedWith ?? 0) > 0 && (
+                                  <span className="text-xs px-1 rounded"
+                                    style={{ backgroundColor: 'var(--bg2)', color: 'var(--text-muted)', fontSize: 10 }}
+                                    title={isEN ? 'this reading also drives other chains'
+                                               : '同一个读数也是其他链的节点——它动，那几条链一起动'}>
+                                    共用{node.sharedWith}
+                                  </span>
+                                )}
                               </div>
-                            )}
-                            <div className="text-xs mt-1 opacity-60" style={{ color: 'var(--text-muted)' }}>
-                              {node.term}
+                              <div className="text-xs font-medium leading-tight" style={{ color: 'var(--text)' }}>
+                                {node.label}
+                              </div>
+                              <div className="text-xs mt-1 opacity-60 hidden sm:block"
+                                style={{ color: 'var(--text-muted)' }}>
+                                {node.term}
+                              </div>
+                            </div>
+                            <div className="text-right sm:text-left flex-shrink-0 sm:mt-1">
+                              <div className="font-num text-sm font-bold" style={{ color: meta.color }}>
+                                {node.value}
+                              </div>
+                              {node.threshold && (
+                                <div className="text-xs mt-0.5 whitespace-nowrap" style={{ color: 'var(--text-muted)' }}>
+                                  线: {node.threshold}
+                                </div>
+                              )}
                             </div>
                           </div>
 
-                          {/* Arrow */}
+                          {/* 箭头：手机朝下、桌面朝右 */}
                           {ni < chain.nodes.length - 1 && (
-                            <div className="text-lg flex-shrink-0" style={{ color }}>→</div>
+                            <div className="text-lg flex-shrink-0 self-center sm:self-auto leading-none"
+                              style={{ color }}>
+                              <span className="sm:hidden">↓</span>
+                              <span className="hidden sm:inline">→</span>
+                            </div>
                           )}
                         </div>
                       )
                     })}
                   </div>
                 </div>
+                )}
               </div>
             )
           })}
@@ -286,9 +308,14 @@ export default function ReasoningPage() {
         <section>
           <h2 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--text)' }}>
             官方消息流
+            <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>
+              共{news.length}条
+            </span>
           </h2>
+          {/* 默认只出6条。全量渲染时这一块占了整页44%的高度——
+              新闻是背景板不是主线，不该比逻辑链还占地方 */}
           <div className="neu p-4 space-y-3">
-            {news.map(n => (
+            {(showAllNews ? news : news.slice(0, 6)).map(n => (
               <div key={n.id} className="neu-sm px-4 py-3">
                 <div className="flex flex-wrap gap-1 mb-1.5">
                   {n.chain_tags.map(tag => (
@@ -309,6 +336,17 @@ export default function ReasoningPage() {
                 </div>
               </div>
             ))}
+            {news.length > 6 && (
+              <button
+                className="neu-btn w-full py-2 text-xs"
+                style={{ color: 'var(--accent)' }}
+                onClick={() => setShowAllNews(v => !v)}
+              >
+                {showAllNews
+                  ? (isEN ? 'collapse ▲' : '收起 ▲')
+                  : (isEN ? `show all ${news.length} ▼` : `看全部${news.length}条 ▼`)}
+              </button>
+            )}
           </div>
         </section>
 

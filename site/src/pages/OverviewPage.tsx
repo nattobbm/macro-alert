@@ -5,6 +5,7 @@ import { fetchLiveQuotes, diverges, liveFor } from '../data/liveQuote'
 import type { LiveQuote } from '../data/liveQuote'
 import { snapshots, alerts, alertsNoBands, radarBands, ticLive, regimeLive } from '../data/live'
 import type { RadarBand } from '../data/live'
+import { EXPLAIN, UNIT_HINT } from '../data/explain'
 import { t as tr, isEN } from '../i18n'
 
 const STATUS_COLOR: Record<string, string> = {
@@ -68,6 +69,8 @@ function BandBar({ b }: { b: RadarBand }) {
 export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => void }) {
   const [hoveredAlert, setHoveredAlert] = useState<string | null>(null)
   const [showStandard, setShowStandard] = useState(false)
+  // 点开的"这是啥"面板（一次只开一个，手机上不至于整页都是展开的字）
+  const [openWhat, setOpenWhat] = useState<string | null>(null)
 
   // 实时参考价：进页面拉一次，之后每60秒刷新。拿不到就静默用官方值。
   const [live, setLive] = useState<Record<string, LiveQuote>>({})
@@ -132,31 +135,80 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
                   }}
                 >
                   {regimeLive ? `${regimeLive.met} / ${regimeLive.total} ${tr('conds_met')}` : '— / —'}
+                  {/* 有条件没数时讲出来，否则 0/3 和 1/3 之间的跳动没人看得懂 */}
+                  {!!regimeLive?.unknown && `（其中${regimeLive.unknown}条暂时没数）`}
                 </div>
               </div>
             </div>
+
+            {/* 一句话说清这个剧本是什么意思——不能只丢三个条件让人自己拼 */}
+            {regimeLive?.plain && (
+              <div className="text-xs mb-3" style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                {regimeLive.plain}
+              </div>
+            )}
 
             <div className="space-y-2">
               {(regimeLive?.conds ?? []).map((c, i) => (
                 <div
                   key={i}
                   className="neu-inset-sm flex items-center gap-3 px-4 py-3"
+                  title={c.known ? undefined : '这条的数据源暂时取不到，不拿旧数充数'}
                 >
-                  <span className="dot" style={{ backgroundColor: c.met ? 'var(--st-fire)' : 'var(--st-mute)' }} />
-                  <div className="flex-1">
-                    <div className="text-sm font-medium" style={{ color: 'var(--text)' }}>
+                  {/* 三态：成立(红) / 不成立(灰实心) / 没数(空心圈) */}
+                  <span className="dot flex-shrink-0" style={{
+                    backgroundColor: !c.known ? 'transparent' : c.met ? 'var(--st-fire)' : 'var(--st-mute)',
+                    border: c.known ? 'none' : '1.5px dashed var(--text-muted)',
+                  }} />
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-medium" style={{
+                      color: c.known ? 'var(--text)' : 'var(--text-muted)' }}>
                       {c.label}
                     </div>
                   </div>
                   <div
-                    className="font-num text-sm font-bold"
+                    className="font-num text-sm font-bold flex-shrink-0"
                     style={{ color: c.met ? 'var(--st-fire-text)' : 'var(--text-muted)' }}
                   >
-                    {c.value}
+                    {c.known ? c.value : (isEN ? 'no data' : '暂无数据')}
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* 判据结果：这个剧本自己写了"什么情况算它不成立"，就得真去算。
+                8-25报告原话：真利率跳升而金不跌→确认；金随真利率同步回落→回到需求侧紧缩链 */}
+            {regimeLive?.judge && (
+              <div className="neu-inset-sm px-4 py-3 mt-3">
+                <div className="flex items-center gap-2 flex-wrap mb-1">
+                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                    {isEN ? 'test result' : '判据结果'}
+                  </span>
+                  <span className="text-sm font-bold" style={{
+                    color: regimeLive.judge.verdict === '判据未触发'
+                      ? 'var(--text-muted)' : 'var(--st-fire-text)' }}>
+                    {regimeLive.judge.verdict}
+                  </span>
+                </div>
+                <div className="text-xs" style={{ color: 'var(--text)', lineHeight: 1.6 }}>
+                  {regimeLive.judge.plain}
+                </div>
+                <div className="font-num text-xs mt-1.5" style={{ color: 'var(--text-muted)' }}>
+                  近{regimeLive.judge.window_days}天：真利率 {regimeLive.judge.tips_chg_bp >= 0 ? '+' : ''}
+                  {regimeLive.judge.tips_chg_bp}bp · 黄金 {regimeLive.judge.gold_chg_pct}%
+                </div>
+                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)', opacity: 0.7 }}>
+                  {isEN ? 'rule: ' : '判定规则：'}{regimeLive.judge.rule}
+                </div>
+              </div>
+            )}
+
+            {/* 加息概率取了哪个源——三源打架时不让人猜 */}
+            {regimeLive?.sourceNote && (
+              <div className="text-xs mt-2" style={{ color: 'var(--text-muted)', opacity: 0.75 }}>
+                加息概率取自：{regimeLive.sourceNote}
+              </div>
+            )}
           </div>
 
           {/* Quick numbers */}
@@ -181,7 +233,7 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <h2 className="text-base font-bold" style={{ color: 'var(--text)' }}>
             {tr('radar_title')}
-            <span className="text-xs font-normal ml-2" style={{ color: 'var(--text-muted)' }}>（{nWatch} {tr('radar_n')}）</span>
+            <span className="text-xs font-normal ml-2" style={{ color: 'var(--text-muted)' }}>{isEN ? ` (${nWatch} ${tr('radar_n')})` : `（${nWatch}${tr('radar_n')}）`}</span>
           </h2>
           <button
             onClick={() => setShowStandard(v => !v)}
@@ -312,7 +364,7 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
       <section>
         <h2 className="text-base font-bold mb-3 flex items-center gap-2 flex-wrap" style={{ color: 'var(--text)' }}>
           {tr('snapshot_title')}
-          <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>（as of {snapshots[0]?.as_of ?? '—'}）</span>
+          <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>{isEN ? ` (as of ${snapshots[0]?.as_of ?? '—'})` : `（截至 ${snapshots[0]?.as_of ?? '—'}）`}</span>
           {Object.keys(live).length > 0 && (
             <span className="badge" style={{
               backgroundColor: 'var(--st-ok-bg)', color: 'var(--st-ok-text)',
@@ -346,6 +398,17 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
               : s.role === 'lagging'
               ? { label: tr('role_lagging'), tip: tr('role_lagging_tip'), color: 'var(--st-warn-text)', bg: 'var(--st-warn-bg)' }
               : null
+            // 变化量的文字 + 它用了什么单位（bp/pp 要另外解释，%不用）
+            const chgUnit: 'bp' | 'pp' | '%' =
+              (!showLive && s.change_pp != null)
+                ? (Math.abs(s.change_pp) >= 1 ? 'pp' : 'bp')
+                : '%'
+            const chgText =
+              chgUnit === 'pp' ? `${Math.abs(s.change_pp!).toFixed(2)}pp`
+              : chgUnit === 'bp' ? `${Math.round(Math.abs(s.change_pp!) * 100)}bp`
+              : `${Math.abs(chg).toFixed(2)}%`
+            const ex = EXPLAIN[s.key]
+            const opened = openWhat === s.key
             return (
               <div key={s.key} className="neu-sm p-4 flex flex-col gap-1">
                 <div className="flex items-center justify-between gap-1">
@@ -361,22 +424,33 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
                       </span>
                     )}
                   </span>
-                  <span
-                    className="font-num text-xs px-1.5 py-0.5 rounded-lg"
-                    style={{
-                      backgroundColor: up ? '#6bb89a22' : '#e0787822',
-                      color: up ? 'var(--green)' : 'var(--red)',
-                    }}
-                  >
-                    {/* 利率/比率类显示"几个基点"，其余显示百分比。
-                        4.67%→4.70% 说成"+0.6%"反直觉，说成"+3bp"才是行话且不会误读 */}
-                    {up ? '▲' : '▼'} {
-                      (!showLive && s.change_pp != null)
-                        ? (Math.abs(s.change_pp) >= 1
-                            ? `${Math.abs(s.change_pp).toFixed(2)}pp`
-                            : `${Math.round(Math.abs(s.change_pp) * 100)}bp`)
-                        : `${Math.abs(chg).toFixed(2)}%`
-                    }
+                  <span className="flex items-center gap-1 flex-shrink-0">
+                    <span
+                      className="font-num text-xs px-1.5 py-0.5 rounded-lg"
+                      style={{
+                        backgroundColor: up ? '#6bb89a22' : '#e0787822',
+                        color: up ? 'var(--green)' : 'var(--red)',
+                      }}
+                    >
+                      {/* 利率/比率类显示"几个基点"，其余显示百分比。
+                          4.67%→4.70% 说成"+0.6%"反直觉，说成"+3bp"才不会看错位数。
+                          bp/pp 是行话——所以右边配了"?"，点开就是大白话 */}
+                      {up ? '▲' : '▼'} {chgText}
+                    </span>
+                    {ex && (
+                      <button
+                        onClick={() => setOpenWhat(opened ? null : s.key)}
+                        aria-label={isEN ? 'what is this' : '这是什么'}
+                        title={isEN ? 'what is this' : '这是什么'}
+                        className="rounded-full flex items-center justify-center transition-transform hover:scale-110"
+                        style={{
+                          width: 18, height: 18, fontSize: 11, lineHeight: 1,
+                          border: 'none', cursor: 'pointer',
+                          backgroundColor: opened ? 'var(--accent)' : 'var(--bg2)',
+                          color: opened ? '#fff' : 'var(--text-muted)',
+                        }}
+                      >?</button>
+                    )}
                   </span>
                 </div>
 
@@ -393,6 +467,31 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
                       title={isEN ? 'live reference price' : '实时参考价'} />
                   )}
                 </div>
+
+                {/* 「这是什么」大白话面板：是什么 → 为什么看它 → 往上意味着什么。
+                    不用弹窗——手机上弹窗要多点一次才能关掉 */}
+                {opened && ex && (
+                  <div className="neu-inset-sm p-2.5 mt-1 flex flex-col gap-1.5"
+                    style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--text)' }}>
+                    <div>{ex.what}</div>
+                    {ex.why && (
+                      <div style={{ color: 'var(--text-muted)' }}>{ex.why}</div>
+                    )}
+                    {/* 方向说明写死成"往上=什么"，不跟当前涨跌绑一起。
+                        绑一起会写出"现在是往下，反过来看：往上=裁员增加"这种绕话 */}
+                    {ex.up && (
+                      <div className="flex items-baseline gap-1">
+                        <span style={{ color: 'var(--green)' }}>▲</span>
+                        <span>{ex.up}</span>
+                      </div>
+                    )}
+                    {UNIT_HINT[chgUnit] && (
+                      <div className="pt-1" style={{ color: 'var(--text-muted)', borderTop: '1px dashed var(--border)' }}>
+                        {UNIT_HINT[chgUnit]}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* 两源冲突：并列显示，不静默择一（沿用SOFR双源纪律） */}
                 {conflict && q && (
