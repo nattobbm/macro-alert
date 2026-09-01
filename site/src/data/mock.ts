@@ -55,7 +55,9 @@ export function genSPX(): OHLC[] {
 }
 
 // ── Market Snapshots ───────────────────────────────────────
+// change=日变动百分比；change_pp=利率类的"变动几个百分点"（%单位指标才有）
 export interface Snapshot {
+  change_pp?: number | null;
   key: string; label: string; value: string; change: number;
   unit: string; as_of: string; source: string; spark: number[];
   role?: 'leading' | 'coincident' | 'lagging' | null;
@@ -108,10 +110,15 @@ export const alerts: Alert[] = [
 export interface ChainNode {
   label: string; value: string; threshold?: string;
   status: 'fire' | 'warning' | 'ok' | 'fact'; term: string;
+  // premiseBroken=该前提明确不成立（离触发极远，不是"还没到"而是"反了"）
+  premiseBroken?: boolean;
+  // sharedWith=这个观测点同时是几条其他链的节点
+  sharedWith?: number;
 }
 export interface Chain {
   id: string; title: string; heat: number;
   nodes: ChainNode[]; invalidation: string;
+  nCrossed?: number; nNear?: number; nBroken?: number; premise?: string;
 }
 
 export const chains: Chain[] = [

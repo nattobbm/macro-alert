@@ -14,7 +14,7 @@
   "F2_hike_odds_down": 0,
   "F3_real_yield": 0,
   "F4_repression_signal": 0,
-  "G1_oil_band_break": 0,
+  "G1_oil_band_break": 1,
   "G2_oil_spike": 0,
   "J1_intervention_zone": 0,
   "J1b_carry_unwind": 0,
@@ -36,9 +36,10 @@
  },
  "last_fired": {
   "T2b_tic_decline": "2026-08-27T01:26:58.216199+00:00",
-  "H1_stale": "2026-09-01T07:31:36.035999+00:00",
-  "F5_taylor_gap": "2026-09-01T07:31:36.035999+00:00",
-  "F1_hike_odds_up": "2026-09-01T07:31:36.035999+00:00",
-  "X1_gold_breakout": "2026-08-31T16:32:55.292005+00:00"
+  "H1_stale": "2026-09-01T07:20:57.818255+00:00",
+  "F5_taylor_gap": "2026-09-01T07:20:57.818255+00:00",
+  "F1_hike_odds_up": "2026-09-01T07:20:57.818255+00:00",
+  "X1_gold_breakout": "2026-08-31T16:32:55.292005+00:00",
+  "G1_oil_band_break": "2026-09-01T07:20:57.818255+00:00"
  }
 }

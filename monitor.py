@@ -25,7 +25,7 @@ sys.path.insert(0, str(ROOT))
 
 from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar, spot_gold  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
-from core import engine, notify, predict  # noqa: E402
+from core import engine, notify, predict, reason  # noqa: E402
 
 DATA = ROOT / "data"
 STATE_FILE = DATA / "state.json"
@@ -523,7 +523,15 @@ def build_knowledge(ctx: dict) -> dict:
                         st = "crossed" if dist < 0 else ("near" if dist < 0.05 else "quiet")
                         crossed += st == "crossed"; near += st == "near"
                         node.update(status=st, value=v, threshold=thr,
-                                    direction=direc, dist_pct=round(dist * 100, 2))
+                                    direction=direc, dist_pct=round(dist * 100, 2),
+                                    metric=nd["metric"])
+                        # 前提强度：节点写法是"触发=该前提成立"，所以离触发极远
+                        # ≠ 只是"安静"，而是"这个前提明确不成立"。
+                        # 2026-09-01 起标出来——金融抑制链的核心前提"市场不信央行会加息"
+                        # (below 0.4) 现在读数 0.715，前提已被推翻，但旧逻辑只显示"安静"，
+                        # 链条看着"没事"，实际是根基没了。
+                        if st == "quiet" and dist > 0.5:
+                            node["premise"] = "broken"
                 else:
                     node.update(status=nd.get("status", "fact"),
                                 value_text=nd.get("value_text", ""))
@@ -532,11 +540,40 @@ def build_knowledge(ctx: dict) -> dict:
             life = "active"
             if ch.get("falsify_rule") and _eval_rule(ch["falsify_rule"], ctx):
                 life = "falsified"
+            thr_nodes = [n for n in nodes if n.get("threshold") is not None]
+            broken = sum(1 for n in thr_nodes if n.get("premise") == "broken")
             out["chains"].append({
                 "id": ch["id"], "name": ch["name"], "name_en": ch.get("name_en", ""), "emoji": ch.get("emoji", ""), "term": ch.get("term", ""), "one_liner": ch.get("one_liner", ""), "one_liner_en": ch.get("one_liner_en", ""), "falsify_en": ch.get("falsify_en", ""),
                 "falsify": ch.get("falsify", ""), "nodes": nodes, "life": life,
                 "heat": crossed * 2 + near,   # 排序用：越热越靠前
+                # 前提计分：成立几个/可判定几个，以及明确被推翻几个
+                "premise_hold": crossed, "premise_total": len(thr_nodes),
+                "premise_broken": broken,
             })
+
+        # 共享节点去重：同一 metric+阈值+方向 在多条链出现时，它其实是同一个观测点。
+        # 此前每条链各算一次热度，导致重复计分（日元/日本持仓在两条链里各算一遍）。
+        seen: dict[tuple, list[str]] = {}
+        for c in out["chains"]:
+            for n in c["nodes"]:
+                if n.get("metric") is None:
+                    continue
+                seen.setdefault((n["metric"], n.get("threshold"), n.get("direction")),
+                                []).append(c["id"])
+        shared = {k: v for k, v in seen.items() if len(set(v)) > 1}
+        for c in out["chains"]:
+            dup = 0
+            for n in c["nodes"]:
+                key = (n.get("metric"), n.get("threshold"), n.get("direction"))
+                if key in shared:
+                    n["shared_with"] = [x for x in set(shared[key]) if x != c["id"]]
+                    if n.get("status") in ("crossed", "near"):
+                        dup += 2 if n["status"] == "crossed" else 1
+            # 共享部分只在首链全额计分，其余链折半——避免同一个数把多条链一起顶热
+            if dup and c["id"] != sorted({x for k in shared for x in shared[k]})[0]:
+                c["heat_raw"] = c["heat"]
+                c["heat"] = max(0, c["heat"] - dup // 2)
+
         # 活链按热度；失效链沉底（标记不删除——防僵尸结论复活）
         out["chains"].sort(key=lambda c: (c["life"] == "falsified", -c["heat"]))
 
@@ -851,6 +888,8 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
                if "gex_net" in by_key else None,
         "spx_ohlc": by_key["spx"].extra.get("ohlc") if "spx" in by_key else None,
         "knowledge": build_knowledge(ctx or {}),
+        # 链条推理实例化（机械填槽，不生成新主张——见 core/reason.py 头注）
+        "reasoning": None,          # 下面填（需要 knowledge 已构建）
         "econ_calendar": (by_key["econ_calendar"].extra.get("events", [])
                           if "econ_calendar" in by_key and not by_key["econ_calendar"].stale else []),
         # 日历三层里 ForexFactory 层的健康度（ok / fallback_cache(日期) / unavailable(原因)）
@@ -989,6 +1028,14 @@ def main():
         for e in latest.get("econ_calendar", [])
         if e.get("importance", 0) >= 3 and e.get("date")
         and 0 <= (dt.date.fromisoformat(e["date"]) - _today).days <= 3][:3]
+    # 链条推理：沿已写死的因果路径填入当前读数（对比上次以标出翻转）
+    _rs_file = DATA / "reason_state.json"
+    _prev = json.loads(_rs_file.read_text(encoding="utf-8")) if _rs_file.exists() else {}
+    latest["reasoning"] = reason.build_reasoning(latest["knowledge"], _prev)
+    _rs_file.write_text(json.dumps(
+        {"chain_nodes": latest["reasoning"].pop("_node_snapshot")},
+        ensure_ascii=False), encoding="utf-8")
+
     latest["digest"] = build_digest(ctx, latest["knowledge"], rule_results,
                                     latest["radar"], cal)
     LATEST_FILE.write_text(json.dumps(latest, ensure_ascii=False), encoding="utf-8")

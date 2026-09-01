@@ -15,6 +15,18 @@ TICKERS = {
 }
 
 
+# yfinance K线判坏时的备用源（金十MCP官方授权）。只覆盖有同口径标的的项。
+_JIN10_FALLBACK = {"brent": "UKOIL", "wti": "USOIL", "usdjpy": "USDJPY"}
+
+# 口径修正（2026-09-01）：这些标的 yfinance 与"头条价"不是同一个东西，一律以金十为准。
+# 油价实测：yfinance BZ=F 是特定月份期货合约，2026-09-01 换月造成 $2 跳空
+#   （8-31收90.49 → 9-01开88.55），而金十 UKOIL 连续报价 91.09、
+#   外部核实的新闻口径 90.69。艾丽说的"突破90美元/桶"、G1阈值80-90 讲的都是
+#   头条布伦特价，用换月的合约价去量会让 G1 长期不触发——8-31 那次真实突破
+#   就是这么漏报的。同黄金 COMEX/现货 之别，是同一类错误。
+_JIN10_PRIMARY = {"brent": "UKOIL"}
+
+
 def _bar_is_malformed(row) -> str | None:
     """OHLC自洽性检查。返回违例说明，正常返回None。
 
@@ -68,6 +80,21 @@ def fetch_all(max_staleness_days: int = 4, tickers: dict | None = None) -> list[
                 closes = h["Close"].dropna()
                 dp.value = round(float(closes.iloc[-1]), 4)
                 dp.as_of = closes.index[-1].date().isoformat()
+                # 口径优先/坏K线回退：见 _JIN10_PRIMARY / _JIN10_FALLBACK 注释
+                if key in _JIN10_PRIMARY or (bad and key in _JIN10_FALLBACK):
+                    try:
+                        from . import jin10
+                        q = jin10.Jin10().quote(_JIN10_FALLBACK[key])
+                        jv = float(q.get("close"))
+                        prev = dp.value
+                        if prev and 0.5 < jv / prev < 2.0:   # 合理性闸门，防串码
+                            dp.extra["yfinance_fallback_value"] = prev
+                            dp.value = round(jv, 4)
+                            dp.as_of = str(q.get("time") or "")[:10] or dp.as_of
+                            dp.source = f"jin10:{_JIN10_FALLBACK[key]}(yf坏K线回退)"
+                            dp.extra["chg_1d_pct"] = q.get("ups_percent")
+                    except Exception:
+                        pass
                 if len(closes) > 1:
                     prev = float(closes.iloc[-2])
                     dp.extra["chg_1d_pct"] = round((dp.value / prev - 1) * 100, 3) if prev else None

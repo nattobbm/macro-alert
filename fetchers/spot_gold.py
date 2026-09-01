@@ -63,6 +63,17 @@ def fetch(comex_price: float | None = None, max_staleness_days: int = 5) -> Data
     except Exception:
         pass
 
+    # 金十 MCP（官方授权接入，2026-09-01 起）——现货金的首选源。
+    # 它是我们唯一能拿到的、与 Momo CFD 平台同口径的实时现货价。
+    try:
+        from . import jin10
+        q = jin10.Jin10().quote("XAUUSD")
+        jv = float(q.get("close"))
+        if 500 < jv < 50000:
+            quotes["jin10:XAUUSD"] = (jv, str(q.get("time") or "")[:10])
+    except Exception:
+        pass
+
     # 第三方对账（腾讯外盘，服务端可达）。只用于校验，不作为取值来源。
     try:
         raw = http_get(TX, timeout=20, as_json=False)
@@ -87,7 +98,8 @@ def fetch(comex_price: float | None = None, max_staleness_days: int = 5) -> Data
     # 2026-08-31 修：先前把"同一数据集的两个不同日期快照"（xau.json 08-30 与
     # usd.json 08-31）当成两个源在打架，误判为 source_conflict 而拒绝判定。
     # 那不是冲突，是新旧不同。真正的独立校验只有一个：与 COMEX 的基差是否合理。
-    order = ["tencent:hf_XAU", "currency-api:usd_inv", "currency-api:xau"]
+    # 2026-09-01：金十MCP排首位——官方授权接入、与Momo的CFD平台同口径现货价
+    order = ["jin10:XAUUSD", "tencent:hf_XAU", "currency-api:usd_inv", "currency-api:xau"]
     pick = next((k for k in order if k in quotes), None)
     dp.value = round(quotes[pick][0], 2)
     dp.as_of = quotes[pick][1] or dt.date.today().isoformat()

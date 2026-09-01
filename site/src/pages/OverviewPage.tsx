@@ -368,7 +368,15 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
                       color: up ? 'var(--green)' : 'var(--red)',
                     }}
                   >
-                    {up ? '▲' : '▼'} {Math.abs(chg).toFixed(2)}%
+                    {/* 利率/比率类显示"几个基点"，其余显示百分比。
+                        4.67%→4.70% 说成"+0.6%"反直觉，说成"+3bp"才是行话且不会误读 */}
+                    {up ? '▲' : '▼'} {
+                      (!showLive && s.change_pp != null)
+                        ? (Math.abs(s.change_pp) >= 1
+                            ? `${Math.abs(s.change_pp).toFixed(2)}pp`
+                            : `${Math.round(Math.abs(s.change_pp) * 100)}bp`)
+                        : `${Math.abs(chg).toFixed(2)}%`
+                    }
                   </span>
                 </div>
 

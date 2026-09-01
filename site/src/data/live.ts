@@ -21,7 +21,15 @@ export const snapshots: Snapshot[] = L
       const m = byKey[k]
       return {
         key: k, label: (isEN && m.label_en) ? m.label_en : m.label, value: fmt(m.value) + (m.unit === '%' ? '%' : ''),
-        change: m.chg_1d_pct ?? m.chg_1d ?? 0,
+        // 2026-09-01 修：FRED 源只给 chg_1d(绝对差)，此前直接当百分比显示，
+        // 导致「初请失业金 ▼4000.00%」（实际是少了4000人=−2.0%）、
+        // 「30年利率 ▲0.03%」（实际是+3个基点=+0.6%）。数量级都错了。
+        // 现在：有 chg_1d_pct 就用它；只有绝对差则按值算真百分比。
+        change: m.chg_1d_pct ?? (
+          m.chg_1d != null && m.value ? (m.chg_1d / (m.value - m.chg_1d)) * 100 : 0
+        ),
+        // 利率/比率类（单位是%）额外给出"变动了几个百分点"，比百分比更符合直觉
+        change_pp: (m.unit === '%' && m.chg_1d != null) ? m.chg_1d : null,
         unit: m.unit === '%' ? '' : (m.unit ?? ''),
         as_of: m.as_of ?? '—', source: (m.source ?? '').split(':')[0],
         spark: (L.series?.[k] ?? []).slice(-40).map((p: any) => p[1]),
@@ -73,7 +81,14 @@ export const chains: Chain[] = L
   ? (L.knowledge?.chains ?? []).map((c: any) => ({
       id: c.id,
       title: `${c.emoji ?? ''} ${(isEN && c.name_en) ? c.name_en : c.name} — ${((isEN && c.one_liner_en) ? c.one_liner_en : c.one_liner)?.slice(0, 60) ?? ''}`,
-      heat: Math.min(100, 20 + (c.heat ?? 0) * 20),
+      // 2026-09-01 修：原来把热度缩放成 20+heat*20 并封顶100，heat≥4 全部饱和成
+      // "热度100"——后台 9 和 3 差三倍却显示一样，排序信息全丢，而且"100"本身
+      // 也不告诉人任何事。改为直接给真实构成，让卡片自己说"穿了几个、翻了几个"。
+      heat: c.heat ?? 0,
+      nCrossed: (c.nodes ?? []).filter((n: any) => n.status === 'crossed').length,
+      nNear: (c.nodes ?? []).filter((n: any) => n.status === 'near').length,
+      nBroken: (c.nodes ?? []).filter((n: any) => n.premise === 'broken').length,
+      premise: c.premise_total ? `${c.premise_hold ?? 0}/${c.premise_total}` : '',
       invalidation: (isEN && c.falsify_en) ? c.falsify_en : (c.falsify ?? ''),
       nodes: (c.nodes ?? []).map((n: any): ChainNode => ({
         label: (isEN && n.label_en) ? n.label_en : n.label,
@@ -81,6 +96,8 @@ export const chains: Chain[] = L
         threshold: n.threshold != null ? `${n.direction === 'above' ? '↑' : '↓'}${fmt(n.threshold)}` : '',
         status: NODE_STATUS[n.status] ?? 'fact',
         term: n.term ?? '',
+        premiseBroken: n.premise === 'broken',
+        sharedWith: (n.shared_with ?? []).length,
       })),
     }))
   : mock.chains

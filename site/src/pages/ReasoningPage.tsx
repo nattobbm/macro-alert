@@ -54,15 +54,29 @@ export default function ReasoningPage() {
                     </div>
                     <div className="flex items-center gap-2 mt-2">
                       {/* Heat badge */}
+                      {/* 用真实构成代替"热度100"：越线几个、快到几个，一眼可比 */}
                       <div
-                        className="font-num text-xs font-bold px-2.5 py-1 rounded-full"
+                        className="font-num text-xs font-bold px-2.5 py-1 rounded-full notranslate"
                         style={{
-                          backgroundColor: chain.heat > 70 ? 'var(--st-fire-bg)' : chain.heat > 50 ? 'var(--st-warn-bg)' : 'var(--st-ok-bg)',
-                          color: chain.heat > 70 ? 'var(--st-fire-text)' : chain.heat > 50 ? 'var(--st-warn-text)' : 'var(--st-ok-text)',
+                          backgroundColor: (chain.nCrossed ?? 0) >= 2 ? 'var(--st-fire-bg)' : (chain.nCrossed ?? 0) >= 1 ? 'var(--st-warn-bg)' : 'var(--st-ok-bg)',
+                          color: (chain.nCrossed ?? 0) >= 2 ? 'var(--st-fire-text)' : (chain.nCrossed ?? 0) >= 1 ? 'var(--st-warn-text)' : 'var(--st-ok-text)',
                         }}
                       >
-                        热度 {chain.heat}
+                        越线{chain.nCrossed ?? 0} · 快到{chain.nNear ?? 0}
                       </div>
+                      {/* 前提被推翻：链条"没穿线"和"根基没了"是两回事，必须分开显示 */}
+                      {(chain.nBroken ?? 0) > 0 && (
+                        <div className="text-xs px-2.5 py-1 rounded-full"
+                          style={{ backgroundColor: 'var(--st-fire-bg)', color: 'var(--st-fire-text)' }}>
+                          {isEN ? `${chain.nBroken} premise broken` : `前提已翻${chain.nBroken}`}
+                        </div>
+                      )}
+                      {chain.premise && (
+                        <div className="text-xs px-2 py-1 rounded-full notranslate"
+                          style={{ backgroundColor: 'var(--bg2)', color: 'var(--text-muted)' }}>
+                          {isEN ? 'premises ' : '前提成立 '}{chain.premise}
+                        </div>
+                      )}
                       <span className="flex-1" />
                       {/* Expand toggle */}
                       <button
@@ -98,11 +112,23 @@ export default function ReasoningPage() {
                             className="neu-inset-sm px-4 py-3 w-40 flex-shrink-0"
                             title={node.term}
                           >
-                            <div className="flex items-center gap-1.5 mb-1">
-                              <span className="dot" style={{ backgroundColor: meta.dot }} />
-                              <span className="text-xs font-medium" style={{ color: meta.color }}>
-                                {meta.label}
+                            <div className="flex items-center gap-1.5 mb-1 flex-wrap">
+                              {/* 前提已翻：这个前提不是"还没到"，是明确反了——
+                                  金融抑制链假设"市场不信加息"，实际71.5%，根基没了 */}
+                              <span className="dot" style={{
+                                backgroundColor: node.premiseBroken ? 'var(--st-fire)' : meta.dot }} />
+                              <span className="text-xs font-medium" style={{
+                                color: node.premiseBroken ? 'var(--st-fire-text)' : meta.color }}>
+                                {node.premiseBroken ? (isEN ? 'premise broken' : '前提已翻') : meta.label}
                               </span>
+                              {(node.sharedWith ?? 0) > 0 && (
+                                <span className="text-xs px-1 rounded notranslate"
+                                  style={{ backgroundColor: 'var(--bg2)', color: 'var(--text-muted)', fontSize: 10 }}
+                                  title={isEN ? 'this reading also drives other chains'
+                                             : '同一个读数也是其他链的节点——它动，那几条链一起动'}>
+                                  共用{node.sharedWith}
+                                </span>
+                              )}
                             </div>
                             <div className="text-xs font-medium leading-tight" style={{ color: 'var(--text)' }}>
                               {node.label}
