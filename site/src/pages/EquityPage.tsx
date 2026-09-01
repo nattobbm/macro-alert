@@ -4,7 +4,7 @@ import {
   Tooltip, ResponsiveContainer,
 } from 'recharts'
 import { genSPX, gexData, auctions, alertRules } from '../data/live'
-import { t as tr } from '../i18n'
+import { t as tr, isEN } from '../i18n'
 import {
   asOfMarket, asOfAuction, gexIsPositive, gexSpot, gexFlip,
   gexCallWall, gexPutWall, gexNetBn, gexHistory, genAt,

@@ -11,7 +11,10 @@ const num = (v: number | null) => v == null ? '—' : Math.round(v).toLocaleStri
 
 // 单个节点：软UI外框 + 标题 + 实时读数
 function Node({ x, y, w, h, engine, title, reading, sub, dashed }: {
-  x: number; y: number; w: number; h: number
+  // 调用处沿用SVG写法传字符串（x="30"），下面第18行统一 +x 转数字。
+  // 类型标成 number 会让 tsc 报44个错，把类型检查挡在构建之外——
+  // 而正是这个缺口让一个未定义变量上了线（市场页白屏）。
+  x: number | string; y: number | string; w: number | string; h: number | string
   engine: 'a' | 'b' | 'bridge'; title: string; reading?: string; sub?: string; dashed?: boolean
 }) {
   // 坐标强制转数字：调用处若传字符串，"30"+59 会变成"3059"字符串拼接，把字画到界外

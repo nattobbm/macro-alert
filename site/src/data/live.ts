@@ -329,6 +329,9 @@ export const ticLive = L?.tic?.length
       })),
     }
   : null
+// 剧本的单条判定条件。known=false 表示"这条没数"，和"有数但不成立"是两回事
+export type RegimeCond = { label: string; value: string; met: boolean; known: boolean }
+
 export const regimeLive = L?.regime
   ? {
       name: L.regime.name, met: L.regime.met, total: L.regime.total,
@@ -342,7 +345,11 @@ export const regimeLive = L?.regime
         | null | undefined,
       // known=false 是"这条没数"，不是"不成立"——两者必须分开显示，
       // 否则条件数会在 0/3↔1/3 之间跳，看的人以为网站在乱跳
-      conds: (L.regime.detail ?? []).map((d: any) => ({
+      // 标出类型：latest.json 是 any，不标的话下游 map 的参数全是隐式any，
+      // tsc 报错 → 类型检查进不了构建 → 未定义变量能一路上线
+      // 先把数组定型再 map —— 在 any 上调 .map，返回值还是 any，
+      // 回调标了返回类型也没用，下游参数照样是隐式 any
+      conds: ((L.regime.detail ?? []) as any[]).map((d): RegimeCond => ({
         label: d.cond, value: d.value != null ? fmt(d.value) : '—',
         met: !!d.met, known: d.known !== false,
       })),
