@@ -45,6 +45,9 @@ jobs:
           EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          # 金十官方MCP。少了这行，Secret 加了也白加——fetchers/jin10.py 读的是
+          # 环境变量，工作流不传就永远拿不到，油价会静默退回 yfinance 的坏K线口径
+          JIN10_MCP_TOKEN: ${{ secrets.JIN10_MCP_TOKEN }}
         run: python monitor.py ${{ steps.mode.outputs.flag }}
       - name: Commit data
         run: |

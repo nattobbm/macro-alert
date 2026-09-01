@@ -350,6 +350,17 @@ export const regimeLive = L?.regime
   : null
 
 export const genAt: string = L?.generated_at?.slice(0, 10) ?? '—'
+// 雷达/剧本/逻辑链吃的是 latest.json，每工作日只更新2次（盘前+收盘后）。
+// 快照上那个"实时"绿点走的是另一条路（quotes.json，20-40分钟）。
+// 两条路频率差一个数量级，不标出来就是让人以为雷达也是实时的。
+export const genAtLocal: string = (() => {
+  const s = L?.generated_at
+  if (!s) return '—'
+  const d = new Date(s)
+  if (isNaN(d.getTime())) return s.slice(0, 16).replace('T', ' ')
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return `${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`
+})()
 export const asOfMarket: string = byKey['spx']?.as_of ?? genAt
 export const asOfTic: string = L?.tic?.[0]?.as_of ?? '—'
 export const asOfCot: string = byKey['cot_gold']?.as_of ?? '—'

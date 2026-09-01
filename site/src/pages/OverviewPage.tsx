@@ -3,7 +3,7 @@ import Globe from '../components/Globe'
 import Sparkline from '../components/Sparkline'
 import { fetchLiveQuotes, diverges, liveFor } from '../data/liveQuote'
 import type { LiveQuote } from '../data/liveQuote'
-import { snapshots, alerts, alertsNoBands, radarBands, ticLive, regimeLive } from '../data/live'
+import { snapshots, alerts, alertsNoBands, radarBands, ticLive, regimeLive, genAtLocal } from '../data/live'
 import type { RadarBand } from '../data/live'
 import { EXPLAIN, UNIT_HINT } from '../data/explain'
 import { t as tr, isEN } from '../i18n'
@@ -234,6 +234,14 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
           <h2 className="text-base font-bold" style={{ color: 'var(--text)' }}>
             {tr('radar_title')}
             <span className="text-xs font-normal ml-2" style={{ color: 'var(--text-muted)' }}>{isEN ? ` (${nWatch} ${tr('radar_n')})` : `（${nWatch}${tr('radar_n')}）`}</span>
+            {/* 雷达不是实时的：走 latest.json，每工作日2次。
+                快照那边的"实时"绿点走另一条路(20-40分钟)。频率差一个数量级，
+                不标时间的话，看的人会默认这里也是实时价 */}
+            <span className="text-xs font-normal" style={{ color: 'var(--text-muted)', opacity: 0.75 }}
+              title={isEN ? 'radar updates twice per weekday (pre-open and after close), not live'
+                          : '雷达每个工作日更新2次（盘前、收盘后），不是实时价'}>
+              {isEN ? `updated ${genAtLocal}` : `更新于 ${genAtLocal}`}
+            </span>
           </h2>
           <button
             onClick={() => setShowStandard(v => !v)}
@@ -375,8 +383,10 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
           )}
         </h2>
         <div
-          className="grid gap-3"
-          style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(170px, 1fr))' }}
+          // 手机可用宽 343px，原来 minmax(170px) 差 9px 排不下两列，
+          // 卡片被拉成整行横条。改 110px 起，375px 屏稳排 2 列，宽屏自动加列
+          className="grid gap-2.5"
+          style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))' }}
         >
           {snapshots.map(s => {
             // 实时参考价（东方财富，仅显示用，不进判定）；与官方值背离则并列不择一
@@ -410,51 +420,35 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
             const ex = EXPLAIN[s.key]
             const opened = openWhat === s.key
             return (
-              <div key={s.key} className="neu-sm p-4 flex flex-col gap-1">
-                <div className="flex items-center justify-between gap-1">
-                  <span className="text-xs font-medium flex items-center gap-1.5 min-w-0" style={{ color: 'var(--text-muted)' }}>
-                    <span className="truncate">{s.label}</span>
-                    {roleMeta && (
-                      <span
-                        className="px-1.5 rounded-full flex-shrink-0 cursor-help"
-                        style={{ fontSize: 10, backgroundColor: roleMeta.bg, color: roleMeta.color }}
-                        title={roleMeta.tip}
-                      >
-                        {roleMeta.label}
-                      </span>
-                    )}
+              // 折叠态一张卡只留三样：名字 / 数字 / 涨跌。
+              // 原来一张卡塞九样（名字·角色·涨跌·?·数值·单位·日期·来源·走势），
+              // 手机上被撑成整行横条，一屏只看得到3个指标——"打开就知道市场什么情况"做不到。
+              // 日期/来源/角色/走势图全部收进"?"面板，那是细节不是主题。
+              // 展开时占满整行(grid-column: 1/-1)，字才有地方铺开。
+              <div key={s.key} className="neu-sm p-3 flex flex-col gap-1"
+                style={opened ? { gridColumn: '1 / -1' } : undefined}>
+                <div className="flex items-start justify-between gap-1">
+                  <span className="text-xs font-medium min-w-0 leading-snug"
+                    style={{ color: 'var(--text-muted)' }}>
+                    {s.label}
                   </span>
-                  <span className="flex items-center gap-1 flex-shrink-0">
-                    <span
-                      className="font-num text-xs px-1.5 py-0.5 rounded-lg"
+                  {ex && (
+                    <button
+                      onClick={() => setOpenWhat(opened ? null : s.key)}
+                      aria-label={isEN ? 'what is this' : '这是什么'}
+                      title={isEN ? 'what is this' : '这是什么'}
+                      className="rounded-full flex items-center justify-center transition-transform hover:scale-110 flex-shrink-0"
                       style={{
-                        backgroundColor: up ? '#6bb89a22' : '#e0787822',
-                        color: up ? 'var(--green)' : 'var(--red)',
+                        width: 18, height: 18, fontSize: 11, lineHeight: 1,
+                        border: 'none', cursor: 'pointer', marginTop: 1,
+                        backgroundColor: opened ? 'var(--accent)' : 'var(--bg2)',
+                        color: opened ? '#fff' : 'var(--text-muted)',
                       }}
-                    >
-                      {/* 利率/比率类显示"几个基点"，其余显示百分比。
-                          4.67%→4.70% 说成"+0.6%"反直觉，说成"+3bp"才不会看错位数。
-                          bp/pp 是行话——所以右边配了"?"，点开就是大白话 */}
-                      {up ? '▲' : '▼'} {chgText}
-                    </span>
-                    {ex && (
-                      <button
-                        onClick={() => setOpenWhat(opened ? null : s.key)}
-                        aria-label={isEN ? 'what is this' : '这是什么'}
-                        title={isEN ? 'what is this' : '这是什么'}
-                        className="rounded-full flex items-center justify-center transition-transform hover:scale-110"
-                        style={{
-                          width: 18, height: 18, fontSize: 11, lineHeight: 1,
-                          border: 'none', cursor: 'pointer',
-                          backgroundColor: opened ? 'var(--accent)' : 'var(--bg2)',
-                          color: opened ? '#fff' : 'var(--text-muted)',
-                        }}
-                      >?</button>
-                    )}
-                  </span>
+                    >?</button>
+                  )}
                 </div>
 
-                <div className="font-num font-bold text-2xl leading-tight flex items-baseline gap-1.5"
+                <div className="font-num font-bold text-xl leading-tight flex items-baseline gap-1"
                   style={{ color: 'var(--text)' }}>
                   {disp}
                   {s.unit && (
@@ -468,15 +462,36 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
                   )}
                 </div>
 
-                {/* 「这是什么」大白话面板：是什么 → 为什么看它 → 往上意味着什么。
+                <div className="flex items-center justify-between gap-1">
+                  <span
+                    className="font-num text-xs px-1.5 py-0.5 rounded-lg"
+                    style={{
+                      backgroundColor: up ? '#6bb89a22' : '#e0787822',
+                      color: up ? 'var(--green)' : 'var(--red)',
+                    }}
+                  >
+                    {/* 利率类用bp（4.67%→4.70%说成"+0.6%"反直觉），bp是行话，点"?"有解释 */}
+                    {up ? '▲' : '▼'} {chgText}
+                  </span>
+                  <Sparkline data={s.spark} positive={up} width={54} height={18} />
+                </div>
+
+                {/* 两源冲突：并列显示，不静默择一（沿用SOFR双源纪律）。
+                    这条不能折叠——数字打架时必须当场看见 */}
+                {conflict && q && (
+                  <div className="text-xs" style={{ color: 'var(--st-warn-text)' }}>
+                    {isEN ? 'live differs: ' : '实时源不一致：'}
+                    {q.value.toLocaleString('en-US', { maximumFractionDigits: 2 })}
+                  </div>
+                )}
+
+                {/* 「这是什么」面板：是什么 → 为什么看它 → 往上意味着什么 → 这个数哪来的。
                     不用弹窗——手机上弹窗要多点一次才能关掉 */}
                 {opened && ex && (
-                  <div className="neu-inset-sm p-2.5 mt-1 flex flex-col gap-1.5"
-                    style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--text)' }}>
+                  <div className="neu-inset-sm p-3 mt-1 flex flex-col gap-1.5"
+                    style={{ fontSize: 12, lineHeight: 1.7, color: 'var(--text)' }}>
                     <div>{ex.what}</div>
-                    {ex.why && (
-                      <div style={{ color: 'var(--text-muted)' }}>{ex.why}</div>
-                    )}
+                    {ex.why && <div style={{ color: 'var(--text-muted)' }}>{ex.why}</div>}
                     {/* 方向说明写死成"往上=什么"，不跟当前涨跌绑一起。
                         绑一起会写出"现在是往下，反过来看：往上=裁员增加"这种绕话 */}
                     {ex.up && (
@@ -486,30 +501,25 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
                       </div>
                     )}
                     {UNIT_HINT[chgUnit] && (
-                      <div className="pt-1" style={{ color: 'var(--text-muted)', borderTop: '1px dashed var(--border)' }}>
-                        {UNIT_HINT[chgUnit]}
+                      <div style={{ color: 'var(--text-muted)' }}>{UNIT_HINT[chgUnit]}</div>
+                    )}
+                    {roleMeta && (
+                      <div style={{ color: 'var(--text-muted)' }}>
+                        <span className="px-1.5 rounded-full mr-1.5"
+                          style={{ fontSize: 10, backgroundColor: roleMeta.bg, color: roleMeta.color }}>
+                          {roleMeta.label}
+                        </span>
+                        {roleMeta.tip}
                       </div>
                     )}
+                    <div className="pt-1.5" style={{
+                      color: 'var(--text-muted)', opacity: 0.8,
+                      borderTop: '1px dashed var(--border)' }}>
+                      {isEN ? 'source: ' : '这个数来自：'}
+                      {showLive ? (isEN ? 'live reference quote' : '实时参考报价') : `${s.source} · ${s.as_of}`}
+                    </div>
                   </div>
                 )}
-
-                {/* 两源冲突：并列显示，不静默择一（沿用SOFR双源纪律） */}
-                {conflict && q && (
-                  <div className="text-xs" style={{ color: 'var(--st-warn-text)' }}>
-                    {isEN ? 'live quote differs: ' : '实时源不一致：'}
-                    {q.value.toLocaleString('en-US', { maximumFractionDigits: 2 })}
-                  </div>
-                )}
-
-                <div className="flex items-end justify-between">
-                  <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                    <div>{showLive ? (isEN ? 'live' : '实时') : s.as_of}</div>
-                    <div>{showLive ? (isEN ? 'ref. quote' : '参考报价') : s.source}</div>
-                  </div>
-                  <div className="neu-inset-sm p-1.5">
-                    <Sparkline data={s.spark} positive={up} width={72} height={24} />
-                  </div>
-                </div>
               </div>
             )
           })}
