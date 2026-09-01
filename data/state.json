@@ -2,7 +2,7 @@
  "counters": {
   "T1_auction_long": 0,
   "T2_auction_indirect": 0,
-  "T2b_tic_decline": 56,
+  "T2b_tic_decline": 57,
   "T3_fima_used": 0,
   "T3b_srf_used": 0,
   "T4_move": 0,
@@ -10,7 +10,7 @@
   "T5b_30y_retest": 0,
   "T6_rg_gap": 0,
   "T7_sofr_iorb": 0,
-  "F1_hike_odds_up": 7,
+  "F1_hike_odds_up": 8,
   "F2_hike_odds_down": 0,
   "F3_real_yield": 0,
   "F4_repression_signal": 0,
@@ -18,7 +18,7 @@
   "G2_oil_spike": 0,
   "J1_intervention_zone": 0,
   "J1b_carry_unwind": 0,
-  "X1_gold_breakout": 4,
+  "X1_gold_breakout": 5,
   "X2_metals_divergence": 0,
   "X3_dxy_gold_corr_break": 0,
   "P1_cot_extreme": 0,
@@ -26,19 +26,19 @@
   "S2_vix_term_flip": 0,
   "S3_vix_collapse": 0,
   "S4_spx_drawdown": 0,
-  "H1_stale": 0,
+  "H1_stale": 1,
   "H2_sofr_conflict": 0,
   "E1_sahm_trigger": 0,
   "E2_sahm_warning": 0,
   "E3_claims_spike": 0,
-  "F5_taylor_gap": 27,
+  "F5_taylor_gap": 28,
   "R1_curve_uninvert": 0
  },
  "last_fired": {
   "T2b_tic_decline": "2026-08-27T01:26:58.216199+00:00",
-  "H1_stale": "2026-08-31T14:48:06.186948+00:00",
-  "F5_taylor_gap": "2026-08-31T17:13:57.450238+00:00",
-  "F1_hike_odds_up": "2026-08-31T17:13:57.450238+00:00",
+  "H1_stale": "2026-09-01T07:31:36.035999+00:00",
+  "F5_taylor_gap": "2026-09-01T07:31:36.035999+00:00",
+  "F1_hike_odds_up": "2026-09-01T07:31:36.035999+00:00",
   "X1_gold_breakout": "2026-08-31T16:32:55.292005+00:00"
  }
 }
