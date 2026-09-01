@@ -29,10 +29,21 @@ def scorecard(pred_dir: str | Path) -> dict:
     for f in open_files:
         try:
             j = json.loads(f.read_text(encoding="utf-8"))
+            # 2026-09-01 修：锁定判定原来只认 probability，但情景图格式
+            # (scenario_map) 没有概率字段——它签的是 momo_ranking + 一句理由。
+            # 结果 Momo 亲笔签发的卡在看板上显示成"未锁定"。
+            # 以 status 字段为准，兼容旧的概率单。
+            st = j.get("status")
+            locked = (st in ("LOCKED", "SETTLED")
+                      or j.get("momo_ranking") is not None
+                      or j.get("probability") is not None)
             opens.append({"id": j.get("id"), "question": j.get("question"),
                           "probability": j.get("probability"),
+                          "ranking": j.get("momo_ranking"),
+                          "format": j.get("format", "probability"),
+                          "status": st,
                           "settle_date": j.get("settle_date"),
-                          "locked": j.get("probability") is not None})
+                          "locked": locked})
         except Exception:
             continue
 

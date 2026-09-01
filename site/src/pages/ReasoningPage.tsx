@@ -223,10 +223,19 @@ export default function ReasoningPage() {
                 >
                   {p.locked ? '已锁定' : '未锁定'}
                 </span>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <div className="text-sm" style={{ color: 'var(--text)' }}>{p.question}</div>
                   <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
                     结算: {p.settle_date}
+                    {/* 签发内容：情景图卡签的是排序，概率单签的是概率 */}
+                    {p.ranking && (
+                      <span className="ml-2 font-num font-medium notranslate"
+                        style={{ color: 'var(--accent)' }}>{p.ranking}</span>
+                    )}
+                    {p.probability != null && (
+                      <span className="ml-2 font-num font-medium notranslate"
+                        style={{ color: 'var(--accent)' }}>{(p.probability * 100).toFixed(0)}%</span>
+                    )}
                     {p.result && <span className="ml-2 font-medium">{p.result}</span>}
                   </div>
                 </div>

@@ -201,6 +201,8 @@ export const verdicts: Verdict[] = [
 export interface Prediction {
   id: string; question: string; locked: boolean; settle_date: string;
   status: 'open' | 'settled'; result?: string;
+  // 情景图卡签排序(S2>S1>S3)、概率单签概率；两种签发形式都要能显示
+  ranking?: string | null; probability?: number | null;
 }
 
 export const predictions: Prediction[] = [

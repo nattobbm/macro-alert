@@ -104,6 +104,8 @@ export const predictions: Prediction[] = L
       ...(L.predictions?.open_list ?? []).map((o: any) => ({
         id: o.id, question: o.question ?? o.id, locked: !!o.locked,
         settle_date: o.settle_date ?? '—', status: 'open' as const,
+        // 情景图卡签的是排序(如 S2>S1>S3)，概率单签的是概率；两种都要显示出来
+        ranking: o.ranking ?? null, probability: o.probability ?? null,
       })),
       ...(L.predictions?.settled_list ?? []).map((s: any) => ({
         id: s.id, question: s.id, locked: true, settle_date: '—',
