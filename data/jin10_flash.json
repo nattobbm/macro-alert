@@ -194,7 +194,127 @@
     "lean": "中性"
    },
    "speaker": "巴尔"
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：通胀水平过高。",
+   "link": "https://flash.jin10.com/detail/20260902224159432800",
+   "published": "2026-09-02T14:41:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆"
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：通胀主要集中在汽油和油价上。",
+   "link": "https://flash.jin10.com/detail/20260902224211206800",
+   "published": "2026-09-02T14:42:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆"
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：风险正在变化，我们已准备好根据需要调整货币政策。",
+   "link": "https://flash.jin10.com/detail/20260902224305585800",
+   "published": "2026-09-02T14:43:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆"
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：中东冲突暂无明确解决方案。",
+   "link": "https://flash.jin10.com/detail/20260902224404676800",
+   "published": "2026-09-02T14:44:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "地缘链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆"
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：能源价格高企溢出效应风险加剧。",
+   "link": "https://flash.jin10.com/detail/20260902224422813800",
+   "published": "2026-09-02T14:44:22Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆"
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：通胀数据将指导我们的决策。",
+   "link": "https://flash.jin10.com/detail/20260902224432047800",
+   "published": "2026-09-02T14:44:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆"
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：当前通胀面临的更大风险，在于中东局势的演变，油价会持续高位运行多久，以及最终会涨到多高。",
+   "link": "https://flash.jin10.com/detail/20260902224637764800",
+   "published": "2026-09-02T14:46:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "地缘链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆"
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：企业告诉我们，他们正在适应贸易不确定性。",
+   "link": "https://flash.jin10.com/detail/20260902224749342800",
+   "published": "2026-09-02T14:47:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆"
   }
  ],
- "fetched_at": "2026-09-02T14:36:29Z"
+ "fetched_at": "2026-09-02T14:58:23Z"
 }
