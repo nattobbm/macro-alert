@@ -123,9 +123,12 @@ def speech_after(j: Jin10, speaker: str, date: str, time_bj: str | None,
     resp = j.call("search_flash", {"keyword": speaker})
     if time_bj:
         start = dt.datetime.fromisoformat(f"{date}T{time_bj}:00+08:00")
+        # 窗口提前30分钟：记者会常紧跟决议早开（9-2 加拿大央行日程写22:30，
+        # 麦克勒姆 21:46 就开始说了），只从整点起算会漏掉开头最要紧的几句
+        start -= dt.timedelta(minutes=30)
     else:
         start = dt.datetime.fromisoformat(f"{date}T00:00:00+08:00")
-    end = start + dt.timedelta(hours=window_h)
+    end = start + dt.timedelta(hours=window_h) + dt.timedelta(minutes=30)
     out = []
     for it in _items(resp):
         try:

@@ -36,6 +36,10 @@ FEEDS = [
     ("AlJazeera", "https://www.aljazeera.com/xml/rss/all.xml"),
     # 已测不可用（2026-08-27）：Treasury/BLS/NYFed 的RSS均403/404，GDELT超时。
     # 已测不可用（2026-08-31）：Reuters/AP 的RSS域名已停止解析。
+    # 已评估否决（2026-09-02）：financialjuice.com —— 内容极好（全球央行讲话逐句实时、英文、
+    #   带币种标签），但走 Azure SignalR WebSocket + 登录会话 ftoken + Cloudflare Turnstile，
+    #   GitHub Actions 侧无登录态拿不到。同场记者会金十快讯逐分钟都有（中文），已由
+    #   jin10_flash.py 接入。financialjuice 定位=人眼看的英文快讯，不进管线。
     # 词表打标不解读；数字仍只认官方API源。
 ]
 
