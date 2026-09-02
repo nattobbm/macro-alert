@@ -61,6 +61,40 @@ def _tag_zh(text: str) -> list[str]:
     return [name for name, pat in TAGS_ZH.items() if re.search(pat, text)] or ["其他"]
 
 
+# ── 央行套话词典：每句原话配一行"意思：" ──────────────────────────────
+# Momo 9-02：政治语言故意模糊（要公信/中立/不极端），让百姓自己猜；我们替人猜。
+# 词典在 knowledge/phrasebook.yaml，命中就翻，没命中标"无固定套话"——不让机器编。
+_PHRASEBOOK: list[dict] | None = None
+
+
+def _load_phrasebook() -> list[dict]:
+    global _PHRASEBOOK
+    if _PHRASEBOOK is not None:
+        return _PHRASEBOOK
+    out: list[dict] = []
+    try:
+        import yaml
+        p = Path(__file__).resolve().parent.parent / "knowledge" / "phrasebook.yaml"
+        for e in yaml.safe_load(p.read_text(encoding="utf-8")) or []:
+            try:
+                e["_re"] = re.compile(e["pattern"], re.I)
+                out.append(e)
+            except re.error:
+                continue      # 一条坏正则不拖垮整本词典
+    except Exception:
+        pass
+    _PHRASEBOOK = out
+    return out
+
+
+def decode(text: str) -> dict:
+    """返回 {'meaning': str, 'lean': str, 'id': str|None}。没命中 → meaning='无固定套话'。"""
+    for e in _load_phrasebook():
+        if e["_re"].search(text):
+            return {"meaning": e["meaning"], "lean": e.get("lean", "中"), "id": e["id"]}
+    return {"meaning": "无固定套话", "lean": "中", "id": None}
+
+
 def _tone(text: str) -> dict:
     h = len(re.findall(_HAWK, text))
     d = len(re.findall(_DOVE, text))
@@ -140,6 +174,10 @@ def speech_after(j: Jin10, speaker: str, date: str, time_bj: str | None,
         content = it.get("content", "").strip()
         if speaker not in content:
             continue
+        # 预告/收尾不是讲话："巴尔将于十分钟后发表讲话""金十提示：发布会结束"
+        if re.search(r"将于.{0,8}后|发布会结束|讲话结束|金十提示", content):
+            continue
+        dec = decode(content)
         out.append({
             "title": content.split("\n")[0][:140],
             "link": it.get("url", ""),
@@ -148,6 +186,8 @@ def speech_after(j: Jin10, speaker: str, date: str, time_bj: str | None,
             "tags": _tag_zh(content),
             "tone": _tone(content),
             "speaker": speaker,
+            # "意思："那一行——词典命中才有，没命中是"无固定套话"，绝不编
+            "meaning": dec["meaning"], "meaning_lean": dec["lean"], "meaning_id": dec["id"],
         })
     out.sort(key=lambda x: x["published"])
     return out

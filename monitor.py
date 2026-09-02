@@ -128,19 +128,19 @@ RADAR_BANDS = [
     # 口径与阈值同源：8-25报告写的是「XAUUSD 4,450–4,700」，故用伦敦金现不用COMEX期货
     {"id": "gold_band", "key": "xauusd", "lo": 4450.0, "hi": 4700.0, "unit": "美元",
      "label": "黄金(伦敦金现XAUUSD)", "label_en": "Gold (XAUUSD spot)",
-     "lo_note": "跌破4450 → 紧缩逻辑回归", "hi_note": "涨破4700 → 上行情景确认",
+     "lo_note": "跌破4450 → 回到「央行要收紧」的剧本", "hi_note": "涨破4700 → 黄金上涨剧本坐实",
      "lo_note_en": "Below 4450 → tightening chain returns", "hi_note_en": "Above 4700 → upside scenario confirmed",
      "origin": "报告情景区间 · 8-25报告", "origin_en": "Scenario band: Aug-25 report",
      "rule_id": "X1_gold_breakout"},
     {"id": "jpy_band", "key": "usdjpy", "lo": 157.0, "hi": 163.0, "unit": "",
      "label": "日元(USDJPY)", "label_en": "Yen (USDJPY)",
-     "lo_note": "跌破157 → 套息平仓启动(全球撤资)", "hi_note": "涨破163 → 触及7-31官方干预位",
+     "lo_note": "跌破157 → 借日元炒美股的钱开始往回撤", "hi_note": "涨破163 → 到了7-31各国联手干预的位置",
      "lo_note_en": "Below 157 → carry unwind starts", "hi_note_en": "Above 163 → Jul-31 intervention level",
      "origin": "真出过事的位置 + 机制线", "origin_en": "Event level + mechanism",
      "rule_id": "J1_intervention_zone"},
     {"id": "hike_band", "key": "fedwatch_sep_hike", "lo": 0.25, "hi": 0.65, "unit": "",
      "label": "9月加息概率", "label_en": "Sep hike odds",
-     "lo_note": "跌破25% → 宽松预期回归，黄金受支撑", "hi_note": "涨破65% → 两个解释框架正面对决",
+     "lo_note": "跌破25% → 市场改押不加息，黄金得撑", "hi_note": "涨破65% → 市场押加息，和 Momo 签的判断正面撞",
      "lo_note_en": "Below 25% → easing expectations return", "hi_note_en": "Above 65% → frameworks clash head-on",
      "origin": "报告情景区间 · 8-25报告", "origin_en": "Scenario band: Aug-25 report",
      "rule_id": "F1_hike_odds_up"},
@@ -454,21 +454,31 @@ def _eval_rule(expr: str, ctx: dict):
 
 
 def build_digest(ctx: dict, knowledge: dict, rule_results: list, radar: list,
-                 cal: list) -> dict:
+                 cal: list, bands: list | None = None, regime: dict | None = None,
+                 predictions: dict | None = None) -> dict:
     """今日推理快报：与上次运行的状态diff，机械拼装（非AI生成）。
-    回答三个问题：什么变了 / 触碰了哪条链 / 下一步看哪。"""
+    回答三个问题：什么变了 / 触碰了哪条链 / 下一步看哪。
+
+    2026-09-02 追加 `changes`（结构化）：推送重构后"只报变化不报状态"，
+    门就是这里——上次推送里也成立的东西不是新闻。除节点状态外还比：
+    带子破/回（radar_bands）、判据结论翻转（regime.judge_result）、预测单新证据条数。
+    """
     st_file = DATA / "digest_state.json"
     prev = json.loads(st_file.read_text(encoding="utf-8")) if st_file.exists() else {}
     today = dt.date.today().isoformat()
 
-    # 当前节点状态表 {chain_id.label: status}
-    node_now = {}
+    # 当前节点状态表 {chain_id.label: status}，另存节点明细给 changes 用
+    node_now, node_meta = {}, {}
     for ch in knowledge.get("chains", []):
         for nd in ch.get("nodes", []):
             if nd.get("status") in ("crossed", "near", "quiet", "no_data"):
-                node_now[f"{ch['id']}·{nd['label']}"] = nd["status"]
+                k = f"{ch['id']}·{nd['label']}"
+                node_now[k] = nd["status"]
+                node_meta[k] = {"chain": ch.get("name") or ch["id"], "label": nd["label"],
+                                "value": nd.get("value"), "threshold": nd.get("threshold"),
+                                "direction": nd.get("direction"), "metric": nd.get("metric")}
 
-    lines = []
+    lines, changes = [], []
     # 1) 规则新触发
     fired = [r for r in rule_results if r["status"] == "fired"]
     for r in fired:
@@ -484,6 +494,31 @@ def build_digest(ctx: dict, knowledge: dict, rule_results: list, radar: list,
             lines.append({"icon": "↗" if worse else "↘",
                           "text": f"{k}：{zh[old_s]}→{zh[now_s]}",
                           "level": "warn" if worse else "info"})
+            changes.append({"kind": "node", "old": old_s, "new": now_s, **node_meta[k]})
+    # 2b) 带子破/回（雷达双边带）
+    band_now = {b["id"]: b.get("status") for b in (bands or [])}
+    for b in (bands or []):
+        old = prev.get("bands", {}).get(b["id"])
+        if old and old != b.get("status"):
+            changes.append({"kind": "band", "id": b["id"], "label": b.get("label"),
+                            "old": old, "new": b.get("status"), "value": b.get("value"),
+                            "lo": b.get("lo"), "hi": b.get("hi"),
+                            "lo_note": b.get("lo_note"), "hi_note": b.get("hi_note"),
+                            "key": b.get("key")})
+    # 2c) 判据结论翻转
+    jr = ((regime or {}).get("judge_result") or {}).get("verdict")
+    if jr and prev.get("judge_verdict") and prev["judge_verdict"] != jr:
+        changes.append({"kind": "judge", "old": prev["judge_verdict"], "new": jr,
+                        "plain": (regime or {}).get("judge_result", {}).get("plain"),
+                        "tips_chg_bp": (regime or {}).get("judge_result", {}).get("tips_chg_bp"),
+                        "gold_chg_pct": (regime or {}).get("judge_result", {}).get("gold_chg_pct")})
+    # 2d) 预测单新证据
+    ev_now = {}
+    for o in ((predictions or {}).get("open_list") or []):
+        ev_now[o["id"]] = len(o.get("evidence") or [])
+        if ev_now[o["id"]] > prev.get("pred_evidence", {}).get(o["id"], 0):
+            changes.append({"kind": "evidence", "pred_id": o["id"],
+                            "new_items": (o.get("evidence") or [])[prev.get("pred_evidence", {}).get(o["id"], 0):]})
     # 3) 链条失效
     for ch in knowledge.get("chains", []):
         if ch.get("life") == "falsified" and prev.get("chain_life", {}).get(ch["id"]) != "falsified":
@@ -511,8 +546,9 @@ def build_digest(ctx: dict, knowledge: dict, rule_results: list, radar: list,
         "date": today, "nodes": node_now,
         "chain_life": {ch["id"]: ch.get("life", "active") for ch in knowledge.get("chains", [])},
         "flagged": [c["id"] for c in knowledge.get("conclusions", []) if c.get("live_flag")],
+        "bands": band_now, "judge_verdict": jr, "pred_evidence": ev_now,
     }, ensure_ascii=False), encoding="utf-8")
-    return {"date": today, "lines": lines, "next_watch": next_watch}
+    return {"date": today, "lines": lines, "next_watch": next_watch, "changes": changes}
 
 
 def build_knowledge(ctx: dict) -> dict:
@@ -1004,6 +1040,31 @@ def run_quotes_only() -> None:
             }
         except Exception as e:
             failed.append(f"{key}({type(e).__name__})")
+    # 金十现货（Momo 9-02 定 A）：推送"现在"行要和雷达同口径——
+    # 雷达判黄金用伦敦金现 XAUUSD、判油用 UKOIL，而上面 yfinance 抓的是 GC=F / BZ=F（期货/换月）。
+    # 不加这两行，"现在"行的黄金会比雷达高几十美元，读者以为网站前后打架。
+    # 20 分钟一刷走的是金十 get_quote（1500 次/天够用），失败不阻断。
+    try:
+        from fetchers import jin10 as _j10
+        _q = _j10.Jin10()
+        for key, code in (("xauusd", "XAUUSD"), ("ukoil", "UKOIL")):
+            try:
+                q = _q.quote(code)
+                v = float(q.get("close"))
+                try:
+                    _pct = float(q.get("ups_percent"))     # 金十返回的是字符串 '1.40'
+                except (TypeError, ValueError):
+                    _pct = None
+                out[key] = {
+                    "value": round(v, 4),
+                    "as_of": str(q.get("time") or "")[:10] or dt.date.today().isoformat(),
+                    "chg_1d_pct": _pct,
+                    "source": f"jin10:{code}",
+                }
+            except Exception as e:
+                failed.append(f"{key}({type(e).__name__})")
+    except Exception as e:
+        failed.append(f"jin10({type(e).__name__})")
     payload = {
         "generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "quotes": out,
@@ -1018,7 +1079,7 @@ def run_quotes_only() -> None:
         + (f" | SPX {spx:.0f}" if spx else "")
         + (f" | 失败 {len(failed)}" if failed else ""),
         encoding="utf-8")
-    print(f"[quotes] {len(out)}/{len(QUOTE_TICKERS)} ok"
+    print(f"[quotes] {len(out)}/{len(QUOTE_TICKERS) + 2} ok"   # +2 = 金十 XAUUSD/UKOIL
           + (f", failed: {failed}" if failed else ""), file=sys.stderr)
 
 
@@ -1124,7 +1185,9 @@ def main():
         ensure_ascii=False), encoding="utf-8")
 
     latest["digest"] = build_digest(ctx, latest["knowledge"], rule_results,
-                                    latest["radar"], cal)
+                                    latest["radar"], cal,
+                                    bands=latest.get("radar_bands"), regime=latest.get("regime"),
+                                    predictions=latest.get("predictions"))
     LATEST_FILE.write_text(json.dumps(latest, ensure_ascii=False), encoding="utf-8")
 
     metrics_by_key = {m["key"]: m for m in latest["metrics"]}
@@ -1137,11 +1200,15 @@ def main():
     sp_events_today = [s for s in speech_events if s.get("date") in (today, _tm)]
     _cut = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=30)).strftime("%Y-%m-%dT%H:%M:%SZ")
     speeches_recent = [n for n in news_items if n.get("tone") and (n.get("published") or "") >= _cut]
-    msg = notify.build_message(latest["health"], rule_results, auctions, cal_today,
-                               metrics_by_key, today,
-                               digest=latest["digest"], radar=latest["radar"],
-                               econ_today=econ_today,
-                               speech_events=sp_events_today, speeches=speeches_recent)
+    # "现在"行要的是发出那一刻的价：20 分钟通道的 quotes.json 比 latest 新就用它
+    _quotes, _qgen = {}, None
+    try:
+        _qj = json.loads((DATA / "quotes.json").read_text(encoding="utf-8"))
+        _quotes, _qgen = _qj.get("quotes") or {}, _qj.get("generated_at")
+    except Exception:
+        pass
+    msg = notify.build_message(latest, _quotes, _qgen,
+                               sp_events_today, speeches_recent, econ_today, today)
     notify.send(msg, dry=args.dry_run)
 
     # 提交留痕：让 GitHub 历史一眼看出这次跑动了什么，而不是清一色 "data: 时间戳"

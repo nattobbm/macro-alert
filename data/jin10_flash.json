@@ -91,21 +91,6 @@
  ],
  "speeches": [
   {
-   "title": "美联储理事巴尔将于十分钟后就“经济展望与金融包容性”发表讲话。",
-   "link": "https://flash.jin10.com/detail/20260901205500001800",
-   "published": "2026-09-01T12:55:00Z",
-   "source": "金十快讯",
-   "tags": [
-    "货币链"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "巴尔"
-  },
-  {
    "title": "美联储理事巴尔：通胀仍然过高。如果对通胀减缓有信心，则倾向于维持利率稳定。",
    "link": "https://flash.jin10.com/detail/20260901210524809800",
    "published": "2026-09-01T13:05:24Z",
@@ -118,7 +103,10 @@
     "dove": 0,
     "lean": "鹰"
    },
-   "speaker": "巴尔"
+   "speaker": "巴尔",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
   },
   {
    "title": "美联储理事巴尔：经济增长“稳健”，受人工智能投资推动。",
@@ -134,7 +122,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "巴尔"
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "美联储理事巴尔：劳动力市场稳定，失业率水平较低。",
@@ -150,7 +141,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "巴尔"
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "美联储理事巴尔：如果通胀不能很快放缓，那么将是时候加息了。",
@@ -165,7 +159,10 @@
     "dove": 1,
     "lean": "鹰"
    },
-   "speaker": "巴尔"
+   "speaker": "巴尔",
+   "meaning": "在给加息铺路，但用\"如果\"留了退路",
+   "meaning_lean": "鹰",
+   "meaning_id": "cond_hike"
   },
   {
    "title": "美联储理事巴尔：通胀持续高于目标带来风险。",
@@ -180,7 +177,10 @@
     "dove": 0,
     "lean": "鹰"
    },
-   "speaker": "巴尔"
+   "speaker": "巴尔",
+   "meaning": "在给紧缩找理由——\"风险\"是加息前的标准铺垫词",
+   "meaning_lean": "鹰",
+   "meaning_id": "above_target_risk"
   },
   {
    "title": "美联储理事巴尔：如果数据趋势让我相信通胀正在朝着2%的目标缓解，那么评估政策立场可能需要时间。",
@@ -195,7 +195,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "巴尔"
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "美联储理事巴尔：迄今为止，消费者支出表现出了良好的韧性。",
@@ -210,7 +213,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "巴尔"
+   "speaker": "巴尔",
+   "meaning": "经济扛得住加息——这是给紧缩开绿灯",
+   "meaning_lean": "鹰",
+   "meaning_id": "resilient_consumer"
   },
   {
    "title": "【美联储理事巴尔：若通胀未降温应果断加息】金十数据9月1日讯，美联储理事迈克尔·巴尔表示，如果通胀未能回落，美联储应做好加息准备。他警告称，通胀率持续超过目标已逾5年，价格压力存在根深蒂固的风险。巴尔表示，如果即将公布的数据能够显示通胀正在降温，政策制定者可以保持耐心。巴尔周二在",
@@ -225,7 +231,10 @@
     "dove": 2,
     "lean": "鹰"
    },
-   "speaker": "巴尔"
+   "speaker": "巴尔",
+   "meaning": "在给加息铺路，但用\"如果\"留了退路",
+   "meaning_lean": "鹰",
+   "meaning_id": "cond_hike"
   },
   {
    "title": "美联储理事巴尔：人工智能具有巨大的潜力和风险。",
@@ -241,22 +250,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "巴尔"
-  },
-  {
-   "title": "美国至8月28日当周EIA原油库存、库欣原油库存、EIA战略石油储备库存将于十分钟后公布；加拿大央行行长麦克勒姆将于十分钟后召开新闻发布会。",
-   "link": "https://flash.jin10.com/detail/20260902222000000800",
-   "published": "2026-09-02T14:20:00Z",
-   "source": "金十快讯",
-   "tags": [
-    "其他"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "麦克勒姆"
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：通胀水平过高。",
@@ -271,7 +268,10 @@
     "dove": 0,
     "lean": "鹰"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
   },
   {
    "title": "加拿大央行行长麦克勒姆：通胀主要集中在汽油和油价上。",
@@ -286,7 +286,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：风险正在变化，我们已准备好根据需要调整货币政策。",
@@ -301,7 +304,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "立场要变了，方向看下一句",
+   "meaning_lean": "中",
+   "meaning_id": "risks_shifting"
   },
   {
    "title": "加拿大央行行长麦克勒姆：中东冲突暂无明确解决方案。",
@@ -316,7 +322,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：能源价格高企溢出效应风险加剧。",
@@ -331,7 +340,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "别国的事在影响我们，我们的决定不完全自主",
+   "meaning_lean": "中",
+   "meaning_id": "spillover"
   },
   {
    "title": "加拿大央行行长麦克勒姆：通胀数据将指导我们的决策。",
@@ -346,7 +358,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "不承诺——说了等于没说，但它是在**收回**之前的承诺",
+   "meaning_lean": "中",
+   "meaning_id": "data_dependent"
   },
   {
    "title": "加拿大央行行长麦克勒姆：当前通胀面临的更大风险，在于中东局势的演变，油价会持续高位运行多久，以及最终会涨到多高。",
@@ -361,7 +376,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：企业告诉我们，他们正在适应贸易不确定性。",
@@ -376,7 +394,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：加拿大经济在贸易争端新阶段中稳步发展。",
@@ -391,7 +412,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：新的美国关税将对第四季度经济增长产生压力。",
@@ -406,7 +430,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：近期债券抛售显示出多重因素同时发生。",
@@ -421,7 +448,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：央行对高通胀的容忍度是有限的。",
@@ -436,7 +466,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "下一步偏紧，再涨就动手",
+   "meaning_lean": "鹰",
+   "meaning_id": "tolerance_limited"
   },
   {
    "title": "加拿大央行行长麦克勒姆：我们看到全球债券收益率对加拿大产生了一些溢出效应，我们会考虑这一点。",
@@ -451,7 +484,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "别国的事在影响我们，我们的决定不完全自主",
+   "meaning_lean": "中",
+   "meaning_id": "spillover"
   },
   {
    "title": "加拿大央行行长麦克勒姆：如果我们认为通胀构成问题，可能需要多次加息。",
@@ -466,7 +502,10 @@
     "dove": 0,
     "lean": "鹰"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "不是一次的事——他在管理预期，让市场先把后面几次也算进去",
+   "meaning_lean": "鹰",
+   "meaning_id": "multiple_hikes"
   },
   {
    "title": "加拿大央行行长麦克勒姆：加息绝对不是唯一的结果。",
@@ -481,7 +520,10 @@
     "dove": 0,
     "lean": "鹰"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：如果货币政策未能实现其目标，市场将重新定价。",
@@ -496,7 +538,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "加拿大央行行长麦克勒姆：贸易政策不太可能回到美国总统特朗普之前的状况。",
@@ -511,22 +556,10 @@
     "dove": 0,
     "lean": "中性"
    },
-   "speaker": "麦克勒姆"
-  },
-  {
-   "title": "金十提示：加拿大央行行长麦克勒姆新闻发布会结束。",
-   "link": "https://flash.jin10.com/detail/20260902231152413800",
-   "published": "2026-09-02T15:11:52Z",
-   "source": "金十快讯",
-   "tags": [
-    "其他"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   },
   {
    "title": "【加拿大央行行长：通胀风险上升，必要时或需多次加息】金十数据9月2日讯，加拿大央行行长麦克勒姆在发布会上表示，加拿大当前通胀水平仍然过高，主要集中在汽油和能源价格上。麦克勒姆指出，当前通胀面临的更大风险在于中东局势的演变，油价会持续高位运行多久，以及最终会涨到多高，央行将密切关注",
@@ -544,8 +577,11 @@
     "dove": 0,
     "lean": "鹰"
    },
-   "speaker": "麦克勒姆"
+   "speaker": "麦克勒姆",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
   }
  ],
- "fetched_at": "2026-09-02T17:06:02Z"
+ "fetched_at": "2026-09-02T20:57:25Z"
 }

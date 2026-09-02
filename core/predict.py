@@ -47,6 +47,11 @@ def scorecard(pred_dir: str | Path) -> dict:
                           # 签发后的证据（只追加，不动锁定字段）。前端显示条数+最新一条，
                           # 让看的人知道"签了之后世界发生了什么"，但排序不会因此改
                           "falsifiers": j.get("falsifiers") or {},
+                          # S1/S2/S3 是内部代号，推送里不许出现（Momo 9-02）。
+                          # 从 scenarios 的键名抽人话标签：'S2_维持但措辞偏鹰' → S2:'维持但措辞偏鹰'
+                          "scenario_labels": {k.split("_", 1)[0]: k.split("_", 1)[1] if "_" in k else k
+                                              for k in (j.get("scenarios") or {}).keys()},
+                          "signed_at": (j.get("signed_at") or j.get("created_at") or "")[:10],
                           "evidence": [
                               {"at": e.get("event_time_bj") or e.get("logged_at"),
                                "who": e.get("who"), "what": e.get("what"),

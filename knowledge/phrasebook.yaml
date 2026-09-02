@@ -1,0 +1,130 @@
+# 央行套话词典 · 第一批 20 条（2026-09-02 起草，待 Momo 审）
+#
+# 为什么要这份（Momo 原话）：
+#   「政治词语比大白话藏更多、更隐含的意思——政治要的是公信、中立、不极端，
+#    让普通百姓去猜。我们做的就是替人猜。一个东西代表了什么意思，这一行就是产品。」
+#
+# 规矩：
+#   - pattern 是正则，中英都写，命中就把 meaning 挂到那句原话下面
+#   - 没命中的句子标「无固定套话」，等人补——**不让机器编解读**
+#   - 一句话只取第一条命中（按本文件顺序），所以越具体的放越前
+#   - meaning 是大白话，≤ 25 字，说"他在干什么"，不复述原话
+#   - 种子来自 语料分析/output/warsh_vs_powell.md（Warsh 删掉了 Powell 全部条件句/概率句，
+#     改成陈述句+绝对承诺"deliver"——所以"条件句"本身在新政权下就是信号）
+#
+# 字段：id / pattern / meaning / lean(鹰|鸽|中) / note(为什么这么翻，可选)
+
+- id: cond_hike
+  pattern: "(如果|若|一旦).{0,20}(通胀|物价).{0,12}(不|未|没).{0,10}(放缓|回落|降温|下降).{0,15}(加息|收紧|行动)|if inflation.{0,30}(does not|doesn't|fails to).{0,20}(hike|raise|tighten|act)"
+  meaning: 在给加息铺路，但用"如果"留了退路
+  lean: 鹰
+  note: 条件句 = 想做但不想现在承诺。Warsh 声明里把条件句全删了，所以官员个人还在用条件句 = 比声明软
+
+- id: decisive_hike
+  pattern: "(果断|坚决|毫不犹豫).{0,8}(加息|收紧)|(decisive|forceful).{0,10}(hike|tighten)"
+  meaning: 不只是铺路，是在催——比"做好准备"更硬
+  lean: 鹰
+
+- id: prepared_to_act
+  pattern: "做好.{0,4}(准备|加息准备)|准备(好)?(采取行动|加息|调整)|prepared to (act|adjust|raise|hike)"
+  meaning: 在铺路，下一步大概率往这个方向走
+  lean: 鹰
+
+- id: inflation_too_high
+  pattern: "(通胀|物价).{0,6}(仍然|依然|仍)?(过高|太高|偏高|远高于)|inflation.{0,10}(too high|remains elevated|well above)"
+  meaning: 不会松，先把"降息"想法掐掉
+  lean: 鹰
+
+- id: entrenched
+  pattern: "根深蒂固|entrenched|(persistent|sticky).{0,10}(price|inflation)"
+  meaning: 他认为通胀是结构性的，光等是等不下来的——要动手
+  lean: 鹰
+
+- id: above_target_long
+  pattern: "(持续|长期|连续).{0,6}(超过|高于).{0,4}目标.{0,8}(年|月)|above (target|2%).{0,15}(years|for too long)"
+  meaning: 在给"我们已经容忍够久了"找理由
+  lean: 鹰
+
+- id: tolerance_limited
+  pattern: "容忍.{0,4}(度|空间).{0,4}(有限|不多|很小)|tolerance.{0,15}(is )?limited"
+  meaning: 下一步偏紧，再涨就动手
+  lean: 鹰
+
+- id: work_to_do
+  pattern: "还有工作要做|we have (more )?work to do|otherwise we have work to do"
+  meaning: Warsh 签名句——通胀不够快回落就继续紧，这是他的反应函数
+  lean: 鹰
+  note: 见 warsh_jacksonhole_20260828.md，反应函数改为结果制
+
+- id: deliver
+  pattern: "\\bdeliver\\b.{0,20}(price stability|inflation)|交付.{0,6}(物价稳定|通胀目标)"
+  meaning: 结果承诺，不讲过程——意思是"不管用什么手段，通胀必须下来"
+  lean: 鹰
+  note: Warsh 新词，Powell 96 份声明从未用过
+
+- id: not_in_a_hurry
+  pattern: "不急于|不着急|no (hurry|rush)|in no hurry"
+  meaning: 这次不动，但没说以后不动
+  lean: 中
+
+- id: patient
+  pattern: "保持耐心|耐心|\\bpatient\\b|patience"
+  meaning: 想等数据，等于"先不加"
+  lean: 鸽
+
+- id: above_target_risk
+  pattern: "(持续|长期).{0,6}(高于|超过).{0,4}目标.{0,8}(风险|危险)|(persistently|remains) above target.{0,15}risk"
+  meaning: 在给紧缩找理由——"风险"是加息前的标准铺垫词
+  lean: 鹰
+
+- id: multiple_hikes
+  pattern: "(多次|不止一次|一系列).{0,4}加息|(multiple|several|a series of).{0,6}(hikes|increases)"
+  meaning: 不是一次的事——他在管理预期，让市场先把后面几次也算进去
+  lean: 鹰
+
+- id: data_dependent
+  pattern: "视数据而定|取决于数据|数据依赖|数据.{0,4}(将|会)?指导|data.dependent|guided by (the )?data|data will guide"
+  meaning: 不承诺——说了等于没说，但它是在**收回**之前的承诺
+  lean: 中
+  note: 这句在 Powell 时代是模板，在 Warsh 时代被删了；官员个人再说 = 想给自己留空间
+
+- id: closely_monitoring
+  pattern: "密切关注|密切监测|closely (monitor|watch)|keep a close eye"
+  meaning: 现在不动
+  lean: 中
+
+- id: take_time_to_assess
+  pattern: "(需要|可能需要).{0,4}时间.{0,6}(评估|观察|判断)|(take|need) (some )?time to (assess|evaluate|judge)"
+  meaning: 这次会议不会变——他在给"维持不变"找台阶
+  lean: 鸽
+
+- id: if_confident_easing
+  pattern: "(如果|若).{0,12}(有信心|确信).{0,15}(通胀|物价).{0,10}(缓解|回落|放缓)|if.{0,20}confident.{0,20}inflation"
+  meaning: 在描述降息的前提条件——说明他现在还没到那个信心
+  lean: 鸽
+
+- id: risks_shifting
+  pattern: "风险.{0,6}(在|正在)?(转移|转变|变化)|risks are shifting|balance of risks"
+  meaning: 立场要变了，方向看下一句
+  lean: 中
+
+- id: spillover
+  pattern: "外溢|溢出|spill.?over"
+  meaning: 别国的事在影响我们，我们的决定不完全自主
+  lean: 中
+
+- id: energy_driven
+  pattern: "(能源|油价|燃油).{0,10}(推高|推动|导致|是主因|主要来自)|(energy|oil|fuel).{0,12}(driven|driving|is the main)"
+  meaning: 把通胀归因到外面——意思是"不是我们放水放的"，为不加息留理由
+  lean: 鸽
+  note: Warsh 把 uncertainty 归因改成"中东冲突"，同一手法
+
+- id: resilient_consumer
+  pattern: "(消费|支出).{0,8}(韧性|强劲|稳健)|(consumer|spending).{0,10}(resilient|robust|solid)"
+  meaning: 经济扛得住加息——这是给紧缩开绿灯
+  lean: 鹰
+
+- id: labor_weak
+  pattern: "(劳动力|就业).{0,6}(疲软|走弱|降温|不紧张|松动)|labor market.{0,10}(soften|cooling|weak|loosen)"
+  meaning: 在给"不加息"找理由——就业是美联储另一半任务
+  lean: 鸽
