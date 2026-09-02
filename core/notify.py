@@ -30,7 +30,9 @@ def _esc(s: str) -> str:
 def build_message(health: dict, rule_results: list[dict], auctions: list[dict],
                   cal_today: list[dict], metrics: dict, date_str: str,
                   digest: dict | None = None, radar: list[dict] | None = None,
-                  econ_today: list[dict] | None = None) -> str:
+                  econ_today: list[dict] | None = None,
+                  speech_events: list[dict] | None = None,
+                  speeches: list[dict] | None = None) -> str:
     L: list[str] = []
     fired = [r for r in rule_results if r["status"] == "fired"]
     fired.sort(key=lambda r: SEVERITY_RANK.get(r["severity"], 0), reverse=True)
@@ -91,9 +93,45 @@ def build_message(health: dict, rule_results: list[dict], auctions: list[dict],
         fc = f"　预期{e['forecast']}" if e.get("forecast") else ""
         prev = f" 前值{e['previous']}" if e.get("previous") else ""
         sched.append(f"• {stars} {e['title']}{fc}{prev}")
+    # 官员讲话/会议（金十【今日重点关注】抽的）。9-1 Barr 喊加息我们连日程都没有——
+    # 讲话不在结构化日历里，只在这条快讯里。今明两天的都列，讲话人标出来
+    for s in (speech_events or [])[:6]:
+        t = f"{s['time_bj']} " if s.get("time_bj") else ""
+        # 标题里已经有人名（"加拿大央行行长麦克勒姆召开…"）就别再括号重复一遍
+        who = f"（{s['speaker']}）" if s.get("speaker") and s["speaker"] not in s["title"] else ""
+        sched.append(f"• {t}{s['title']}{who}")
     if sched:
         L.append("*今明日程*")
         L += sched
+        L.append("")
+
+    # ── 4b. 官员在说什么（已发生的讲话，鹰鸽只是关键词计数，不是解读）──
+    # 言论不是读数：不进任何节点判定，只让人知道"谁说了什么、偏哪边"。
+    if speeches:
+        by_who: dict[str, dict] = {}
+        for sp in speeches:
+            w = sp.get("speaker") or "?"
+            d = by_who.setdefault(w, {"hawk": 0, "dove": 0, "n": 0, "top": None})
+            tone = sp.get("tone") or {}
+            d["hawk"] += tone.get("hawk", 0)
+            d["dove"] += tone.get("dove", 0)
+            d["n"] += 1
+            # 留一句当代表句：先比鹰鸽分的绝对值，同分取最短——
+            # 短的是原话（「如果通胀不能很快放缓，那么将是时候加息了」），
+            # 长的是【…】整理稿，截到90字正好断在半句
+            score = tone.get("hawk", 0) - tone.get("dove", 0)
+            title = sp.get("title", "")
+            is_article = title.startswith("【")
+            cand = (abs(score), not is_article, -len(title))
+            if d["top"] is None or cand > d["top"][2]:
+                d["top"] = (score, title, cand)
+        L.append("*官员在说什么*")
+        for w, d in by_who.items():
+            lean = "偏鹰" if d["hawk"] > d["dove"] else "偏鸽" if d["dove"] > d["hawk"] else "中性"
+            L.append(f"• {w}　{d['n']}条 · {lean}（鹰{d['hawk']}/鸽{d['dove']}）")
+            if d["top"] and d["top"][1]:
+                L.append(f"  _{_esc(d['top'][1][:90])}_")
+        L.append("  ‖ 只是关键词计数。节点判定仍只认市场定价，不认讲话。")
         L.append("")
 
     # ── 5. 数据：带方向，不是裸数字 ──

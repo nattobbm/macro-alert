@@ -356,6 +356,19 @@ export default function ReasoningPage() {
                       {tag}
                     </span>
                   ))}
+                  {/* 官员讲话的鹰/鸽——只是关键词计数，不是解读；节点判定不认讲话只认市场定价 */}
+                  {n.tone && n.tone.lean !== '中性' && (
+                    <span
+                      className="text-xs px-2 py-0.5 rounded-full font-medium"
+                      title={isEN ? `keyword count · hawk ${n.tone.hawk} / dove ${n.tone.dove}` : `关键词计数 · 鹰${n.tone.hawk} / 鸽${n.tone.dove}`}
+                      style={{
+                        backgroundColor: n.tone.lean === '鹰' ? 'var(--st-fire-bg)' : 'var(--st-ok-bg)',
+                        color: n.tone.lean === '鹰' ? 'var(--st-fire-text)' : 'var(--st-ok-text)',
+                      }}
+                    >
+                      {n.tone.lean === '鹰' ? (isEN ? 'hawkish' : '偏鹰') : (isEN ? 'dovish' : '偏鸽')}
+                    </span>
+                  )}
                 </div>
                 <div className="text-xs font-medium leading-snug" style={{ color: 'var(--text)' }}>
                   {n.title}
@@ -392,13 +405,24 @@ export default function ReasoningPage() {
                   style={{ color: 'var(--accent)' }}
                 >
                   {e.date.slice(5)}
+                  {/* 讲话/会议带北京时间——"几点"比"哪天"更要紧，讲完才有原话可看 */}
+                  {e.time_bj && (
+                    <div className="font-normal mt-0.5" style={{ color: 'var(--text-muted)', fontSize: 10 }}>
+                      {e.time_bj}
+                    </div>
+                  )}
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 flex-wrap">
                     <span style={{ color: 'var(--yellow)' }}>{'★'.repeat(e.importance)}</span>
                     <span className="text-xs font-medium" style={{ color: 'var(--text)' }}>
                       {e.event}
                     </span>
+                    {e.kind === 'speech' && (
+                      <span className="text-xs px-1.5 rounded-full" style={{ fontSize: 10, backgroundColor: 'var(--bg2)', color: 'var(--text-muted)' }}>
+                        {isEN ? 'speech' : '讲话'}
+                      </span>
+                    )}
                   </div>
                   <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
                     看: {e.watch_for}

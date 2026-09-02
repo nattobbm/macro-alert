@@ -23,7 +23,7 @@ import yaml
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar, spot_gold  # noqa: E402
+from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar, spot_gold, jin10_flash  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict, reason  # noqa: E402
 
@@ -1087,8 +1087,27 @@ def main():
     except Exception as e:
         print(f"[warn] news: {e}", file=sys.stderr)
         news_items = []
+    # 金十快讯：讲话日程 + 已发生讲话的原话（言论不是读数，不进任何节点判定）。
+    # 2026-09-02：Barr 讲话「若通胀未降温应果断加息」，RSS 流 0 条、日历 0 条，
+    # 系统整个瞎的。讲话只在金十每天 06:50 的【今日重点关注】里，从那抽。
+    speech_events: list[dict] = []
+    try:
+        jf = jin10_flash.fetch(DATA / "jin10_flash.json")
+        speech_events = jf.get("events", [])
+        have = {n.get("link") or n.get("title") for n in news_items}
+        for s in jf.get("speeches", []):
+            k = s.get("link") or s.get("title")
+            if k not in have:
+                news_items.append(s)
+                have.add(k)
+        news_items.sort(key=lambda x: x.get("published") or "", reverse=True)
+        if jf.get("error"):
+            print(f"[warn] jin10_flash: {jf['error']}", file=sys.stderr)
+    except Exception as e:
+        print(f"[warn] jin10_flash: {e}", file=sys.stderr)
     latest = build_latest(dps, rule_results, auctions, cal, scorecard_data,
                           news_items=news_items, ctx=ctx)
+    latest["speech_events"] = speech_events
     # 3日内三星事件 → 快报观测口（新日历用 importance:1-3，非旧的 impact 字符串）
     _today = dt.date.today()
     latest["knowledge"]["_econ_events"] = [
@@ -1114,10 +1133,15 @@ def main():
     _tm = (dt.date.today() + dt.timedelta(days=1)).isoformat()
     econ_today = [e for e in latest.get("econ_calendar", [])
                   if e.get("date") in (today, _tm) and e.get("importance", 0) >= 2]
+    # 讲话：今明两天的日程 + 最近30小时内已抓到原话的（带 tone 的就是金十快讯讲话条）
+    sp_events_today = [s for s in speech_events if s.get("date") in (today, _tm)]
+    _cut = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=30)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    speeches_recent = [n for n in news_items if n.get("tone") and (n.get("published") or "") >= _cut]
     msg = notify.build_message(latest["health"], rule_results, auctions, cal_today,
                                metrics_by_key, today,
                                digest=latest["digest"], radar=latest["radar"],
-                               econ_today=econ_today)
+                               econ_today=econ_today,
+                               speech_events=sp_events_today, speeches=speeches_recent)
     notify.send(msg, dry=args.dry_run)
 
     # 提交留痕：让 GitHub 历史一眼看出这次跑动了什么，而不是清一色 "data: 时间戳"

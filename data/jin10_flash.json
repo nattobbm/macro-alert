@@ -1,0 +1,200 @@
+{
+ "events": [
+  {
+   "date": "2026-09-01",
+   "time_bj": "21:05",
+   "title": "美联储巴尔发表讲话",
+   "speaker": "巴尔",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-02",
+   "time_bj": "10:00",
+   "title": "新西兰联储公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-09-02",
+   "time_bj": "21:45",
+   "title": "加拿大央行公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-09-02",
+   "time_bj": "22:30",
+   "title": "加拿大央行行长麦克勒姆召开新闻发布会",
+   "speaker": "麦克勒姆",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-03",
+   "time_bj": "02:00",
+   "title": "美联储公布经济状况褐皮书",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  }
+ ],
+ "speeches": [
+  {
+   "title": "美联储理事巴尔：通胀仍然过高。如果对通胀减缓有信心，则倾向于维持利率稳定。",
+   "link": "https://flash.jin10.com/detail/20260901210524809800",
+   "published": "2026-09-01T13:05:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔"
+  },
+  {
+   "title": "美联储理事巴尔：经济增长“稳健”，受人工智能投资推动。",
+   "link": "https://flash.jin10.com/detail/20260901210532042800",
+   "published": "2026-09-01T13:05:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔"
+  },
+  {
+   "title": "美联储理事巴尔：劳动力市场稳定，失业率水平较低。",
+   "link": "https://flash.jin10.com/detail/20260901210544069800",
+   "published": "2026-09-01T13:05:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔"
+  },
+  {
+   "title": "美联储理事巴尔：如果通胀不能很快放缓，那么将是时候加息了。",
+   "link": "https://flash.jin10.com/detail/20260901210602680800",
+   "published": "2026-09-01T13:06:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 1,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔"
+  },
+  {
+   "title": "美联储理事巴尔：通胀持续高于目标带来风险。",
+   "link": "https://flash.jin10.com/detail/20260901210608966800",
+   "published": "2026-09-01T13:06:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔"
+  },
+  {
+   "title": "美联储理事巴尔：如果数据趋势让我相信通胀正在朝着2%的目标缓解，那么评估政策立场可能需要时间。",
+   "link": "https://flash.jin10.com/detail/20260901210614963800",
+   "published": "2026-09-01T13:06:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔"
+  },
+  {
+   "title": "美联储理事巴尔：迄今为止，消费者支出表现出了良好的韧性。",
+   "link": "https://flash.jin10.com/detail/20260901211039633800",
+   "published": "2026-09-01T13:10:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔"
+  },
+  {
+   "title": "【美联储理事巴尔：若通胀未降温应果断加息】金十数据9月1日讯，美联储理事迈克尔·巴尔表示，如果通胀未能回落，美联储应做好加息准备。他警告称，通胀率持续超过目标已逾5年，价格压力存在根深蒂固的风险。巴尔表示，如果即将公布的数据能够显示通胀正在降温，政策制定者可以保持耐心。巴尔周二在",
+   "link": "https://flash.jin10.com/detail/20260901211257753800",
+   "published": "2026-09-01T13:12:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 5,
+    "dove": 2,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔"
+  },
+  {
+   "title": "美联储理事巴尔：人工智能具有巨大的潜力和风险。",
+   "link": "https://flash.jin10.com/detail/20260901214259895800",
+   "published": "2026-09-01T13:42:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔"
+  }
+ ],
+ "fetched_at": "2026-09-02T14:36:29Z"
+}

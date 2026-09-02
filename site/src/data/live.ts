@@ -155,16 +155,30 @@ export const news: NewsItem[] = L
   ? (L.news ?? []).slice(0, 20).map((n: any, i: number) => ({
       id: `n${i}`, title: n.title, source: n.source,
       chain_tags: n.tags ?? [], time: rel(n.published),
+      // 金十快讯合并进来的官员讲话带鹰鸽计数（只是关键词计数，不是解读）
+      tone: n.tone ?? null, speaker: n.speaker ?? null,
     }))
   : mock.news
 
 // ── 日历 ──
 export const calEvents: CalEvent[] = L
-  ? (L.calendar ?? []).map((c: any) => ({
-      date: c.date, event: c.event.replace(/★/g, ''),
-      importance: (Math.min(3, Math.max(1, (c.event.match(/★/g) ?? []).length + 1))) as 1 | 2 | 3,
-      watch_for: c.watch ?? '',
-    }))
+  ? [
+      ...(L.calendar ?? []).map((c: any) => ({
+        date: c.date, event: c.event.replace(/★/g, ''),
+        importance: (Math.min(3, Math.max(1, (c.event.match(/★/g) ?? []).length + 1))) as 1 | 2 | 3,
+        watch_for: c.watch ?? '',
+      })),
+      // 官员讲话/会议（金十【今日重点关注】抽的）。原日历 45 条里讲话只有 1 条，
+      // Barr 9-1 喊加息我们连日程都没有。讲话是言论不是读数，只进日历和消息流
+      ...((L.speech_events ?? []) as any[]).map((s: any) => ({
+        date: s.date, event: s.title,
+        importance: (/美联储|FOMC|褐皮书|利率决议/.test(s.title) ? 3 : 2) as 1 | 2 | 3,
+        watch_for: s.kind === 'speech'
+          ? (isEN ? 'speech — hawk/dove count appears in the feed after it happens' : '讲话 · 讲完后消息流里会出鹰/鸽计数')
+          : (isEN ? 'official release' : '官方发布'),
+        kind: s.kind, speaker: s.speaker ?? null, time_bj: s.time_bj ?? null,
+      })),
+    ].sort((a, b) => (a.date + (a.time_bj ?? '')).localeCompare(b.date + (b.time_bj ?? '')))
   : mock.calEvents
 
 // ── SPX K线 ──

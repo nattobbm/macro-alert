@@ -236,6 +236,9 @@ export const rateProbabilities = [
 // ── News Feed ──────────────────────────────────────────────
 export interface NewsItem {
   id: string; title: string; source: string; chain_tags: string[]; time: string;
+  // 官员讲话（金十快讯）带鹰鸽关键词计数——只是计数，不是解读
+  tone?: { hawk: number; dove: number; lean: string } | null;
+  speaker?: string | null;
 }
 
 export const news: NewsItem[] = [
@@ -250,6 +253,8 @@ export const news: NewsItem[] = [
 // ── Calendar ───────────────────────────────────────────────
 export interface CalEvent {
   date: string; event: string; importance: 1 | 2 | 3; watch_for: string;
+  // 讲话/会议类（金十【今日重点关注】抽的）：kind='speech'|'release'，北京时间，讲话人
+  kind?: 'speech' | 'release'; speaker?: string | null; time_bj?: string | null;
 }
 
 export const calEvents: CalEvent[] = [
