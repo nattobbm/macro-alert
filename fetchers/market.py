@@ -98,6 +98,21 @@ def fetch_all(max_staleness_days: int = 4, tickers: dict | None = None) -> list[
                 if len(closes) > 1:
                     prev = float(closes.iloc[-2])
                     dp.extra["chg_1d_pct"] = round((dp.value / prev - 1) * 100, 3) if prev else None
+                    # Momo 9-02：「把数字直接算好，一眼看懂涨了多少跌多少」——
+                    # 百分比对没概念的人没意义，"比昨天 +79" 和 "今天最高到最低差 90" 才有。
+                    # 存点数差 + 当日开高低，推送/网站直接用，不再现场算
+                    dp.extra["prev_close"] = round(prev, 4)
+                    dp.extra["chg_1d"] = round(dp.value - prev, 4)
+                    try:
+                        last = h.iloc[-1]
+                        o, hi, lo = float(last["Open"]), float(last["High"]), float(last["Low"])
+                        if all(x == x for x in (o, hi, lo)) and hi >= lo:   # 非NaN且自洽
+                            dp.extra["open"] = round(o, 4)
+                            dp.extra["high"] = round(hi, 4)
+                            dp.extra["low"] = round(lo, 4)
+                            dp.extra["day_range"] = round(hi - lo, 4)
+                    except Exception:
+                        pass
                 tail = closes.tail(250)
                 dp.extra["series"] = [[i.date().isoformat(), round(float(v), 4)]
                                       for i, v in tail.items()]
