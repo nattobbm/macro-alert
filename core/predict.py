@@ -43,7 +43,16 @@ def scorecard(pred_dir: str | Path) -> dict:
                           "format": j.get("format", "probability"),
                           "status": st,
                           "settle_date": j.get("settle_date"),
-                          "locked": locked})
+                          "locked": locked,
+                          # 签发后的证据（只追加，不动锁定字段）。前端显示条数+最新一条，
+                          # 让看的人知道"签了之后世界发生了什么"，但排序不会因此改
+                          "falsifiers": j.get("falsifiers") or {},
+                          "evidence": [
+                              {"at": e.get("event_time_bj") or e.get("logged_at"),
+                               "who": e.get("who"), "what": e.get("what"),
+                               "bearing": e.get("bearing"), "source": e.get("source")}
+                              for e in (j.get("evidence_log") or [])
+                          ]})
         except Exception:
             continue
 

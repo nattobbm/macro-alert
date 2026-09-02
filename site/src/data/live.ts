@@ -3,7 +3,7 @@
 // 任一字段缺失时回落到 mock，保证页面永不空白。
 import * as mock from './mock'
 import { isEN } from '../i18n'
-import type { OHLC, Snapshot, Alert, Chain, ChainNode, Verdict, Prediction, NewsItem, CalEvent, AuctionRow, AlertRule, GexBar, DataSource } from './mock'
+import type { OHLC, Snapshot, Alert, Chain, ChainNode, Verdict, Prediction, PredEvidence, NewsItem, CalEvent, AuctionRow, AlertRule, GexBar, DataSource } from './mock'
 
 const L: any = (globalThis as any).__LATEST ?? null
 export const isLive = !!L
@@ -123,6 +123,9 @@ export const predictions: Prediction[] = L
         settle_date: o.settle_date ?? '—', status: 'open' as const,
         // 情景图卡签的是排序(如 S2>S1>S3)，概率单签的是概率；两种都要显示出来
         ranking: o.ranking ?? null, probability: o.probability ?? null,
+        // 签发后追加的证据 + 失效条件。排序锁死不动，但"签了之后世界发生了什么"要让人看见
+        falsifiers: o.falsifiers ?? {},
+        evidence: (o.evidence ?? []) as PredEvidence[],
       })),
       ...(L.predictions?.settled_list ?? []).map((s: any) => ({
         id: s.id, question: s.id, locked: true, settle_date: '—',

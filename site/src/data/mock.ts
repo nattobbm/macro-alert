@@ -210,6 +210,12 @@ export interface Prediction {
   status: 'open' | 'settled'; result?: string;
   // 情景图卡签排序(S2>S1>S3)、概率单签概率；两种签发形式都要能显示
   ranking?: string | null; probability?: number | null;
+  // 签发后追加的证据（只追加不改排序）+ 事先写好的失效条件
+  falsifiers?: Record<string, string>;
+  evidence?: PredEvidence[];
+}
+export interface PredEvidence {
+  at?: string; who?: string; what?: string; bearing?: string; source?: string;
 }
 
 export const predictions: Prediction[] = [

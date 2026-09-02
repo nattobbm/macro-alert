@@ -1,103 +1,116 @@
 {
- "id": "2026-09-16_fomc_hike_scenario",
- "created_at": "2026-08-31T16:42:42Z",
- "created_by": "Momo",
- "status": "LOCKED",
- "format": "scenario_map",
- "format_note": "情景图预注册。取代 2026-09-17_fomc_hike（ex-ante窗口过期+日期写错，已VOID）。此格式在 Jackson Hole 一役验证可用：不要求给概率数字，只要排序+一句为什么。",
- "question": "9月FOMC（2026-09-15/16，决议9-16下午2点ET）：Warsh会走哪条路？市场反应是否与该情景的预期路径一致？",
- "date_verified": "已于2026-09-01经 federalreserve.gov 核实为9月15-16日会议、9-16 14:00 ET决议（旧卡误写9-17）",
- "ex_ante_snapshot": {
-  "_note": "锁定时机器自动记录，结算时对照。以下全部为 2026-09-01 可核实读数。",
-  "as_of": "2026-09-01",
-  "hike_odds_zq_auto": 0.738,
-  "hike_odds_zq_path": "8-27 36.9% → 8-28 60.0%(讲话当日+23.1pp) → 8-30 66.9% → 8-31 69.2%",
-  "hike_odds_polymarket": 0.605,
-  "hike_odds_cme_manual_0826": 0.381,
-  "taylor_gap_pp": 1.548,
-  "taylor_gap_as_of": "2026-07-01",
-  "xauusd": 4436.5,
-  "gold_comex": 4482.8999,
-  "us30y": 5.19,
-  "tips10y": 2.34,
-  "breakeven10": 2.31,
-  "vix": 15.23,
-  "usdjpy": 159.701,
-  "dxy": 99.41,
-  "brent_official": 89.31,
-  "brent_note": "官方源89.31(周日夜盘K线坏,已丢弃退回8-28);第三方实时90.7,已破80-90上界",
-  "quality_spread_ccc_hy": null,
-  "hy_oas": 2.6,
-  "sahm": -0.03,
-  "tic_3country_all_selling": "日-26.4bn 中-25.9bn 英-8.7bn (as_of 2026-06)",
-  "kr_policy_rate": 2.537,
-  "jp_policy_rate": 0.841
- },
- "context_ex_ante": {
-  "_rule": "锁定前可核实的事实与外部观点。结算时不得增补。",
-  "warsh_jackson_hole_0828": [
-   "2%通胀目标不调整、不松动",
-   "短期政策利率仍是主要工具，未推出新非常规工具",
-   "不给前瞻指引——不预先锁定9月/10月，看数据临时判断",
-   "近期通胀回落不足以证明底层趋势好转，保留加息选项"
-  ],
-  "july_vote": "9-3维持，三位地区联储主席主张加息25bp（2016年9月以来首次三人同向异议）",
-  "current_rate": "3.50%-3.75%（IORB 3.65%）",
-  "recent_data_misses": "7月非农 -23K(预期+110K)、7月零售 -0.6%(预期+0.5%) —— 均大幅不及；但萨姆规则 -0.03 仍安静",
-  "geopolitics": "8-31 美军打击伊朗霍尔木兹布雷发射器，布伦特破90（+2.93%）。美方声明'非常有限且精准'",
-  "us_oil_hedges": "①宣传霍尔木兹夜间运量 ②美委石油协议(650亿桶多数控制权) ③9-1召集十家炼油/燃油零售巨头高管会议压价扩产",
-  "alie_view_0829_0830": "外部观点非事实，仅记录：'表态偏鹰，行动暂缓；底牌保留，看数据出牌'。理由=中期选举(11-03)前加息会打压美股、推高美元压日元、抬美债付息，最优是口头紧缩推迟实质动作；且五大工作组报告未出，沃什有'按兵不动'的理由",
-  "remaining_data_before_meeting": [
-   "9-04 8月非农",
-   "9月上旬 8月CPI/PPI",
-   "9-01 炼油商会议结果"
+  "id": "2026-09-16_fomc_hike_scenario",
+  "created_at": "2026-08-31T16:42:42Z",
+  "created_by": "Momo",
+  "status": "LOCKED",
+  "format": "scenario_map",
+  "format_note": "情景图预注册。取代 2026-09-17_fomc_hike（ex-ante窗口过期+日期写错，已VOID）。此格式在 Jackson Hole 一役验证可用：不要求给概率数字，只要排序+一句为什么。",
+  "question": "9月FOMC（2026-09-15/16，决议9-16下午2点ET）：Warsh会走哪条路？市场反应是否与该情景的预期路径一致？",
+  "date_verified": "已于2026-09-01经 federalreserve.gov 核实为9月15-16日会议、9-16 14:00 ET决议（旧卡误写9-17）",
+  "ex_ante_snapshot": {
+    "_note": "锁定时机器自动记录，结算时对照。以下全部为 2026-09-01 可核实读数。",
+    "as_of": "2026-09-01",
+    "hike_odds_zq_auto": 0.738,
+    "hike_odds_zq_path": "8-27 36.9% → 8-28 60.0%(讲话当日+23.1pp) → 8-30 66.9% → 8-31 69.2%",
+    "hike_odds_polymarket": 0.605,
+    "hike_odds_cme_manual_0826": 0.381,
+    "taylor_gap_pp": 1.548,
+    "taylor_gap_as_of": "2026-07-01",
+    "xauusd": 4436.5,
+    "gold_comex": 4482.8999,
+    "us30y": 5.19,
+    "tips10y": 2.34,
+    "breakeven10": 2.31,
+    "vix": 15.23,
+    "usdjpy": 159.701,
+    "dxy": 99.41,
+    "brent_official": 89.31,
+    "brent_note": "官方源89.31(周日夜盘K线坏,已丢弃退回8-28);第三方实时90.7,已破80-90上界",
+    "quality_spread_ccc_hy": null,
+    "hy_oas": 2.6,
+    "sahm": -0.03,
+    "tic_3country_all_selling": "日-26.4bn 中-25.9bn 英-8.7bn (as_of 2026-06)",
+    "kr_policy_rate": 2.537,
+    "jp_policy_rate": 0.841
+  },
+  "context_ex_ante": {
+    "_rule": "锁定前可核实的事实与外部观点。结算时不得增补。",
+    "warsh_jackson_hole_0828": [
+      "2%通胀目标不调整、不松动",
+      "短期政策利率仍是主要工具，未推出新非常规工具",
+      "不给前瞻指引——不预先锁定9月/10月，看数据临时判断",
+      "近期通胀回落不足以证明底层趋势好转，保留加息选项"
+    ],
+    "july_vote": "9-3维持，三位地区联储主席主张加息25bp（2016年9月以来首次三人同向异议）",
+    "current_rate": "3.50%-3.75%（IORB 3.65%）",
+    "recent_data_misses": "7月非农 -23K(预期+110K)、7月零售 -0.6%(预期+0.5%) —— 均大幅不及；但萨姆规则 -0.03 仍安静",
+    "geopolitics": "8-31 美军打击伊朗霍尔木兹布雷发射器，布伦特破90（+2.93%）。美方声明'非常有限且精准'",
+    "us_oil_hedges": "①宣传霍尔木兹夜间运量 ②美委石油协议(650亿桶多数控制权) ③9-1召集十家炼油/燃油零售巨头高管会议压价扩产",
+    "alie_view_0829_0830": "外部观点非事实，仅记录：'表态偏鹰，行动暂缓；底牌保留，看数据出牌'。理由=中期选举(11-03)前加息会打压美股、推高美元压日元、抬美债付息，最优是口头紧缩推迟实质动作；且五大工作组报告未出，沃什有'按兵不动'的理由",
+    "remaining_data_before_meeting": [
+      "9-04 8月非农",
+      "9月上旬 8月CPI/PPI",
+      "9-01 炼油商会议结果"
+    ]
+  },
+  "scenarios": {
+    "S1_加息25bp": {
+      "script": "上调至3.75%-4.00%。信誉框架兑现：通胀未回落到位+三位异议者转多数",
+      "expected_path": "加息定价已充分计入故2Y变动有限 · 美元↑ · 黄金↓(实际利率上行) · 美股↓ · 日元被动走强压力"
+    },
+    "S2_维持但措辞偏鹰": {
+      "script": "维持3.50%-3.75%，声明保留加息选项、强调数据依赖，不给指引",
+      "expected_path": "加息定价从69%回落但不崩(仍>40%) · 波动放大 · 黄金先反弹 · 长端维持高位"
+    },
+    "S3_维持且措辞软化": {
+      "script": "维持并暗示通胀路径可接受/工作组报告将给新框架，实质转鸽",
+      "expected_path": "加息定价大幅回落(<30%) · 黄金↑ · 美元↓ · 长端↓ · 金融抑制叙事强化(F4方向)"
+    }
+  },
+  "momo_ranking": "S2>S1>S3",
+  "_ranking_note": "由Momo填写，格式如 'S2>S1>S3'。锁定后不得修改。不要求给概率数字。",
+  "reasoning_ex_ante": "他不给指引就是要留余地，选举前不会自缚",
+  "_reasoning_note": "由Momo填写一句：为什么这么排（只用2026-09-01前信息）。",
+  "what_this_discriminates": {
+    "S1命中": "官僚信誉框架加分；艾丽'选举前行动暂缓'框架重伤；市场69%定价被验证",
+    "S2命中": "两框架各对一半：说狠话是真的、不动手也是真的；'口头紧缩成本最低'理论加分",
+    "S3命中": "艾丽框架加分；金融抑制路径(F4)方向确认；市场这波重定价被判为过度反应"
+  },
+  "falsifiers": {
+    "F1": "9-04 非农 <5万 或 失业率>4.5% → S3权重上升",
+    "F2": "8月CPI核心 >0.4%环比 → S1权重上升",
+    "F3": "油价持续>95 → 通胀路径重估，S1与S3同时受压（滞胀两难，方向不确定）",
+    "F4": "会议推迟/非常规决议/紧急会议 → VOID"
+  },
+  "settle_date": "2026-09-16",
+  "settle_rule": "决议公布后首个交易日收盘，机器记录实际值（ZQ定价变动/XAUUSD/30Y/DXY/VIX/SPX），对照三情景 expected_path 判定哪个命中；措辞由Momo读声明稿标注实际走哪条。双向验证：措辞强度 vs 实际波幅并列记录。",
+  "settle_source": "federalreserve.gov FOMC statement + data/fedwatch每日存档 + data/snapshots",
+  "linkage": {
+    "upstream": "2026-08-28_jacksonhole_scenario（已结算：S1_信誉链命中，Momo排序未中且完全颠倒，失败模式=机制错）",
+    "note": "上游已判信誉链命中。若本卡S1再中，说明'读懂了讲话且行动一致'；若S2/S3中，说明'讲话与行动分离'——后者正是艾丽框架的核心主张，是有信息量的判别。"
+  },
+  "outcome": null,
+  "settled_at": null,
+  "settlement_note": null,
+  "discipline": {
+    "no_edit_after_lock": true,
+    "outcome_vs_quality": "分两栏记录",
+    "sample_threshold": "累计<50只记录不解读",
+    "no_copy_market": "排序不得直接照抄市场隐含概率——抄了则本卡无信息量"
+  },
+  "signed_at": "2026-08-31T16:49:20Z",
+  "_lock_note": "Momo 亲笔签发，原话一字未改。锁定后 momo_ranking / reasoning_ex_ante / ex_ante_snapshot 一律不得修改；git commit 时间戳即签发时刻证明。",
+  "evidence_log": [
+    {
+      "logged_at": "2026-09-02T05:10:28Z",
+      "event_time_bj": "2026-09-01 21:05",
+      "who": "美联储理事 Michael Barr（永久票委）",
+      "what": "「如果通胀不能很快放缓，那么将是时候加息了」「若通胀未降温应果断加息」「通胀超标已逾5年，价格压力有根深蒂固的风险」「消费者支出韧性良好」",
+      "source": "金十快讯 search_flash(巴尔) 09-01 21:06–21:12",
+      "context": "7-23 金十存档：白宫曾被曝欲借SVB报告罢免巴尔。被施压的理事公开喊加息，非常规。",
+      "market_after": "CME 9月加息25bp 66.9%（09-02 06:05）；10Y 升至 4.8%；新西兰联储加息25bp、澳洲GDP超预期、日央行高田创称需灵活加息",
+      "bearing": "S1（加息）证据加强。不改排序——签发理由是关于沃什的处境（选举前不自缚），不是关于票委言论。到期按 settle_rule 算账。",
+      "touches_falsifier": null
+    }
   ]
- },
- "scenarios": {
-  "S1_加息25bp": {
-   "script": "上调至3.75%-4.00%。信誉框架兑现：通胀未回落到位+三位异议者转多数",
-   "expected_path": "加息定价已充分计入故2Y变动有限 · 美元↑ · 黄金↓(实际利率上行) · 美股↓ · 日元被动走强压力"
-  },
-  "S2_维持但措辞偏鹰": {
-   "script": "维持3.50%-3.75%，声明保留加息选项、强调数据依赖，不给指引",
-   "expected_path": "加息定价从69%回落但不崩(仍>40%) · 波动放大 · 黄金先反弹 · 长端维持高位"
-  },
-  "S3_维持且措辞软化": {
-   "script": "维持并暗示通胀路径可接受/工作组报告将给新框架，实质转鸽",
-   "expected_path": "加息定价大幅回落(<30%) · 黄金↑ · 美元↓ · 长端↓ · 金融抑制叙事强化(F4方向)"
-  }
- },
- "momo_ranking": "S2>S1>S3",
- "_ranking_note": "由Momo填写，格式如 'S2>S1>S3'。锁定后不得修改。不要求给概率数字。",
- "reasoning_ex_ante": "他不给指引就是要留余地，选举前不会自缚",
- "_reasoning_note": "由Momo填写一句：为什么这么排（只用2026-09-01前信息）。",
- "what_this_discriminates": {
-  "S1命中": "官僚信誉框架加分；艾丽'选举前行动暂缓'框架重伤；市场69%定价被验证",
-  "S2命中": "两框架各对一半：说狠话是真的、不动手也是真的；'口头紧缩成本最低'理论加分",
-  "S3命中": "艾丽框架加分；金融抑制路径(F4)方向确认；市场这波重定价被判为过度反应"
- },
- "falsifiers": {
-  "F1": "9-04 非农 <5万 或 失业率>4.5% → S3权重上升",
-  "F2": "8月CPI核心 >0.4%环比 → S1权重上升",
-  "F3": "油价持续>95 → 通胀路径重估，S1与S3同时受压（滞胀两难，方向不确定）",
-  "F4": "会议推迟/非常规决议/紧急会议 → VOID"
- },
- "settle_date": "2026-09-16",
- "settle_rule": "决议公布后首个交易日收盘，机器记录实际值（ZQ定价变动/XAUUSD/30Y/DXY/VIX/SPX），对照三情景 expected_path 判定哪个命中；措辞由Momo读声明稿标注实际走哪条。双向验证：措辞强度 vs 实际波幅并列记录。",
- "settle_source": "federalreserve.gov FOMC statement + data/fedwatch每日存档 + data/snapshots",
- "linkage": {
-  "upstream": "2026-08-28_jacksonhole_scenario（已结算：S1_信誉链命中，Momo排序未中且完全颠倒，失败模式=机制错）",
-  "note": "上游已判信誉链命中。若本卡S1再中，说明'读懂了讲话且行动一致'；若S2/S3中，说明'讲话与行动分离'——后者正是艾丽框架的核心主张，是有信息量的判别。"
- },
- "outcome": null,
- "settled_at": null,
- "settlement_note": null,
- "discipline": {
-  "no_edit_after_lock": true,
-  "outcome_vs_quality": "分两栏记录",
-  "sample_threshold": "累计<50只记录不解读",
-  "no_copy_market": "排序不得直接照抄市场隐含概率——抄了则本卡无信息量"
- },
- "signed_at": "2026-08-31T16:49:20Z",
- "_lock_note": "Momo 亲笔签发，原话一字未改。锁定后 momo_ranking / reasoning_ex_ante / ex_ante_snapshot 一律不得修改；git commit 时间戳即签发时刻证明。"
 }

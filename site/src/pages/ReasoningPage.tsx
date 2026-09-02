@@ -25,6 +25,7 @@ export default function ReasoningPage() {
   const [expandedChain, setExpandedChain] = useState<string | null>(null)
   const [expandedVerdict, setExpandedVerdict] = useState<string | null>(null)
   const [showAllNews, setShowAllNews] = useState(false)
+  const [expandedPred, setExpandedPred] = useState<string | null>(null)
 
   const sorted = [...chains].sort((a, b) => b.heat - a.heat)
 
@@ -286,9 +287,37 @@ export default function ReasoningPage() {
                     )}
                     {p.result && <span className="ml-2 font-medium">{p.result}</span>}
                   </div>
+                  {/* 签发后追加的证据：折叠态只给条数，点开才看。
+                      排序锁死不动——这里让人看见"签了之后世界发生了什么"，不是改答案 */}
+                  {!!p.evidence?.length && (
+                    <button
+                      className="text-xs mt-1"
+                      style={{ color: 'var(--accent)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                      onClick={() => setExpandedPred(expandedPred === p.id ? null : p.id)}
+                    >
+                      {isEN ? `${p.evidence.length} evidence since signing` : `签发后证据 ${p.evidence.length} 条`}
+                      {expandedPred === p.id ? ' ▲' : ' ▼'}
+                    </button>
+                  )}
+                  {expandedPred === p.id && p.evidence?.map((e, i) => (
+                    <div key={i} className="neu-inset-sm px-3 py-2 mt-1.5 text-xs" style={{ lineHeight: 1.6 }}>
+                      <div style={{ color: 'var(--text-muted)' }}>{e.at} · {e.who}</div>
+                      <div style={{ color: 'var(--text)' }}>{e.what}</div>
+                      {e.bearing && <div className="mt-1" style={{ color: 'var(--st-warn-text)' }}>{e.bearing}</div>}
+                      {e.source && <div className="mt-0.5" style={{ color: 'var(--text-muted)', opacity: 0.7 }}>{isEN ? 'source: ' : '来源：'}{e.source}</div>}
+                    </div>
+                  ))}
+                  {expandedPred === p.id && p.falsifiers && Object.keys(p.falsifiers).length > 0 && (
+                    <div className="neu-inset-sm px-3 py-2 mt-1.5 text-xs" style={{ lineHeight: 1.6 }}>
+                      <div style={{ color: 'var(--text-muted)' }}>{isEN ? 'what would change the weights (written before signing)' : '什么情况会改变权重（签发前写好的）'}</div>
+                      {Object.entries(p.falsifiers).map(([k, v]) => (
+                        <div key={k} style={{ color: 'var(--text)' }}><span className="font-num">{k}</span> {v}</div>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <span
-                  className="text-xs px-2 py-0.5 rounded-full"
+                  className="text-xs px-2 py-0.5 rounded-full flex-shrink-0 self-start"
                   style={{
                     backgroundColor: p.status === 'open' ? 'var(--accent)' : 'var(--text-muted)',
                     color: '#fff',
