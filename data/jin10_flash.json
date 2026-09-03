@@ -87,6 +87,39 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-04",
+   "time_bj": "03:00",
+   "title": "美联储哈马克发表讲话",
+   "speaker": "哈马克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-04",
+   "time_bj": "03:55",
+   "title": "美联储古尔斯比发表讲话",
+   "speaker": "古尔斯比",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-04",
+   "time_bj": "16:50",
+   "title": "英国央行行长贝利发表讲话",
+   "speaker": "贝利",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -583,5 +616,5 @@
    "meaning_id": "inflation_too_high"
   }
  ],
- "fetched_at": "2026-09-02T22:44:09Z"
+ "fetched_at": "2026-09-03T17:00:29Z"
 }
