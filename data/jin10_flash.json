@@ -614,7 +614,97 @@
    "meaning": "不会松，先把\"降息\"想法掐掉",
    "meaning_lean": "鹰",
    "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "英国央行行长贝利：我们确实可以选择将通胀多快恢复到目标，但必须这样做。",
+   "link": "https://flash.jin10.com/detail/20260904171733596800",
+   "published": "2026-09-04T09:17:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：美联储主席沃什认为前瞻指引存在一些风险，这是正确的。",
+   "link": "https://flash.jin10.com/detail/20260904171813277800",
+   "published": "2026-09-04T09:18:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：中央银行行长应避免提供无条件的指引。",
+   "link": "https://flash.jin10.com/detail/20260904171927568800",
+   "published": "2026-09-04T09:19:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：高债务水平反映出政府面临重大挑战，增加了债券市场的压力。",
+   "link": "https://flash.jin10.com/detail/20260904172401304800",
+   "published": "2026-09-04T09:24:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【英国央行行长贝利：长期压力正推高政府债务】金十数据9月4日讯，英国央行行长贝利周五表示，生产力疲软等冲击，是发达经济体公共债务攀升的原因之一，而不断增加的公共债务反过来又推高了借贷成本。贝利表示：“目前存在非常非常严峻的挑战，即结构性挑战。”他还补充说，人口老龄化和对增加国防开",
+   "link": "https://flash.jin10.com/detail/20260904174842616800",
+   "published": "2026-09-04T09:48:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-03T22:44:39Z"
+ "fetched_at": "2026-09-04T16:49:08Z"
 }
