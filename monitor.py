@@ -578,6 +578,10 @@ def build_knowledge(ctx: dict) -> dict:
                         # 2026-08-31 修：阈值为0的节点（FIMA用量、GEX穿越位）此前用 <=，
                         # 导致 FIMA=0（"没人用"，属安静）被显示成"已穿"，并虚增链条热度。
                         st = "crossed" if dist < 0 else ("near" if dist < 0.05 else "quiet")
+                        # 2026-09-06 修：线是 0 且值是 0（FIMA 没人借、银行没收紧）时 dist=0，
+                        # 落进 <0.05 被标"快到"。0 的意思是"没发生"，该是安静，否则链条热度虚增。
+                        if thr == 0 and v == 0:
+                            st = "quiet"
                         crossed += st == "crossed"; near += st == "near"
                         node.update(status=st, value=v, threshold=thr,
                                     direction=direc, dist_pct=round(dist * 100, 2),
@@ -607,6 +611,33 @@ def build_knowledge(ctx: dict) -> dict:
                 "premise_hold": crossed, "premise_total": len(thr_nodes),
                 "premise_broken": broken,
             })
+
+        # 2026-09-06 修："快到"只看距离不看方向，同一条带子两个出口同时亮。
+        # 9-04 日元 156.2：撤资线 157(below) 已破，干预线 163(above) 差 4.2% 也标"快到"，
+        # 日本链和国家博弈链都显示"日元逼近干预线"，而它正在往反方向跑。
+        # 规矩：一个指标若某方向的出口已破（任一链），另一方向的出口不得为"快到"。
+        # 跨链查，因为 157 在日本链、163 在国家博弈链，各自看不到对方。
+        crossed_dirs: dict[str, set] = {}
+        for c in out["chains"]:
+            for n in c["nodes"]:
+                if n.get("status") == "crossed" and n.get("metric"):
+                    crossed_dirs.setdefault(n["metric"], set()).add(n.get("direction"))
+        for c in out["chains"]:
+            changed = False
+            for n in c["nodes"]:
+                if n.get("status") != "near" or not n.get("metric"):
+                    continue
+                opp = "below" if n.get("direction") == "above" else "above"
+                if opp in crossed_dirs.get(n["metric"], ()):
+                    n["status"] = "quiet"
+                    n["near_suppressed"] = True   # 前端可据此显示"另一出口已破"
+                    changed = True
+            if changed:
+                thr_nodes = [n for n in c["nodes"] if n.get("threshold") is not None]
+                cr = sum(1 for n in thr_nodes if n["status"] == "crossed")
+                nr = sum(1 for n in thr_nodes if n["status"] == "near")
+                c["heat"] = cr * 2 + nr
+                c["premise_hold"] = cr
 
         # 共享节点去重：同一 metric+阈值+方向 在多条链出现时，它其实是同一个观测点。
         # 此前每条链各算一次热度，导致重复计分（日元/日本持仓在两条链里各算一遍）。
@@ -791,6 +822,11 @@ def _compute_actual(dp, period: str, how: str, fmt: str) -> tuple[str, str] | No
     if period in s:
         i = dates.index(period)
     else:
+        # 2026-09-06：只有周频允许回退到更早的观测。月频若序列还没更新到本期，
+        # 回退会把上个月的数当成这个月的"实际值"填进日历——比空着更糟。
+        # （_fill_actuals 现在发布当天就会来查，序列可能还是旧的，这条护栏必须有）
+        if how != "level_k":
+            return None
         cand = [d for d in dates if d <= period]
         if not cand:
             return None
@@ -836,7 +872,10 @@ def _fill_actuals(dps: list, econ_events: list[dict]) -> int:
             rel = dt.date.fromisoformat(ev["date"])
         except Exception:
             continue
-        if rel >= today:                      # 还没发布，没有实际值
+        # 2026-09-06 修：原来是 >=，发布当天那次跑（9-04 22:26Z）把当天事件当"还没发布"跳过，
+        # 非农数据明明已进 FRED（159075），日历里还是空的——最需要看的那天看不到。
+        # 改成 >：当天的事件也试着填，填不到（序列还没更新）_compute_actual 自会返回 None。
+        if rel > today:                       # 明天以后的，肯定没实际值
             continue
         key, how, fmt = m
         dp = by_key.get(key)

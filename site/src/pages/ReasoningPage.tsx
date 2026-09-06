@@ -133,7 +133,10 @@ export default function ReasoningPage() {
                                   backgroundColor: node.premiseBroken ? 'var(--st-fire)' : meta.dot }} />
                                 <span className="text-xs font-medium" style={{
                                   color: node.premiseBroken ? 'var(--st-fire-text)' : meta.color }}>
-                                  {node.premiseBroken ? (isEN ? 'premise broken' : '前提已翻') : meta.label}
+                                  {node.premiseBroken ? (isEN ? 'premise broken' : '前提已翻')
+                                    : node.nearSuppressed
+                                      ? (isEN ? 'quiet · other exit crossed' : '安静 · 另一边已破')
+                                      : meta.label}
                                 </span>
                                 {(node.sharedWith ?? 0) > 0 && (
                                   <span className="text-xs px-1 rounded"

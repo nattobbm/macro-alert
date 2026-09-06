@@ -147,7 +147,18 @@ def daily_events(j: Jin10, days_back: int = 2) -> list[dict]:
                 "src": "jin10:今日重点关注",
                 "kind": "speech" if re.search(r"讲话|发言|演讲|听证|发布会", title) else "release",
             })
-    return out
+    # 2026-09-06 去重：前一天清单里的「次日02:00 褐皮书」和当天清单里的「02:00 褐皮书」
+    # 是同一件事，算出来 date/time 相同，此前各出一条（褐皮书/哈马克/古尔斯比各重复一次）。
+    # 按 (date, time_bj, title) 保留先出现的那条。
+    seen: set = set()
+    dedup = []
+    for e in out:
+        k = (e["date"], e.get("time_bj"), e["title"])
+        if k in seen:
+            continue
+        seen.add(k)
+        dedup.append(e)
+    return dedup
 
 
 # ── ② 事件过后拉讲话内容 ─────────────────────────────────────────────

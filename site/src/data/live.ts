@@ -97,6 +97,9 @@ export const chains: Chain[] = L
         status: NODE_STATUS[n.status] ?? 'fact',
         term: n.term ?? '',
         premiseBroken: n.premise === 'broken',
+        // 同一指标的另一个出口已破，这个"快到"被后端压成安静——前端要说出原因，
+        // 否则读者看 157 是越线、163 是安静，不知道为什么
+        nearSuppressed: !!n.near_suppressed,
         sharedWith: (n.shared_with ?? []).length,
       })),
     }))

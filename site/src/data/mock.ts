@@ -112,6 +112,8 @@ export interface ChainNode {
   status: 'fire' | 'warning' | 'ok' | 'fact'; term: string;
   // premiseBroken=该前提明确不成立（离触发极远，不是"还没到"而是"反了"）
   premiseBroken?: boolean;
+  // nearSuppressed=同一指标另一方向的出口已破，本节点的"快到"被压成安静（带子两个出口不能同时亮）
+  nearSuppressed?: boolean;
   // sharedWith=这个观测点同时是几条其他链的节点
   sharedWith?: number;
 }
