@@ -67,6 +67,7 @@ def fetch_all(max_staleness_days: int = 4, tickers: dict | None = None) -> list[
             if not h.empty:
                 # 末根K线自洽性校验：坏了就退回上一根完整K线，并记原委。
                 # 宁可用昨天的真数，也不用今天的坏数（坏数会让方向反向）。
+                last_bar_date = h.index[-1].date()   # 丢坏K线之前记下，稀疏检查要用原始末根日期
                 bad = _bar_is_malformed(h.iloc[-1]) if len(h) else None
                 if bad and len(h) > 1:
                     dp.extra["dropped_bar"] = {
@@ -78,6 +79,20 @@ def fetch_all(max_staleness_days: int = 4, tickers: dict | None = None) -> list[
                     out.append(dp)
                     continue
                 closes = h["Close"].dropna()
+                # 2026-09-06 修：^VIX3M 的 1y 历史里 7-17→9-04 有个七周的洞，且末根 K 收盘是 NaN
+                # （开高低都在）。dropna 后"最新收盘"变成 7-17 的数，被当成今天的值 → 误报停更 51 天。
+                # 末根 K 的日期比最后一个有效收盘晚 3 天以上，说明长端点数据稀疏，用短端点重拉一次；
+                # 短端点（10d）当天返回的是完整的 9-04 收盘 17.61。
+                if len(closes) and (last_bar_date - closes.index[-1].date()).days > 3:
+                    try:
+                        h2 = yf.Ticker(sym).history(period="10d", auto_adjust=False)
+                        c2 = h2["Close"].dropna() if not h2.empty else None
+                        if c2 is not None and len(c2) and c2.index[-1].date() > closes.index[-1].date():
+                            dp.extra["history_gap_days"] = (last_bar_date - closes.index[-1].date()).days
+                            dp.extra["retry"] = "10d"
+                            h, closes = h2, c2
+                    except Exception:
+                        pass
                 dp.value = round(float(closes.iloc[-1]), 4)
                 dp.as_of = closes.index[-1].date().isoformat()
                 # 口径优先/坏K线回退：见 _JIN10_PRIMARY / _JIN10_FALLBACK 注释
