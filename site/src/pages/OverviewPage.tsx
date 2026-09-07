@@ -258,8 +258,9 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
             <div className="font-bold">{isEN ? 'Every line has a documented basis, one of four types:' : '每条线都有出处（标在各卡片底部），共四类：'}</div>
             <div style={{ color: 'var(--text-muted)' }}>
               {isEN
-                ? 'Event level (an actual past trigger, e.g. JPY 163 = Jul-31 intervention) · Scenario band (from a dated report) · Mechanism (a math flip point, e.g. avg rate 4% = r overtaking g) · Statistical (e.g. 90th percentile positioning).'
-                : '① 历史事件位——真实发生过的触发价（如日元163=7-31官方干预位）；② 报告情景区间——来自注明日期的分析报告；③ 机制阈值——数学上的翻转点（如平均付息率4%=利息增速追上收入增速）；④ 统计分位——如大户仓位90分位。'}
+                ? 'Where it actually happened (e.g. JPY 163 = the Jul-31 intervention price) · Scenario band (from a dated report) · Mechanism line (a point where the math flips, e.g. avg interest 4% = interest growing faster than income) · Statistical (e.g. 90th percentile positioning).'
+                // 2026-09-07：和四类来源标签用同一套词（真出过事的位置 / 机制线），"阈值"是词库禁词
+                : '① 真出过事的位置——历史上真在这个价出过事（如日元163=7-31官方联手干预就在这）；② 报告情景区间——来自注明日期的分析报告；③ 机制线——过了这个数，账就开始反着算（如政府平均付息4%=利息涨得比收入快，债开始自己滚大）；④ 统计分位——如大户仓位到了90分位，比过去九成时候都满。'}
             </div>
             <div className="font-bold pt-1">{isEN ? 'Why upper and lower bounds can never fire together:' : '为什么上界下界不可能同时触发：'}</div>
             <div style={{ color: 'var(--text-muted)' }}>
