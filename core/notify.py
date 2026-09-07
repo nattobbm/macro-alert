@@ -137,7 +137,8 @@ def _sec_changes(changes: list[dict], metrics: dict, regime: dict) -> list[str]:
         if c["kind"] == "judge":
             t = c.get("tips_chg_bp"); g = c.get("gold_chg_pct")
             nums = []
-            if t is not None: nums.append(f"真利率 {t / 100:+.2f}")
+            # 2026-09-07 修：tips_chg_bp 本来就是 bp，再 /100 就把 +8bp 打成 "+0.08"，读者不知道是什么
+            if t is not None: nums.append(f"真利率 {t:+.0f}bp")
             if g is not None: nums.append(f"黄金 {g:+.1f}%")
             L.append(f"· 判据翻了：近 7 天 {' 且 '.join(nums)} → {c['new']}")
             if c.get("plain"):
@@ -222,10 +223,19 @@ def _sec_near(radar: list[dict], bands: list[dict], metrics: dict, quotes: dict)
         v, thr = r.get("value"), r.get("threshold")
         if v is None or thr is None:
             continue
-        if pct_type is None:          # 概率
-            gap = f"再{'涨' if r['direction'] == 'above' else '跌'} {abs(thr - v) * 100:.1f} 个百分点到 {thr * 100:.0f}%"
+        updown = '涨' if r['direction'] == 'above' else '跌'
+        if key.endswith("_dist_pct"):
+            # 2026-09-07 修：gamma 翻转位/墙位这类节点的 value 本身就是"离那个位置还差百分之几"，
+            # 原来打成「0.33 → 再跌 0.33 到 0.00」没人看得懂。换算成美股点数说。
+            spot = (metrics.get("spx") or {}).get("value")
+            pts = f"（约 {abs(v) / 100 * spot:.0f} 点）" if spot else ""
+            gap = f"美股离这个位置还差 {abs(v):.2f}%{pts}"
+        elif pct_type is None:          # 概率
+            gap = f"再{updown} {abs(thr - v) * 100:.1f} 个百分点到 {thr * 100:.0f}%"
+        elif pct_type is True:          # 利率类：差距说 bp，不说 0.08
+            gap = f"再{updown} {abs(thr - v) * 100:.0f}bp 到 {_fmt(thr, nd, pct_type)}"
         else:
-            gap = f"再{'涨' if r['direction'] == 'above' else '跌'} {abs(thr - v):.{nd}f} 到 {_fmt(thr, nd, pct_type)}"
+            gap = f"再{updown} {abs(thr - v):.{nd}f} 到 {_fmt(thr, nd, pct_type)}"
         # 后果：优先带子的 note，其次雷达 origin 后半句
         why = ""
         for b in bands or []:
@@ -235,7 +245,9 @@ def _sec_near(radar: list[dict], bands: list[dict], metrics: dict, quotes: dict)
         if not why:
             why = str(r.get("origin") or "").split("·")[-1].strip()
         label = f"{name} {code}".strip()
-        rows.append((d, f"· {label} {_fmt(v, nd, pct_type)} → {gap}，{why}"))
+        # _dist_pct 类的 value 已经在 gap 里说成"还差百分之几"了，开头不再重复裸数
+        head = label if key.endswith("_dist_pct") else f"{label} {_fmt(v, nd, pct_type)}"
+        rows.append((d, f"· {head} → {gap}，{why}"))
     rows.sort(key=lambda x: x[0])
     return [t for _, t in rows[:3]]
 
