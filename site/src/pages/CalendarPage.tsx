@@ -316,7 +316,7 @@ export default function CalendarPage() {
                 )}
                 {isPast && (
                   <span className="text-xs ml-auto" style={{ color: 'var(--text-muted)' }}>
-                    {isEN ? 'past' : '已过'} · {evs.length} {isEN ? 'events' : '条'} {expanded ? '▲' : '▼'}
+                    {isEN ? 'past' : '已过'} · {evs.length} {isEN ? (evs.length === 1 ? 'event' : 'events') : '条'} {expanded ? '▲' : '▼'}
                   </span>
                 )}
               </div>
