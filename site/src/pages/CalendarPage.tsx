@@ -187,9 +187,10 @@ export default function CalendarPage() {
   const [minImp, setMinImp] = useState(2)
   const [ctry, setCtry] = useState<string>('all')
   const [openId, setOpenId] = useState<string | null>(null)
-  // 2026-09-07 Momo：已经过去的日子默认折叠，点日期才展开。
-  // 日历是"接下来要盯什么"，打开先看到 08-30 的旧数据是把主题埋在噪音里
-  const [openPast, setOpenPast] = useState<Set<string>>(() => new Set())
+  // 2026-09-07 Momo：已经过去的日子默认折叠，点开才看。
+  // 第一版每天一行折叠，她问「为什么不是 past 全部放一栏」——对，五行 past 还是占了五行。
+  // 现在：过去的全部收进一个块，一行「已过 · N 天 · M 条 ▼」，点开才展开各天。
+  const [showPast, setShowPast] = useState(false)
 
   const filtered = useMemo(
     () => econEvents.filter(e =>
@@ -281,46 +282,28 @@ export default function CalendarPage() {
           {isEN ? 'No events match the filter.' : '当前筛选下没有事件'}
         </div>
       ) : (
-        days.map(([day, evs]) => {
-          const d = new Date(day + 'T12:00:00')
-          const isToday = day === todayKey
-          const isPast = day < todayKey
-          const expanded = !isPast || openPast.has(day)
-          const togglePast = () => setOpenPast(s => {
-            const n = new Set(s); n.has(day) ? n.delete(day) : n.add(day); return n
-          })
-          return (
-            <section key={day}>
-              {/* 过去的日子：整行是按钮，折叠态只留"日期 · 几条 ▼"；今天和未来照常摊开 */}
-              <div
-                role={isPast ? 'button' : undefined}
-                tabIndex={isPast ? 0 : undefined}
-                onClick={isPast ? togglePast : undefined}
-                onKeyDown={isPast ? (ev => { if (ev.key === 'Enter' || ev.key === ' ') togglePast() }) : undefined}
-                className={`flex items-baseline gap-2 mb-2 px-1 ${isPast ? 'cursor-pointer select-none' : ''}`}
-                style={isPast && !expanded ? { opacity: 0.7 } : undefined}
-              >
-                <span className="font-num text-sm font-bold"
-                  style={{ color: isToday ? 'var(--accent)' : 'var(--text)' }}>
-                  {day.slice(5)}
-                </span>
-                <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                  {WEEK[d.getDay()]}
-                </span>
-                {isToday && (
-                  <span className="text-xs px-2 rounded-full" style={{
-                    backgroundColor: 'var(--st-ok-bg)', color: 'var(--st-ok-text)',
-                  }}>
-                    {isEN ? 'today' : '今天'}
+        (() => {
+          const renderDay = ([day, evs]: [string, EconEvent[]]) => {
+            const d = new Date(day + 'T12:00:00')
+            const isToday = day === todayKey
+            return (
+              <section key={day}>
+                <div className="flex items-baseline gap-2 mb-2 px-1">
+                  <span className="font-num text-sm font-bold"
+                    style={{ color: isToday ? 'var(--accent)' : 'var(--text)' }}>
+                    {day.slice(5)}
                   </span>
-                )}
-                {isPast && (
-                  <span className="text-xs ml-auto" style={{ color: 'var(--text-muted)' }}>
-                    {isEN ? 'past' : '已过'} · {evs.length} {isEN ? (evs.length === 1 ? 'event' : 'events') : '条'} {expanded ? '▲' : '▼'}
+                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                    {WEEK[d.getDay()]}
                   </span>
-                )}
-              </div>
-              {expanded && (
+                  {isToday && (
+                    <span className="text-xs px-2 rounded-full" style={{
+                      backgroundColor: 'var(--st-ok-bg)', color: 'var(--st-ok-text)',
+                    }}>
+                      {isEN ? 'today' : '今天'}
+                    </span>
+                  )}
+                </div>
                 <div className="neu p-3 space-y-2">
                   {evs.map((e, i) => {
                     const id = `${day}_${i}`
@@ -333,10 +316,45 @@ export default function CalendarPage() {
                     )
                   })}
                 </div>
+              </section>
+            )
+          }
+          const pastDays = days.filter(([day]) => day < todayKey)
+          const restDays = days.filter(([day]) => day >= todayKey)
+          const nPast = pastDays.reduce((n, [, evs]) => n + evs.length, 0)
+          return (
+            <>
+              {/* 过去的全部收进一栏：一行「已过 · N 天 · M 条 ▼」，点开才展开各天。
+                  每条的 note（为什么重要、看什么）都在，只是不占首屏——日历是"接下来盯什么"，
+                  打开先看到上周的旧数据是把主题埋在噪音里 */}
+              {pastDays.length > 0 && (
+                <section>
+                  <button
+                    onClick={() => setShowPast(v => !v)}
+                    aria-expanded={showPast}
+                    className="neu-btn w-full flex items-center justify-between px-4 py-2.5 text-sm"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
+                    <span>
+                      {isEN ? 'Past' : '已过'} · {pastDays.length} {isEN ? (pastDays.length === 1 ? 'day' : 'days') : '天'}
+                      {' · '}{nPast} {isEN ? (nPast === 1 ? 'event' : 'events') : '条'}
+                      <span className="ml-2 text-xs" style={{ opacity: 0.7 }}>
+                        {isEN ? '(with results & notes)' : '（带实际值和解读）'}
+                      </span>
+                    </span>
+                    <span>{showPast ? '▲' : '▼'}</span>
+                  </button>
+                  {showPast && (
+                    <div className="mt-3 space-y-3" style={{ opacity: 0.9 }}>
+                      {pastDays.map(renderDay)}
+                    </div>
+                  )}
+                </section>
               )}
-            </section>
+              {restDays.map(renderDay)}
+            </>
           )
-        })
+        })()
       )}
 
       <div className="text-xs text-center pb-4" style={{ color: 'var(--text-muted)' }}>
