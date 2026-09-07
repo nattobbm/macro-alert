@@ -1,17 +1,6 @@
 {
  "events": [
   {
-   "date": "2026-09-03",
-   "time_bj": "02:00",
-   "title": "美联储公布经济状况褐皮书",
-   "speaker": null,
-   "tags": [
-    "货币链"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "release"
-  },
-  {
    "date": "2026-09-04",
    "time_bj": "03:00",
    "title": "美联储哈马克发表讲话",
@@ -137,5 +126,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-06T18:43:46Z"
+ "fetched_at": "2026-09-07T04:15:32Z"
 }
