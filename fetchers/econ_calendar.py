@@ -327,6 +327,33 @@ def fetch(archive_dir: str | Path, max_staleness_days: int = 8) -> DataPoint:
         if k not in best or score > best[k]["_score"]:
             best[k] = {**e, "_score": score}
     events = [{k: v for k, v in e.items() if k != "_score"} for e in best.values()]
+    own_events = list(events)          # 本次抓到的（写周存档用，不含并进来的历史）
+
+    # ④ 历史回填（2026-09-07，Momo：「你把历史日历都删了吗？我舍不得删」）
+    #    FF 只给本周，每周日换周时上一周整个从 latest.json 里消失——不是删了，是从来没存进网站读的那份。
+    #    但每周的存档一直在磁盘上（下面 ⑤），每条的 note/chain（"这条为什么重要、要怎么看"）是我们自己写的，
+    #    值得留。这里把最近 HISTORY_DAYS 天的存档并回来；同名同日以本次抓到的为准（更新）。
+    #    过去的事件 monitor._fill_actuals 会按 FRED 序列回填实际值，所以历史也能带上"实际"。
+    HISTORY_DAYS = 60
+    cutoff = (dt.date.today() - dt.timedelta(days=HISTORY_DAYS)).isoformat()
+    have = {(e["title"], _bj_date(e)) for e in events}
+    restored = 0
+    for f in sorted(arch.glob("*-W*.json")):
+        try:
+            for e in json.loads(f.read_text(encoding="utf-8")):
+                if not isinstance(e, dict) or not e.get("date") or e["date"] < cutoff:
+                    continue
+                k = (e.get("title"), _bj_date(e))
+                if k in have:
+                    continue
+                have.add(k)
+                e = dict(e)
+                e["src"] = f"{e.get('src', '')}(archive:{f.stem})"
+                events.append(e)
+                restored += 1
+        except Exception as ex:
+            print(f"[warn] econ_calendar archive {f.name}: {type(ex).__name__}: {ex}")
+    dp.extra["restored_from_archive"] = restored
 
     events.sort(key=lambda e: e["datetime"] or "")
     dp.value = float(len(events))
@@ -335,10 +362,11 @@ def fetch(archive_dir: str | Path, max_staleness_days: int = 8) -> DataPoint:
     dp.extra["ff_window_end"] = ff_last.isoformat()
     dp.extra["ff_status"] = ff_status
 
-    # 周存档（按ISO周），供M5宏观日历积累
+    # ⑤ 周存档（按ISO周），供M5宏观日历积累。
+    #    只存本次抓到的 own_events，不存并进来的历史——否则每周文件都包含前几周，滚雪球。
     y, w, _ = dt.date.today().isocalendar()
     (arch / f"{y}-W{w:02d}.json").write_text(
-        json.dumps(events, ensure_ascii=False), encoding="utf-8")
+        json.dumps(own_events, ensure_ascii=False), encoding="utf-8")
 
     # 只有三层全空才算 stale；某一层缺失记在 ff_status 里，不拖垮另外两层
     if not events:
