@@ -6,14 +6,15 @@ const STATUS_META = {
   fire:    { dot: 'var(--st-fire)', label: tr('breached'), color: 'var(--st-fire-text)' },
   warning: { dot: 'var(--st-warn)', label: tr('warning_w'),  color: 'var(--st-warn-text)' },
   ok:      { dot: 'var(--st-ok)',   label: tr('ok_w'),  color: 'var(--st-ok-text)' },
-  fact:    { dot: 'var(--accent)',  label: tr('v_fact'),  color: 'var(--accent)' },
+  // 2026-09-07 实测：--accent 浅蓝当 12px 字色，气球村内凹底上只有 2.1 对比度。字改用本主题的深蓝 --st-ok-text（4.4），点不变
+  fact:    { dot: 'var(--accent)',  label: tr('v_fact'),  color: 'var(--st-ok-text)' },
 }
 
 const VERDICT_META = {
   true:    { dot: 'var(--st-ok)',   label: tr('v_true'), color: 'var(--st-ok-text)' },
   false:   { dot: 'var(--st-fire)', label: tr('v_false'), color: 'var(--st-fire-text)' },
   pending: { dot: 'var(--st-mute)', label: tr('v_pending'), color: 'var(--st-mute-text)' },
-  testing: { dot: 'var(--accent)',  label: tr('v_testing'), color: 'var(--accent)' },
+  testing: { dot: 'var(--accent)',  label: tr('v_testing'), color: 'var(--st-ok-text)' },   // 2026-09-07 字色改深蓝（浅蓝当字 2.1）
   fact:    { dot: 'var(--st-mute)', label: tr('v_fact'), color: 'var(--st-mute-text)' },
 }
 
@@ -240,13 +241,15 @@ export default function ReasoningPage() {
           {/* Rate probability comparison */}
           <div className="neu-inset p-4 space-y-3">
             <div className="text-sm font-medium" style={{ color: 'var(--text)' }}>
-              3月FOMC维持不变概率（三源对比）
+              {/* 2026-09-07 修：原写死「3月FOMC维持不变概率」——月份和方向都是旧的，改用 i18n 的 odds_title */}
+              {tr('odds_title')}
             </div>
             {rateProbabilities.map(r => (
               <div key={r.source}>
                 <div className="flex justify-between text-xs mb-1" style={{ color: 'var(--text-muted)' }}>
                   <span>{r.source}</span>
-                  <span className="font-num font-bold" style={{ color: r.color }}>{r.prob}%</span>
+                  {/* 数字用正文色（绿/黄当 12px 字只有 1.6–1.9），来源色留给下面的色条 */}
+                  <span className="font-num font-bold" style={{ color: 'var(--text)' }}>{r.prob}%</span>
                 </div>
                 <div className="neu-inset-sm h-4 rounded-full overflow-hidden">
                   <div
@@ -282,11 +285,11 @@ export default function ReasoningPage() {
                     {/* 签发内容：情景图卡签的是排序，概率单签的是概率 */}
                     {p.ranking && (
                       <span className="ml-2 font-num font-medium notranslate"
-                        style={{ color: 'var(--accent)' }}>{p.ranking}</span>
+                        style={{ color: 'var(--st-ok-text)' }}>{p.ranking}</span>
                     )}
                     {p.probability != null && (
                       <span className="ml-2 font-num font-medium notranslate"
-                        style={{ color: 'var(--accent)' }}>{(p.probability * 100).toFixed(0)}%</span>
+                        style={{ color: 'var(--st-ok-text)' }}>{(p.probability * 100).toFixed(0)}%</span>
                     )}
                     {p.result && <span className="ml-2 font-medium">{p.result}</span>}
                   </div>
@@ -322,7 +325,8 @@ export default function ReasoningPage() {
                 <span
                   className="text-xs px-2 py-0.5 rounded-full flex-shrink-0 self-start"
                   style={{
-                    backgroundColor: p.status === 'open' ? 'var(--accent)' : 'var(--text-muted)',
+                    // 2026-09-07：白字压浅蓝 --accent 只有 2.6–3.0，底改本主题深蓝 --st-ok-text
+                    backgroundColor: p.status === 'open' ? 'var(--st-ok-text)' : 'var(--text-muted)',
                     color: '#fff',
                   }}
                 >
@@ -354,7 +358,8 @@ export default function ReasoningPage() {
                     <span
                       key={tag}
                       className="text-xs px-2 py-0.5 rounded-full"
-                      style={{ backgroundColor: 'var(--accent-soft)', color: 'var(--accent)' }}
+                      // 2026-09-07 实测：浅蓝 --accent 当 12px 字色压在 accent-soft 上只有 2.0。字改本主题深蓝，底不变
+                      style={{ backgroundColor: 'var(--accent-soft)', color: 'var(--st-ok-text)' }}
                     >
                       {tag}
                     </span>
@@ -405,7 +410,7 @@ export default function ReasoningPage() {
               <div key={i} className="neu-sm px-4 py-3 flex gap-3">
                 <div
                   className="font-num font-bold text-xs text-center flex-shrink-0 w-12 pt-0.5"
-                  style={{ color: 'var(--accent)' }}
+                  style={{ color: 'var(--st-ok-text)' }}
                 >
                   {e.date.slice(5)}
                   {/* 讲话/会议带北京时间——"几点"比"哪天"更要紧，讲完才有原话可看 */}

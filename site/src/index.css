@@ -15,7 +15,9 @@ html, body, #root {
   --shadow-light: #eef6ff;
   --shadow-dark:  #b8c8d8;
   --text:         #2d4a63;
-  --text-muted:   #6a88a0;
+  /* 2026-09-07 实测：#6a88a0 压在内凹底 #ccdae8 上只有 2.6 对比度，12px 节点小字读不清。
+     同色相加深一档到 3.8+，色板不变 */
+  --text-muted:   #587893;
   --accent:       #5b9eb8;
   --accent-soft:  #b8d8ea;
   --green:        #6bb89a;
@@ -26,7 +28,7 @@ html, body, #root {
   --st-ok:        #5b9eb8; --st-ok-text:   #3a7d99; --st-ok-bg:   #c3ddec;
   --st-warn:      #e8a5b5; --st-warn-text: #b85c74; --st-warn-bg: #f2dbe1;
   --st-fire:      #e07878; --st-fire-text: #b04a4a; --st-fire-bg: #f2d5d5;
-  --st-mute:      #a8b8c8; --st-mute-text: #6a88a0; --st-mute-bg: #ccdae8;
+  --st-mute:      #a8b8c8; --st-mute-text: #587893; --st-mute-bg: #ccdae8;
 }
 
 /* 气球村（奶油+草莓粉+天空蓝）：可选主题 */
@@ -37,7 +39,8 @@ html, body, #root {
   --shadow-light: #FFFDF5;
   --shadow-dark:  #E0D2B4;
   --text:         #6B5E4F;
-  --text-muted:   #A5947C;
+  /* 2026-09-07 实测：#A5947C 压在内凹底 #F3E7CC 上只有 2.4。借用本主题已有的 --st-mute-text，不加新色 */
+  --text-muted:   #8A7A63;
   --accent:       #4EA8DE;
   --accent-soft:  #C9E5F5;
   --green:        #7DBE8E;
@@ -58,7 +61,8 @@ html, body, #root {
   --shadow-light: #ffffff;
   --shadow-dark:  #cdd0d9;
   --text:         #4c4f69;
-  --text-muted:   #8c8fa1;
+  /* 2026-09-07 实测：#8c8fa1 整层灰字 144 处只有 2.5–2.8。借用本主题已有的 --st-mute-text，不加新色 */
+  --text-muted:   #6c6f85;
   --accent:       #1e66f5;
   --accent-soft:  #bdd0ff;
   --green:        #40a02b;
