@@ -187,6 +187,9 @@ export default function CalendarPage() {
   const [minImp, setMinImp] = useState(2)
   const [ctry, setCtry] = useState<string>('all')
   const [openId, setOpenId] = useState<string | null>(null)
+  // 2026-09-07 Momo：已经过去的日子默认折叠，点日期才展开。
+  // 日历是"接下来要盯什么"，打开先看到 08-30 的旧数据是把主题埋在噪音里
+  const [openPast, setOpenPast] = useState<Set<string>>(() => new Set())
 
   const filtered = useMemo(
     () => econEvents.filter(e =>
@@ -281,9 +284,22 @@ export default function CalendarPage() {
         days.map(([day, evs]) => {
           const d = new Date(day + 'T12:00:00')
           const isToday = day === todayKey
+          const isPast = day < todayKey
+          const expanded = !isPast || openPast.has(day)
+          const togglePast = () => setOpenPast(s => {
+            const n = new Set(s); n.has(day) ? n.delete(day) : n.add(day); return n
+          })
           return (
             <section key={day}>
-              <div className="flex items-baseline gap-2 mb-2 px-1">
+              {/* 过去的日子：整行是按钮，折叠态只留"日期 · 几条 ▼"；今天和未来照常摊开 */}
+              <div
+                role={isPast ? 'button' : undefined}
+                tabIndex={isPast ? 0 : undefined}
+                onClick={isPast ? togglePast : undefined}
+                onKeyDown={isPast ? (ev => { if (ev.key === 'Enter' || ev.key === ' ') togglePast() }) : undefined}
+                className={`flex items-baseline gap-2 mb-2 px-1 ${isPast ? 'cursor-pointer select-none' : ''}`}
+                style={isPast && !expanded ? { opacity: 0.7 } : undefined}
+              >
                 <span className="font-num text-sm font-bold"
                   style={{ color: isToday ? 'var(--accent)' : 'var(--text)' }}>
                   {day.slice(5)}
@@ -298,19 +314,26 @@ export default function CalendarPage() {
                     {isEN ? 'today' : '今天'}
                   </span>
                 )}
+                {isPast && (
+                  <span className="text-xs ml-auto" style={{ color: 'var(--text-muted)' }}>
+                    {isEN ? 'past' : '已过'} · {evs.length} {isEN ? 'events' : '条'} {expanded ? '▲' : '▼'}
+                  </span>
+                )}
               </div>
-              <div className="neu p-3 space-y-2">
-                {evs.map((e, i) => {
-                  const id = `${day}_${i}`
-                  return (
-                    <EventRow
-                      key={id} e={e}
-                      open={openId === id}
-                      onToggle={() => setOpenId(openId === id ? null : id)}
-                    />
-                  )
-                })}
-              </div>
+              {expanded && (
+                <div className="neu p-3 space-y-2">
+                  {evs.map((e, i) => {
+                    const id = `${day}_${i}`
+                    return (
+                      <EventRow
+                        key={id} e={e}
+                        open={openId === id}
+                        onToggle={() => setOpenId(openId === id ? null : id)}
+                      />
+                    )
+                  })}
+                </div>
+              )}
             </section>
           )
         })

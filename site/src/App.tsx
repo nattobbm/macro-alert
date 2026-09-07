@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { lang, setLang, t } from './i18n'
 import { Icon } from './components/Icon'
+import Mascot from './components/Mascot'
 import OverviewPage from './pages/OverviewPage'
 import ReasoningPage from './pages/ReasoningPage'
 import EquityPage from './pages/EquityPage'
@@ -51,7 +52,8 @@ export default function App() {
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-3 flex-wrap">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <span className="text-2xl float-anim">🌏</span>
+            {/* 2026-09-07 Momo：换上我们自己的小地球（榜一冠军配色），不用 emoji */}
+            <Mascot size={28} className="float-anim" />
             <div>
               <div
                 className="font-num font-bold text-lg leading-none"

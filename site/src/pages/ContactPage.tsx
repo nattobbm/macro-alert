@@ -1,4 +1,5 @@
 import { t as tr } from '../i18n'
+import Mascot from '../components/Mascot'
 
 const LINKS = [
   {
@@ -33,7 +34,7 @@ export default function ContactPage() {
   return (
     <div className="space-y-6 max-w-2xl mx-auto">
       <div className="neu p-6 text-center">
-        <div className="text-5xl mb-3">🌏</div>
+        <div className="mb-3 flex justify-center"><Mascot size={64} expr="wink" /></div>
         <div className="font-bold text-lg mb-1" style={{ color: 'var(--text)' }}>
           纳豆 · CYPERMOW
         </div>

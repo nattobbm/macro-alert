@@ -438,14 +438,23 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
                       onClick={() => setOpenWhat(opened ? null : s.key)}
                       aria-label={isEN ? 'what is this' : '这是什么'}
                       title={isEN ? 'what is this' : '这是什么'}
-                      className="rounded-full flex items-center justify-center transition-transform hover:scale-110 flex-shrink-0"
+                      // 2026-09-07 手机实测：17 个"?"都是 18×18，手指点不准（拇指目标至少 32px）。
+                      // 视觉不变：外层 32×32 透明可点区，里面画 18px 的圆
+                      className="flex items-center justify-center flex-shrink-0"
                       style={{
-                        width: 18, height: 18, fontSize: 11, lineHeight: 1,
-                        border: 'none', cursor: 'pointer', marginTop: 1,
-                        backgroundColor: opened ? 'var(--accent)' : 'var(--bg2)',
-                        color: opened ? '#fff' : 'var(--text-muted)',
+                        width: 32, height: 32, margin: -7, padding: 0,
+                        border: 'none', cursor: 'pointer', background: 'transparent',
                       }}
-                    >?</button>
+                    >
+                      <span
+                        className="rounded-full flex items-center justify-center transition-transform hover:scale-110"
+                        style={{
+                          width: 18, height: 18, fontSize: 11, lineHeight: 1,
+                          backgroundColor: opened ? 'var(--accent)' : 'var(--bg2)',
+                          color: opened ? '#fff' : 'var(--text-muted)',
+                        }}
+                      >?</span>
+                    </button>
                   )}
                 </div>
 

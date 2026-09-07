@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { engineLive } from '../data/live'
 import { isEN } from '../i18n'
+import Mascot from '../components/Mascot'
 
 // 引擎页：地球的内部。两套逻辑框架（常规周期 + 债务动力学）怎么咬合。
 // 节点带实时读数；配色走 CSS 变量，五套主题自动适配；手机端横向滚动。
@@ -50,7 +51,7 @@ export default function EnginePage() {
       {/* 头部 */}
       <div className="neu p-5">
         <div className="flex items-center gap-2">
-          <span className="text-2xl float-anim">🌏</span>
+          <Mascot size={28} className="float-anim" />
           <div className="font-bold text-lg" style={{ color: 'var(--accent)' }}>
             {t('引擎', 'The Engine')}
           </div>

@@ -220,8 +220,8 @@ export default function DataPage() {
 
           {/* 真实利率 × 黄金 */}
           <MiniChart
-            title="真实利率 × 黄金"
-            subtitle="TIPS 10Y实际收益率 vs 黄金现货"
+            title={isEN ? 'Real yield × Gold' : '真利率 × 黄金'}
+            subtitle={isEN ? '10Y TIPS real yield vs spot gold' : '扣掉通胀后的10年真利率 vs 黄金现货'}
             source="FRED · yfinance" as_of={asOfMarket}
           >
             <ResponsiveContainer width="100%" height="100%">
@@ -256,8 +256,8 @@ export default function DataPage() {
 
           {/* SPX/Gold ratio */}
           <MiniChart
-            title="SPX / 黄金比"
-            subtitle="风险偏好指标（越低=越避险）"
+            title={isEN ? 'SPX / Gold ratio' : 'SPX / 黄金比'}
+            subtitle={isEN ? 'Risk appetite (lower = more defensive)' : '大家敢不敢冒险（越低=越往黄金躲）'}
             source="yfinance" as_of={asOfMarket}
           >
             <ResponsiveContainer width="100%" height="100%">
@@ -274,8 +274,10 @@ export default function DataPage() {
           {/* 泰勒缺口 × 黄金：C路径(金融抑制)的可视化证据链 */}
           {trendTaylorGold.length > 0 && (
             <MiniChart
-              title="泰勒缺口 × 黄金"
-              subtitle="央行欠账的紧缩幅度(应然-实际利率) · r*=0.75口径"
+              title={isEN ? 'Taylor gap × Gold' : '泰勒缺口 × 黄金'}
+              subtitle={isEN
+                ? 'How much tighter policy "should" be than it is (Taylor-rule gap, r*=0.75)'
+                : '按教科书公式该定的利率，比实际高出多少（高出越多=央行欠的账越多）'}
               source="FRED自算(PCEPILFE/GDPC1/GDPPOT/FEDFUNDS)" as_of={asOfTaylor}
             >
               <ResponsiveContainer width="100%" height="100%">
