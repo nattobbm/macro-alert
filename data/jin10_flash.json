@@ -10,8 +10,41 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-10",
+   "time_bj": "01:00",
+   "title": "欧洲央行行长拉加德发表演讲",
+   "speaker": "拉加德发表",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-10",
+   "time_bj": "20:15",
+   "title": "欧洲央行公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-09-10",
+   "time_bj": "20:45",
+   "title": "欧洲央行行长拉加德召开新闻发布会",
+   "speaker": "拉加德",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [],
- "fetched_at": "2026-09-08T22:49:02Z"
+ "fetched_at": "2026-09-09T17:07:07Z"
 }
