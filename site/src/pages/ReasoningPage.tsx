@@ -246,10 +246,20 @@ export default function ReasoningPage() {
             </div>
             {rateProbabilities.map(r => (
               <div key={r.source}>
-                <div className="flex justify-between text-xs mb-1" style={{ color: 'var(--text-muted)' }}>
-                  <span>{r.source}</span>
+                <div className="flex justify-between items-baseline gap-2 text-xs mb-1" style={{ color: 'var(--text-muted)' }}>
+                  {/* 每条标出"哪天的数"。三个数并排却不说时点，旧读数会被当成分歧 */}
+                  <span className="min-w-0">
+                    {r.source}
+                    {(r as any).ageText && (
+                      <span style={{ opacity: (r as any).stale ? 1 : 0.75 }}>
+                        {' · '}{(r as any).asOf}
+                        {(r as any).stale ? ` ${(r as any).ageText}${isEN ? '' : '的旧读数'}` : ''}
+                      </span>
+                    )}
+                  </span>
                   {/* 数字用正文色（绿/黄当 12px 字只有 1.6–1.9），来源色留给下面的色条 */}
-                  <span className="font-num font-bold" style={{ color: 'var(--text)' }}>{r.prob}%</span>
+                  <span className="font-num font-bold flex-shrink-0"
+                        style={{ color: (r as any).stale ? 'var(--text-muted)' : 'var(--text)' }}>{r.prob}%</span>
                 </div>
                 <div className="neu-inset-sm h-4 rounded-full overflow-hidden">
                   <div

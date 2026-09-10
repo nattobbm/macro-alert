@@ -70,7 +70,11 @@ def _fmt(v, nd: int | None, pct_type) -> str:
     if v is None:
         return "—"
     if pct_type is None:            # 概率 0.67 → 67%
-        return f"{v * 100:.0f}%"
+        # 2026-09-09 修：整数百分比会把 64.6% 印成 65%，于是"再涨 0.4 个百分点"
+        # 那行读成「加息 65% → 再涨 0.4 个百分点到 65%」，自己跟自己打架。
+        # 本来就是整数的照旧印整数（65%），带零头的才补一位（64.6%）。
+        p = v * 100
+        return f"{p:.0f}%" if abs(p - round(p)) < 0.05 else f"{p:.1f}%"
     if nd == 0:
         return f"{v:,.0f}"
     s = f"{v:.{nd}f}"

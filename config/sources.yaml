@@ -46,6 +46,12 @@ sources:
                lookback_days: 1200, desc: "PPI最终需求"}
   retail:     {tier: 1, provider: fred, series: RSAFS,      unit: "mn", max_staleness_days: 75,
                lookback_days: 1200, desc: "零售与食品服务销售额"}
+  # 2026-09-09 增。非农当天日历上「平均时薪」一直是空的——它是工资推物价那条线的
+  # 直接读数（工资涨得快 → 服务业物价压力 → 央行更难降息），却没有源。
+  # BLS 原序列在 FRED 免费可取，口径=全部私营部门全体雇员时薪(美元)，月频。
+  avg_hourly_earnings:
+              {tier: 1, provider: fred, series: CES0500000003, unit: "usd", max_staleness_days: 75,
+               lookback_days: 1200, desc: "平均时薪(全部私营部门,美元)。monitor算环比"}
 
   # FIMA回购便利用量：H.4.1 资产侧"Repurchase Agreements - Foreign Official"。
   # 2026-08-31 由人工每周四读H.4.1改为FRED自动（核对无误：近10周全为0，
@@ -77,7 +83,13 @@ sources:
                desc: "SRF常备回购用量；sofr_nyfed 同模块，做交叉源"}
 
   # ---- EIA (需 EIA_API_KEY，未提供前标stale不阻塞) ----
-  crude_stocks: {tier: 1, provider: eia, max_staleness_days: 10}
+  # 2026-09-09 由 10 改 14。EIA 周报口径：周期是"截至周五"，下周三才发布，
+  # 所以正常运转时数据年龄每周一路涨到 11 天（周二峰值）才被新一期打回 5 天。
+  # 阈值 10 意味着每个周二必然误报一次"停更"；本周劳工节(9/7)把发布推到周四，
+  # 周三又多报一次。实测 8-26→9-09 半个月里 9-01、9-08、9-09 三次全是假警报，
+  # EIA 官方 API 那几天确实就只有 8-28 这一期。14 天能盖住正常峰值和节假日顺延，
+  # 真断更（连漏两期 = 18 天以上）仍然报得出来。
+  crude_stocks: {tier: 1, provider: eia, max_staleness_days: 14}
 
   # ---- 行情 yfinance (tier 2) ----
   market:     {tier: 2, provider: yfinance, max_staleness_days: 4}

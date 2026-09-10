@@ -43,21 +43,69 @@ FEEDS = [
     # 词表打标不解读；数字仍只认官方API源。
 ]
 
-# 链条标签词表（六链 + 数据发布）。命中即打标，可多标。
+# 一手官方源：定义上就相关，不过相关性筛（美联储声明标题常常一个关键词都不含，
+# 例如「Speech by Governor Barr on bank supervision」）。也不参与限额，永不被挤出。
+OFFICIAL = {"Fed", "Fed讲话", "BEA", "EIA"}
+
+# 非官方源的单源上限。半岛电视台 all.xml 是全站消防栓（体育/王室/社会都推），
+# 按时间排序取前60会把发布频率低的官方源整个挤出去——2026-09-09 实测
+# 线上60条里美联储条目 0 条。限额是为了给低频高价值源留位子。
+SOURCE_CAP = {"AlJazeera": 10, "BBC世界": 8, "OilPrice": 12, "CNBC能源": 8}
+
+# 链条标签词表（六链 + 数据发布 + 商品）。命中即打标，可多标。
+# 非官方源**必须**命中至少一个，否则丢弃（见 _relevant）。
 TAGS = {
-    "债务链": r"treasury|auction|refunding|buyback|debt|deficit|bond|yield|issuance|QRA",
-    "货币链": r"\bfed\b|fomc|rate|federal funds|reserve|repo|QT|balance sheet|SOFR|IORB|liquidity|discount",
-    "日本链": r"japan|boj|yen|jgb",
+    # 2026-09-09：给短词加词边界。无边界时抓到一串假命中——
+    #   yen  ⊂ Fe·yen·oord   → 巴萨球赛被打成日本链
+    #   repo ⊂ repo·rtedly   → 尼日利亚停火被打成货币链
+    #   rate ⊂ ope·rate      → 任何"运营"都算利率
+    #   discount（不限定 window/rate）⊂ 天然气"折价"→ 货币链
+    #   gold（不限定边界）⊂ Gold·man → 投行名被打成黄金链
+    "债务链": r"treasury|auction|refunding|buyback|\bdebt\b|deficit|\bbonds?\b|yield|issuance|QRA",
+    "货币链": (r"\bfed\b|fomc|\brates?\b|federal funds|federal reserve|\brepo\b|\bQT\b|"
+             r"balance sheet|SOFR|IORB|liquidity|discount window|discount rate|"
+             r"\becb\b|\bboe\b|bank of england|european central bank|"
+             r"lagarde|bailey|central bank"),
+    "日本链": r"japan|\bboj\b|\byen\b|\bjgb\b|\bueda\b",
     # strike 单独一词误报太多（Global Strike Command / strike fighter 等美军建制名），
     # 故要求它与地缘对象连用；air/miss​ile strike 这类明确军事行动仍单独收。
     "地缘链": (r"iran|hormuz|sanction|missile|opec|\boil\b|crude|israel|tanker|"
              r"houthi|red sea|persian gulf|tehran|"
+             r"ukraine|russia|russian|putin|kremlin|moscow|venezuela|"
+             r"taiwan|export control|tariff|trade war|"
              r"(air|missile|drone|retaliat\w*|military)\s+strikes?|"
              r"strikes?\s+(on|against|in)\b"),
-    "AI链": r"nvidia|\bai\b|artificial intelligence|datacenter|data center|oracle|hyperscaler|chip",
-    "黄金链": r"gold|bullion|comex|precious",
-    "数据": r"\bcpi\b|\bppi\b|\bpce\b|payroll|employment|unemployment|gdp|retail sales|inflation",
+    "AI链": (r"nvidia|\bai\b|artificial intelligence|datacenter|data center|oracle|"
+           r"hyperscaler|\bchips?\b"),
+    "黄金链": r"\bgold\b|bullion|comex|precious",
+    "数据": (r"\bcpi\b|\bppi\b|\bpce\b|payroll|employment|unemployment|\bgdp\b|"
+           r"retail sales|inflation"),
+    # 2026-09-09 增。起因：铜创历史新高、商品牛市转向、欧洲负电价、加州电网吃紧
+    # 这几条都进了 RSS 却因为一个关键词都不命中而和体育新闻一起被同等对待。
+    # 商品和电力是物价的上游，属于宏观输入。
+    "商品": (r"copper|commodit\w+|\bmetals?\b|lithium|nickel|aluminium|aluminum|smelter|"
+           r"minerals|\bmining\b|power price|electricity|\bgrid\b|power demand|"
+           r"\blng\b|natural gas|refiner\w*|\bpipeline\b"),
 }
+
+# 硬拦：体育/娱乐/王室。即使标题里蹭到宏观词（"gold medal"命中黄金链这类）也一律丢。
+# 只用体育专有词，不用国名——"Bank of England warns Iran war could push UK inflation
+# above 4%" 里有 England，若拿国名拦会把真新闻拦掉。
+BLOCK = re.compile(
+    r"champions league|premier league|\buefa\b|\bfifa\b|world cup|olympic|"
+    r"wimbledon|us open|\bnba\b|\bnfl\b|cricket|semifinals?|quarterfinals?|"
+    r"invictus|gold medal|transfer window",
+    re.I,
+)
+
+
+def _relevant(item: dict) -> bool:
+    """官方源全留；其余必须命中链条词表，且不在硬拦名单里。"""
+    if item.get("source") in OFFICIAL:
+        return True
+    if BLOCK.search(item.get("title") or ""):
+        return False
+    return item.get("tags") != ["其他"]
 
 
 def _parse_time(s: str | None) -> str | None:
@@ -117,8 +165,25 @@ def fetch_news(store_path: str | Path, keep: int = 60) -> list[dict]:
         if k in seen:
             continue
         seen.add(k)
+        # 历史条目也过一遍筛：旧库里已经攒了大量体育/社会新闻
+        if not _relevant(it):
+            continue
         merged.append(it)
     merged.sort(key=lambda x: x.get("published") or "", reverse=True)
-    merged = merged[:keep]
+
+    # 官方源全留；非官方源按源限额，避免高频源把低频源挤出去
+    out, used = [], {}
+    for it in merged:
+        src = it.get("source")
+        if src in OFFICIAL:
+            out.append(it)
+            continue
+        cap = SOURCE_CAP.get(src, 8)
+        if used.get(src, 0) >= cap:
+            continue
+        used[src] = used.get(src, 0) + 1
+        out.append(it)
+    out.sort(key=lambda x: x.get("published") or "", reverse=True)
+    merged = out[:keep]
     store_path.write_text(json.dumps(merged, ensure_ascii=False), encoding="utf-8")
     return merged

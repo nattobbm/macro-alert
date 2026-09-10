@@ -44,6 +44,7 @@ LABELS = {
     "tic_china": "中国持有美债", "cot_gold": "黄金大户净多单", "cot_silver": "白银大户净多单",
     "cot_jpy": "日元大户净多单", "repo_ops": "常备回购SRF用量", "sofr_nyfed": "SOFR(纽约联储版)",
     "crude_stocks": "原油库存", "spx": "美股大盘SPX", "vix": "恐慌指数VIX", "vix3m": "3月期VIX",
+    "avg_hourly_earnings": "平均时薪",
     "hy_oas": "高收益债利差", "ccc_oas": "CCC级利差", "bank_tight": "银行收紧放贷%",
     "quality_spread": "质量利差(CCC−HY)", "nvda": "英伟达", "sox": "费城半导体指数",
     "gold": "黄金(COMEX期货)", "xauusd": "黄金(伦敦金现XAUUSD)",
@@ -67,6 +68,7 @@ LABELS_EN = {
     "tic_china": "China UST Holdings", "cot_gold": "Gold Net Longs (COT)", "cot_silver": "Silver Net Longs (COT)",
     "cot_jpy": "JPY Net Longs (COT)", "repo_ops": "SRF Usage", "sofr_nyfed": "SOFR (NY Fed)",
     "crude_stocks": "Crude Inventories", "spx": "S&P 500", "vix": "VIX Fear Index", "vix3m": "VIX 3M",
+    "avg_hourly_earnings": "Average Hourly Earnings",
     "hy_oas": "High Yield OAS", "ccc_oas": "CCC OAS", "bank_tight": "Banks Tightening %",
     "quality_spread": "Quality Spread (CCC-HY)", "nvda": "NVIDIA", "sox": "PHLX Semiconductor",
     "gold": "Gold (COMEX futures)", "xauusd": "Gold (XAUUSD spot)",
@@ -202,7 +204,8 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps += cftc.fetch_all(sources)
     dps.append(nyfed.fetch_repo_ops())
     dps.append(nyfed.fetch_sofr())
-    dps.append(eia.fetch_crude_stocks())
+    dps.append(eia.fetch_crude_stocks(
+        sources.get("crude_stocks", {}).get("max_staleness_days", 14)))
     dps += market.fetch_all(sources.get("market", {}).get("max_staleness_days", 4))
     # 伦敦金现：判定层的黄金口径（8-25报告的4450-4700带子是按XAUUSD定的）。
     # 传入COMEX价做基差交叉校验，基差离谱则判stale不参与规则。
@@ -745,16 +748,24 @@ def build_regime(ctx: dict, series: dict | None = None) -> dict:
     """主导链判定（8-25报告链条6判据的条件计数版，不做叙事）。"""
     # 条件名写成大白话：看的人没有金融背景，"盈亏平衡通胀>2.8"等于没说。
     # 数字保留在句子里，能对着上面的快照卡自己核。
+    # 每条自带显示串。2026-09-09：加息那条原来直接把 0.646 印在卡片右边，
+    # 而条件文字写的是"低于40%"——一个是小数一个是百分数，读者没法比，
+    # 页面其它地方（雷达、推送）又都写 65%，同一个数三种样子。口径这边知道，
+    # 就在这边定死，前端不再猜。
     conds = [
-        ("市场认为9月加息的可能性 低于40%", ctx.get("fedwatch_sep_hike"), lambda v: v < 0.4),
-        ("政府借30年的钱，年息 高于5.2%",   ctx.get("us30y"),             lambda v: v > 5.2),
-        ("市场押注未来10年物价年涨 高于2.8%", ctx.get("breakeven10"),     lambda v: v > 2.8),
+        ("市场认为9月加息的可能性 低于40%", ctx.get("fedwatch_sep_hike"), lambda v: v < 0.4,
+         lambda v: f"{v * 100:.1f}%"),
+        ("政府借30年的钱，年息 高于5.2%",   ctx.get("us30y"),             lambda v: v > 5.2,
+         lambda v: f"{v:.2f}%"),
+        ("市场押注未来10年物价年涨 高于2.8%", ctx.get("breakeven10"),     lambda v: v > 2.8,
+         lambda v: f"{v:.2f}%"),
     ]
     # known=False 表示"这条没数"，和"有数但不成立"要分开显示。
     # 两者都画成灰点的话，条件数在 0/3↔1/3 之间跳，看的人只会觉得网站在乱跳。
     detail = [{"cond": name, "value": v, "met": (v is not None and fn(v)),
-               "known": v is not None}
-              for name, v, fn in conds]
+               "known": v is not None,
+               "disp": (disp(v) if v is not None else None)}
+              for name, v, fn, disp in conds]
     met = sum(1 for d in detail if d["met"])
     unknown = sum(1 for d in detail if not d["known"])
     return {"name": "通胀偏高但不加息(金融抑制)", "met": met, "total": len(detail),
@@ -805,6 +816,8 @@ ACTUAL_MAP: dict[str, tuple[str, str, str]] = {
     "个人收支(含核心PCE)": ("core_pce", "mom_pct", "{:+.1f}%"),
     "零售销售(月)":        ("retail",   "mom_pct", "{:+.1f}%"),
     "零售销售":            ("retail",   "mom_pct", "{:+.1f}%"),
+    "平均时薪":            ("avg_hourly_earnings", "mom_pct", "{:+.1f}%"),
+    "平均时薪(月)":        ("avg_hourly_earnings", "mom_pct", "{:+.1f}%"),
 }
 
 

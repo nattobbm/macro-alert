@@ -21,6 +21,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import os
+import re
 from pathlib import Path
 
 from .base import DataPoint, check_freshness, http_get, now_iso
@@ -144,6 +145,41 @@ CN_SCHEDULE = [
     ("月度经济数据",    3, "day15", "10:00", "国家统计局：工业增加值/社零/固投"),
     ("LPR报价",         2, "day20", "09:15", "中国人民银行"),
 ]
+
+
+# ── 同一次发布被两个源用不同名字各列一条 ──────────────────────────
+# 2026-09-09 线上日历实测的四条重复：
+#   9-10 美国「生产者物价PPI(月) 预0.4%」+「生产者物价PPI —」(FRED发布日程)
+#   9-11 美国「消费者物价CPI(月)/(年)」+「消费者物价CPI —」(同上)
+#   9-09 中国「消费者物价CPI(年) 预0.8%」+「居民消费价格CPI —」(我们自己推算的日程)
+#   9-09 中国「PPI y/y 预3.6%」+「工业品出厂价PPI —」
+# 规律：带(月)/(年)后缀的是具体指标，光名字的是"这场发布"本身。同国同日，
+# 具体指标已经带预期值来了，光名字那条就没信息了，撤掉。
+# 反过来只有光名字那条时（9-16 零售销售、9-30 GDP）照留，否则日历会空掉。
+_DUP_ALIAS = {"CNY": {"居民消费价格CPI": "消费者物价CPI",
+                      "工业品出厂价PPI": "生产者物价PPI",
+                      "PPI y/y": "生产者物价PPI"}}
+_DUP_SUFFIX = re.compile(r"[（(](月|年|季|周)[)）]\s*$")
+
+
+def _canon(e: dict) -> str:
+    t = _DUP_SUFFIX.sub("", (e.get("title") or "").strip()).strip()
+    return _DUP_ALIAS.get(e.get("country") or "", {}).get(t, t)
+
+
+def _drop_generic_dupes(events: list[dict], bj_date) -> list[dict]:
+    groups: dict[tuple, list] = {}
+    for e in events:
+        groups.setdefault((e.get("country"), _canon(e), bj_date(e)), []).append(e)
+    drop: set[int] = set()
+    for grp in groups.values():
+        if len(grp) < 2 or not any(e.get("forecast") is not None for e in grp):
+            continue
+        for e in grp:
+            if not _DUP_SUFFIX.search((e.get("title") or "").strip()) \
+                    and e.get("forecast") is None:
+                drop.add(id(e))
+    return [e for e in events if id(e) not in drop] if drop else events
 
 
 def _zh(title: str, country: str) -> tuple[str, int | None]:
@@ -319,14 +355,26 @@ def fetch(archive_dir: str | Path, max_staleness_days: int = 8) -> DataPoint:
     seen = {(e["title"], _bj_date(e)) for e in events}
     events += [e for e in _cn_events() if (e["title"], _bj_date(e)) not in seen]
 
-    # 全局去重：同名同日只留信息最全的一条（FRED 同日多场次、跨源撞名都在这里收敛）
+    # 全局去重：同国同名同日只留信息最全的一条（FRED 同日多场次、跨源撞名都在这里收敛）
+    # 键里带 country：中美都有"消费者物价CPI(年)"，撞到同一个北京日就会误删一条
     best: dict[tuple, dict] = {}
     for e in events:
-        k = (e["title"], _bj_date(e))
+        k = (e.get("country"), e["title"], _bj_date(e))
         score = (e["forecast"] is not None) * 4 + (not e["estimated"]) * 2 + bool(e["note"])
         if k not in best or score > best[k]["_score"]:
             best[k] = {**e, "_score": score}
     events = [{k: v for k, v in e.items() if k != "_score"} for e in best.values()]
+
+    # 同一次发布被两个源用不同名字各列一条 → 只留说得清的那条。
+    # 2026-09-09 实测线上日历里的四条重复：
+    #   9-10 美国「生产者物价PPI(月) 预0.4%」和「生产者物价PPI —」(FRED发布日程)
+    #   9-11 美国「消费者物价CPI(月)/(年)」和「消费者物价CPI —」(同上)
+    #   9-09 中国「消费者物价CPI(年) 预0.8%」和「居民消费价格CPI —」(我们自己推算的日程)
+    #   9-09 中国「PPI y/y 预3.6%」和「工业品出厂价PPI —」
+    # 规律：带(月)/(年)后缀的是具体指标，光名字的是"这场发布"本身。同国同日，
+    # 只要具体指标已经带着预期值来了，光名字那条就没信息了，撤掉。
+    # 反过来只有光名字那条时（例如 9-16 零售销售）照留，否则日历会空掉。
+    events = _drop_generic_dupes(events, _bj_date)
     own_events = list(events)          # 本次抓到的（写周存档用，不含并进来的历史）
 
     # ④ 历史回填（2026-09-07，Momo：「你把历史日历都删了吗？我舍不得删」）
@@ -354,6 +402,8 @@ def fetch(archive_dir: str | Path, max_staleness_days: int = 8) -> DataPoint:
         except Exception as ex:
             print(f"[warn] econ_calendar archive {f.name}: {type(ex).__name__}: {ex}")
     dp.extra["restored_from_archive"] = restored
+    # 存档里躺着的也可能是"光名字"那条，所以并回来之后再筛一次
+    events = _drop_generic_dupes(events, _bj_date)
 
     events.sort(key=lambda e: e["datetime"] or "")
     dp.value = float(len(events))

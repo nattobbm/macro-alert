@@ -140,11 +140,34 @@ export const predictions: Prediction[] = L
 
 // ── 三源加息概率 ──
 const mo = L?.predictions?.market_odds
+// 2026-09-09：三个数并排放而不标时点，是在制造假分歧。实测当天 ZQ 65%(今天)、
+// CME 38%(8-26 手工读的，14天前)、Polymarket 54%(今天)——读者看到的是"三家吵翻了"，
+// 其实中间那个是两周前的旧读数。每条都带上"哪天的"，过期的自己说自己过期。
+const oddsAge = (asOf?: string | null): number | null => {
+  if (!asOf) return null
+  const d = Date.parse(asOf + 'T00:00:00Z')
+  return Number.isNaN(d) ? null : Math.floor((Date.now() - d) / 864e5)
+}
+function oddsRow(source: string, source_en: string, o: any, color: string) {
+  const age = oddsAge(o?.as_of)
+  const md = o?.as_of ? `${+o.as_of.slice(5, 7)}-${+o.as_of.slice(8, 10)}` : null
+  return {
+    source: isEN ? source_en : source,
+    prob: Math.round((o?.value ?? 0) * 100),
+    color,
+    asOf: md,
+    // 3 天以上就算旧读数：ZQ 和 Polymarket 每个工作日都刷，差 3 天必然是没跟上
+    stale: age != null && age >= 3,
+    ageText: age == null ? null
+      : age <= 0 ? (isEN ? 'today' : '今天')
+      : (isEN ? `${age}d ago` : `${age}天前`),
+  }
+}
 export const rateProbabilities = mo
   ? [
-      { source: '期货算出来的(ZQ)', prob: Math.round((mo.zq_auto?.value ?? 0) * 100), color: '#5b9eb8' },
-      { source: 'CME官网读的', prob: Math.round((mo.cme_manual?.value ?? 0) * 100), color: '#6bb89a' },
-      { source: 'Polymarket押注', prob: Math.round((mo.polymarket?.value ?? 0) * 100), color: '#d4a848' },
+      oddsRow('期货算出来的(ZQ)', 'Futures-implied (ZQ)', mo.zq_auto, '#5b9eb8'),
+      oddsRow('CME官网读的', 'CME site (manual)', mo.cme_manual, '#6bb89a'),
+      oddsRow('Polymarket押注', 'Polymarket', mo.polymarket, '#d4a848'),
     ].filter(r => r.prob > 0)
   : mock.rateProbabilities
 
@@ -369,8 +392,10 @@ export const regimeLive = L?.regime
       // tsc 报错 → 类型检查进不了构建 → 未定义变量能一路上线
       // 先把数组定型再 map —— 在 any 上调 .map，返回值还是 any，
       // 回调标了返回类型也没用，下游参数照样是隐式 any
+      // disp 由 monitor 按口径给（概率→64.6%，利率→5.25%）。旧数据没有这个字段时
+      // 退回原来的裸数字，页面不会因为一次数据滞后就空掉。
       conds: ((L.regime.detail ?? []) as any[]).map((d): RegimeCond => ({
-        label: d.cond, value: d.value != null ? fmt(d.value) : '—',
+        label: d.cond, value: d.disp ?? (d.value != null ? fmt(d.value) : '—'),
         met: !!d.met, known: d.known !== false,
       })),
     }
