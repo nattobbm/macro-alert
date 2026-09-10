@@ -61,18 +61,41 @@ TAGS = {
     #   rate ⊂ ope·rate      → 任何"运营"都算利率
     #   discount（不限定 window/rate）⊂ 天然气"折价"→ 货币链
     #   gold（不限定边界）⊂ Gold·man → 投行名被打成黄金链
-    "债务链": r"treasury|auction|refunding|buyback|\bdebt\b|deficit|\bbonds?\b|yield|issuance|QRA",
-    "货币链": (r"\bfed\b|fomc|\brates?\b|federal funds|federal reserve|\brepo\b|\bQT\b|"
+    # 2026-09-10 补财政词：赤字这条链的输入不只有拍卖，还有花钱的决定。
+    "债务链": (r"treasury|auction|refunding|buyback|\bdebt\b|deficit|\bbonds?\b|yield|"
+             r"issuance|QRA|fiscal|stimulus|tax cuts?|spending bill|budget|"
+             r"government shutdown|debt ceiling"),
+    # rates 前面挡掉几个明确不是利率的搭配：「Oil Tanker Rates Hit Record Highs」
+    # 被打成货币链，标签错了会直接显示在页面上。房贷利率(mortgage rates)是货币口径，
+    # 所以不挡它。
+    "货币链": (r"\bfed\b|fomc|"
+             r"(?<!tanker )(?<!freight )(?<!shipping )(?<!charter )(?<!tax )\brates?\b|"
+             r"federal funds|federal reserve|\brepo\b|\bQT\b|"
              r"balance sheet|SOFR|IORB|liquidity|discount window|discount rate|"
              r"\becb\b|\bboe\b|bank of england|european central bank|"
              r"lagarde|bailey|central bank"),
     "日本链": r"japan|\bboj\b|\byen\b|\bjgb\b|\bueda\b",
     # strike 单独一词误报太多（Global Strike Command / strike fighter 等美军建制名），
     # 故要求它与地缘对象连用；air/miss​ile strike 这类明确军事行动仍单独收。
+    # 2026-09-10 补：第一版**整张词表里没有 china**，只有 taiwan。中美是这个站最核心的
+    # 一条博弈线，一条不含 AI/关税字样的中国新闻会被整条丢掉。实测被误丢的：
+    # 「US to ban imports of some Canadian alcohol, dairy goods and motorbikes」(贸易反制)、
+    # 「U.S. trying to reduce its reliance on China for batteries」(供应链)、
+    # 「N Korea has built two-storey uranium enrichment facility」(核扩散)。
     "地缘链": (r"iran|hormuz|sanction|missile|opec|\boil\b|crude|israel|tanker|"
              r"houthi|red sea|persian gulf|tehran|"
              r"ukraine|russia|russian|putin|kremlin|moscow|venezuela|"
-             r"taiwan|export control|tariff|trade war|"
+             # 中国这条要带经济语境才算。光一个国名会把"中国货船起火20人死"这种
+             # 事故新闻也收进来（实测它按时间排到了第0位，最显眼的槽）。
+             # 反过来，一条中国新闻若一个经济/政策词都不含，按定义就不是宏观新闻。
+             r"^(?=.*\b(?:china|chinese|beijing)\b)"
+             r"(?=.*\b(?:trade|tariff|export|import|yuan|renminbi|pboc|central bank|"
+             r"stimulus|property|chip|semiconductor|rare earth|treasur\w*|holdings|"
+             r"econom\w+|growth|manufactur\w+|factory|steel|sanction|curb|ban|"
+             r"supply chain|reliance|investment|\bgdp\b|deflation|inflation)\b)|"
+             r"taiwan|north korea|pyongyang|"
+             r"export control|tariff|trade war|embargo|\bban(s|ned)? imports?\b|"
+             r"imports? of|uranium|enrichment|"
              r"(air|missile|drone|retaliat\w*|military)\s+strikes?|"
              r"strikes?\s+(on|against|in)\b"),
     "AI链": (r"nvidia|\bai\b|artificial intelligence|datacenter|data center|oracle|"
@@ -83,9 +106,14 @@ TAGS = {
     # 2026-09-09 增。起因：铜创历史新高、商品牛市转向、欧洲负电价、加州电网吃紧
     # 这几条都进了 RSS 却因为一个关键词都不命中而和体育新闻一起被同等对待。
     # 商品和电力是物价的上游，属于宏观输入。
+    # 2026-09-10 补 gasoline/diesel/batteries/coal：油价传到物价是从**加油站**传的，
+    # 「Gasoline prices, over $4 per gallon, hit record high」这种直接的物价读数
+    # 第一版一个词都不命中。电池/关键矿产同理，是 AI 和电网的上游。
     "商品": (r"copper|commodit\w+|\bmetals?\b|lithium|nickel|aluminium|aluminum|smelter|"
            r"minerals|\bmining\b|power price|electricity|\bgrid\b|power demand|"
-           r"\blng\b|natural gas|refiner\w*|\bpipeline\b"),
+           r"\blng\b|natural gas|refiner\w*|\bpipeline\b|"
+           r"gasoline|\bpetrol\b|diesel|jet fuel|pump prices?|\bcoal\b|"
+           r"batter(y|ies)|energy storage|hydrogen"),
 }
 
 # 硬拦：体育/娱乐/王室。即使标题里蹭到宏观词（"gold medal"命中黄金链这类）也一律丢。
@@ -93,17 +121,31 @@ TAGS = {
 # above 4%" 里有 England，若拿国名拦会把真新闻拦掉。
 BLOCK = re.compile(
     r"champions league|premier league|\buefa\b|\bfifa\b|world cup|olympic|"
-    r"wimbledon|us open|\bnba\b|\bnfl\b|cricket|semifinals?|quarterfinals?|"
+    # 2026-09-10 修：`us open` 不加右边界会吃掉 "US opens investigation into
+    # Chinese chip imports"、"US opens strategic reserve" 这类真新闻——
+    # "opens" 里就含 "open"。硬拦名单误伤的代价比漏拦一条球赛大得多。
+    r"wimbledon|\bus open\b|\bnba\b|\bnfl\b|cricket|semifinals?|quarterfinals?|"
     r"invictus|gold medal|transfer window",
+    re.I,
+)
+
+# 美联储 press_all 里混着大量银行监管文书（对某前员工的执法处理、批准某银行的申请、
+# 终止某项处罚）。2026-09-10 实测：8 条美联储条目里 6 条是这类，占着消息流的位子，
+# 而真正有信息量的会议纪要和讲话反被挤到后面。只拦这一类，讲话/纪要/声明一律留。
+FED_PAPERWORK = re.compile(
+    r"enforcement action|civil money penalt|written agreement|cease and desist|"
+    r"announces approval of application|approval of application by|"
+    r"termination of enforcement|prohibition order|consent order",
     re.I,
 )
 
 
 def _relevant(item: dict) -> bool:
-    """官方源全留；其余必须命中链条词表，且不在硬拦名单里。"""
+    """官方源全留（美联储的监管文书除外）；其余必须命中链条词表，且不在硬拦名单里。"""
+    title = item.get("title") or ""
     if item.get("source") in OFFICIAL:
-        return True
-    if BLOCK.search(item.get("title") or ""):
+        return not (item.get("source") == "Fed" and FED_PAPERWORK.search(title))
+    if BLOCK.search(title):
         return False
     return item.get("tags") != ["其他"]
 
