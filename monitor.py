@@ -149,16 +149,67 @@ RADAR_BANDS = [
 ]
 
 
+# -- 噪音口径表（2026-09-10 实测；样本 = data/latest.json 的 series，近一年日频）--
+# 用途：迟滞缓冲带宽。标准是「缓冲带 >= 该指标日变动的 90 分位」，
+# 与止损同构：止损宽度必须大过日内抖动，否则一定被反复打掉。
+METRIC_NOISE_P90 = {          # 单位＝该指标日变动百分比(%)
+    "gold": 2.84, "xauusd": 2.84, "brent": 5.26, "usdjpy": 0.77,
+    "us30y": 1.22, "tips10y": 2.58, "breakeven10": 1.38, "hy_oas": 3.05,
+    "sofr": 1.66, "rrp": 210.38,
+    # ZQ 自算加息概率：非零日变动中位 8.1pp、最大 23.1pp，相对 0.65 约 12.5%
+    "fedwatch_sep_hike": 12.5,
+}
+_NOISE_DEFAULT = 3.0
+
+# 数据源自己承认的精度下限（与 ctx 同单位）。
+# |读数 - 阈值| < 这个值 -> 该阈值判定静音：差比刻度还细，说的不是市场是舍入。
+# fedwatch: ZQ 价格最小跳动 0.0025 -> 概率 2.3pp；源 note 另称与官方可差 1-2pp，取大者。
+SOURCE_PRECISION = {"fedwatch_sep_hike": 0.023}
+
+_PREV_DIGEST = None
+
+
+def prev_digest_state() -> dict:
+    """上一轮的 digest_state（本轮跑完才会被覆写），迟滞判定要用。"""
+    global _PREV_DIGEST
+    if _PREV_DIGEST is None:
+        f = DATA / "digest_state.json"
+        try:
+            _PREV_DIGEST = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        except Exception:
+            _PREV_DIGEST = {}
+    return _PREV_DIGEST
+
+
+def within_source_precision(key: str, value, threshold) -> bool:
+    """差小得过数据源自己的刻度 -> 判噪音。"""
+    prec = SOURCE_PRECISION.get(key)
+    if prec is None or value is None or threshold is None:
+        return False
+    return abs(value - threshold) < prec
+
+
 def build_radar_bands(ctx: dict) -> list[dict]:
     out = []
+    prev_bands = prev_digest_state().get("bands") or {}
     for b in RADAR_BANDS:
         v = ctx.get(b["key"])
         if v is None:
             continue
         lo, hi = b["lo"], b["hi"]
         pos = (v - lo) / (hi - lo)          # <0 破下界, >1 破上界
+        # 2026-09-10 修：进/退共用一条线 -> 09-10 加息带 in_band<->near 一天翻两次，
+        # 而翻转来自数据源切换（13pp）不是行情。退出线往带子里面挪一个噪音带宽。
+        span = abs(hi - lo) or 1.0
+        buf = min(0.35, METRIC_NOISE_P90.get(b["key"], _NOISE_DEFAULT) / 100.0 * abs(v) / span)
+        was_near = prev_bands.get(b["id"]) in ("near", "breached_lo", "breached_hi")
+        n_lo, n_hi = (0.10 + buf, 0.90 - buf) if was_near else (0.10, 0.90)
         status = "breached_lo" if v < lo else "breached_hi" if v > hi \
-            else "near" if (pos < 0.1 or pos > 0.9) else "in_band"
+            else "near" if (pos < n_lo or pos > n_hi) else "in_band"
+        # 差细过数据源刻度 -> 不许报「逼近」
+        if status == "near" and (within_source_precision(b["key"], v, hi)
+                                 or within_source_precision(b["key"], v, lo)):
+            status = "in_band"
         out.append({**b, "value": v, "position": round(max(-0.15, min(1.15, pos)), 4),
                     "dist_lo_pct": round((v - lo) / lo * 100, 2),
                     "dist_hi_pct": round((hi - v) / hi * 100, 2),
@@ -354,30 +405,54 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
     #       ② 超过 MAX_AGE 天的读数一律不用——宁可显示"没数"，不拿一周前的数冒充今天
     _MAX_AGE_D = 3
     _today = dt.date.today()
-    cands = []
-    for _k, _label in (("fedwatch_sep_hike", "CME人工读数"),
-                       ("fedwatch_zq_sep",   "ZQ期货自算"),
-                       ("polymarket_sep_hike", "Polymarket押注")):
+    #
+    # 2026-09-10 再修：取 as_of 最新的那个 = 让读数由"哪个源先跨过 UTC 零点"决定。
+    # 实测 73 次运行两源同时有值：ZQ 100% 高于 Polymarket，差值中位 13.1pp
+    # （min 6.4 / max 56.5）——这不是同一件事的两次测量，是两个不同口径。
+    # 后果：选中源在 73 次里切换 12 次，每切一次读数跳 12.9pp（最大 34.1pp），
+    # 其中 1 次直接跨过 65% 阈值，被当成"市场重定价"推给用户。09-10 那两条重复
+    # 推送就是这么来的：ZQ 0.646 -> Poly 0.535 -> ZQ 0.646，行情没动。
+    # 改法：定死主源，副源只做交叉校验，永不顶替。口径不许中途换人。
+    _PRIMARY = ("fedwatch_zq_sep", "ZQ期货自算")          # tier2，方法论公开，日频
+    _FALLBACK = ("fedwatch_sep_hike", "CME人工读数")      # tier3，手录，常停更
+    _CROSSCHECK = ("polymarket_sep_hike", "Polymarket押注")  # 另一个场子，只对照
+
+    def _usable(_k):
         _dp = by_key.get(_k)
         if not _dp or _dp.stale or _dp.value is None or not _dp.as_of:
-            continue
+            return None
         try:
             if (_today - dt.date.fromisoformat(_dp.as_of[:10])).days > _MAX_AGE_D:
-                continue        # 过期作废，不进候选
+                return None     # 过期作废
         except ValueError:
-            continue
-        cands.append((_dp.as_of, _dp.value, _label))
-    if cands:
-        as_of, val, src = max(cands, key=lambda x: x[0])
+            return None
+        return (_dp.as_of, _dp.value)
+
+    _pick = None
+    for _k, _label in (_PRIMARY, _FALLBACK):
+        _u = _usable(_k)
+        if _u:
+            _pick = (_u[0], _u[1], _label)
+            break
+    cands = [_pick] if _pick else []
+    if _pick:
+        as_of, val, src = _pick
         ctx["fedwatch_sep_hike"] = val
         ctx["_fedwatch_source"] = f"{src} as_of={as_of}"
         stale_keys.discard("fedwatch_sep_hike")
-        if len(cands) > 1:
-            lo, hi = min(c[1] for c in cands), max(c[1] for c in cands)
-            # 两源分歧大时留痕（不阻断判定：取新的那个是有依据的选择，但要可查账）
-            if hi - lo > 0.10:
-                ctx["_fedwatch_conflict"] = "; ".join(
-                    f"{s}={v:.1%}({a})" for a, v, s in sorted(cands))
+        _cc = _usable(_CROSSCHECK[0])
+        if _cc:
+            ctx["_fedwatch_crosscheck"] = f"{_CROSSCHECK[1]}={_cc[1]:.1%}({_cc[0]})"
+            _gap = abs(val - _cc[1])
+            if _gap > 0.10:
+                ctx["_fedwatch_conflict"] = f"{src}={val:.1%} vs {ctx['_fedwatch_crosscheck']}"
+            # 两源分歧大过"离阈值的距离" -> 这个读数决定不了阈值，判定存疑
+            for _thr in (0.25, 0.65):
+                if abs(val - _thr) < _gap:
+                    ctx["_fedwatch_undecidable"] = (
+                        f"离{_thr:.0%}线只有{abs(val-_thr)*100:.1f}pp，"
+                        f"两源却差{_gap*100:.1f}pp，这条线判不了")
+                    break
     else:
         # 三个源都过期/都没抓到 → 明确置空。ctx 在上面已经填过原始值，
         # 不清掉的话就会拿过期数继续判定，这正是 0/3↔1/3 来回跳的机制。
@@ -484,9 +559,25 @@ def build_digest(ctx: dict, knowledge: dict, rule_results: list, radar: list,
 
     lines, changes = [], []
     # 1) 规则新触发
+    # 2026-09-10 修：这里原来只写 lines 不写 changes，而推送闸只看 changes ——
+    # 「规则真的触发了」从来没进过闸（漏报）。同时 status=="fired" 是"当前为真"
+    # 不是"刚变成真"：日元急升/泰勒缺口连着好几天都 fired，直接拿它当推送理由
+    # 会变成每轮都响（实测 84 次运行里 61 次）。所以只认边沿：上一轮没 fired 的才算新触发。
     fired = [r for r in rule_results if r["status"] == "fired"]
+    rules_now = {r.get("id") or r.get("name"): r.get("status") for r in rule_results}
+    prev_rules = prev.get("rules", {})
     for r in fired:
-        lines.append({"icon": "▲", "text": f"规则触发：{r['name']}", "level": "alert"})
+        _rid = r.get("id") or r.get("name")
+        _newly = bool(prev_rules) and prev_rules.get(_rid) != "fired"
+        lines.append({"icon": "▲", "text": f"规则触发：{r['name']}"
+                      + ("" if _newly else "（持续中）"), "level": "alert"})
+        # data_health 域（H1 源停更 / H2 源冲突）是管道体检，不是市场事件：
+        # 卡片底部「体检」那行已经在报，不该再为它单独响一条。实测 13 次规则
+        # 边沿触发里 7 次是 H1_stale。
+        if _newly and r.get("domain") != "data_health":
+            changes.append({"kind": "rule", "id": _rid, "label": r.get("name"),
+                            "old": prev_rules.get(_rid), "new": "fired",
+                            "severity": r.get("severity")})
     # 2) 链条节点状态变化（对比上次）
     prev_nodes = prev.get("nodes", {})
     order = {"quiet": 0, "near": 1, "crossed": 2}
@@ -551,6 +642,7 @@ def build_digest(ctx: dict, knowledge: dict, rule_results: list, radar: list,
         "chain_life": {ch["id"]: ch.get("life", "active") for ch in knowledge.get("chains", [])},
         "flagged": [c["id"] for c in knowledge.get("conclusions", []) if c.get("live_flag")],
         "bands": band_now, "judge_verdict": jr, "pred_evidence": ev_now,
+        "rules": rules_now,
     }, ensure_ascii=False), encoding="utf-8")
     return {"date": today, "lines": lines, "next_watch": next_watch, "changes": changes}
 
@@ -581,7 +673,16 @@ def build_knowledge(ctx: dict) -> dict:
                         # 严格不等号：恰好等于阈值不算已穿，与规则引擎的 > / < 保持一致。
                         # 2026-08-31 修：阈值为0的节点（FIMA用量、GEX穿越位）此前用 <=，
                         # 导致 FIMA=0（"没人用"，属安静）被显示成"已穿"，并虚增链条热度。
-                        st = "crossed" if dist < 0 else ("near" if dist < 0.05 else "quiet")
+                        # 2026-09-10 修：5% 这条线进退同用 -> 黄金 09-10 只走 0.34%
+                        # （日常 p90 是 2.84%）就把「安静->逼近」翻了，推了一条重复消息。
+                        # 已经在 near/crossed 的，退出线往外挪一个该指标的噪音带宽。
+                        _nk = ch["id"] + "·" + nd["label"]
+                        _was = (prev_digest_state().get("nodes") or {}).get(_nk)
+                        _buf = min(0.05, METRIC_NOISE_P90.get(nd["metric"], _NOISE_DEFAULT) / 100.0)
+                        _line = 0.05 + _buf if _was in ("near", "crossed") else 0.05
+                        st = "crossed" if dist < 0 else ("near" if dist < _line else "quiet")
+                        if st == "near" and within_source_precision(nd["metric"], v, thr):
+                            st = "quiet"      # 差细过数据源刻度，不算逼近
                         # 2026-09-06 修：线是 0 且值是 0（FIMA 没人借、银行没收紧）时 dist=0，
                         # 落进 <0.05 被标"快到"。0 的意思是"没发生"，该是安静，否则链条热度虚增。
                         if thr == 0 and v == 0:
@@ -1336,17 +1437,39 @@ def main():
     _changes = (latest.get("digest") or {}).get("changes") or []
     _judge_flipped = any(c.get("kind") == "judge" for c in _changes)
     _is_friday_close = dt.date.today().weekday() == 4 and dt.datetime.now(dt.timezone.utc).hour >= 20
-    _should_send = bool(_changes) or _judge_flipped or _is_friday_close or args.force_send
+
+    # 2026-09-10 修：原闸是 bool(_changes)，两个洞——
+    # 洞一（漏报）：规则触发只写进 lines 不写进 changes，所以「规则真的触发了」
+    #   这件事从来没进过推送闸。真出事反而可能不响。
+    # 洞二（重复）：把"离某条线近了一点"和"线被破了"当成同一种变化。09-10 那两条
+    #   重复推送，两个触发因都是逼近类：黄金 quiet->near（走了 0.34%，日常 p90 2.84%）
+    #   和加息带 in_band->near（读数根本没动，是数据源被切换了）。
+    # 改法：实质变化才单独响；逼近类搭下一条实质推送的车。
+    def _is_substantive(c):
+        k = c.get("kind")
+        if k == "band":
+            return str(c.get("new") or "").startswith("breached")   # 线被破了
+        if k == "node":
+            return c.get("new") == "crossed"                        # 走到已突破
+        return True        # judge 翻面 / 预测单新证据
+
+    _subst = [c for c in _changes if _is_substantive(c)]
+    _fired_now = [c for c in _subst if c.get("kind") == "rule"]
+    _prox = [c for c in _changes if not _is_substantive(c)]
+    _should_send = (bool(_subst) or bool(_fired_now) or _judge_flipped
+                    or _is_friday_close or args.force_send)
 
     if _should_send:
         if _is_friday_close and not _changes:
             msg = "*本周没有新越线。* 系统在跑，只是这周没事。" + chr(10)*2 + msg
         notify.send(msg, dry=args.dry_run)
-        print(f"[send] 推送（变化 {len(_changes)} 条{'，判据翻转' if _judge_flipped else ''}"
+        print(f"[send] 推送（实质 {len(_subst)} 条，规则触发 {len(_fired_now)} 条，"
+              f"顺带逼近 {len(_prox)} 条"
+              f"{'，判据翻转' if _judge_flipped else ''}"
               f"{'，周五周报' if _is_friday_close else ''}）", file=sys.stderr)
     else:
-        print("[skip] 无变化、判据未翻、非周五收盘 → 不推送（内容仍写进 data/ 与网站）",
-              file=sys.stderr)
+        print(f"[skip] 没有实质变化（逼近类 {len(_prox)} 条不单独响）"
+              f" → 不推送（内容仍写进 data/ 与网站）", file=sys.stderr)
         if args.dry_run:
             print(msg)
 

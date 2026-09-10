@@ -222,6 +222,13 @@ def _sec_prediction(predictions: dict, changes: list[dict], market_odds: dict | 
     return L
 
 
+# 数据源自己的最小刻度：|读数 - 阈值| 比这个还细 -> 不是「再动一点就到了」，是舍入。
+# 2026-09-10：ZQ 加息概率价格最小跳动 0.0025，折成概率 2.3pp；推送却写「再涨 0.4
+# 个百分点到 65%」——这个数下一跳只能是 ±2.3pp，0.4pp 的距离不存在。
+# 与 monitor.py 的 SOURCE_PRECISION 同源。
+_SRC_PRECISION = {"fedwatch_sep_hike": 0.023, "fedwatch_zq_sep": 0.023}
+
+
 def _sec_near(radar: list[dict], bands: list[dict], metrics: dict, quotes: dict) -> list[str]:
     """再动一点就会触发的：点数距离 + 到哪个价 + 然后会怎样。"""
     rows = []
@@ -238,6 +245,9 @@ def _sec_near(radar: list[dict], bands: list[dict], metrics: dict, quotes: dict)
         v, thr = r.get("value"), r.get("threshold")
         if v is None or thr is None:
             continue
+        _prec = _SRC_PRECISION.get(key)
+        if _prec is not None and abs(thr - v) < _prec:
+            continue        # 差细过数据源刻度，说的不是市场是舍入
         updown = '涨' if r['direction'] == 'above' else '跌'
         if key.endswith("_dist_pct"):
             # 2026-09-07 修：gamma 翻转位/墙位这类节点的 value 本身就是"离那个位置还差百分之几"，
@@ -267,33 +277,113 @@ def _sec_near(radar: list[dict], bands: list[dict], metrics: dict, quotes: dict)
     return [t for _, t in rows[:3]]
 
 
+_INST_SYN = [("欧洲央行", "欧央行"), ("美国联邦储备", "美联储"), ("联邦储备", "美联储"),
+             ("日本银行", "日本央行"), ("英国央行", "英央行")]
+
+
+def _norm_title(t: str) -> str:
+    """标题归一：去掉动词壳和机构别名，用来判两条是不是同一件事。"""
+    t = str(t or "")
+    for a, b in _INST_SYN:
+        t = t.replace(a, b)
+    for w in ("公布", "召开", "发表", "举行", "初值", "的"):
+        t = t.replace(w, "")
+    return "".join(ch for ch in t if ch.isalnum()).lower()
+
+
+def _has_cjk(t: str) -> bool:
+    return any("一" <= ch <= "鿿" for ch in str(t or ""))
+
+
 def _sec_watch(speech_events: list[dict], econ_today: list[dict], predictions: dict, today: str) -> list[str]:
+    """今明要盯。
+
+    2026-09-10 重写。原来是两个日历源直接首尾相接，源内去重、跨源不去重：
+    金十报「20:15 欧洲央行公布利率决议」（北京时间），ForexFactory 报
+    「08:15 欧央行利率决议」和「08:15 货币政策声明」（美东），加上两边各自的
+    新闻发布会——同一场欧央行会议在一条推送里占了 6 行。
+    两个源时区不同、措辞不同，所以按标题或按本地时间都对不上；换算成 UTC 是同一秒。
+    改法：① 全部折算成 UTC 时刻 ② 同一时刻的合并成一行 ③ 已经过去的不再叫「要盯」。
+    """
     L = []
     tm = (dt.date.fromisoformat(today) + dt.timedelta(days=1)).isoformat()
+
     def day_word(d):
         return "今" if d == today else "明" if d == tm else d[5:].replace("-", "/")
-    seen = set()
-    for s in (speech_events or []):
-        # 同一事件在两天的清单里各出现一次（"次日02:00 褐皮书" 和第二天的 "02:00 褐皮书"），去重
-        k = (s.get("date"), s.get("time_bj"), s.get("title"))
-        if k in seen:
-            continue
-        seen.add(k)
-        t = f"{day_word(s['date'])} {s['time_bj']}" if s.get("time_bj") else day_word(s["date"])
-        L.append(f"· {t} {s['title']}")
-        if len(L) >= 5:
-            break
-    # 只留 ★★★ 且不是节点的经济数据
+
+    now = dt.datetime.now(dt.timezone.utc)
+    BJT = dt.timezone(dt.timedelta(hours=8))
+    items = []          # (utc or None, date, 北京时间显示, 标题, 附注)
+
+    for sp in (speech_events or []):
+        d, hm = sp.get("date"), sp.get("time_bj")
+        u = None
+        if d and hm:
+            try:
+                u = dt.datetime.fromisoformat(f"{d}T{hm}:00").replace(tzinfo=BJT).astimezone(dt.timezone.utc)
+            except ValueError:
+                u = None
+        items.append((u, d, hm, sp.get("title"), ""))
+
     for e in (econ_today or []):
         if e.get("importance", 0) < 3:
             continue
+        u = None
+        try:
+            u = dt.datetime.fromisoformat(e["datetime"]).astimezone(dt.timezone.utc)
+        except (KeyError, ValueError, TypeError):
+            u = None
         tag = ""
         for o in (predictions or {}).get("open_list") or []:
             for fv in (o.get("falsifiers") or {}).values():
-                if any(w in fv for w in ("非农", "CPI", "PCE")) and any(w in e.get("title", "") for w in ("非农", "CPI", "PCE")):
+                if (any(w in fv for w in ("非农", "CPI", "PCE"))
+                        and any(w in e.get("title", "") for w in ("非农", "CPI", "PCE"))):
                     tag = " ← 和签的判断挂钩"
-        L.append(f"· {day_word(e['date'])} {e['title']}{tag}")
-    return L[:6]
+        hm = u.astimezone(BJT).strftime("%H:%M") if u else None
+        items.append((u, e.get("date"), hm, e.get("title"), tag))
+
+    # 已经过去的不叫「要盯」：留 15 分钟余量，没有时刻的（整天事件）按日期算
+    fresh = []
+    for u, d, hm, title, tag in items:
+        if u is not None:
+            if u < now - dt.timedelta(minutes=15):
+                continue
+        elif d and d < today:
+            continue
+        fresh.append((u, d, hm, title, tag))
+
+    # 同一 UTC 时刻 = 同一件事，合并成一行；没有时刻的按 (日期,标题) 各自成组
+    groups: dict = {}
+    order = []
+    for u, d, hm, title, tag in fresh:
+        k = ("t", u.isoformat()) if u is not None else ("d", d, _norm_title(title))
+        if k not in groups:
+            groups[k] = {"d": d, "hm": hm, "titles": [], "tag": ""}
+            order.append(k)
+        g = groups[k]
+        g["titles"].append(title)
+        g["tag"] = g["tag"] or tag
+        g["hm"] = g["hm"] or hm
+
+    for k in order:
+        g = groups[k]
+        ts = g["titles"]
+        # 组内同一件事的不同说法：中文在就丢掉纯英文那条（英文源是同一条的另一种写法）
+        if any(_has_cjk(t) for t in ts):
+            ts = [t for t in ts if _has_cjk(t)]
+        uniq, seen_n = [], set()
+        for t in ts:
+            n = _norm_title(t)
+            if n in seen_n:
+                continue
+            seen_n.add(n)
+            uniq.append(t)
+        head = f"{day_word(g['d'])} {g['hm']}" if g["hm"] else day_word(g["d"])
+        _more = f"等{len(uniq)}项" if len(uniq) > 3 else ""
+        L.append(f"· {head} {' / '.join(uniq[:3])}{_more}{g['tag']}")
+        if len(L) >= 6:
+            break
+    return L
 
 
 def _sec_speeches(speeches: list[dict]) -> list[str]:
