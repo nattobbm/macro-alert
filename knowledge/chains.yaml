@@ -79,9 +79,9 @@ chains:
     name: 日本若加息，借日元的全球资金要回流
     term: 日本链（尾部通道）
     name_en: "If Japan hikes, yen-funded money flows home"
-    one_liner_en: "BOJ hikes -> yen strengthens -> ~$500bn yen-carry unwinds -> sell USTs & stocks -> global deleveraging"
+    one_liner_en: "Two routes to the same place. (1) BOJ hikes -> yen strengthens -> ~$500bn yen-carry unwinds. (2) JGB yields rise -> funds take losses -> margin calls -> they sell the most liquid thing they hold, USTs. Both end in selling USTs & stocks."
     falsify_en: "Japan hikes yet adds USTs two months straight = chain broken"
-    one_liner: 日本若加息 → 日元变强 → 全球借日元炒美股的钱(约5000亿$)要撤 → 卖美债卖股票 → 全球一起去杠杆
+    one_liner: 两条路通向同一个地方。一条是日本加息 → 日元变强 → 借日元炒美股的钱(约5000亿$)要撤；另一条是日债利率涨 → 拿着日债的基金亏钱被追保证金 → 只好卖掉手里最好卖的美债。两条最后都是卖美债卖股票
     falsify: 日本加息后反而连续两月增持美债 = 这条链断了
     nodes:
       - {label_en: "Japan's own interest bill", label: "日本自己的利息账单", term: "FY27偿债预算", value_text: "36.6万亿¥(+17%)", status: fact, note: "它也欠很多,加息也心疼"}
@@ -89,10 +89,14 @@ chains:
       # 日元「贬值」→日本输入性通胀→日本发债增加→日债收益率升→对冲基金日债亏损被追保证金→
       # 卖掉流动性最强的美债→美债收益率上行→AI巨头发债成本上升→美股。
       # 我们这条是日元「升值」触发套息平仓。两条都终结于"卖美债"，可以互为验证。
-      # ⚠ 中间那一环「日债收益率」我们装不上：yfinance 无日债代码，FRED 的 IRLTLT01JPM156N
-      #   属已停摆的 OECD 数据族（最后更新 2026-07-16）。暂时只能靠「日本在卖美债吗」这个
-      #   下游节点间接观测。找到免费日频日债源再补。
-      - {label_en: "JGB yield (mechanism not instrumented)", label: "日债收益率(暂无源)", term: "日本10年期国债收益率", status: fact, value_text: "找不到免费日频源", note: "艾丽链条的关键中间环。yfinance无代码,FRED的OECD系列已停摆。暂由下游的『日本在卖美债吗』间接看"}
+      # 2026-09-10 装上了。我先说"没有免费源"是查得不够（只查了 yfinance 和 FRED），
+      # 日本财务省自己就日频公布 1 年到 40 年全期限，免密钥，可追到 1974-09-24。
+      # 线取 3.0%：近三年它一级一级往上爬——2024-05-22 破 1%、2025-03-06 破 1.5%、
+      # 2025-12-19 破 2%、2026-04-30 破 2.5%，**3% 从未破过**。现在 2.891，差 0.11 个百分点。
+      # 这不是我拍的数，是它自己还没走到的那个整数关口。
+      - {label_en: "JGB 10Y yield", label: "日债10年利率", term: "日本10年国债 vs 3%", metric: jp10y, threshold: 3.0, direction: above, note: "收益率升=持有日债的人在亏钱。近十年100%分位;2024-05破1%、2025-12破2%、2026-04破2.5%,3%还没破过"}
+      # 长端亏得最狠，是"对冲基金被追保证金"的源头。线取 4.0%（2026-08-31 摸到 4.096 后回落）。
+      - {label_en: "JGB 30Y yield", label: "日债30年利率", term: "日本30年国债 vs 4%", metric: jp30y, threshold: 4.0, direction: above, note: "长端亏损最大。8-31摸到4.096后回落到3.96;这一段就是艾丽说的对冲基金追保的源头"}
       - {label_en: "Is Japan selling USTs?", label: "日本在卖美债吗", term: "TIC日本持仓月变化", metric: tic_japan_chg, threshold: 0, direction: below, note: "连续在卖"}
       - {label_en: "Yen strong enough to unwind carry?", label: "日元强到撤资线?", term: "USDJPY vs 157", metric: usdjpy, threshold: 157, direction: below, note: "跌破157=撤资开始"}
       - {label_en: "Yen weak enough for intervention?", label: "日元弱到干预线?", term: "USDJPY vs 163", metric: usdjpy, threshold: 163, direction: above, note: "7/31官方出手过的位置"}

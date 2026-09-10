@@ -146,6 +146,16 @@ sources:
   cn_lpr:     {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
                desc: "中国LPR一年期(BIS口径:Loan Prime Rate 1-year)。顺便填日历里一直空着的LPR报价"}
 
+  # ---- 日本国债收益率（日本链缺的那一环）----
+  # 2026-09-10 接入。我先查 yfinance(无代码)和 FRED(OECD系列已停摆)就说"没有源"，
+  # Momo 让我再找找——日本财务省自己就公布，而且最一手：日频、1年到40年、免密钥、
+  # 可追到 1974-09-24。教训：说"没有"之前先把官方发布方本身查一遍。
+  # 口径=流通市场利率(複利)，单位%。存档只留近5年(约54KB)，大文件随时能重拉。
+  jp10y:      {tier: 1, provider: mof_jp, unit: "%", max_staleness_days: 5,
+               desc: "日本10年期国债收益率(日本财务省日频)。2026-09实测2.891%,近十年100%分位"}
+  jp30y:      {tier: 1, provider: mof_jp, unit: "%", max_staleness_days: 5,
+               desc: "日本30年期国债收益率(日本财务省日频)。长端亏损最大,对冲基金追保的源头"}
+
   # ---- 伦敦金现 XAUUSD (无需key) ----
   # 判定层的黄金口径。8-25报告的4450-4700带子写的是XAUUSD，此前误用COMEX期货判定。
   # 免费官方级现货金源不存在（FRED的LBMA定盘价已停更、yfinance无现货代码、

@@ -23,7 +23,7 @@ import yaml
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar, spot_gold, jin10_flash, bis_policy_rate  # noqa: E402
+from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar, spot_gold, jin10_flash, bis_policy_rate, jgb  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict, reason  # noqa: E402
 
@@ -41,6 +41,7 @@ LABELS = {
     "core_pce": "核心物价指数PCE", "gdp_real": "实际GDP", "gdp_pot": "潜在GDP(CBO)",
     "fedfunds": "联邦基金利率(月均)", "kr_rate": "韩国政策利率", "jp_rate": "日本政策利率",
     "eu_rate": "欧洲央行利率", "gb_rate": "英国央行利率", "cn_lpr": "中国LPR一年期",
+    "jp10y": "日本10年国债利率", "jp30y": "日本30年国债利率",
     "tic_japan": "日本持有美债", "tic_uk": "英国持有美债",
     "tic_china": "中国持有美债", "cot_gold": "黄金大户净多单", "cot_silver": "白银大户净多单",
     "cot_jpy": "日元大户净多单", "repo_ops": "常备回购SRF用量", "sofr_nyfed": "SOFR(纽约联储版)",
@@ -66,6 +67,7 @@ LABELS_EN = {
     "core_pce": "Core PCE Index", "gdp_real": "Real GDP", "gdp_pot": "Potential GDP (CBO)",
     "fedfunds": "Fed Funds Rate (Mo Avg)", "kr_rate": "Korea Policy Rate", "jp_rate": "Japan Policy Rate",
     "eu_rate": "ECB Policy Rate", "gb_rate": "BoE Bank Rate", "cn_lpr": "China LPR 1Y",
+    "jp10y": "JGB 10Y Yield", "jp30y": "JGB 30Y Yield",
     "tic_japan": "Japan UST Holdings", "tic_uk": "UK UST Holdings",
     "tic_china": "China UST Holdings", "cot_gold": "Gold Net Longs (COT)", "cot_silver": "Silver Net Longs (COT)",
     "cot_jpy": "JPY Net Longs (COT)", "repo_ops": "SRF Usage", "sofr_nyfed": "SOFR (NY Fed)",
@@ -260,6 +262,8 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps.append(eia.fetch_crude_stocks(
         sources.get("crude_stocks", {}).get("max_staleness_days", 14)))
     dps += bis_policy_rate.fetch_all(sources)
+    dps += jgb.fetch_all(DATA / "jgb",
+                         sources.get("jp10y", {}).get("max_staleness_days", 5))
     dps += market.fetch_all(sources.get("market", {}).get("max_staleness_days", 4))
     # 伦敦金现：判定层的黄金口径（8-25报告的4450-4700带子是按XAUUSD定的）。
     # 传入COMEX价做基差交叉校验，基差离谱则判stale不参与规则。
