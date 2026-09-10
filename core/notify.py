@@ -93,9 +93,16 @@ def _pick(key: str, quotes: dict, metrics: dict):
     return None, None, None, None
 
 
-def _price_line(quotes: dict, metrics: dict, quotes_age_min: float | None) -> str:
+def _price_line(quotes: dict, metrics: dict, quotes_age_min: float | None,
+                stale_keys: set | None = None) -> str:
+    """2026-09-09：停更的项不再摆进价格行。
+    实测重建的一条推送里写着「（价格 104 小时前）」—— 四天前的数还在报，
+    读者没法从中读出任何东西，只会占注意力槽位。停更项改到折叠区列「X 已停更 N 天」。"""
+    stale_keys = stale_keys or set()
     parts = []
     for name, code, keys, nd, suf in PRICE_LINE:
+        if all(k in stale_keys for k in keys):
+            continue
         v = None
         for k in keys:
             v, _, _, _ = _pick(k, quotes, metrics)
@@ -223,6 +230,10 @@ def _sec_near(radar: list[dict], bands: list[dict], metrics: dict, quotes: dict)
         if d is None or not (0 < d <= 3):
             continue
         key = r.get("key") or ""
+        # 2026-09-09：gamma 翻转位/两堵墙属于波动机（@momo_alarm_bot）的口径，
+        # 出现在宏观推送里是串台。数据继续算、继续存 data/gex/、继续上网站，只是不推。
+        if key.startswith("gex_"):
+            continue
         name, code, nd, pct_type = KEY_DISP.get(key, (r.get("label", key), "", 2, False))
         v, thr = r.get("value"), r.get("threshold")
         if v is None or thr is None:
@@ -388,8 +399,9 @@ def build_message(latest: dict, quotes: dict | None, quotes_generated_at: str | 
     quotes = quotes or {}
 
     out: list[str] = []
+    _stale = {str(x.get("key")) for x in ((latest.get("health") or {}).get("stale_list") or [])}
     out.append(bold(f"【{today[5:].replace('-', '-')}】{_headline(changes, regime, today)}"))
-    out.append(esc(_price_line(quotes, metrics, age)))
+    out.append(esc(_price_line(quotes, metrics, age, _stale)))
     out.append("")
 
     sec = _sec_changes(changes, metrics, regime)

@@ -712,6 +712,19 @@ JUDGE_WIN_D = 7        # 回看窗口（日历日）
 JUDGE_TIPS_BP = 6      # 真利率"跳升"的门槛：窗口内 ≥ +6bp
 JUDGE_GOLD_PCT = -1.5  # 黄金"同步回落"的门槛：窗口内 ≤ -1.5%
 
+# ══ 2026-09-09 新增：判据的缓冲带与改口门槛 ═════════════════════════════════
+# 事故：实测 8 个交易日判据翻了 6 次（09-03 一天内翻过去又翻回来），
+#       而判据翻转在 _headline 里优先级最高，直接决定推送标题 → 标题 1.3 天换一次方向。
+# 根因：09-08 与 09-09 真利率都是 +9bp 一模一样，只有黄金 7 天变动从 −1.8% 摆到 +0.5%，
+#       跨过 −1.5% 这条唯一的线，结论就翻。黄金日变动约 1%，7 天窗口摆 2pp 是常态 →
+#       门槛线的判别精度细过这个指标的噪音。
+# 修法一 迟滞：已判"跌"的，要涨过 JUDGE_GOLD_EXIT 才算不再跌（不是刚好回到 −1.5%）。
+# 修法二 改口门槛：新结论要在 JUDGE_PERSIST_D 个**不同日历日**都成立，才允许替换旧结论。
+#       取 2 天而非设计稿写的 3 天：实测序列上 3 天会让它 8 天里一次都不改口，等于不说话；
+#       2 天把 6 次翻转压到 1 次。这个数按 §九 窗口结算，到期不合适再调。
+JUDGE_GOLD_EXIT = -0.5   # 迟滞出口：判"跌"之后要涨过 −0.5% 才解除
+JUDGE_PERSIST_D = 2      # 新结论要连续几个不同日历日成立才改口
+
 
 def _judge_regime(series: dict) -> dict | None:
     """把 8-25 报告那条判据真算出来，别只当一句摆设。
@@ -731,17 +744,66 @@ def _judge_regime(series: dict) -> dict | None:
     d_tips_bp = round((tw[-1] - tw[0]) * 100, 1)          # 真利率是%，差×100=bp
     d_gold_pct = round((gw[-1] / gw[0] - 1) * 100, 2)
     tips_jumped = d_tips_bp >= JUDGE_TIPS_BP
-    gold_fell = d_gold_pct <= JUDGE_GOLD_PCT
+    # 迟滞：上次已判"黄金在跌"时，门槛放宽到 JUDGE_GOLD_EXIT，防止贴着 −1.5% 抖
+    _prev_fell = _judge_prev_state().get("gold_fell")
+    _thr = JUDGE_GOLD_EXIT if _prev_fell else JUDGE_GOLD_PCT
+    gold_fell = d_gold_pct <= _thr
     if tips_jumped and gold_fell:
         verdict, plain = "回到需求侧紧缩链", "真利率抬头、黄金跟着跌 —— 这不是金融抑制的样子，是市场在为「更紧」定价。"
     elif tips_jumped and not gold_fell:
         verdict, plain = "确认金融抑制主导", "真利率抬头黄金却没跌 —— 钱在躲，说明大家不信这个利率能维持住。"
     else:
         verdict, plain = "判据未触发", "真利率这几天没明显抬头，这条判据现在还看不出方向。"
-    return {"verdict": verdict, "plain": plain,
-            "window_days": JUDGE_WIN_D,
+    # 改口门槛：新结论要连续 JUDGE_PERSIST_D 个不同日历日成立才替换旧结论
+    stable, pending_days = _judge_stabilize(verdict, gold_fell)
+    if stable != verdict:
+        plain += f"（今天读数指向「{verdict}」，但只连续 {pending_days} 天，"                 f"不足 {JUDGE_PERSIST_D} 天，暂不改口）"
+    return {"verdict": stable, "raw_verdict": verdict, "plain": plain,
+            "window_days": JUDGE_WIN_D, "persist_days_needed": JUDGE_PERSIST_D,
             "tips_chg_bp": d_tips_bp, "gold_chg_pct": d_gold_pct,
-            "rule": f"真利率{JUDGE_TIPS_BP}bp以上算跳升；黄金{JUDGE_GOLD_PCT}%以下算同步回落"}
+            "rule": f"真利率{JUDGE_TIPS_BP}bp以上算跳升；黄金{_thr}%以下算同步回落"
+                    f"（已判跌时用迟滞出口 {JUDGE_GOLD_EXIT}%）"}
+
+
+_JUDGE_STATE_FILE = None   # 延迟到 DATA 可用时再定
+
+
+def _judge_state_path():
+    return DATA / "judge_state.json"
+
+
+def _judge_prev_state() -> dict:
+    try:
+        return json.loads(_judge_state_path().read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _judge_stabilize(verdict: str, gold_fell: bool):
+    """新结论要连续 JUDGE_PERSIST_D 个不同日历日成立才改口。返回 (对外结论, 已连续天数)。"""
+    st = _judge_prev_state()
+    today = dt.date.today().isoformat()
+    held = st.get("held")                     # 当前对外的结论
+    cand = st.get("candidate")                # 正在攒天数的新结论
+    days = st.get("candidate_days") or []     # 攒到的日期（去重）
+
+    if held is None:                          # 首次运行，直接采用
+        held, cand, days = verdict, None, []
+    elif verdict == held:
+        cand, days = None, []                 # 回到旧结论，攒的天数作废
+    else:
+        if verdict != cand:
+            cand, days = verdict, [today]     # 换了个新候选，重新攒
+        elif today not in days:
+            days = days + [today]
+        if len(days) >= JUDGE_PERSIST_D:      # 攒够了，改口
+            held, cand, days = verdict, None, []
+
+    _judge_state_path().write_text(json.dumps(
+        {"held": held, "candidate": cand, "candidate_days": days,
+         "gold_fell": gold_fell, "updated": dt.datetime.now(dt.timezone.utc).isoformat()},
+        ensure_ascii=False), encoding="utf-8")
+    return held, len(days)
 
 
 def build_regime(ctx: dict, series: dict | None = None) -> dict:
@@ -1145,6 +1207,8 @@ def main():
     ap.add_argument("--no-fetch", action="store_true")
     ap.add_argument("--quotes-only", action="store_true",
                     help="轻量模式：只刷行情价写 data/quotes.json，不跑规则/不推TG。盘中高频用")
+    ap.add_argument("--force-send", action="store_true",
+                    help="无视「没变化就不发」闸，强制推一条。手动 workflow_dispatch 验收用。")
     args = ap.parse_args()
 
     load_env()
@@ -1261,7 +1325,29 @@ def main():
         pass
     msg = notify.build_message(latest, _quotes, _qgen,
                                sp_events_today, speeches_recent, econ_today, today)
-    notify.send(msg, dry=args.dry_run)
+
+    # ══ 没变化就不发（2026-09-09）═══════════════════════════════════════════
+    # 实测：三份 TG 导出里带「■ 今天变了什么」的只有 7/40 条；09-02 重构后 14 条里
+    #       8 条标题是「今天没有新越线。剧本判据仍是 X」—— 纯状态重复。
+    #       09-07 的 14:11 与 18:55 两条完全一样（332/331 字符）。
+    # 她 09-09：「不需要他一天给我推几条一样的」。
+    # 兜底：周五收盘那场无论如何发一条周报，让她知道系统在跑、只是这周没事。
+    _changes = (latest.get("digest") or {}).get("changes") or []
+    _judge_flipped = any(c.get("kind") == "judge" for c in _changes)
+    _is_friday_close = dt.date.today().weekday() == 4 and dt.datetime.now(dt.timezone.utc).hour >= 20
+    _should_send = bool(_changes) or _judge_flipped or _is_friday_close or args.force_send
+
+    if _should_send:
+        if _is_friday_close and not _changes:
+            msg = "*本周没有新越线。* 系统在跑，只是这周没事。" + chr(10)*2 + msg
+        notify.send(msg, dry=args.dry_run)
+        print(f"[send] 推送（变化 {len(_changes)} 条{'，判据翻转' if _judge_flipped else ''}"
+              f"{'，周五周报' if _is_friday_close else ''}）", file=sys.stderr)
+    else:
+        print("[skip] 无变化、判据未翻、非周五收盘 → 不推送（内容仍写进 data/ 与网站）",
+              file=sys.stderr)
+        if args.dry_run:
+            print(msg)
 
     # 提交留痕：让 GitHub 历史一眼看出这次跑动了什么，而不是清一色 "data: 时间戳"
     _f = [r for r in rule_results if r["status"] == "fired"]
