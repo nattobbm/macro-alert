@@ -34,6 +34,1075 @@
    "kind": "speech"
   }
  ],
- "speeches": [],
- "fetched_at": "2026-09-10T12:05:01Z"
+ "speeches": [
+  {
+   "title": "【拉加德将召开新闻发布会 市场关注是否维持鹰派观望立场】金十数据9月10日讯，欧洲央行周四今年第二次加息，试图遏制伊朗战争引发的能源驱动型通胀上升。自8月底以来，双方攻击打破了为期一个月的相对平静，美国和伊朗袭击了军事、航运和能源资产。这推动油价重回每桶100美元以上，并重新引发",
+   "link": "https://flash.jin10.com/detail/20260910203052255800",
+   "published": "2026-09-10T12:30:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链"
+   ],
+   "tone": {
+    "hawk": 4,
+    "dove": 2,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "把通胀归因到外面——意思是\"不是我们放水放的\"，为不加息留理由",
+   "meaning_lean": "鸽",
+   "meaning_id": "energy_driven"
+  },
+  {
+   "title": "欧洲央行行长拉加德：经济表现出韧性。韧性可能持续到第三季度。",
+   "link": "https://flash.jin10.com/detail/20260910205258981800",
+   "published": "2026-09-10T12:52:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：制造业稳健。服务业复苏。消费者信心回升。",
+   "link": "https://flash.jin10.com/detail/20260910205320189800",
+   "published": "2026-09-10T12:53:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：劳动力市场强劲。",
+   "link": "https://flash.jin10.com/detail/20260910205333255800",
+   "published": "2026-09-10T12:53:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：就业增长持续放缓。短期增长前景已改善。",
+   "link": "https://flash.jin10.com/detail/20260910205353487800",
+   "published": "2026-09-10T12:53:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：投资和出口中可见人工智能活动的增加。",
+   "link": "https://flash.jin10.com/detail/20260910205407221800",
+   "published": "2026-09-10T12:54:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：经济增长将受到商业和住房投资的支持。",
+   "link": "https://flash.jin10.com/detail/20260910205418833800",
+   "published": "2026-09-10T12:54:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：出口受到竞争力挑战和贸易政策的制约。",
+   "link": "https://flash.jin10.com/detail/20260910205426719800",
+   "published": "2026-09-10T12:54:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：重申达成单一货币方案的重要性。",
+   "link": "https://flash.jin10.com/detail/20260910205521495800",
+   "published": "2026-09-10T12:55:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：提高潜在经济增速需要推进结构性改革。",
+   "link": "https://flash.jin10.com/detail/20260910205533190800",
+   "published": "2026-09-10T12:55:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：炼油利润显著影响通胀。",
+   "link": "https://flash.jin10.com/detail/20260910205607579800",
+   "published": "2026-09-10T12:56:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：核心通胀的多数指标总体稳定。",
+   "link": "https://flash.jin10.com/detail/20260910205641405800",
+   "published": "2026-09-10T12:56:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：劳动生产率的提高有助于抑制单位劳动成本的增长。",
+   "link": "https://flash.jin10.com/detail/20260910205647583800",
+   "published": "2026-09-10T12:56:47Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：工资追踪指标显示，协商工资增速将小幅回升。",
+   "link": "https://flash.jin10.com/detail/20260910205745490800",
+   "published": "2026-09-10T12:57:45Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：长期通胀预期的多数指标约为2%。",
+   "link": "https://flash.jin10.com/detail/20260910205751206800",
+   "published": "2026-09-10T12:57:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：通胀将在2027上半年之前持续高于目标水平。",
+   "link": "https://flash.jin10.com/detail/20260910205831180800",
+   "published": "2026-09-10T12:58:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：更高的能源价格将逐步传导至核心通胀，食品价格也将逐渐上涨。",
+   "link": "https://flash.jin10.com/detail/20260910205838309800",
+   "published": "2026-09-10T12:58:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：更好的经济前景将推动核心（通胀）指标。",
+   "link": "https://flash.jin10.com/detail/20260910205850091800",
+   "published": "2026-09-10T12:58:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：增长前景面临下行风险。",
+   "link": "https://flash.jin10.com/detail/20260910205929913800",
+   "published": "2026-09-10T12:59:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：将监测能源价格的传导效应。",
+   "link": "https://flash.jin10.com/detail/20260910205945606800",
+   "published": "2026-09-10T12:59:45Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：能源中断、市场情绪恶化、贸易摩擦是增长风险。",
+   "link": "https://flash.jin10.com/detail/20260910205958635800",
+   "published": "2026-09-10T12:59:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：核心通胀将持续上升，直至2027年初。",
+   "link": "https://flash.jin10.com/detail/20260910210035999800",
+   "published": "2026-09-10T13:00:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：核心通胀将在2028年趋于缓和。",
+   "link": "https://flash.jin10.com/detail/20260910210050159800",
+   "published": "2026-09-10T13:00:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：预计到2027年底，总体通胀将回归目标水平。",
+   "link": "https://flash.jin10.com/detail/20260910210105304800",
+   "published": "2026-09-10T13:01:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：能源冲击可能进一步加剧，对其他价格和工资的影响可能比目前预期的更强烈。",
+   "link": "https://flash.jin10.com/detail/20260910210113669800",
+   "published": "2026-09-10T13:01:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：如果出现进一步的供应中断或异常寒冷的冬季，叠加低储存水平，天然气价格可能会上涨。",
+   "link": "https://flash.jin10.com/detail/20260910210139689800",
+   "published": "2026-09-10T13:01:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：极端天气事件可能推高食品价格，而日益严重的“厄尔尼诺”现象可能进一步加剧这一影响；更广泛的气候危机和自然危机也可能推高食品价格。",
+   "link": "https://flash.jin10.com/detail/20260910210152779800",
+   "published": "2026-09-10T13:01:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：目前面临的主要是供应冲击。市场会根据需要采取行动。",
+   "link": "https://flash.jin10.com/detail/20260910210806946800",
+   "published": "2026-09-10T13:08:06Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：讨论集中在今天的决定上。未讨论未来利率路径。",
+   "link": "https://flash.jin10.com/detail/20260910210815853800",
+   "published": "2026-09-10T13:08:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：欧洲央行将履行其职责。",
+   "link": "https://flash.jin10.com/detail/20260910210822916800",
+   "published": "2026-09-10T13:08:22Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：对本人未来的工作安排没有什么可宣布的。",
+   "link": "https://flash.jin10.com/detail/20260910210930102800",
+   "published": "2026-09-10T13:09:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：对下次会议的方向不予置评。",
+   "link": "https://flash.jin10.com/detail/20260910211002227800",
+   "published": "2026-09-10T13:10:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：不确定性几乎可以在一夜之间改变局势。",
+   "link": "https://flash.jin10.com/detail/20260910211033894800",
+   "published": "2026-09-10T13:10:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：无法预测下一步行动将会是什么。",
+   "link": "https://flash.jin10.com/detail/20260910211142403800",
+   "published": "2026-09-10T13:11:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：中性区间高度概念化。",
+   "link": "https://flash.jin10.com/detail/20260910211229897800",
+   "published": "2026-09-10T13:12:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：对中性利率并不十分重视。",
+   "link": "https://flash.jin10.com/detail/20260910211324240800",
+   "published": "2026-09-10T13:13:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：此次决定是一致通过的。",
+   "link": "https://flash.jin10.com/detail/20260910211339743800",
+   "published": "2026-09-10T13:13:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：收益率上升并非欧元区特有问题。",
+   "link": "https://flash.jin10.com/detail/20260910211502403800",
+   "published": "2026-09-10T13:15:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：全球债券重新定价正在进行中。",
+   "link": "https://flash.jin10.com/detail/20260910211506697800",
+   "published": "2026-09-10T13:15:06Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：人工智能的重大融资需求是关键驱动因素。",
+   "link": "https://flash.jin10.com/detail/20260910211527879800",
+   "published": "2026-09-10T13:15:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：我们正在密切关注债券市场，特别是长期债券。",
+   "link": "https://flash.jin10.com/detail/20260910211554016800",
+   "published": "2026-09-10T13:15:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "现在不动",
+   "meaning_lean": "中",
+   "meaning_id": "closely_monitoring"
+  },
+  {
+   "title": "欧洲央行行长拉加德：对经济韧性感到惊讶。",
+   "link": "https://flash.jin10.com/detail/20260910211628603800",
+   "published": "2026-09-10T13:16:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：近期通胀低于预期，尤其是食品价格。",
+   "link": "https://flash.jin10.com/detail/20260910211739291800",
+   "published": "2026-09-10T13:17:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：2026年经济增长可能会超过0.9%的预测，原因是第二季度表现强劲。",
+   "link": "https://flash.jin10.com/detail/20260910211744683800",
+   "published": "2026-09-10T13:17:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：通胀持续时间更长。",
+   "link": "https://flash.jin10.com/detail/20260910211756147800",
+   "published": "2026-09-10T13:17:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：欧洲央行对低于预期的通胀感到惊讶。",
+   "link": "https://flash.jin10.com/detail/20260910211803235800",
+   "published": "2026-09-10T13:18:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：欧洲央行对持续时间更长的通胀感到惊讶。",
+   "link": "https://flash.jin10.com/detail/20260910211814894800",
+   "published": "2026-09-10T13:18:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：非常希望数字欧元法案能在年底前通过。",
+   "link": "https://flash.jin10.com/detail/20260910212214102800",
+   "published": "2026-09-10T13:22:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：不会对任何外汇干预发表评论。",
+   "link": "https://flash.jin10.com/detail/20260910212217452800",
+   "published": "2026-09-10T13:22:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：（此前）欧元-日元联合干预的规模为5亿欧元。",
+   "link": "https://flash.jin10.com/detail/20260910212418323800",
+   "published": "2026-09-10T13:24:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：不会对利差发表评论。",
+   "link": "https://flash.jin10.com/detail/20260910212434706800",
+   "published": "2026-09-10T13:24:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：利差反映了市场对一国债券的看法。",
+   "link": "https://flash.jin10.com/detail/20260910212548797800",
+   "published": "2026-09-10T13:25:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：取消债务将是对条约的公然违反。",
+   "link": "https://flash.jin10.com/detail/20260910212614130800",
+   "published": "2026-09-10T13:26:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：在金融层面上，关于“取消债务”的谈判是非常危险的。",
+   "link": "https://flash.jin10.com/detail/20260910212751309800",
+   "published": "2026-09-10T13:27:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：在所有三种情景下，加息均具有稳健性。",
+   "link": "https://flash.jin10.com/detail/20260910213207164800",
+   "published": "2026-09-10T13:32:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：如果能源冲击持续时间超出预期，我们将看到第二轮影响，这将影响食品价格。",
+   "link": "https://flash.jin10.com/detail/20260910213552861800",
+   "published": "2026-09-10T13:35:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德结束新闻发布会。",
+   "link": "https://flash.jin10.com/detail/20260910213833873800",
+   "published": "2026-09-10T13:38:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【金十数据整理：欧洲央行利率决议及拉加德新闻发布会重点一览】",
+   "link": "https://flash.jin10.com/detail/20260910214443929800",
+   "published": "2026-09-10T13:44:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链",
+    "日本链",
+    "地缘链"
+   ],
+   "tone": {
+    "hawk": 4,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "现在不动",
+   "meaning_lean": "中",
+   "meaning_id": "closely_monitoring"
+  },
+  {
+   "title": "【下月加不加？市场对欧洲央行决策定价几乎五五开】金十数据9月10日讯，欧洲央行行长拉加德在决策后新闻发布会上强调前景不确定。在周四发布被视为鹰派的声明后，金融市场目前对欧洲央行下月是否再次加息几乎平分秋色。欧洲央行周四将利率上调25个基点至2.5%符合预期。但根据LSEG数据，目",
+   "link": "https://flash.jin10.com/detail/20260910220359348800",
+   "published": "2026-09-10T14:03:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  }
+ ],
+ "fetched_at": "2026-09-10T15:18:47Z"
 }
