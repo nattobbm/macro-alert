@@ -40,6 +40,7 @@ LABELS = {
     "sahm_rule": "衰退报警器(萨姆规则)", "unrate": "失业率", "icsa": "初请失业金(周)",
     "core_pce": "核心物价指数PCE", "gdp_real": "实际GDP", "gdp_pot": "潜在GDP(CBO)",
     "fedfunds": "联邦基金利率(月均)", "kr_rate": "韩国政策利率", "jp_rate": "日本政策利率",
+    "eu_rate": "欧洲央行利率", "gb_rate": "英国央行利率", "cn_lpr": "中国LPR一年期",
     "tic_japan": "日本持有美债", "tic_uk": "英国持有美债",
     "tic_china": "中国持有美债", "cot_gold": "黄金大户净多单", "cot_silver": "白银大户净多单",
     "cot_jpy": "日元大户净多单", "repo_ops": "常备回购SRF用量", "sofr_nyfed": "SOFR(纽约联储版)",
@@ -64,6 +65,7 @@ LABELS_EN = {
     "sahm_rule": "Sahm Rule (Recession Gauge)", "unrate": "Unemployment Rate", "icsa": "Initial Claims (W)",
     "core_pce": "Core PCE Index", "gdp_real": "Real GDP", "gdp_pot": "Potential GDP (CBO)",
     "fedfunds": "Fed Funds Rate (Mo Avg)", "kr_rate": "Korea Policy Rate", "jp_rate": "Japan Policy Rate",
+    "eu_rate": "ECB Policy Rate", "gb_rate": "BoE Bank Rate", "cn_lpr": "China LPR 1Y",
     "tic_japan": "Japan UST Holdings", "tic_uk": "UK UST Holdings",
     "tic_china": "China UST Holdings", "cot_gold": "Gold Net Longs (COT)", "cot_silver": "Silver Net Longs (COT)",
     "cot_jpy": "JPY Net Longs (COT)", "repo_ops": "SRF Usage", "sofr_nyfed": "SOFR (NY Fed)",
@@ -287,6 +289,9 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
             ctx[f"{dp.key}_chg"] = dp.extra["chg_bn"]
         if "pctile_52w" in dp.extra:
             ctx[f"{dp.key}_pctile"] = dp.extra["pctile_52w"]
+        # 政策利率的「哪天改的、从多少改到多少」，给链条节点的说明用
+        if "last_change" in dp.extra:
+            ctx[f"_lastchg_{dp.key}"] = dp.extra["last_change"]
 
     # vix_prev_max：近60交易日最高（不含当日）
     vix_dp = by_key.get("vix")
@@ -294,6 +299,19 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
         hist = [v for _, v in vix_dp.extra["series"][:-1]][-60:]
         if hist:
             ctx["vix_prev_max"] = max(hist)
+
+    # brent_20d_pct：20个交易日的累计涨幅。
+    # 2026-09-10 增。起因：地缘链原来只有「单日暴涨>5%」一个速度节点，
+    # 而 2026 年这轮油价是从 90 慢慢爬到 105 的——**每天都不到 5%，所以一次都没触发**，
+    # 链条热度停在 2，而油价其实已经破 100。逐日阈值抓不到累计涨幅。
+    # 艾丽 260 期里反复讲"国际原油价格是最诚实的指标"（5 期），说的就是这个水位问题。
+    for _k in ("brent", "wti"):
+        _dp = by_key.get(_k)
+        _s = (_dp.extra.get("series") if _dp and not _dp.stale else None) or []
+        if len(_s) >= 21:
+            _now, _then = _s[-1][1], _s[-21][1]
+            if _then:
+                ctx[f"{_k}_20d_pct"] = round((_now / _then - 1) * 100, 2)
 
     # 拍卖衍生变量：最近一场长债（20Y/30Y）
     auctions = []
@@ -691,6 +709,13 @@ def build_knowledge(ctx: dict) -> dict:
                         node.update(status=st, value=v, threshold=thr,
                                     direction=direc, dist_pct=round(dist * 100, 2),
                                     metric=nd["metric"])
+                        # 政策利率类节点补一句「哪天改的」。2026-09-10：节点只写
+                        # 「日本利率 1.0 已越线」，看的人不知道是哪天加的、从多少加上来的，
+                        # 而这条线的意义全在这个序列上。
+                        _lc = ctx.get(f"_lastchg_{nd['metric']}")
+                        if isinstance(_lc, dict) and _lc.get("date"):
+                            _seg = f"{_lc['date']} 由 {_lc.get('from')} 改到 {_lc.get('to')}"
+                            node["note"] = (node["note"] + "。" if node["note"] else "") + _seg
                         # 前提强度：节点写法是"触发=该前提成立"，所以离触发极远
                         # ≠ 只是"安静"，而是"这个前提明确不成立"。
                         # 2026-09-01 起标出来——金融抑制链的核心前提"市场不信央行会加息"
@@ -1160,6 +1185,11 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
             "pctile_52w": dp.extra.get("pctile_52w"),
             "group": group_of.get(dp.key, "other"),
             "role": ROLE.get(dp.key),
+            # 政策利率类：带上「哪天改的、从多少改到多少」。
+            # 2026-09-10：节点只写「日本利率 1.0 已越线」，看的人不知道是哪天加的、加了多少。
+            # 而这条线的意义全在这个序列上（日本 2025-12-22 0.5→0.75、2026-06-17 0.75→1.00）。
+            "last_change": dp.extra.get("last_change"),
+            "caliber_note": dp.extra.get("caliber_note"),
         })
         if dp.extra.get("series"):
             series[dp.key] = dp.extra["series"][-250:]

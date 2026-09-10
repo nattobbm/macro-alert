@@ -136,6 +136,15 @@ sources:
                desc: "韩国央行基准利率(BIS口径:Bank of Korea base rate)。BIS更新偏慢,新加息会晚几周才见"}
   jp_rate:    {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
                desc: "日本央行政策利率(BIS口径:无担保隔夜拆借利率目标)。9/17-18会议为观测点"}
+  # 2026-09-10 增三个。拆艾丽 260 期拆出一条我们没有的链：盟友先加息接住美国放的水，
+  # 并从大宗需求端帮美联储压输入性通胀。只有日韩两个点画不出这条线。
+  # 同一个 BIS 接口本来就覆盖，多取三个只是多三行。
+  eu_rate:    {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
+               desc: "欧洲央行政策利率(BIS口径:official central bank steering rate)"}
+  gb_rate:    {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
+               desc: "英国央行基准利率(BIS口径:official bank rate)"}
+  cn_lpr:     {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
+               desc: "中国LPR一年期(BIS口径:Loan Prime Rate 1-year)。顺便填日历里一直空着的LPR报价"}
 
   # ---- 伦敦金现 XAUUSD (无需key) ----
   # 判定层的黄金口径。8-25报告的4450-4700带子写的是XAUUSD，此前误用COMEX期货判定。

@@ -57,14 +57,21 @@ chains:
     name: 石油通道不稳 → 油价牵动物价和利率
     term: 地缘链
     name_en: "Oil route unstable -> prices, inflation, rates"
-    one_liner_en: "Strait open or not -> oil -> prices -> Fed -> real yield -> gold (safe-haven and rate channels pull gold opposite ways)"
+    one_liner_en: "Strait open or not -> oil -> prices -> Fed -> real yield -> gold (three channels pull gold different ways: safe-haven up, rates down, forced-deleveraging down)"
     falsify_en: "Deal lands + Brent stable under 80 = this domino laid down"
-    one_liner: 海峡通不通 → 油价 → 物价 → 央行加不加息 → 真利率 → 黄金（注意：避险和利率两条路对黄金方向相反）
+    one_liner: 海峡通不通 → 油价 → 物价 → 央行加不加息 → 真利率 → 黄金（黄金有三条路：避险往上，利率往下，整体减仓时它因为好卖反而先被卖）
     falsify: 协议落地+油价稳在80以下 = 这张多米诺暂时放倒
     nodes:
       - {label_en: "Strait of Hormuz", label: "霍尔木兹海峡", term: "航运通行量", value_text: "还没恢复(约为战前8成)", status: fact}
       - {label_en: "Oil above band?", label: "油价出上界?", term: "Brent vs 90", metric: brent, threshold: 90, direction: above, note: "超90→物价压力回来"}
       - {label_en: "Oil below band?", label: "油价出下界?", term: "Brent vs 80", metric: brent, threshold: 80, direction: below, note: "低于80→美方行动更大胆(假说,样本少)"}
+      # 2026-09-10 增。原来只有「单日暴涨>5%」一个速度节点，而这轮油价是从90慢慢爬到105的，
+      # 每天都不到5%，一次都没触发，链条热度停在2而油价已经破100。逐日阈值抓不到累计涨幅。
+      # 线取15%：布伦特20交易日涨幅的5年历史分布里约94分位（95分位是16.2%），约6%的交易日会到。
+      - {label_en: "Oil 20-day run-up", label: "油价20天累计涨幅", term: "Brent 20日 vs +15%", metric: brent_20d_pct, threshold: 15, direction: above, note: "慢涨也是涨。5年历史约94分位；这轮从90爬到105每天都不到5%，单日线抓不到"}
+      # 艾丽260期里最值钱的一条机制：油涨→各国买油要更多美元→美元指数逆势涨→黄金被压。
+      # 这解释了"油涨美元也涨"这个用跷跷板讲不通的现象。她自己05-28撞上这个反例时没修正规则。
+      - {label_en: "Dollar index rising with oil", label: "美元指数跟着油一起涨", term: "美元指数 vs 101", metric: dxy, threshold: 101, direction: above, note: "油涨要用美元买→美元需求上升→美元指数逆势走强。2026-06-24实测最高101.6"}
       - {label_en: "Oil daily spike", label: "油价单日暴涨", term: "brent单日>5%", metric: brent_1d_pct, threshold: 5, direction: above, note: "=供给出事了"}
 
   - id: japan
@@ -78,6 +85,14 @@ chains:
     falsify: 日本加息后反而连续两月增持美债 = 这条链断了
     nodes:
       - {label_en: "Japan's own interest bill", label: "日本自己的利息账单", term: "FY27偿债预算", value_text: "36.6万亿¥(+17%)", status: fact, note: "它也欠很多,加息也心疼"}
+      # 2026-09-10：拆艾丽260期发现她有第二条通向同一结果的机制，方向和我们这条相反但终点一样——
+      # 日元「贬值」→日本输入性通胀→日本发债增加→日债收益率升→对冲基金日债亏损被追保证金→
+      # 卖掉流动性最强的美债→美债收益率上行→AI巨头发债成本上升→美股。
+      # 我们这条是日元「升值」触发套息平仓。两条都终结于"卖美债"，可以互为验证。
+      # ⚠ 中间那一环「日债收益率」我们装不上：yfinance 无日债代码，FRED 的 IRLTLT01JPM156N
+      #   属已停摆的 OECD 数据族（最后更新 2026-07-16）。暂时只能靠「日本在卖美债吗」这个
+      #   下游节点间接观测。找到免费日频日债源再补。
+      - {label_en: "JGB yield (mechanism not instrumented)", label: "日债收益率(暂无源)", term: "日本10年期国债收益率", status: fact, value_text: "找不到免费日频源", note: "艾丽链条的关键中间环。yfinance无代码,FRED的OECD系列已停摆。暂由下游的『日本在卖美债吗』间接看"}
       - {label_en: "Is Japan selling USTs?", label: "日本在卖美债吗", term: "TIC日本持仓月变化", metric: tic_japan_chg, threshold: 0, direction: below, note: "连续在卖"}
       - {label_en: "Yen strong enough to unwind carry?", label: "日元强到撤资线?", term: "USDJPY vs 157", metric: usdjpy, threshold: 157, direction: below, note: "跌破157=撤资开始"}
       - {label_en: "Yen weak enough for intervention?", label: "日元弱到干预线?", term: "USDJPY vs 163", metric: usdjpy, threshold: 163, direction: above, note: "7/31官方出手过的位置"}
@@ -103,8 +118,13 @@ chains:
       - {label_en: "UK selling Treasuries?", label: "英国在卖美债吗", term: "TIC英国持仓环比", metric: tic_uk_chg, threshold: 0, direction: below, note: "含离岸账户,三方同减才算信号"}
       - {label_en: "Yen at intervention line", label: "日元逼近干预线", term: "USDJPY 163", metric: usdjpy, threshold: 163, direction: above, note: "7-31联合干预实际触发位"}
       - {label_en: "Oil out of comfort band", label: "油价出美方舒适区", term: "布伦特>90", metric: brent, threshold: 90, direction: above, note: "产油方的筹码;破位即压力"}
-      - {label_en: "Korea policy rate (ally tightening)", label: "韩国利率(盟友在加息)", term: "韩国央行政策利率", metric: kr_rate, threshold: 2.75, direction: above, note: "艾丽8-27：美方需盟友先加息才能接住他放的水。两个数对不上：艾丽报告说8-27已连续第二次加至3%；BIS官方口径截至8-03仍是2.75%(7-16由2.5加上来的那次)。BIS韩国更新偏慢,新决议要几周才见,所以还没法判谁对"}
+      - {label_en: "Korea policy rate (ally tightening)", label: "韩国利率(盟友在加息)", term: "韩国央行政策利率", metric: kr_rate, threshold: 2.75, direction: above, note: "艾丽8-27：美方需盟友先加息才能接住他放的水。已核实：BIS官方口径确认7-16由2.5加到2.75、8-27由2.75加到3.00，连续两次，与艾丽8-27原话完全一致。(9-10上午BIS还只更新到8-03的2.75，当天下午补齐——是发布滞后不是分歧)"}
       - {label_en: "Japan policy rate (ally tightening)", label: "日本利率(盟友在加息)", term: "日本央行政策利率", metric: jp_rate, threshold: 0.85, direction: above, note: "已越线：日本央行6-17把无担保隔夜拆借目标由0.75加到1.00%。9/17-18还有一次会议;副行长公开施压加息,植田缺席杰克逊霍尔派鹰派田村代行"}
+      # 2026-09-10 增两个盟友。拆艾丽260期拆出一条我们没有的链：盟友先把息加起来「接住」
+      # 美国放出来的水，并从大宗需求端帮美联储压输入性通胀（她叫"外包抗通胀"）。
+      # 原来只有日韩两个点画不出这条线。线取「比美联储上次动作前更高」的邻近整数位。
+      - {label_en: "ECB policy rate (ally tightening)", label: "欧洲利率(盟友在加息)", term: "欧洲央行政策利率", metric: eu_rate, threshold: 2.4, direction: above, note: "2026-09-10欧洲央行加息25bp,存款利率2.25→2.50。盟友加息=帮着把水接住"}
+      - {label_en: "BoE bank rate (ally tightening)", label: "英国利率(盟友在加息)", term: "英国央行基准利率", metric: gb_rate, threshold: 3.5, direction: above, note: "英国央行已警告伊朗战争可能把本国通胀推过4%"}
       - {label_en: "Foreign central banks borrowing USD", label: "外国央行借美元(FIMA)", term: "FIMA回购用量", metric: fima_weekly_usd, threshold: 0, direction: above, note: ">0=以美债换美元而非抛售,合作侧信号"}
 
   - id: ai_credit

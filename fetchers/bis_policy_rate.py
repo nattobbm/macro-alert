@@ -37,17 +37,39 @@ from __future__ import annotations
 import csv
 import datetime as dt
 import io
+import math
 
 import requests
 
 from .base import DataPoint, check_freshness, now_iso
 
+
+def _num(v) -> float | None:
+    """BIS 用字符串 "NaN" 表示节假日（复活节、英国银行假日等），不是空串。
+    2026-09-10 实测英国 400 行里有 13 行是 "NaN"。只判空串挡不住它，
+    而 float("NaN") 是能过的——万一末行正好是假日，NaN 会一路走到网站上。"""
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return f if math.isfinite(f) else None
+
 API = "https://stats.bis.org/api/v1/data/WS_CBPOL/D.{area}/all"
 
 # key → (BIS 地区码, 人话名)。BIS 用 XM 表示欧元区。
+#
+# 2026-09-10 扩到五个。起因：拆完艾丽 260 期，她有一条我们完全没有的链——
+# 「盟友先加息，接住美国放出来的水，并从大宗需求端帮美联储压输入性通胀」，
+# 她管这叫"外包抗通胀"。我们原来只有日韩两个点，画不出这条线。
+# 而 BIS 这个接口本来就覆盖所有主要央行，多取三个只是多三行。
+# 中国那条口径是 LPR 一年期（BIS 自己写在 COMPILATION 里），顺便填上日历里
+# 一直空着的「LPR报价」。
 AREAS = {
     "jp_rate": ("JP", "日本央行政策利率"),
     "kr_rate": ("KR", "韩国央行政策利率"),
+    "eu_rate": ("XM", "欧洲央行政策利率"),
+    "gb_rate": ("GB", "英国央行政策利率"),
+    "cn_lpr":  ("CN", "中国LPR一年期"),
 }
 
 
@@ -61,7 +83,7 @@ def _fetch_one(key: str, area: str, label: str, max_staleness_days: int) -> Data
                          headers={"User-Agent": "macro-alert/2.0"}, timeout=45)
         r.raise_for_status()
         rows = [x for x in csv.DictReader(io.StringIO(r.content.decode("utf-8", "replace")))
-                if (x.get("OBS_VALUE") or "").strip()]
+                if _num(x.get("OBS_VALUE")) is not None]
     except Exception as e:
         dp.stale = True
         dp.stale_reason = f"fetch_error:{type(e).__name__}:{e}"
@@ -71,26 +93,25 @@ def _fetch_one(key: str, area: str, label: str, max_staleness_days: int) -> Data
         dp.stale_reason = "empty_response"
         return dp
     last = rows[-1]
-    try:
-        dp.value = float(last["OBS_VALUE"])
-        dp.as_of = last["TIME_PERIOD"][:10]
-    except Exception as e:
+    v = _num(last.get("OBS_VALUE"))
+    if v is None or not last.get("TIME_PERIOD"):
         dp.stale = True
-        dp.stale_reason = f"parse_error:{type(e).__name__}:{e}"
+        dp.stale_reason = "parse_error:last_row_not_numeric"
         return dp
+    dp.value = v
+    dp.as_of = last["TIME_PERIOD"][:10]
 
     # 日频序列全存下来没意义（几个月才动一次），只留"变动点"：
     # 每次利率真的改了记一条，页面上就能直接读出"哪天加的、从多少到多少"。
     steps: list[list] = []
     prev = None
     for x in rows:
-        v = x["OBS_VALUE"]
-        if prev is None or v != prev:
-            try:
-                steps.append([x["TIME_PERIOD"][:10], float(v)])
-            except ValueError:
-                pass
-        prev = v
+        f = _num(x.get("OBS_VALUE"))
+        if f is None:
+            continue
+        if prev is None or f != prev:
+            steps.append([x["TIME_PERIOD"][:10], f])
+        prev = f
     dp.extra["steps"] = steps[-12:]
     dp.extra["label"] = label
     # BIS 自己写的口径说明，原样带上（前端"?"里可以直接给人看）
