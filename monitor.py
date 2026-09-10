@@ -23,7 +23,7 @@ import yaml
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar, spot_gold, jin10_flash  # noqa: E402
+from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar, spot_gold, jin10_flash, bis_policy_rate  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict, reason  # noqa: E402
 
@@ -206,6 +206,7 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps.append(nyfed.fetch_sofr())
     dps.append(eia.fetch_crude_stocks(
         sources.get("crude_stocks", {}).get("max_staleness_days", 14)))
+    dps += bis_policy_rate.fetch_all(sources)
     dps += market.fetch_all(sources.get("market", {}).get("max_staleness_days", 4))
     # 伦敦金现：判定层的黄金口径（8-25报告的4450-4700带子是按XAUUSD定的）。
     # 传入COMEX价做基差交叉校验，基差离谱则判stale不参与规则。

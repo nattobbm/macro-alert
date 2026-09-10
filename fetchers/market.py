@@ -83,12 +83,22 @@ def fetch_all(max_staleness_days: int = 4, tickers: dict | None = None) -> list[
                 # （开高低都在）。dropna 后"最新收盘"变成 7-17 的数，被当成今天的值 → 误报停更 51 天。
                 # 末根 K 的日期比最后一个有效收盘晚 3 天以上，说明长端点数据稀疏，用短端点重拉一次；
                 # 短端点（10d）当天返回的是完整的 9-04 收盘 17.61。
-                if len(closes) and (last_bar_date - closes.index[-1].date()).days > 3:
+                # 2026-09-10 再修：上面那个条件只认"长端点有洞 + 末根K坏"这一种形态。
+                # 今天 ^VIX3M 的 1y 历史**整个停在 7-17**，末根K和最后有效收盘是同一天，
+                # 缺口=0 → 不触发重拉 → 拿 7-17 的 20.54 当今天，报"停更55天"。
+                # 而同一时刻 5d/1mo 端点都有 9-09 的 18.87（该代码在 yfinance 上只返一根K，
+                # 长端点基本是空的）。所以改成**按结果判**：不管什么原因，只要拿到的收盘
+                # 超过 3 天旧，就用短端点再试一次，新的就换。原来那个缺口条件作为并集保留。
+                _today = dt.date.today()
+                _gap = (last_bar_date - closes.index[-1].date()).days if len(closes) else 0
+                _age = (_today - closes.index[-1].date()).days if len(closes) else 0
+                if len(closes) and (_gap > 3 or _age > 3):
                     try:
                         h2 = yf.Ticker(sym).history(period="10d", auto_adjust=False)
                         c2 = h2["Close"].dropna() if not h2.empty else None
                         if c2 is not None and len(c2) and c2.index[-1].date() > closes.index[-1].date():
-                            dp.extra["history_gap_days"] = (last_bar_date - closes.index[-1].date()).days
+                            dp.extra["history_gap_days"] = _gap
+                            dp.extra["stale_days_before_retry"] = _age
                             dp.extra["retry"] = "10d"
                             h, closes = h2, c2
                     except Exception:

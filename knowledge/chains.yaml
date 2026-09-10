@@ -103,8 +103,8 @@ chains:
       - {label_en: "UK selling Treasuries?", label: "英国在卖美债吗", term: "TIC英国持仓环比", metric: tic_uk_chg, threshold: 0, direction: below, note: "含离岸账户,三方同减才算信号"}
       - {label_en: "Yen at intervention line", label: "日元逼近干预线", term: "USDJPY 163", metric: usdjpy, threshold: 163, direction: above, note: "7-31联合干预实际触发位"}
       - {label_en: "Oil out of comfort band", label: "油价出美方舒适区", term: "布伦特>90", metric: brent, threshold: 90, direction: above, note: "产油方的筹码;破位即压力"}
-      - {label_en: "Korea policy rate (ally tightening)", label: "韩国利率(盟友在加息)", term: "韩国央行政策利率", metric: kr_rate, threshold: 2.75, direction: above, note: "艾丽8-27：美方需盟友先加息才能接住他放的水。8-27已连续第二次加至3%"}
-      - {label_en: "Japan policy rate (ally tightening)", label: "日本利率(盟友在加息)", term: "日本央行政策利率", metric: jp_rate, threshold: 0.85, direction: above, note: "9/17-18会议;副行长公开施压加息,植田缺席杰克逊霍尔派鹰派田村代行"}
+      - {label_en: "Korea policy rate (ally tightening)", label: "韩国利率(盟友在加息)", term: "韩国央行政策利率", metric: kr_rate, threshold: 2.75, direction: above, note: "艾丽8-27：美方需盟友先加息才能接住他放的水。两个数对不上：艾丽报告说8-27已连续第二次加至3%；BIS官方口径截至8-03仍是2.75%(7-16由2.5加上来的那次)。BIS韩国更新偏慢,新决议要几周才见,所以还没法判谁对"}
+      - {label_en: "Japan policy rate (ally tightening)", label: "日本利率(盟友在加息)", term: "日本央行政策利率", metric: jp_rate, threshold: 0.85, direction: above, note: "已越线：日本央行6-17把无担保隔夜拆借目标由0.75加到1.00%。9/17-18还有一次会议;副行长公开施压加息,植田缺席杰克逊霍尔派鹰派田村代行"}
       - {label_en: "Foreign central banks borrowing USD", label: "外国央行借美元(FIMA)", term: "FIMA回购用量", metric: fima_weekly_usd, threshold: 0, direction: above, note: ">0=以美债换美元而非抛售,合作侧信号"}
 
   - id: ai_credit

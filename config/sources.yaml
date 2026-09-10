@@ -118,11 +118,24 @@ sources:
   # ---- 盟友政策利率（国家博弈链）----
   # 艾丽8-27判断：美方需要盟友先把息加起来，才能接住他放出来的水。
   # 美日韩已是三方外汇协调机制（7月联合干预、8月日韩东京会谈）。
-  # 月频OECD口径，滞后约2个月——只作"方向确认"不作即时触发。
-  kr_rate:    {tier: 1, provider: fred, series: IRSTCI01KRM156N, unit: "%", max_staleness_days: 100,
-               desc: "韩国央行即期政策利率(OECD口径)。8-27连续第二次加息至3%"}
-  jp_rate:    {tier: 1, provider: fred, series: IRSTCI01JPM156N, unit: "%", max_staleness_days: 100,
-               desc: "日本央行即期政策利率(OECD口径)。9/17-18会议为观测点"}
+  #
+  # 2026-09-10 由 FRED(OECD) 换成 BIS。两个理由，第二个比第一个重：
+  #   ① 源停了：IRSTCI01JPM156N/IRSTCI01KRM156N 在 2026-07-16 之后再没更新，
+  #      最新数据停在 2026-06。整个 OECD MEI 数据族都在停摆，换兄弟序列没用。
+  #   ② 口径本来就不对：IRSTCI 是"市场实际成交的隔夜拆借月均值"，不是政策利率。
+  #      实测 2026-06：FRED 给日本 0.841，而日本央行 6-17 起的目标是 1.00%。
+  #      节点的线是 0.85 —— 用 0.841 判"没越线"，用 1.00 判"已越线"，结论相反。
+  #      口径纪律的利率版：实际成交均值 ≠ 政策目标。
+  # BIS WS_CBPOL 数据集名就叫 Central bank policy rates，口径写在数据自带的
+  # COMPILATION 字段里，不用我们猜。免密钥、日频。
+  #
+  # max_staleness 90：BIS 各国发布节奏不同，实测日本到 2026-09-01（9天）、
+  # 韩国只到 2026-08-03（38天）。政策利率几个月才动一次，两次会议之间值一直有效，
+  # 所以放宽是对的；真断更（连着两季不发）仍然报得出来。
+  kr_rate:    {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
+               desc: "韩国央行基准利率(BIS口径:Bank of Korea base rate)。BIS更新偏慢,新加息会晚几周才见"}
+  jp_rate:    {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
+               desc: "日本央行政策利率(BIS口径:无担保隔夜拆借利率目标)。9/17-18会议为观测点"}
 
   # ---- 伦敦金现 XAUUSD (无需key) ----
   # 判定层的黄金口径。8-25报告的4450-4700带子写的是XAUUSD，此前误用COMEX期货判定。
