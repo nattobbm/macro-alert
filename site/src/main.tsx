@@ -25,17 +25,29 @@ function applyFreshHikeOdds(full: any, q: Record<string, any>) {
       mo[slot] = { ...(cur ?? {}), value: fresh.value, as_of: fresh.as_of, stale: false }
     }
   }
-  // 按后端同一条规则重选判定用哪个源：3 天内、as_of 最新；并列时按
-  // CME → ZQ → Polymarket 取第一个（和 monitor.py 里 max() 的行为一致）
+  // 选源规则和后端一字不差（monitor.py build_ctx 里那段）：
+  // 3 天保质期这道闸照留，闸内按固定优先级 ZQ → Polymarket → CME 取。
+  // **不能按 as_of 比大小**：ZQ 的 as_of 是期货最后交易日的结算日，Polymarket 的是此刻，
+  // 两种含义不同的时间戳比大小，会让每个 UTC 零点之后自动切到 Polymarket，
+  // 首页数字凭空跳十几个百分点（9-12 02:19Z 实测 92.3% → 78.5%）。
   const today = new Date().toISOString().slice(0, 10)
   const ageDays = (d: string) =>
     Math.floor((Date.parse(today + 'T00:00:00Z') - Date.parse(d + 'T00:00:00Z')) / 864e5)
+  // 主源定死 ZQ，备源 CME 人工，**Polymarket 只做交叉校验、永不顶替**。
+  // 这是后端 monitor.py 2026-09-10 那次改动的规则，前端必须一字不差地跟，
+  // 否则同一个数会在"完整跑"和"盘中刷新"之间来回换源。
+  // 他们量化过：73 次两源同时有值，ZQ 100% 高于 Polymarket，中位差 13.1pp；
+  // 按 as_of 选源在 73 次里切了 12 次，每次跳 12.9pp，其中 1 次跨过 65% 阈值
+  // 被当成"市场重定价"推给了用户——行情根本没动。
+  const PRIO = ['zq_auto', 'cme_manual']
   let best: { v: number; as_of: string; label: string } | null = null
-  for (const [slot, , label] of HIKE_SLOTS) {
+  for (const slot of PRIO) {
     const c = mo[slot]
     if (!c || c.value == null || !c.as_of || c.stale) continue
     if (ageDays(c.as_of) > 3) continue
-    if (!best || c.as_of > best.as_of) best = { v: c.value, as_of: c.as_of, label }
+    const label = (HIKE_SLOTS.find(s => s[0] === slot) ?? [, , slot])[2] as string
+    best = { v: c.value, as_of: c.as_of, label }
+    break
   }
   if (!best) return
 
