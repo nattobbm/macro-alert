@@ -19,18 +19,36 @@ def fetch(max_staleness_days: int = 3) -> DataPoint:
     try:
         evs = http_get(URL, {"slug": SLUG})
         ev = evs[0] if isinstance(evs, list) else evs
+        import json as _json
+        # 2026-09-12：把五档全存下来（降50+/降25/不动/加25/加50+），三方对照页要显示
+        # "维持"那一档，不能只有加息一个数。
+        dist, vol = {}, {}
         for m in ev.get("markets", []):
             q = (m.get("question") or "").lower()
-            if "increase" in q and "25 bps" in q and "50" not in q:
-                import json as _json
-                prices = m.get("outcomePrices")
-                if isinstance(prices, str):
-                    prices = _json.loads(prices)
-                dp.value = round(float(prices[0]), 3)   # YES价=概率
-                dp.as_of = dt.date.today().isoformat()
-                dp.extra = {"volume_mn": round(float(m.get("volume", 0) or 0) / 1e6, 1),
-                            "note": "预测市场口径，与ZQ期货/CME不等同，仅并列参照"}
-                break
+            prices = m.get("outcomePrices")
+            if isinstance(prices, str):
+                prices = _json.loads(prices)
+            try:
+                p = round(float(prices[0]), 3)   # YES价=概率
+            except (TypeError, ValueError, IndexError):
+                continue
+            if "no change" in q:
+                leg = "hold"
+            elif "increase" in q:
+                leg = "hike50p" if "50" in q else ("hike25" if "25 bps" in q else None)
+            elif "decrease" in q:
+                leg = "cut50p" if "50" in q else ("cut25" if "25 bps" in q else None)
+            else:
+                leg = None
+            if not leg:
+                continue
+            dist[leg] = p
+            vol[leg] = round(float(m.get("volume", 0) or 0) / 1e6, 1)
+        if "hike25" in dist:
+            dp.value = dist["hike25"]
+            dp.as_of = dt.date.today().isoformat()
+            dp.extra = {"dist": dist, "volume_mn": vol,
+                        "note": "预测市场口径，与ZQ期货/CME不等同，仅并列参照"}
     except Exception as e:
         dp.stale = True
         dp.stale_reason = f"fetch_error:{type(e).__name__}:{str(e)[:80]}"

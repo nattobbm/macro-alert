@@ -23,7 +23,7 @@ import yaml
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, econ_calendar, spot_gold, jin10_flash, bis_policy_rate, jgb  # noqa: E402
+from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, kalshi, econ_calendar, spot_gold, jin10_flash, bis_policy_rate, jgb  # noqa: E402
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict, reason  # noqa: E402
 
@@ -53,6 +53,7 @@ LABELS = {
     "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
     "usdjpy": "美元兑日元", "brent": "油价Brent", "wti": "油价WTI", "move": "债市恐慌指数MOVE",
     "auctions": "国债拍卖认购", "gex_net": "做市商GEX", "fedwatch_zq_sep": "9月加息概率(期货算)", "polymarket_sep_hike": "9月加息概率(押注市场)", "fedwatch_sep_hike": "9月加息概率(手动)",
+    "kalshi_sep_hike": "9月加息概率(Kalshi)",
     "fima_weekly_usd": "外国央行借美元(FIMA)", "war_risk_premium": "战争险费率(手动)",
     "auction_tail_bp": "拍卖尾差(手动)",
 }
@@ -80,6 +81,7 @@ LABELS_EN = {
     "usdjpy": "USD/JPY", "brent": "Brent Oil", "wti": "WTI Oil", "move": "MOVE Bond Vol",
     "auctions": "Auction Bid-to-Cover", "gex_net": "Dealer GEX", "fedwatch_zq_sep": "Sep Hike Odds (Futures)",
     "polymarket_sep_hike": "Sep Hike Odds (Polymarket)", "fedwatch_sep_hike": "Sep Hike Odds (Manual)",
+    "kalshi_sep_hike": "Sep Hike Odds (Kalshi)",
     "fima_weekly_usd": "FIMA Repo Usage", "war_risk_premium": "War Risk Premium (Manual)",
     "auction_tail_bp": "Auction Tail (Manual)",
 }
@@ -274,6 +276,7 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps.append(fedwatch_zq.fetch(DATA / "fedwatch"))
     dps.append(econ_calendar.fetch(DATA / "econ_cal"))
     dps.append(polymarket.fetch())
+    dps.append(kalshi.fetch())        # 2026-09-12 第三个市场，三方对照用；只并列不顶替
     return dps
 
 
@@ -1323,7 +1326,8 @@ def run_quotes_only() -> None:
     # 这两个源都很便宜——ZQ 是一次 yfinance + 一次 FRED，Polymarket 是一次 HTTP，
     # 加进来不影响轻量通道"十几秒跑完"的定位。失败不阻断。
     for _k, _fn in (("fedwatch_zq_sep", lambda: fedwatch_zq.fetch(DATA / "fedwatch")),
-                    ("polymarket_sep_hike", lambda: polymarket.fetch())):
+                    ("polymarket_sep_hike", lambda: polymarket.fetch()),
+                    ("kalshi_sep_hike", lambda: kalshi.fetch())):
         try:
             _dp = _fn()
             if _dp.value is not None and not _dp.stale:
@@ -1397,7 +1401,13 @@ def main():
     by_key_pre = {dp.key: dp for dp in dps}
     def _v(k):
         d = by_key_pre.get(k)
-        return {"value": d.value, "as_of": d.as_of, "stale": d.stale} if d else None
+        if not d:
+            return None
+        out = {"value": d.value, "as_of": d.as_of, "stale": d.stale}
+        # Polymarket / Kalshi 带五档分布（降50+/降25/不动/加25/加50+），三方对照页要"维持"那一档
+        if d.extra.get("dist"):
+            out["dist"] = d.extra["dist"]
+        return out
     odds_series = []
     fw_dir = DATA / "fedwatch"
     if fw_dir.exists():
@@ -1411,8 +1421,36 @@ def main():
         "zq_auto": _v("fedwatch_zq_sep"),
         "cme_manual": _v("fedwatch_sep_hike"),
         "polymarket": _v("polymarket_sep_hike"),
+        "kalshi": _v("kalshi_sep_hike"),
         "series_zq": odds_series[-120:],
     }
+    # 三方对照：市场怎么押 / 我们怎么判 / 叙事怎么说，到期一起记账。
+    # 2026-09-12 建。Polymarket 生态 170 多个工具全都只读市场，没有一个把"叙事"拿去对着
+    # 市场结算。叙事登记簿在 knowledge/narrative_calls.yaml（只登带日期带判据的判断）。
+    # 市场那一栏前端从 market_odds 现取（这样盘中轻量刷新也能跟上），这里只拼叙事和我们。
+    try:
+        _nc = yaml.safe_load((ROOT / "knowledge" / "narrative_calls.yaml").read_text(encoding="utf-8")) or {}
+        _open_by_id = {o["id"]: o for o in scorecard_data.get("open_list", [])}
+        showdown = []
+        for c in _nc.get("calls", []):
+            ours = _open_by_id.get(c.get("our_ref")) if c.get("our_ref") else None
+            showdown.append({
+                "id": c["id"], "event": c.get("event"), "event_en": c.get("event_en"),
+                "settle_date": c.get("settle_date"), "market_ref": c.get("market_ref") or "none",
+                "narrative": {k: c.get(k) for k in
+                              ("who", "who_en", "said_on", "source", "judgment", "judgment_en",
+                               "reasoning", "quote", "criterion", "criterion_en")},
+                "ours": ({"id": ours["id"], "ranking": ours.get("ranking"),
+                          "labels": ours.get("scenario_labels") or {},
+                          "signed_at": ours.get("signed_at"), "reasoning": ours.get("reasoning")}
+                         if ours else None),
+                "outcome": c.get("outcome"), "settled_at": c.get("settled_at"),
+                "settle_note": c.get("settle_note"),
+            })
+        scorecard_data["showdown"] = showdown
+    except Exception as e:
+        print(f"[warn] narrative_calls: {e}", file=sys.stderr)
+        scorecard_data["showdown"] = []
     cal = rules.get("calendar", [])
     try:
         news_items = news.fetch_news(DATA / "news.json")

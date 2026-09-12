@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { chains, verdicts, predictions, rateProbabilities, news, calEvents } from '../data/live'
+import { chains, verdicts, predictions, rateProbabilities, news, calEvents, showdown, marketOdds } from '../data/live'
 import { t as tr, isEN } from '../i18n'
 
 const STATUS_META = {
@@ -270,6 +270,92 @@ export default function ReasoningPage() {
               </div>
             ))}
           </div>
+
+          {/* 三方对照：同一件事，市场用钱押、我们用逻辑链判、博主用叙事说。到期一起记账。
+              2026-09-12 建。市场栏从 marketOdds 现取，盘中轻量刷新会跟着更新；
+              叙事和我们两栏来自完整跑（narrative_calls.yaml + predictions/open）。 */}
+          {showdown.length > 0 && (
+            <div className="neu-inset p-4 space-y-3">
+              <div>
+                <div className="text-sm font-medium" style={{ color: 'var(--text)' }}>{tr('showdown_title')}</div>
+                <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>{tr('showdown_hint')}</div>
+              </div>
+              {showdown.map(s => {
+                const pct = (v: any) => (v == null || Number.isNaN(+v)) ? '—' : `${Math.round(+v * 100)}%`
+                const mo = marketOdds
+                const hasMkt = s.market_ref === 'fomc_sep' && mo
+                const oc = s.outcome
+                const ocStyle = oc === 'hit' ? { bg: 'var(--st-ok-bg)', fg: 'var(--st-ok-text)' }
+                  : oc === 'miss' ? { bg: 'var(--st-fire-bg)', fg: 'var(--st-fire-text)' }
+                  : { bg: 'var(--st-mute-bg)', fg: 'var(--st-mute-text)' }
+                const ocText = oc === 'hit' ? tr('sd_hit') : oc === 'miss' ? tr('sd_miss') : oc === 'void' ? tr('sd_void') : tr('sd_pending')
+                const rankText = s.ours?.ranking
+                  ? s.ours.ranking.split('>').map(k => k.trim()).map(k => s.ours!.labels?.[k] ?? k).join(' ＞ ')
+                  : null
+                // 市场行：加息那一档为主，有五档分布的再带上"维持"
+                const mktRow = (label: string, o: any) => o && o.value != null ? (
+                  <div key={label} className="flex justify-between gap-2">
+                    <span style={{ color: 'var(--text-muted)' }}>{label}{o.as_of ? ` · ${String(o.as_of).slice(5)}` : ''}</span>
+                    <span className="font-num notranslate" style={{ color: 'var(--text)' }}>
+                      {isEN ? 'hike ' : '加息 '}{pct(o.value)}
+                      {o.dist?.hold != null && <span style={{ color: 'var(--text-muted)' }}> · {isEN ? 'hold ' : '维持 '}{pct(o.dist.hold)}</span>}
+                    </span>
+                  </div>
+                ) : null
+                return (
+                  <div key={s.id} className="neu-inset-sm p-3 space-y-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="text-sm font-medium" style={{ color: 'var(--text)' }}>
+                        {s.event}
+                        <span className="text-xs font-normal ml-2" style={{ color: 'var(--text-muted)' }}>{tr('sd_settles')} {s.settle_date}</span>
+                      </div>
+                      <span className="text-xs px-2 py-0.5 rounded-full flex-shrink-0" style={{ backgroundColor: ocStyle.bg, color: ocStyle.fg }}>{ocText}</span>
+                    </div>
+                    <div className="grid gap-2 sm:grid-cols-3 text-xs" style={{ lineHeight: 1.6 }}>
+                      {/* 市场 */}
+                      <div className="space-y-1">
+                        <div className="font-medium" style={{ color: 'var(--st-ok-text)' }}>{tr('sd_market')}</div>
+                        {hasMkt ? (
+                          <>
+                            {mktRow(isEN ? 'ZQ futures' : 'ZQ期货', mo.zq_auto)}
+                            {mktRow('Polymarket', mo.polymarket)}
+                            {mktRow('Kalshi', mo.kalshi)}
+                          </>
+                        ) : (
+                          <div style={{ color: 'var(--text-muted)' }}>{tr('sd_no_market')}</div>
+                        )}
+                      </div>
+                      {/* 我们 */}
+                      <div className="space-y-1">
+                        <div className="font-medium" style={{ color: 'var(--st-ok-text)' }}>{tr('sd_ours')}</div>
+                        {s.ours ? (
+                          <>
+                            {rankText && <div className="font-medium" style={{ color: 'var(--text)' }}>{rankText}</div>}
+                            {s.ours.signed_at && <div style={{ color: 'var(--text-muted)' }}>{tr('sd_signed')} {s.ours.signed_at}</div>}
+                            {s.ours.reasoning && <div style={{ color: 'var(--text)' }}>「{s.ours.reasoning}」</div>}
+                          </>
+                        ) : (
+                          <div style={{ color: 'var(--text-muted)' }}>—</div>
+                        )}
+                      </div>
+                      {/* 叙事 */}
+                      <div className="space-y-1">
+                        <div className="font-medium" style={{ color: 'var(--st-ok-text)' }}>{tr('sd_narr')}</div>
+                        <div style={{ color: 'var(--text-muted)' }}>{s.narrative.who} · {tr('sd_said_on')} {s.narrative.said_on}</div>
+                        <div className="font-medium" style={{ color: 'var(--text)' }}>{s.narrative.judgment}</div>
+                        {s.narrative.quote && <div style={{ color: 'var(--text-muted)' }}>「{s.narrative.quote}」</div>}
+                        {s.narrative.criterion && <div style={{ color: 'var(--text-muted)' }}>{tr('sd_criterion')}：{s.narrative.criterion}</div>}
+                      </div>
+                    </div>
+                    {s.settle_note && <div className="text-xs" style={{ color: 'var(--st-warn-text)' }}>{s.settle_note}</div>}
+                  </div>
+                )
+              })}
+              <div className="text-xs" style={{ color: 'var(--text-muted)', opacity: 0.8 }}>
+                {isEN ? 'Market prices from each platform\'s public API, shown for reference only. This site does not trade.' : '市场价来自各平台公开接口，仅展示参照。本站不做交易。'}
+              </div>
+            </div>
+          )}
 
           {/* Prediction list */}
           <div className="grid gap-2">

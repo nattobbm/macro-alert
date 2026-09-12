@@ -1,0 +1,53 @@
+# 叙事判断登记簿 · 外部博主/机构对同一事件的**事前**判断，到期和市场、和我们一起结算。
+#
+# 2026-09-12 建。起因：拆完艾丽 260 期（57.4 万字）发现她的框架解释力极强但几乎不结算——
+# 判据给了不回收，涨跌双向兼容。Polymarket 生态 170 多个工具都只读市场，没有一个
+# 把"叙事"拿去对着市场结算。我们做的就是这一格：**市场 / 我们 / 叙事，三方并排，到期记账。**
+#
+# 纪律：
+#   - 只登记**带日期、带判据**的判断。"长期看涨"这种没有失效条件的不登。
+#   - quote 必须是原话（来自字幕转写，可能有同音错字），不许润色。
+#   - 登记后 judgment / quote / said_on 不得修改；结算只填 outcome / settled_at / settle_note。
+#   - outcome：hit（说对）/ miss（说错）/ void（事件没发生或无法判定）/ null（未结算）。
+#   - market_ref：对应哪个市场对手盘。没有就写 none，页面上诚实标"无市场对手盘"，不硬凑。
+
+calls:
+  - id: alie_2026-08-30_fomc_sep_hold
+    who: 艾丽
+    who_en: Alie (Chinese macro commentator)
+    said_on: "2026-08-30"
+    source: "「艾丽的无废话财经」8.30 关于「美联储会不会加息」"
+    event: 9月FOMC（2026-09-15/16，决议9-16）
+    event_en: Sep FOMC (Sep 15-16, decision Sep 16)
+    judgment: 中期选举前美联储倾向按兵不动
+    judgment_en: Fed likely holds before the midterms
+    reasoning: 选举前保独立性、避免显著政策转变；五个工作组的报告与政策建议尚未出台，沃什有理由暂时不动；替代路径是改通胀衡量口径
+    quote: "9月和10月的议息会议都要为这个潜在的不确定因素接受最现实的考验"
+    criterion: 说对＝9月维持不变；说错＝9月加息或降息
+    criterion_en: hit = hold in Sep; miss = hike or cut in Sep
+    settle_date: "2026-09-16"
+    market_ref: fomc_sep          # 对应 market_odds（ZQ / Polymarket / Kalshi 都有）
+    our_ref: 2026-09-16_fomc_hike_scenario   # 对应我们的预测单
+    outcome: null
+    settled_at: null
+    settle_note: null
+
+  - id: alie_2026-09-08_boj_sep_move
+    who: 艾丽
+    who_en: Alie (Chinese macro commentator)
+    said_on: "2026-09-08"
+    source: "「艾丽的无废话财经」9.8 这两天的日元汇率快速升值"
+    event: 9月日本央行会议（2026-09-17/18）
+    event_en: Sep BOJ meeting (Sep 17-18)
+    judgment: 日本9月按兵不动的可能性非常低（即她预期日本会动）
+    judgment_en: Very unlikely BOJ stands pat in Sep (she expects a move)
+    reasoning: 155 分界点已被打开；日本已通过"口头加息"实现部分效果；7月名义工资增速创1997年以来最大、连续六个月超3%；不排除美日进一步联合干预
+    quote: "很重要的一个分界点就是155的这个分界点目前已经被打开"
+    criterion: 说对＝9月加息；说错＝按兵不动
+    criterion_en: hit = BOJ hikes in Sep; miss = holds
+    settle_date: "2026-09-18"
+    market_ref: none              # Kalshi 只有一个 2025-03 的旧 BOJ 市场，Polymarket 没有。诚实标无
+    our_ref: null                 # 我们没签这条
+    outcome: null
+    settled_at: null
+    settle_note: null

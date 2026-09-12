@@ -219,6 +219,21 @@ export interface Prediction {
 export interface PredEvidence {
   at?: string; who?: string; what?: string; bearing?: string; source?: string;
 }
+// 三方对照：同一件事，市场怎么押 / 我们怎么判 / 叙事怎么说，到期一起结算
+export interface Showdown {
+  id: string; event: string; settle_date: string;
+  market_ref: string;                       // 'fomc_sep' 之类，'none' = 无市场对手盘
+  narrative: {
+    who: string; said_on: string; source?: string;
+    judgment: string; reasoning?: string; quote?: string; criterion?: string;
+  };
+  ours: {
+    id: string; ranking?: string | null; labels?: Record<string, string>;
+    signed_at?: string; reasoning?: string;
+  } | null;
+  outcome: 'hit' | 'miss' | 'void' | null;
+  settled_at?: string | null; settle_note?: string | null;
+}
 
 export const predictions: Prediction[] = [
   { id: 'p1', question: '联储2025年3月维持不变（不降息）', locked: true,  settle_date: '2025-03-20', status: 'open' },

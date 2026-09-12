@@ -52,6 +52,8 @@ def scorecard(pred_dir: str | Path) -> dict:
                           "scenario_labels": {k.split("_", 1)[0]: k.split("_", 1)[1] if "_" in k else k
                                               for k in (j.get("scenarios") or {}).keys()},
                           "signed_at": (j.get("signed_at") or j.get("created_at") or "")[:10],
+                          # 三方对照页要把"为什么这么排"那一句摆出来，和博主的理由并排
+                          "reasoning": j.get("reasoning_ex_ante"),
                           "evidence": [
                               {"at": e.get("event_time_bj") or e.get("logged_at"),
                                "who": e.get("who"), "what": e.get("what"),

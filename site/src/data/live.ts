@@ -3,7 +3,7 @@
 // 任一字段缺失时回落到 mock，保证页面永不空白。
 import * as mock from './mock'
 import { isEN } from '../i18n'
-import type { OHLC, Snapshot, Alert, Chain, ChainNode, Verdict, Prediction, PredEvidence, NewsItem, CalEvent, AuctionRow, AlertRule, GexBar, DataSource } from './mock'
+import type { OHLC, Snapshot, Alert, Chain, ChainNode, Verdict, Prediction, PredEvidence, NewsItem, CalEvent, AuctionRow, AlertRule, GexBar, DataSource, Showdown } from './mock'
 
 const L: any = (globalThis as any).__LATEST ?? null
 export const isLive = !!L
@@ -168,8 +168,37 @@ export const rateProbabilities = mo
       oddsRow('期货算出来的(ZQ)', 'Futures-implied (ZQ)', mo.zq_auto, '#5b9eb8'),
       oddsRow('CME官网读的', 'CME site (manual)', mo.cme_manual, '#6bb89a'),
       oddsRow('Polymarket押注', 'Polymarket', mo.polymarket, '#d4a848'),
+      // 2026-09-12 第四个：CFTC 监管的美国场子。和 Polymarket 一样只并列，不顶替主源
+      oddsRow('Kalshi押注', 'Kalshi', mo.kalshi, '#a088c0'),
     ].filter(r => r.prob > 0)
   : mock.rateProbabilities
+
+// ── 三方对照：市场怎么押 / 我们怎么判 / 叙事怎么说，到期一起结算 ──
+// 市场那一栏在页面上从 marketOdds 现取（main.tsx 的盘中覆盖会更新它），
+// 后端只拼叙事和我们（knowledge/narrative_calls.yaml + predictions/open）。
+export const marketOdds: any = mo ?? null
+export const showdown: Showdown[] = ((L?.predictions?.showdown ?? []) as any[]).map((s): Showdown => ({
+  id: s.id,
+  event: (isEN && s.event_en) ? s.event_en : s.event,
+  settle_date: s.settle_date ?? '—',
+  market_ref: s.market_ref ?? 'none',
+  narrative: {
+    who: (isEN && s.narrative?.who_en) ? s.narrative.who_en : (s.narrative?.who ?? ''),
+    said_on: s.narrative?.said_on ?? '',
+    source: s.narrative?.source,
+    judgment: (isEN && s.narrative?.judgment_en) ? s.narrative.judgment_en : (s.narrative?.judgment ?? ''),
+    reasoning: s.narrative?.reasoning,
+    quote: s.narrative?.quote,
+    criterion: (isEN && s.narrative?.criterion_en) ? s.narrative.criterion_en : s.narrative?.criterion,
+  },
+  ours: s.ours ? {
+    id: s.ours.id, ranking: s.ours.ranking ?? null, labels: s.ours.labels ?? {},
+    signed_at: s.ours.signed_at, reasoning: s.ours.reasoning,
+  } : null,
+  outcome: s.outcome ?? null,
+  settled_at: s.settled_at ?? null,
+  settle_note: s.settle_note ?? null,
+}))
 
 // ── 官方消息流 ──
 const rel = (iso?: string) => {
