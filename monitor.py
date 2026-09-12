@@ -1089,6 +1089,10 @@ def _fill_actuals(dps: list, econ_events: list[dict]) -> int:
         m = ACTUAL_MAP.get(ev.get("title"))
         if not m or ev.get("actual"):
             continue
+        # 2026-09-12 修：映射只按标题，中国 9-08 的「消费者物价CPI(年)」（预期 0.8%）被填上了
+        # 美国 CPI 的 3.4%——串数据时发现的。实际值序列全是美国官方序列，非美事件一律不填。
+        if (ev.get("country") or "USD") != "USD":
+            continue
         try:
             rel = dt.date.fromisoformat(ev["date"])
         except Exception:
@@ -1275,6 +1279,9 @@ QUOTE_TICKERS = {
     "spx": "^GSPC", "vix": "^VIX", "gold": "GC=F", "silver": "SI=F",
     "dxy": "DX-Y.NYB", "usdjpy": "JPY=X", "brent": "BZ=F", "move": "^MOVE",
     "btc": "BTC-USD", "es": "ES=F", "nq": "NQ=F",
+    # 2026-09-12 Momo：「不累就加，我们有些国内用户」。浏览器端走腾讯直连（国内最快），
+    # 这里是 Actions 侧的兜底（腾讯取不到时前端回落到 quotes.json）。只显示，不进任何判定。
+    "sse": "000001.SS", "chinext": "399006.SZ", "hsi": "^HSI",
 }
 
 

@@ -39,6 +39,12 @@ const TX_HF: Record<string, [string, string]> = {
 const TX_US: Record<string, [string, string]> = {
   spx:  ['us.INX', 'SPX现货指数'],
   ndx:  ['usNDX',  '纳斯达克100'],
+  // 2026-09-12 加沪深港三指数（Momo：国内有用户，不累就加）。腾讯 sh/sz/hk 前缀和 us* 同一种
+  // ~分隔格式：[1]名称 [3]现价 [4]昨收。腾讯服务器在国内，这三条对国内用户比任何境外源都快。
+  // 只显示，不进 ctx / 规则 / 链条——站的判定仍是美元资产那套，定位没变。
+  sse:     ['sh000001', '上证指数'],
+  chinext: ['sz399006', '创业板指'],
+  hsi:     ['hkHSI',    '恒生指数'],
 }
 
 // ── 东方财富（免密钥，覆盖外汇与美元指数）────────────────────
@@ -136,6 +142,10 @@ export const TRADING_ORDER: { key: string; label: string; note: string; dp: numb
   { key: 'xag', label: 'XAGUSD',     note: '伦敦银现', dp: 3 },
   { key: 'btc', label: 'BTCUSD',     note: '20分钟粒度(国内无实时源)', dp: 0 },
   { key: 'oil', label: '布伦特原油',  note: '', dp: 2 },
+  // label 带 notranslate，所以中英各写一半，英文页不至于只剩汉字
+  { key: 'sse',     label: '上证 SSE',      note: 'A股（腾讯直连，国内最快）', dp: 2 },
+  { key: 'chinext', label: '创业板 ChiNext', note: 'A股', dp: 2 },
+  { key: 'hsi',     label: '恒生 HSI',      note: '港股', dp: 2 },
 ]
 
 // 快照卡的指标key ← 实时报价key 的对照表。
