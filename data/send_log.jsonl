@@ -8,3 +8,4 @@
 {"ts": "2026-09-12T02:19:15Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": null, "trigger": "workflow_dispatch", "why": ["judge:None|判据未触发->确认金融抑制主导"], "muted": [], "chars": null, "head": null, "source": "回填 2026-09-12：从 git data 提交 + GitHub Actions API 反推，非当场记录"}
 {"ts": "2026-09-12T03:19:44Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 222, "head": "*【09\\-12】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
 {"ts": "2026-09-12T07:49:31Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 222, "head": "*【09\\-12】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
+{"ts": "2026-09-12T12:39:49Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 223, "head": "*【09\\-12】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
