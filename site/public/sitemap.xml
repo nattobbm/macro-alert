@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://cypermow.com/</loc><changefreq>hourly</changefreq></url>
+  <url><loc>https://cypermow.com/llms.txt</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://cypermow.com/data/latest.json</loc><changefreq>hourly</changefreq></url>
+  <url><loc>https://cypermow.com/data/quotes.json</loc><changefreq>always</changefreq></url>
+</urlset>

@@ -51,3 +51,45 @@ calls:
     outcome: null
     settled_at: null
     settle_note: null
+
+  # ── 2026-09-12 外来素材批次（Momo 转发的抖音文案，见资产库 内容库/2026-09-12_外来素材_抖音8篇_核实与采纳.md）──
+  # said_on 用 Momo 转发日：视频原发日期查不到，但判断在转发前已作出，作为事前时间戳够用。
+  - id: chenjie_2026-09-12_ai_bubble_2027
+    who: 陈洁（凯尔特亚洲创投合伙人；视频称"福布斯中国CEO"，核实不是）
+    who_en: Chen Jie (Celtic House Asia Partners; video mislabels her as Forbes China CEO)
+    said_on: "2026-09-12"
+    source: "抖音转写「天爱Talk｜专访陈洁」。访谈本身在 B站/YouTube/抖音 均未检索到，只有这份转写"
+    event: AI 泡沫是否在 2027 年底破裂
+    event_en: Does the AI bubble burst by end-2027
+    judgment: AI 全方位泡沫在 2027 年底破裂——一批 AI 公司集中上市后业绩兑现不了
+    judgment_en: Broad AI bubble bursts by end-2027 when a wave of AI IPOs fails to deliver
+    reasoning: 美国一级市场涌入几千亿美金但真正产生的收入不到十分之一；估值跑得比商业化快太多；集中 IPO 后业绩兑现不了就是爆破节点
+    quote: "全方位的泡沫，在2027年底。"
+    criterion: 判据她没给，我们定：说对＝2027-07-01 至 2027-12-31 之间，纳指100 或 费城半导体指数 从历史高点回撤 ≥30%；说错＝到 2027-12-31 都没有
+    criterion_en: Our criterion (she gave none) - hit = NDX or SOX draws down >=30% from ATH between 2027-07-01 and 2027-12-31; miss otherwise
+    settle_date: "2027-12-31"
+    market_ref: none
+    our_ref: null
+    outcome: null
+    settled_at: null
+    settle_note: null
+
+  - id: xsdc_2026-09-12_debt_50t_within_3y
+    who: 小说地产与财经（抖音）
+    who_en: Xiaoshuo Real Estate & Finance (Douyin)
+    said_on: "2026-09-12"
+    source: "抖音转写「沃什要化债 / 什么是财政赤字率 / 巴菲特在买什么」。内容提到 8-18 破 40 万亿与 8-26 英伟达财报，视频作于 8-27 之后"
+    event: 美债总额何时突破 50 万亿美元
+    event_en: When does US federal debt cross $50T
+    judgment: 两三年之内美债总额突破 50 万亿
+    judgment_en: Total federal debt crosses $50T within two to three years
+    reasoning: 利息 5% × 40 万亿 → 每年 1.4 到 2 万亿利息 → 收入 5 万亿一半拿去付息 → 只能借更多。（他的利息数核出来比 CBO 高 40%：CBO FY2026 净利息 1.0 万亿、收入 5.6 万亿）
+    quote: "那两三年之内，美债总额就会突破50万亿。"
+    criterion: 说对＝财政部 Debt to the Penny 在 2029-09-12 前任一日 ≥ 50 万亿；说错＝到期没有
+    criterion_en: hit = Treasury Debt to the Penny >= $50T on any day before 2029-09-12; miss otherwise
+    settle_date: "2029-09-12"
+    market_ref: none
+    our_ref: null
+    outcome: null
+    settled_at: null
+    settle_note: null

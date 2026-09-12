@@ -1,0 +1,28 @@
+# CYPERMOW · 看懂世界的小终端
+
+> 免费的中文大白话宏观监控看板。官方一手数据 → 阈值触发 → 推理链状态 → 预测单到期结算。作者 nattobbm（纳豆）。
+> A free, plain-Chinese macro monitor: primary-source data, threshold triggers, reasoning-chain status, and pre-registered predictions settled on their dates. Author: nattobbm.
+
+本站内容为机器可读而设计。所有数字都带 `source` 和 `as_of`，过期数据标 `stale`，不参与判定。
+Every number carries `source` + `as_of`; stale data is flagged and excluded from judgments.
+
+## 机器可读数据 / Machine-readable feeds
+
+- [latest.json](https://cypermow.com/data/latest.json): 完整快照，工作日两次。顶层键：`generated_at` `health`（源健康）`metrics`（71 项指标，每项 key/label/value/unit/as_of/source/stale）`rules`（35 条阈值规则及状态）`radar` `radar_bands`（价带：油价/黄金/日元/9 月加息概率）`regime`（当前剧本与判据）`knowledge.chains`（7 条推理链：statecraft 博弈 / geo 地缘 / japan 日本 / repression 金融抑制 / debt_loop 债务 / liquidity 流动性 / ai_credit AI 信用，每个节点带 metric/threshold/direction/status）`predictions`（预注册预测单、Brier、`market_odds` 三源加息概率 ZQ/CME/Polymarket/Kalshi、`showdown` 市场/我们/叙事三方对照）`news` `econ_calendar` `auctions` `tic` `gex` `digest`（当日大白话摘要）。
+- [quotes.json](https://cypermow.com/data/quotes.json): 盘中轻量行情（spx vix gold silver dxy usdjpy brent move btc es nq xauusd ukoil），约 20-40 分钟一次，实际间隔受 GitHub Actions 免费版调度延迟影响。
+
+## 方法 / Method
+
+- 只做采集、阈值触发、状态播报；推演由人签发并预注册（git commit 时间戳即证据），自动化只在结算日把实际数据摆上来。
+- 预测单锁定后 `momo_ranking` / `reasoning_ex_ante` / `ex_ante_snapshot` 不改。
+- 叙事登记簿：外部评论者带日期带判据的判断，到期和市场赔率、和我们的判断一起结算。
+
+## 源码与许可 / Source & license
+
+- 代码：https://github.com/nattobbm/macro-alert （AGPL-3.0）
+- 研究内容（推理链、结论库、预测单）：CC BY-NC-SA 4.0。引用请署名 cypermow.com 并注明 `as_of`。
+- Code AGPL-3.0; research content CC BY-NC-SA 4.0. Cite as cypermow.com with the `as_of` date.
+
+## 联系 / Contact
+
+GitHub: nattobbm

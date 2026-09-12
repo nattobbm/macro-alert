@@ -53,6 +53,13 @@ sources:
               {tier: 1, provider: fred, series: CES0500000003, unit: "usd", max_staleness_days: 75,
                lookback_days: 1200, desc: "平均时薪(全部私营部门,美元)。monitor算环比"}
 
+  # 2026-09-12 增。债务链第一格「联邦利息支出」一直是个没数的叙事节点；一条抖音视频
+  # （小说地产与财经）说"今年光付利息 1.4 万亿"，核 CBO 是 1.0 万亿——差 40%。
+  # 自己有数就不用听别人报。BEA 口径：联邦政府经常支出里的利息支付，季度、年化、十亿美元。
+  # as_of=季度起始日，发布滞后约 1 季 → 窗口 210 天（同 gdp_real）。
+  fed_interest: {tier: 1, provider: fred, series: A091RC1Q027SBEA, unit: "bn", max_staleness_days: 210,
+                 lookback_days: 1200, desc: "联邦利息支出(季,年化,十亿美元)。债务链 r×债务 的 r×D 实测值"}
+
   # FIMA回购便利用量：H.4.1 资产侧"Repurchase Agreements - Foreign Official"。
   # 2026-08-31 由人工每周四读H.4.1改为FRED自动（核对无误：近10周全为0，
   # 与手记"截至2026-08-05连续8周为零"吻合）。周三口径，周四发布→窗口12天。

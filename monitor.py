@@ -36,7 +36,7 @@ LABELS = {
     "us20y": "20年国债利率", "curve_10y2y": "利率曲线(10Y-2Y)", "breakeven10": "物价预期(债市定价)",
     "sofr": "隔夜借钱利率SOFR", "iorb": "准备金利率IORB", "rrp": "隔夜逆回购RRP(备用资金)", "fed_assets": "美联储总资产",
     "tga": "财政部账户TGA(周)", "m2": "货币供应量M2", "debt_total": "联邦债务总额", "tga_daily": "财政部账户TGA(日)",
-    "avg_rate": "政府借钱平均利息",
+    "avg_rate": "政府借钱平均利息", "fed_interest": "联邦利息支出(季,年化)",
     "sahm_rule": "衰退报警器(萨姆规则)", "unrate": "失业率", "icsa": "初请失业金(周)",
     "core_pce": "核心物价指数PCE", "gdp_real": "实际GDP", "gdp_pot": "潜在GDP(CBO)",
     "fedfunds": "联邦基金利率(月均)", "kr_rate": "韩国政策利率", "jp_rate": "日本政策利率",
@@ -63,7 +63,7 @@ LABELS_EN = {
     "us20y": "20Y Treasury", "curve_10y2y": "Yield Curve (10Y-2Y)", "breakeven10": "Breakeven Inflation (10Y)",
     "sofr": "SOFR Overnight Rate", "iorb": "IORB Floor Rate", "rrp": "Reverse Repo (RRP)", "fed_assets": "Fed Balance Sheet",
     "tga": "Treasury Account (W)", "m2": "Money Supply M2", "debt_total": "Total Public Debt", "tga_daily": "Treasury Account (D)",
-    "avg_rate": "Avg Interest on Debt",
+    "avg_rate": "Avg Interest on Debt", "fed_interest": "Federal Interest Outlays (Q, SAAR)",
     "sahm_rule": "Sahm Rule (Recession Gauge)", "unrate": "Unemployment Rate", "icsa": "Initial Claims (W)",
     "core_pce": "Core PCE Index", "gdp_real": "Real GDP", "gdp_pot": "Potential GDP (CBO)",
     "fedfunds": "Fed Funds Rate (Mo Avg)", "kr_rate": "Korea Policy Rate", "jp_rate": "Japan Policy Rate",
@@ -233,7 +233,7 @@ ROLE = {
 GROUPS = {
     "rates": ["tips10y", "us10y", "us30y", "us20y", "curve_10y2y", "breakeven10"],
     "liquidity": ["sofr", "sofr_nyfed", "iorb", "rrp", "fed_assets", "tga", "tga_daily", "m2", "repo_ops"],
-    "fiscal": ["debt_total", "avg_rate"],
+    "fiscal": ["debt_total", "avg_rate", "fed_interest"],
     "economy": ["sahm_rule", "unrate", "icsa", "core_pce", "gdp_real", "gdp_pot", "fedfunds"],
     "tic": ["tic_japan", "tic_uk", "tic_china"],
     "positioning": ["cot_gold", "cot_silver", "cot_jpy"],
@@ -731,8 +731,18 @@ def build_knowledge(ctx: dict) -> dict:
                         if st == "quiet" and dist > 0.5:
                             node["premise"] = "broken"
                 else:
-                    node.update(status=nd.get("status", "fact"),
-                                value_text=nd.get("value_text", ""))
+                    _vt = nd.get("value_text", "")
+                    # 2026-09-12：事实节点可以挂一个活指标（live），有数就用数替掉写死的文字。
+                    # 起因：债务链第一格"联邦利息支出"一直是手写的"9630亿$(还在涨)"，
+                    # 一条抖音视频说 1.4 万亿、CBO 说 1.0 万亿、BEA 季度年化 1.25 万亿——
+                    # 自己有活数就不该再抄任何人的。没阈值，不参与热度，只是把字换成数。
+                    if nd.get("live") and ctx.get(nd["live"]) is not None:
+                        try:
+                            _lv = ctx[nd["live"]] / float(nd.get("live_scale", 1))
+                            _vt = nd.get("live_fmt", "{v}").format(v=_lv)
+                        except Exception:
+                            pass
+                    node.update(status=nd.get("status", "fact"), value_text=_vt)
                 nodes.append(node)
             # 失效条件自动复核（可绑定的才判；绑不上的=人工复核）
             life = "active"

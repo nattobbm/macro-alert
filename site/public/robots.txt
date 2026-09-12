@@ -1,0 +1,6 @@
+# cypermow.com — 全站公开，欢迎人类与 AI 爬虫。机器可读入口见 /llms.txt
+# Open to humans and AI crawlers alike. Machine-readable entry point: /llms.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://cypermow.com/sitemap.xml
