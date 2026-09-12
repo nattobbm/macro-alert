@@ -1515,16 +1515,43 @@ def main():
     if _should_send:
         if _is_friday_close and not _changes:
             msg = "*本周没有新越线。* 系统在跑，只是这周没事。" + chr(10)*2 + msg
-        notify.send(msg, dry=args.dry_run)
+        _ok = notify.send(msg, dry=args.dry_run)
         print(f"[send] 推送（实质 {len(_subst)} 条，规则触发 {len(_fired_now)} 条，"
               f"顺带逼近 {len(_prox)} 条"
               f"{'，判据翻转' if _judge_flipped else ''}"
               f"{'，周五周报' if _is_friday_close else ''}）", file=sys.stderr)
     else:
+        _ok = None
         print(f"[skip] 没有实质变化（逼近类 {len(_prox)} 条不单独响）"
               f" → 不推送（内容仍写进 data/ 与网站）", file=sys.stderr)
         if args.dry_run:
             print(msg)
+
+    # ── 发送留痕表 ────────────────────────────────────────────────
+    # 2026-09-12 加。此前这个机器人对"自己发过什么"零记录：要查 09-10 半夜那两条
+    # 是怎么来的，只能翻 git 里的 data 反推 + 调 GitHub Actions API 看是不是手点的。
+    # 反推有个查不出来的死角：闸判了"该推"但跑的是 --dry-run，从 data 上看不出区别。
+    # 一行一次运行，跟 data/ 一起提交，以后直接读这张表。
+    try:
+        _log = DATA / "send_log.jsonl"
+        _rec = {
+            "ts": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "sent": bool(_should_send) and not args.dry_run and bool(_ok),
+            "gate": "send" if _should_send else "skip",
+            "dry_run": bool(args.dry_run),
+            "api_ok": _ok,                      # None=没调用；False=Telegram 拒了
+            "why": ([f"{c.get('kind')}:{c.get('label') or c.get('id')}"
+                     f"|{c.get('old')}->{c.get('new')}" for c in _subst]
+                    or (["周五周报"] if _is_friday_close else [])
+                    or (["--force-send"] if args.force_send else [])),
+            "muted": [f"{c.get('kind')}:{c.get('label') or c.get('id')}" for c in _prox],
+            "chars": len(msg),
+            "head": msg.splitlines()[0][:90] if msg else "",
+        }
+        with _log.open("a", encoding="utf-8") as _f:
+            _f.write(json.dumps(_rec, ensure_ascii=False) + chr(10))
+    except Exception as _e:                     # 留痕失败不能拖垮主流程
+        print(f"[warn] 发送留痕写失败：{_e}", file=sys.stderr)
 
     # 提交留痕：让 GitHub 历史一眼看出这次跑动了什么，而不是清一色 "data: 时间戳"
     _f = [r for r in rule_results if r["status"] == "fired"]
