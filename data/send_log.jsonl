@@ -12,3 +12,4 @@
 {"ts": "2026-09-12T12:43:27Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 223, "head": "*【09\\-12】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
 {"ts": "2026-09-12T12:49:01Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 223, "head": "*【09\\-12】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
 {"ts": "2026-09-12T14:03:04Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 223, "head": "*【09\\-12】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
+{"ts": "2026-09-12T14:35:33Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["evidence:None|None->None"], "muted": [], "chars": 490, "head": "*【09\\-12】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
