@@ -1,6 +1,87 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
+// [槽位, quotes.json 的 key, 源的人话名（与 monitor.py 的 _fedwatch_source 一致）]
+// CME 那条是人工读数，没有轻量通道，只参与"谁更新"的比较。
+const HIKE_SLOTS: Array<[string, string, string]> = [
+  ['cme_manual', '', 'CME人工读数'],
+  ['zq_auto', 'fedwatch_zq_sep', 'ZQ期货自算'],
+  ['polymarket', 'polymarket_sep_hike', 'Polymarket押注'],
+]
+
+// 2026-09-11 加。latest.json 每天只跑两次，而加息概率在数据日一天能动 20 个百分点
+// （9-11 CPI 当天 73.8% → 92.3%），网站隔了 4.5 小时才反映。轻量通道现在也刷这个数，
+// 这里把更新的值盖到它出现的四个地方，避免同一个数在页面上有两种写法。
+// **只盖"显示的那个数"**：链条热度、判据、推送都仍是完整跑的产物，不在这里重算。
+function applyFreshHikeOdds(full: any, q: Record<string, any>) {
+  const mo = full?.predictions?.market_odds
+  if (!mo) return
+  for (const [slot, qk] of HIKE_SLOTS) {
+    if (!qk) continue
+    const fresh = q[qk]
+    const cur = mo[slot]
+    if (fresh?.value == null || !fresh.as_of) continue
+    if (!cur || cur.as_of == null || fresh.as_of >= cur.as_of) {
+      mo[slot] = { ...(cur ?? {}), value: fresh.value, as_of: fresh.as_of, stale: false }
+    }
+  }
+  // 按后端同一条规则重选判定用哪个源：3 天内、as_of 最新；并列时按
+  // CME → ZQ → Polymarket 取第一个（和 monitor.py 里 max() 的行为一致）
+  const today = new Date().toISOString().slice(0, 10)
+  const ageDays = (d: string) =>
+    Math.floor((Date.parse(today + 'T00:00:00Z') - Date.parse(d + 'T00:00:00Z')) / 864e5)
+  let best: { v: number; as_of: string; label: string } | null = null
+  for (const [slot, , label] of HIKE_SLOTS) {
+    const c = mo[slot]
+    if (!c || c.value == null || !c.as_of || c.stale) continue
+    if (ageDays(c.as_of) > 3) continue
+    if (!best || c.as_of > best.as_of) best = { v: c.value, as_of: c.as_of, label }
+  }
+  if (!best) return
+
+  const reg = full.regime
+  if (reg?.detail) {
+    for (const d of reg.detail) {
+      if (d.key !== 'fedwatch_sep_hike') continue
+      d.value = best.v
+      d.disp = `${(best.v * 100).toFixed(1)}%`
+      d.known = true
+      d.met = best.v < 0.4            // 条件原文就是「低于40%」
+    }
+    reg.met = reg.detail.filter((d: any) => d.met).length
+    reg.unknown = reg.detail.filter((d: any) => d.known === false).length
+    reg.source_note = `${best.label} as_of=${best.as_of}`
+  }
+
+  // 雷达带子：数值跟着更新；状态只在真的破带时重算。
+  // 带内 in_band↔near 的判定后端带迟滞（防一天翻两次），前端复刻不了，所以跟着后端走。
+  for (const b of full.radar_bands ?? []) {
+    if (b.key !== 'fedwatch_sep_hike' || b.lo == null || b.hi == null) continue
+    b.value = best.v
+    b.position = Math.max(-0.15, Math.min(1.15, (best.v - b.lo) / (b.hi - b.lo)))
+    b.dist_lo_pct = +(((best.v - b.lo) / b.lo) * 100).toFixed(2)
+    b.dist_hi_pct = +(((b.hi - best.v) / b.hi) * 100).toFixed(2)
+    if (best.v < b.lo) b.status = 'breached_lo'
+    else if (best.v > b.hi) b.status = 'breached_hi'
+    else if (b.status === 'breached_lo' || b.status === 'breached_hi') b.status = 'near'
+  }
+
+  // 链条节点：同一个数不能在页面上出现两种写法
+  for (const c of full.knowledge?.chains ?? []) {
+    for (const n of c.nodes ?? []) {
+      if (n.metric !== 'fedwatch_sep_hike' || n.threshold == null) continue
+      n.value = best.v
+      const denom = Math.abs(n.threshold) || 100
+      const dist = n.direction === 'above'
+        ? (n.threshold - best.v) / denom
+        : (best.v - n.threshold) / denom
+      n.dist_pct = +(dist * 100).toFixed(2)
+      if (dist < 0) n.status = 'crossed'
+      else if (n.status === 'crossed') n.status = dist < 0.05 ? 'near' : 'quiet'
+    }
+  }
+}
+
 async function boot() {
   // 两份数据并行取：latest.json 是完整快照(每天2次)，
   // quotes.json 是盘中轻量行情(每20分钟)，谁的 as_of 新用谁的价。
@@ -22,6 +103,9 @@ async function boot() {
           m.intraday = true
         }
       }
+      // 加息概率不在 metrics 里——它散在剧本卡 / 雷达带子 / 三源对照 / 链条节点四处，
+      // 得单独盖一遍，否则同一个数会在页面上出现两种写法。
+      applyFreshHikeOdds(full, quotes.quotes)
     }
     ;(globalThis as any).__LATEST = full
   }

@@ -946,19 +946,21 @@ def build_regime(ctx: dict, series: dict | None = None) -> dict:
     # 页面其它地方（雷达、推送）又都写 65%，同一个数三种样子。口径这边知道，
     # 就在这边定死，前端不再猜。
     conds = [
-        ("市场认为9月加息的可能性 低于40%", ctx.get("fedwatch_sep_hike"), lambda v: v < 0.4,
-         lambda v: f"{v * 100:.1f}%"),
-        ("政府借30年的钱，年息 高于5.2%",   ctx.get("us30y"),             lambda v: v > 5.2,
-         lambda v: f"{v:.2f}%"),
-        ("市场押注未来10年物价年涨 高于2.8%", ctx.get("breakeven10"),     lambda v: v > 2.8,
-         lambda v: f"{v:.2f}%"),
+        ("市场认为9月加息的可能性 低于40%", "fedwatch_sep_hike",
+         ctx.get("fedwatch_sep_hike"), lambda v: v < 0.4, lambda v: f"{v * 100:.1f}%"),
+        ("政府借30年的钱，年息 高于5.2%",   "us30y",
+         ctx.get("us30y"),             lambda v: v > 5.2, lambda v: f"{v:.2f}%"),
+        ("市场押注未来10年物价年涨 高于2.8%", "breakeven10",
+         ctx.get("breakeven10"),       lambda v: v > 2.8, lambda v: f"{v:.2f}%"),
     ]
     # known=False 表示"这条没数"，和"有数但不成立"要分开显示。
     # 两者都画成灰点的话，条件数在 0/3↔1/3 之间跳，看的人只会觉得网站在乱跳。
-    detail = [{"cond": name, "value": v, "met": (v is not None and fn(v)),
+    # key 是给前端用的：盘中轻量刷新会带来更新的加息概率，前端要按 key 定位
+    # 该覆盖哪一条，不能靠数组下标（顺序一改就串行）。
+    detail = [{"cond": name, "key": key, "value": v, "met": (v is not None and fn(v)),
                "known": v is not None,
                "disp": (disp(v) if v is not None else None)}
-              for name, v, fn, disp in conds]
+              for name, key, v, fn, disp in conds]
     met = sum(1 for d in detail if d["met"])
     unknown = sum(1 for d in detail if not d["known"])
     return {"name": "通胀偏高但不加息(金融抑制)", "met": met, "total": len(detail),
@@ -1315,11 +1317,28 @@ def run_quotes_only() -> None:
                 failed.append(f"{key}({type(e).__name__})")
     except Exception as e:
         failed.append(f"jin10({type(e).__name__})")
+    # 加息概率也进轻量通道（2026-09-11 加）。
+    # 起因：9-11 CPI 12:30Z 公布，加息概率当天从 73.8% 跳到 92.3%，
+    # 而 latest.json 每天只跑两次，网站隔了 4.5 小时才反映。
+    # 这两个源都很便宜——ZQ 是一次 yfinance + 一次 FRED，Polymarket 是一次 HTTP，
+    # 加进来不影响轻量通道"十几秒跑完"的定位。失败不阻断。
+    for _k, _fn in (("fedwatch_zq_sep", lambda: fedwatch_zq.fetch(DATA / "fedwatch")),
+                    ("polymarket_sep_hike", lambda: polymarket.fetch())):
+        try:
+            _dp = _fn()
+            if _dp.value is not None and not _dp.stale:
+                out[_k] = {"value": _dp.value, "as_of": _dp.as_of,
+                           "chg_1d_pct": None, "source": _dp.source}
+            else:
+                failed.append(f"{_k}({_dp.stale_reason or 'no_value'})")
+        except Exception as e:
+            failed.append(f"{_k}({type(e).__name__})")
+
     payload = {
         "generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "quotes": out,
         "failed": failed,
-        "note": "盘中轻量刷新；行情源本身约15分钟延迟，非逐笔实时",
+        "note": "盘中轻量刷新；行情源本身约15分钟延迟，非逐笔实时。加息概率同批刷新",
     }
     (DATA / "quotes.json").write_text(json.dumps(payload, ensure_ascii=False),
                                       encoding="utf-8")
@@ -1329,7 +1348,7 @@ def run_quotes_only() -> None:
         + (f" | SPX {spx:.0f}" if spx else "")
         + (f" | 失败 {len(failed)}" if failed else ""),
         encoding="utf-8")
-    print(f"[quotes] {len(out)}/{len(QUOTE_TICKERS) + 2} ok"   # +2 = 金十 XAUUSD/UKOIL
+    print(f"[quotes] {len(out)}/{len(QUOTE_TICKERS) + 4} ok"   # +2 金十XAUUSD/UKOIL +2 加息概率
           + (f", failed: {failed}" if failed else ""), file=sys.stderr)
 
 
