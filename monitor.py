@@ -24,6 +24,14 @@ ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
 from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, market, manual, news, cboe_gex, fedwatch_zq, polymarket, kalshi, econ_calendar, spot_gold, jin10_flash, bis_policy_rate, jgb  # noqa: E402
+
+# 2026-09-12 Kalshi 撤下公开展示。读了他家《Kalshi Data Terms of Use》原文：
+# 未经书面授权，禁止 "publicly displaying, publishing, ... distributing" 任何 Kalshi Data，
+# 也禁止 "providing archived or cached data sets containing Kalshi Data to another person"。
+# 本仓库和 data/*.json 都是公开的，所以取数也一并停掉，不只是不显示。
+# 拿到 Kalshi 书面许可后把这一行改成 True 即可整条恢复（fetch / quotes / market_odds 三处都由它管）。
+# Polymarket 的条款（2026-08-11 版）只限制机构客户与数据分销商，零售非商业展示不在禁止之列，保留。
+KALSHI_PUBLIC = False
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict, reason  # noqa: E402
 
@@ -276,7 +284,8 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps.append(fedwatch_zq.fetch(DATA / "fedwatch"))
     dps.append(econ_calendar.fetch(DATA / "econ_cal"))
     dps.append(polymarket.fetch())
-    dps.append(kalshi.fetch())        # 2026-09-12 第三个市场，三方对照用；只并列不顶替
+    if KALSHI_PUBLIC:
+        dps.append(kalshi.fetch())    # 第三个市场，三方对照用；只并列不顶替。条款原因见 KALSHI_PUBLIC
     return dps
 
 
@@ -1342,9 +1351,11 @@ def run_quotes_only() -> None:
     # 而 latest.json 每天只跑两次，网站隔了 4.5 小时才反映。
     # 这两个源都很便宜——ZQ 是一次 yfinance + 一次 FRED，Polymarket 是一次 HTTP，
     # 加进来不影响轻量通道"十几秒跑完"的定位。失败不阻断。
-    for _k, _fn in (("fedwatch_zq_sep", lambda: fedwatch_zq.fetch(DATA / "fedwatch")),
-                    ("polymarket_sep_hike", lambda: polymarket.fetch()),
-                    ("kalshi_sep_hike", lambda: kalshi.fetch())):
+    _odds_srcs = [("fedwatch_zq_sep", lambda: fedwatch_zq.fetch(DATA / "fedwatch")),
+                  ("polymarket_sep_hike", lambda: polymarket.fetch())]
+    if KALSHI_PUBLIC:
+        _odds_srcs.append(("kalshi_sep_hike", lambda: kalshi.fetch()))
+    for _k, _fn in _odds_srcs:
         try:
             _dp = _fn()
             if _dp.value is not None and not _dp.stale:
@@ -1369,7 +1380,7 @@ def run_quotes_only() -> None:
         + (f" | SPX {spx:.0f}" if spx else "")
         + (f" | 失败 {len(failed)}" if failed else ""),
         encoding="utf-8")
-    print(f"[quotes] {len(out)}/{len(QUOTE_TICKERS) + 4} ok"   # +2 金十XAUUSD/UKOIL +2 加息概率
+    print(f"[quotes] {len(out)}/{len(QUOTE_TICKERS) + len(_odds_srcs) + 2} ok"   # +2 金十XAUUSD/UKOIL + 加息概率各源
           + (f", failed: {failed}" if failed else ""), file=sys.stderr)
 
 
@@ -1438,7 +1449,7 @@ def main():
         "zq_auto": _v("fedwatch_zq_sep"),
         "cme_manual": _v("fedwatch_sep_hike"),
         "polymarket": _v("polymarket_sep_hike"),
-        "kalshi": _v("kalshi_sep_hike"),
+        **({"kalshi": _v("kalshi_sep_hike")} if KALSHI_PUBLIC else {}),
         "series_zq": odds_series[-120:],
     }
     # 三方对照：市场怎么押 / 我们怎么判 / 叙事怎么说，到期一起记账。

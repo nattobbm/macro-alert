@@ -319,7 +319,7 @@ export default function ReasoningPage() {
                           <>
                             {mktRow(isEN ? 'ZQ futures' : 'ZQ期货', mo.zq_auto)}
                             {mktRow('Polymarket', mo.polymarket)}
-                            {mktRow('Kalshi', mo.kalshi)}
+                            {/* Kalshi 2026-09-12 撤下：其数据条款禁止未经书面授权公开展示 */}
                           </>
                         ) : (
                           <div style={{ color: 'var(--text-muted)' }}>{tr('sd_no_market')}</div>

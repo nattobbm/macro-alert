@@ -7,7 +7,7 @@ const HIKE_SLOTS: Array<[string, string, string]> = [
   ['cme_manual', '', 'CME人工读数'],
   ['zq_auto', 'fedwatch_zq_sep', 'ZQ期货自算'],
   ['polymarket', 'polymarket_sep_hike', 'Polymarket押注'],
-  ['kalshi', 'kalshi_sep_hike', 'Kalshi押注'],     // 只更新显示值；选主源仍是 ZQ→CME，不含它
+  // Kalshi 2026-09-12 撤下：其数据条款禁止未经书面授权公开展示（见 fetchers/kalshi.py 头注）
 ]
 
 // 2026-09-11 加。latest.json 每天只跑两次，而加息概率在数据日一天能动 20 个百分点

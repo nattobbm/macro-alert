@@ -138,7 +138,7 @@ export default function App() {
 
       {/* ── Page ─────────────────────────────────────────── */}
       <main className="max-w-5xl mx-auto px-4 py-2">
-        {tab === 'overview'  && <OverviewPage onGlobeClick={() => setTab('engine')} />}
+        {tab === 'overview'  && <OverviewPage onGlobeClick={() => setTab('engine')} onShowdownClick={() => setTab('reasoning')} />}
         {tab === 'engine'    && <EnginePage />}
         {tab === 'reasoning' && <ReasoningPage />}
         {tab === 'equity'    && <EquityPage />}

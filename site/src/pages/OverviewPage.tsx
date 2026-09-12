@@ -3,7 +3,7 @@ import Globe from '../components/Globe'
 import Sparkline from '../components/Sparkline'
 import { fetchLiveQuotes, diverges, liveFor } from '../data/liveQuote'
 import type { LiveQuote } from '../data/liveQuote'
-import { snapshots, alerts, alertsNoBands, radarBands, ticLive, regimeLive, genAtLocal } from '../data/live'
+import { snapshots, alerts, alertsNoBands, radarBands, ticLive, regimeLive, genAtLocal, showdown, marketOdds } from '../data/live'
 import type { RadarBand } from '../data/live'
 import { EXPLAIN, UNIT_HINT } from '../data/explain'
 import { t as tr, isEN } from '../i18n'
@@ -66,7 +66,53 @@ function BandBar({ b }: { b: RadarBand }) {
   )
 }
 
-export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => void }) {
+// ── 首页只放一条三方对照：最近要结算的那件。细节全在推理页（主题先出，细节折叠）──
+// 市场那个数只用后端的主源规则（ZQ → CME 人工），不用预测市场的价：
+// Kalshi 数据条款禁止未经书面授权公开展示；Polymarket 只在推理页做参照。
+function ShowdownStrip({ onOpen }: { onOpen?: () => void }) {
+  const pending = showdown.filter(s => !s.outcome).sort((a, b) => a.settle_date.localeCompare(b.settle_date))
+  const s = pending[0]
+  if (!s) return null
+  const today = new Date().toISOString().slice(0, 10)
+  const days = Math.round((Date.parse(s.settle_date + 'T00:00:00Z') - Date.parse(today + 'T00:00:00Z')) / 864e5)
+  const when = days > 0 ? `${days} ${tr('sd_days_left')}` : days === 0 ? tr('sd_settle_today') : tr('sd_overdue')
+  const mo = marketOdds
+  const mk = s.market_ref === 'fomc_sep' && mo
+    ? (mo.zq_auto?.value != null && !mo.zq_auto.stale ? { v: mo.zq_auto.value, src: isEN ? 'ZQ futures' : 'ZQ期货' }
+      : mo.cme_manual?.value != null && !mo.cme_manual.stale ? { v: mo.cme_manual.value, src: 'CME' } : null)
+    : null
+  const ours = s.ours?.ranking
+    ? (s.ours.labels?.[s.ours.ranking.split('>')[0].trim()] ?? s.ours.ranking.split('>')[0].trim())
+    : null
+  const cell = (k: string, v: string, muted = false) => (
+    <div className="min-w-0">
+      <div className="text-xs" style={{ color: 'var(--text-muted)' }}>{k}</div>
+      <div className="text-sm font-medium truncate" style={{ color: muted ? 'var(--text-muted)' : 'var(--text)' }} title={v}>{v}</div>
+    </div>
+  )
+  return (
+    <section>
+      <div className="neu p-4 cursor-pointer transition-transform hover:scale-[1.01]" onClick={onOpen} role="button">
+        <div className="flex items-baseline gap-2 flex-wrap mb-2">
+          <span className="text-sm font-bold" style={{ color: 'var(--text)' }}>{tr('sd_home_title')}</span>
+          <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{s.event}</span>
+          <span className="text-xs px-2 py-0.5 rounded-full ml-auto" style={{ backgroundColor: 'var(--st-warn-bg)', color: 'var(--st-warn-text)' }}>{when}</span>
+        </div>
+        <div className="grid grid-cols-3 gap-3">
+          {cell(tr('sd_mkt_says'), mk ? `${tr('sd_hike_short')} ${Math.round(mk.v * 100)}% · ${mk.src}` : tr('sd_no_market'), !mk)}
+          {cell(tr('sd_we_say'), ours ?? '—', !ours)}
+          {cell(s.narrative.who.split('（')[0].split(' (')[0], s.narrative.judgment)}
+        </div>
+        <div className="text-xs mt-2 flex gap-2 flex-wrap" style={{ color: 'var(--text-muted)' }}>
+          <span>{tr('sd_see_all')}</span>
+          {pending.length > 1 && <span>· {tr('sd_more')} {pending.length - 1} {tr('sd_more_unit')}</span>}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default function OverviewPage({ onGlobeClick, onShowdownClick }: { onGlobeClick?: () => void; onShowdownClick?: () => void }) {
   const [hoveredAlert, setHoveredAlert] = useState<string | null>(null)
   const [showStandard, setShowStandard] = useState(false)
   // 点开的"这是啥"面板（一次只开一个，手机上不至于整页都是展开的字）
@@ -227,6 +273,9 @@ export default function OverviewPage({ onGlobeClick }: { onGlobeClick?: () => vo
           </div>
         </div>
       </div>
+
+      {/* ── 三方对照（一条，最近结算的）──────────────── */}
+      <ShowdownStrip onOpen={onShowdownClick} />
 
       {/* ── Radar ────────────────────────────────────── */}
       <section>

@@ -169,7 +169,7 @@ export const rateProbabilities = mo
       oddsRow('CME官网读的', 'CME site (manual)', mo.cme_manual, '#6bb89a'),
       oddsRow('Polymarket押注', 'Polymarket', mo.polymarket, '#d4a848'),
       // 2026-09-12 第四个：CFTC 监管的美国场子。和 Polymarket 一样只并列，不顶替主源
-      oddsRow('Kalshi押注', 'Kalshi', mo.kalshi, '#a088c0'),
+      // Kalshi 2026-09-12 撤下：其数据条款禁止未经书面授权公开展示（见 fetchers/kalshi.py 头注）
     ].filter(r => r.prob > 0)
   : mock.rateProbabilities
 

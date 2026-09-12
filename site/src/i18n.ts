@@ -39,6 +39,11 @@ const dict: Record<string, [string, string]> = {
   sd_pending: ['待结算', 'pending'], sd_hit: ['说对', 'hit'], sd_miss: ['说错', 'miss'], sd_void: ['无法判定', 'void'],
   sd_settles: ['结算', 'settles'], sd_said_on: ['说于', 'said on'], sd_signed: ['签于', 'signed'],
   sd_criterion: ['判据', 'criterion'],
+  // 首页一条：只放最近要结算的那件，细节折叠到推理页
+  sd_home_title: ['三方对照', 'Market vs Us vs Narrative'],
+  sd_days_left: ['天后结算', 'days to settle'], sd_settle_today: ['今天结算', 'settles today'], sd_overdue: ['待记账', 'awaiting settlement'],
+  sd_mkt_says: ['市场押', 'Market'], sd_we_say: ['我们判', 'Us'], sd_hike_short: ['加息', 'hike'],
+  sd_see_all: ['看全部三方对照 →', 'All showdowns →'], sd_more: ['另有', 'plus'], sd_more_unit: ['条待结算', 'more pending'],
   news_title: ['官方消息流', 'Official Feed'], cal_title: ['未来30天大事', 'Next 30 Days'],
   kline_title: ['大盘K线 + 做市商地图', 'SPX + Dealer Map'],
   gex_title: ['每个价位的磁力(GEX)', 'GEX by Strike'],

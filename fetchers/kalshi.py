@@ -1,5 +1,13 @@
 """Kalshi 9月Fed决议市场（CFTC 监管的美国预测市场；公开行情接口免密钥、免账号）。
 
+⚠ 2026-09-12 同日撤下（monitor.KALSHI_PUBLIC = False），代码保留。
+读了《Kalshi Data Terms of Use》（kalshi-public-docs.s3.amazonaws.com/kalshi-data-terms-of-service.pdf）原文：
+  I. 只许 "personal use for non-commercial purposes"；
+  II. 未经书面授权禁止 "publicly displaying, publishing, ... distributing, disseminating" 任何 Kalshi Data，
+      也禁止 "providing archived or cached data sets containing Kalshi Data to another person or entity"。
+本站和 data/ 都公开，所以取数一并停。API Developer Agreement（kalshi.com/developer-agreement）
+被 Vercel 人机验证挡住没读到，按最严的一份执行。拿到书面许可再开。
+
 2026-09-12 接入，为"三方对照"服务：市场怎么押 / 我们怎么判 / 叙事怎么说，到期一起结算。
 
 口径：事件合约的 YES 价，**买一卖一中间价**当概率（没有盘口时退回最新成交价）。
