@@ -10,8 +10,52 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-16",
+   "time_bj": "15:00",
+   "title": "加拿大总理卡尼出席冯德莱恩的演讲",
+   "speaker": null,
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-17",
+   "time_bj": "01:30",
+   "title": "加拿大央行公布货币政策会议纪要",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-09-17",
+   "time_bj": "02:00",
+   "title": "美联储FOMC公布利率决议和经济预期摘要",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-09-17",
+   "time_bj": "02:30",
+   "title": "美联储主席沃什召开货币政策新闻发布会",
+   "speaker": "沃什",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [],
- "fetched_at": "2026-09-14T23:26:02Z"
+ "fetched_at": "2026-09-15T17:40:06Z"
 }

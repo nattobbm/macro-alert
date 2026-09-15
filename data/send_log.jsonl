@@ -15,3 +15,4 @@
 {"ts": "2026-09-12T14:35:33Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["evidence:None|None->None"], "muted": [], "chars": 490, "head": "*【09\\-12】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
 {"ts": "2026-09-14T18:35:46Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|fired_muted->fired", "node:日债30年利率|near->crossed"], "muted": [], "chars": 411, "head": "*【09\\-14】日债30年利率越线。*"}
 {"ts": "2026-09-14T23:26:05Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 374, "head": "*【09\\-14】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
+{"ts": "2026-09-15T17:40:09Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired", "judge:None|确认金融抑制主导->回到需求侧紧缩链"], "muted": [], "chars": 603, "head": "*【09\\-15】市场在为「更紧」定价：回到需求侧紧缩链。*"}
