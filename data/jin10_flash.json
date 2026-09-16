@@ -54,8 +54,30 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-17",
+   "time_bj": "02:00",
+   "title": "美联储公布利率决议和经济预期摘要",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-09-17",
+   "time_bj": "19:00",
+   "title": "英国央行公布利率决议和会议纪要",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
   }
  ],
  "speeches": [],
- "fetched_at": "2026-09-15T23:10:21Z"
+ "fetched_at": "2026-09-16T17:37:37Z"
 }
