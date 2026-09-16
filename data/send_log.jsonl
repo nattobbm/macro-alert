@@ -18,3 +18,4 @@
 {"ts": "2026-09-15T17:40:09Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired", "judge:None|确认金融抑制主导->回到需求侧紧缩链"], "muted": [], "chars": 603, "head": "*【09\\-15】市场在为「更紧」定价：回到需求侧紧缩链。*"}
 {"ts": "2026-09-15T23:10:24Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["node:黄金冲关键位"], "chars": 506, "head": "*【09\\-15】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-09-16T17:37:39Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["node:日债10年利率|near->crossed"], "muted": [], "chars": 548, "head": "*【09\\-16】日债10年利率越线。*"}
+{"ts": "2026-09-16T23:14:58Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:10年期实际利率突破|not_fired->fired", "node:真利率(扣掉通胀)|near->crossed"], "muted": [], "chars": 457, "head": "*【09\\-16】真利率\\(扣掉通胀\\)越线。*"}
