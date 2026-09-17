@@ -76,6 +76,62 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "release"
+  },
+  {
+   "date": "2026-09-18",
+   "time_bj": null,
+   "title": "日本央行公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链",
+    "日本链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-09-18",
+   "time_bj": "07:30",
+   "title": "澳洲联储主席布洛克出席听证会",
+   "speaker": "布洛克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-18",
+   "time_bj": "14:30",
+   "title": "日本央行行长植田和男召开新闻发布会",
+   "speaker": "植田和男",
+   "tags": [
+    "日本链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-18",
+   "time_bj": "18:30",
+   "title": "欧洲央行行长拉加德出席新闻发布会",
+   "speaker": "拉加德",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-18",
+   "time_bj": "23:45",
+   "title": "美联储施密德发表讲话",
+   "speaker": "施密德",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -1471,5 +1527,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-16T23:14:55Z"
+ "fetched_at": "2026-09-17T17:37:34Z"
 }
