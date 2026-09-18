@@ -28,9 +28,12 @@ calls:
     settle_date: "2026-09-16"
     market_ref: fomc_sep          # 对应 market_odds（ZQ / Polymarket / Kalshi 都有）
     our_ref: 2026-09-16_fomc_hike_scenario   # 对应我们的预测单
-    outcome: null
-    settled_at: null
-    settle_note: null
+    outcome: miss
+    settled_at: "2026-09-18T00:00:00Z"
+    settle_note: >
+      9-16 上调25bp至3.75%-4.00%，12-0 全票，无异议。她说的"按兵不动"没发生，判据写的是"加息＝她错"。
+      三方同表：市场对（ZQ 94.6%、Kalshi 87.5%、Polymarket 87%），我们的 S2 错，她错。
+      她的理由（选举前保独立性、工作组报告未出）和我们那张卡的理由是同一条链，两边一起被证伪。
 
   - id: alie_2026-09-08_boj_sep_move
     who: 艾丽
@@ -48,9 +51,12 @@ calls:
     settle_date: "2026-09-18"
     market_ref: none              # Kalshi 只有一个 2025-03 的旧 BOJ 市场，Polymarket 没有。诚实标无
     our_ref: null                 # 我们没签这条
-    outcome: null
-    settled_at: null
-    settle_note: null
+    outcome: hit
+    settled_at: "2026-09-18T00:00:00Z"
+    settle_note: >
+      9-18 日本央行上调25bp至1.25%，1995年以来最高，7-2 分歧（浅田、佐藤反对）。她 9-8 说"按兵不动可能性非常低"，说对。
+      她给的理由里 155 那条分界点也走到了：9-16 USDJPY 155.27、9-18 157.25。
+      这是登记簿上她第一条说对的；我们没签这条，所以本场只有"市场无对手盘 / 叙事对"两栏。
 
   # ── 2026-09-12 外来素材批次（Momo 转发的抖音文案，见资产库 内容库/2026-09-12_外来素材_抖音8篇_核实与采纳.md）──
   # said_on 用 Momo 转发日：视频原发日期查不到，但判断在转发前已作出，作为事前时间戳够用。
