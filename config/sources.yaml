@@ -16,7 +16,10 @@ sources:
   rrp:        {tier: 1, provider: fred, series: RRPONTSYD,  unit: "bn", max_staleness_days: 5}
   fed_assets: {tier: 1, provider: fred, series: WALCL,      unit: "mn", max_staleness_days: 10}
   tga:        {tier: 1, provider: fred, series: WTREGEN,    unit: "mn", max_staleness_days: 10}
-  m2:         {tier: 1, provider: fred, series: M2SL,       unit: "bn", max_staleness_days: 75}
+  # 2026-09-18：M2 与核心 PCE 由 75 改 95。月频 as_of 记在周期起始日（7 月数据记 07-01），
+  # 下一期要到次次月下旬才发（8 月数据 9-26 前后）。发布前最后几天年龄就是 86-88 天，
+  # 75 天的线每个月都会误报 10 天左右「停更」——9-18 线上显示「停更 2 项」就是这个。
+  m2:         {tier: 1, provider: fred, series: M2SL,       unit: "bn", max_staleness_days: 95}
   # ---- 2026-08-30 宏观指标框架整合(设计书1.1/1.2)：就业先行 + 泰勒缺口原料 ----
   # 注意：FRED月/季序列 as_of=周期起始日(7月值标07-01,8月底发布)，窗口按"起始日+发布滞后"给
   sahm_rule:  {tier: 1, provider: fred, series: SAHMREALTIME, unit: "pp", max_staleness_days: 75,
@@ -25,7 +28,7 @@ sources:
                desc: "失业率(滞后指标)。注意分母失真：劳动力收缩时被动走低"}
   icsa:       {tier: 1, provider: fred, series: ICSA,       unit: "k",  max_staleness_days: 12,
                desc: "初请失业金(周四发布)，周频最灵敏就业先行"}
-  core_pce:   {tier: 1, provider: fred, series: PCEPILFE,   unit: "idx", max_staleness_days: 75,
+  core_pce:   {tier: 1, provider: fred, series: PCEPILFE,   unit: "idx", max_staleness_days: 95,
                lookback_days: 1200, desc: "核心PCE物价指数，monitor算同比，泰勒缺口的π"}
   gdp_real:   {tier: 1, provider: fred, series: GDPC1,      unit: "bn", max_staleness_days: 210,
                lookback_days: 1200, desc: "实际GDP(季,起始日标注+发布滞后约1季)，产出缺口分子"}

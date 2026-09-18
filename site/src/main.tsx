@@ -21,6 +21,9 @@ function applyFreshHikeOdds(full: any, q: Record<string, any>) {
     if (!qk) continue
     const fresh = q[qk]
     const cur = mo[slot]
+    // 2026-09-18：会议开完、后端已标 settled 的槽位，盘中值是结算价不是预期，
+    // 不许覆盖回去（否则 stale:false 一写，下面的剧本/雷达/链条又会拿 0% 判成「市场不信会加息」）。
+    if (cur?.settled) continue
     if (fresh?.value == null || !fresh.as_of) continue
     if (!cur || cur.as_of == null || fresh.as_of >= cur.as_of) {
       mo[slot] = { ...(cur ?? {}), value: fresh.value, as_of: fresh.as_of, stale: false }

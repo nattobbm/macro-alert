@@ -32,6 +32,12 @@ from fetchers import fred, fiscaldata, tic, treasurydirect, cftc, nyfed, eia, ma
 # 拿到 Kalshi 书面许可后把这一行改成 True 即可整条恢复（fetch / quotes / market_odds 三处都由它管）。
 # Polymarket 的条款（2026-08-11 版）只限制机构客户与数据分销商，零售非商业展示不在禁止之列，保留。
 KALSHI_PUBLIC = False
+
+# 九月议息会议：决议日之后，所有「9月加息概率」读数都是结算值，不再是市场预期。
+# 过了这天，判定、雷达带、链条节点、推送规则一律不再用它（见 build_ctx 里 _usable）。
+# 下一场是 10-28；换到下一场要改的是抓取层（合约/市场代码），不是这里的日期。
+SEP_MEETING_DATE = dt.date(2026, 9, 16)
+SEP_MEETING_RESULT = "加息25bp至3.75%-4.00%，12-0"
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict, reason  # noqa: E402
 
@@ -455,6 +461,15 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
         _dp = by_key.get(_k)
         if not _dp or _dp.stale or _dp.value is None or not _dp.as_of:
             return None
+        # 2026-09-18 修：会议开完后，这个槽位的读数就是「结算值」不是「市场预期」。
+        # 9-16 加息后 ZQ 九月合约算出 0.0、Polymarket 结算成 1.0，后端照旧当活数用：
+        # 剧本条件「市场认为9月加息低于40%」判成立、雷达带跌破、金融抑制链越线，
+        # 17:05Z 还推送了一条「9月加息概率大幅回落」——刚加完息，推的是反话。
+        if _today > SEP_MEETING_DATE:
+            return None
+        return _usable_age(_dp)
+
+    def _usable_age(_dp):
         try:
             if (_today - dt.date.fromisoformat(_dp.as_of[:10])).days > _MAX_AGE_D:
                 return None     # 过期作废
@@ -491,7 +506,9 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
         # 三个源都过期/都没抓到 → 明确置空。ctx 在上面已经填过原始值，
         # 不清掉的话就会拿过期数继续判定，这正是 0/3↔1/3 来回跳的机制。
         ctx["fedwatch_sep_hike"] = None
-        ctx["_fedwatch_source"] = f"三源均超过{_MAX_AGE_D}天，判定按缺数处理"
+        ctx["_fedwatch_source"] = (
+            f"9月会议已于{SEP_MEETING_DATE:%m-%d}开完（{SEP_MEETING_RESULT}），九月读数已结算，不再参与判定"
+            if _today > SEP_MEETING_DATE else f"三源均超过{_MAX_AGE_D}天，判定按缺数处理")
         stale_keys.add("fedwatch_sep_hike")
 
     # 数据健康标志（tier1/2 才算；手动源缺录不触发H1）
@@ -1432,6 +1449,11 @@ def main():
         if not d:
             return None
         out = {"value": d.value, "as_of": d.as_of, "stale": d.stale}
+        # 会议开完：标已结算。前端 applyFreshHikeOdds 见到 settled 就不再用盘中值覆盖、
+        # 不再拿它重算剧本条件（否则前端会把后端刚关掉的错判又打开）。
+        if dt.date.today() > SEP_MEETING_DATE:
+            out.update(stale=True, settled=True,
+                       settled_note=f"9月会议 {SEP_MEETING_DATE:%m-%d} 已开完：{SEP_MEETING_RESULT}")
         # Polymarket / Kalshi 带五档分布（降50+/降25/不动/加25/加50+），三方对照页要"维持"那一档
         if d.extra.get("dist"):
             out["dist"] = d.extra["dist"]
