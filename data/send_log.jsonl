@@ -21,3 +21,4 @@
 {"ts": "2026-09-16T23:14:58Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:10年期实际利率突破|not_fired->fired", "node:真利率(扣掉通胀)|near->crossed"], "muted": [], "chars": 457, "head": "*【09\\-16】真利率\\(扣掉通胀\\)越线。*"}
 {"ts": "2026-09-17T17:37:37Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["node:日债10年利率", "node:油价20天累计涨幅"], "chars": 595, "head": "*【09\\-17】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-09-17T23:05:00Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["node:油价20天累计涨幅"], "chars": 497, "head": "*【09\\-17】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-09-18T06:32:49Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": ["node:日元逼近干预线", "node:日元强到撤资线?", "node:日元弱到干预线?", "band:日元(USDJPY)"], "chars": 609, "head": "*【09\\-18】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}

@@ -1525,7 +1525,387 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：各项指标继续表明，劳动力市场状况接近但略紧于充分就业水平。",
+   "link": "https://flash.jin10.com/detail/20260918073809397800",
+   "published": "2026-09-17T23:38:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：在八月份的会议上，我们评估认为就业前景的风险偏向上行。",
+   "link": "https://flash.jin10.com/detail/20260918073829718800",
+   "published": "2026-09-17T23:38:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：自那时以来的发展表明，尽管澳大利亚经济增长放缓，但一些通胀上行风险似乎正在显现。",
+   "link": "https://flash.jin10.com/detail/20260918073847989800",
+   "published": "2026-09-17T23:38:47Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：通过我们的联络计划，我们了解到许多公司正在转嫁更高的投入成本。",
+   "link": "https://flash.jin10.com/detail/20260918073855097800",
+   "published": "2026-09-17T23:38:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：房地产市场状况已趋于疲软，超出预期的政策放缓可能对经济活动构成下行风险。",
+   "link": "https://flash.jin10.com/detail/20260918073907148800",
+   "published": "2026-09-17T23:39:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 2,
+    "lean": "鸽"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：最近的数据大致符合我们的预期，即需求增长在2026年上半年放缓。",
+   "link": "https://flash.jin10.com/detail/20260918073933081800",
+   "published": "2026-09-17T23:39:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：一个关键问题是，迄今为止的货币政策收紧是否足以在合理时间内将通胀恢复到目标水平。降低通胀至关重要。",
+   "link": "https://flash.jin10.com/detail/20260918074009951800",
+   "published": "2026-09-17T23:40:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：通胀可能在一段时间内保持高位。",
+   "link": "https://flash.jin10.com/detail/20260918074010926800",
+   "published": "2026-09-17T23:40:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：货币政策已做好应对发展的准备，我们专注于实现价格稳定和充分就业的使命。",
+   "link": "https://flash.jin10.com/detail/20260918074011722800",
+   "published": "2026-09-17T23:40:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：重要的通胀风险仍然受到控制。",
+   "link": "https://flash.jin10.com/detail/20260918074056324800",
+   "published": "2026-09-17T23:40:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：金融稳定风险已得到控制。",
+   "link": "https://flash.jin10.com/detail/20260918074328882800",
+   "published": "2026-09-17T23:43:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：需要抑制整体需求的增长。",
+   "link": "https://flash.jin10.com/detail/20260918074329819800",
+   "published": "2026-09-17T23:43:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：中东战争未解，物价承压。企业现在更倾向于转嫁成本上涨。",
+   "link": "https://flash.jin10.com/detail/20260918075557909800",
+   "published": "2026-09-17T23:55:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：在油价长期居高不下的环境中前行。",
+   "link": "https://flash.jin10.com/detail/20260918075936848800",
+   "published": "2026-09-17T23:59:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：正在考虑我们是否有足够紧缩的政策。",
+   "link": "https://flash.jin10.com/detail/20260918084500663800",
+   "published": "2026-09-18T00:45:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：在整体形势中，房价的跌幅并不算太大。",
+   "link": "https://flash.jin10.com/detail/20260918084510019800",
+   "published": "2026-09-18T00:45:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：普遍共识认为中性利率已上升。",
+   "link": "https://flash.jin10.com/detail/20260918085343805800",
+   "published": "2026-09-18T00:53:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：通胀风险偏向上行。",
+   "link": "https://flash.jin10.com/detail/20260918091102220800",
+   "published": "2026-09-18T01:11:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：难以忽视持续的通胀冲击。",
+   "link": "https://flash.jin10.com/detail/20260918091205355800",
+   "published": "2026-09-18T01:12:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：劳动力市场的前瞻性指标保持稳定。",
+   "link": "https://flash.jin10.com/detail/20260918092953906800",
+   "published": "2026-09-18T01:29:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【澳洲联储：通胀风险偏向上行 通胀预期或开始调整】金十数据9月18日讯，澳洲联储主席布洛克周五对议会一个委员会表示，澳大利亚企业正开始“酝酿”一种观点，即高通胀不会回落至3%以下。布洛克说：“企业开始提出‘通胀会回落吗？’这样的问题，这让我们有点担忧。”她表示，企业并没有明确说他",
+   "link": "https://flash.jin10.com/detail/20260918095828487800",
+   "published": "2026-09-18T01:58:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-17T23:04:58Z"
+ "fetched_at": "2026-09-18T06:32:45Z"
 }
