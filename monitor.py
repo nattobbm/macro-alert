@@ -38,6 +38,26 @@ KALSHI_PUBLIC = False
 # 下一场是 10-28；换到下一场要改的是抓取层（合约/市场代码），不是这里的日期。
 SEP_MEETING_DATE = dt.date(2026, 9, 16)
 SEP_MEETING_RESULT = "加息25bp至3.75%-4.00%，12-0"
+
+# 2026-09-20：加息概率槽位从「九月这一场」改成「下一场」，跟着 FOMC 日程自动滚。
+# 起因 Momo 看首页：「现在加息了加的是哪一个，这个要改吗」——九月开完后这一条
+# 永远显示"暂无数据"，而它问的还是一个已经发生过的事。
+# 会议表与合约选择在 fetchers/fedwatch_zq.py（已按 federalreserve.gov 核实）。
+# ⚠ 遗留命名：ctx 键仍叫 fedwatch_sep_hike、fedwatch_zq_sep，横跨 rules.yaml /
+#   chains.yaml / notify / 前端共 50 余处引用。这一轮只改口径与显示，不动标识符；
+#   改名单独做一次带验证的。看到 "sep" 请读作 "下一场"。
+def _next_meeting_label(by_key: dict) -> str:
+    """把下一场会议日期拼成 '10-28' 这种，找不到就退回空串。"""
+    dp = by_key.get("fedwatch_zq_sep")
+    md = ((dp.extra or {}).get("meeting_date") if dp else None)
+    if not md:
+        try:
+            from fetchers.fedwatch_zq import next_meeting
+            nm = next_meeting(dt.date.today())
+            md = nm[0].isoformat() if nm else None
+        except Exception:
+            md = None
+    return f"{md[5:7]}-{md[8:10]}" if md else ""
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict, reason  # noqa: E402
 
@@ -66,8 +86,12 @@ LABELS = {
     "gold": "黄金(COMEX期货)", "xauusd": "黄金(伦敦金现XAUUSD)",
     "silver": "白银", "platinum": "铂金", "dxy": "美元指数",
     "usdjpy": "美元兑日元", "brent": "油价Brent", "wti": "油价WTI", "move": "债市恐慌指数MOVE",
-    "auctions": "国债拍卖认购", "gex_net": "做市商GEX", "fedwatch_zq_sep": "9月加息概率(期货算)", "polymarket_sep_hike": "9月加息概率(押注市场)", "fedwatch_sep_hike": "9月加息概率(手动)",
-    "kalshi_sep_hike": "9月加息概率(Kalshi)",
+    "auctions": "国债拍卖认购", "gex_net": "做市商GEX",
+    # 2026-09-20：期货那条已改成"下一场会议"；押注市场三条还绑在九月合约/市场上，
+    # 九月已结算，它们只作为历史读数留着，标签如实写"9月(已结算)"。
+    "fedwatch_zq_sep": "下次会议加息概率(期货算)", "polymarket_sep_hike": "9月加息概率(押注市场,已结算)",
+    "fedwatch_sep_hike": "9月加息概率(手动,已结算)",
+    "kalshi_sep_hike": "9月加息概率(Kalshi,已结算)",
     "fima_weekly_usd": "外国央行借美元(FIMA)", "war_risk_premium": "战争险费率(手动)",
     "auction_tail_bp": "拍卖尾差(手动)",
 }
@@ -161,7 +185,8 @@ RADAR_BANDS = [
      "origin": "真出过事的位置 + 机制线", "origin_en": "Event level + mechanism",
      "rule_id": "J1_intervention_zone"},
     {"id": "hike_band", "key": "fedwatch_sep_hike", "lo": 0.25, "hi": 0.65, "unit": "",
-     "label": "9月加息概率", "label_en": "Sep hike odds",
+     # 2026-09-20：标签不再写死"9月"，由 build_radar_bands 按下一场会议日期填
+     "label": "下次会议加息概率", "label_en": "Next-meeting hike odds",
      "lo_note": "跌破25% → 市场改押不加息，黄金得撑", "hi_note": "涨破65% → 市场押加息，和 Momo 签的判断正面撞",
      "lo_note_en": "Below 25% → easing expectations return", "hi_note_en": "Above 65% → frameworks clash head-on",
      "origin": "报告情景区间 · 8-25报告", "origin_en": "Scenario band: Aug-25 report",
@@ -209,10 +234,13 @@ def within_source_precision(key: str, value, threshold) -> bool:
     return abs(value - threshold) < prec
 
 
-def build_radar_bands(ctx: dict) -> list[dict]:
+def build_radar_bands(ctx: dict, next_meeting_label: str = "") -> list[dict]:
     out = []
     prev_bands = prev_digest_state().get("bands") or {}
     for b in RADAR_BANDS:
+        if b["id"] == "hike_band" and next_meeting_label:
+            b = {**b, "label": f"下次会议加息概率（{next_meeting_label}）",
+                 "label_en": f"Next-meeting hike odds ({next_meeting_label})"}
         v = ctx.get(b["key"])
         if v is None:
             continue
@@ -287,7 +315,11 @@ def fetch_everything(sources: dict) -> list[DataPoint]:
     dps.append(spot_gold.fetch(comex_price=_gc))
     dps += manual.fetch_all(DATA / "manual.json")
     dps.append(cboe_gex.fetch(DATA / "gex"))
-    dps.append(fedwatch_zq.fetch(DATA / "fedwatch"))
+    # 抓取器已改成"下一场"（键 fedwatch_zq_next），这里桥接回旧键名 fedwatch_zq_sep，
+    # 好让 rules.yaml / chains.yaml / 前端那 50 余处引用不用一次性全改。见文件头说明。
+    _fw = fedwatch_zq.fetch(DATA / "fedwatch")
+    _fw.key = "fedwatch_zq_sep"
+    dps.append(_fw)
     dps.append(econ_calendar.fetch(DATA / "econ_cal"))
     dps.append(polymarket.fetch())
     if KALSHI_PUBLIC:
@@ -461,11 +493,13 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
         _dp = by_key.get(_k)
         if not _dp or _dp.stale or _dp.value is None or not _dp.as_of:
             return None
-        # 2026-09-18 修：会议开完后，这个槽位的读数就是「结算值」不是「市场预期」。
-        # 9-16 加息后 ZQ 九月合约算出 0.0、Polymarket 结算成 1.0，后端照旧当活数用：
-        # 剧本条件「市场认为9月加息低于40%」判成立、雷达带跌破、金融抑制链越线，
-        # 17:05Z 还推送了一条「9月加息概率大幅回落」——刚加完息，推的是反话。
-        if _today > SEP_MEETING_DATE:
+        # 2026-09-18 曾在这里加过一道闸：会议开完后整条读数作废。
+        # 起因是 9-16 加息后 ZQ 九月合约算出 0.0、Polymarket 结算成 1.0，后端当活数用，
+        # 把「市场认为9月加息低于40%」判成立，还推了一条「9月加息概率大幅回落」的反话。
+        # 2026-09-20 闸拆掉：主源已经改成"下一场会议"，永远指向未来，不会再有结算值混进来。
+        # 副源（Polymarket/Kalshi/CME人工）还绑在九月市场上，结算值仍会污染，
+        # 所以闸只保留给它们。
+        if _k != _PRIMARY[0] and _today > SEP_MEETING_DATE:
             return None
         return _usable_age(_dp)
 
@@ -507,8 +541,9 @@ def build_ctx(dps: list[DataPoint]) -> tuple[dict, set, list[dict]]:
         # 不清掉的话就会拿过期数继续判定，这正是 0/3↔1/3 来回跳的机制。
         ctx["fedwatch_sep_hike"] = None
         ctx["_fedwatch_source"] = (
-            f"9月会议已于{SEP_MEETING_DATE:%m-%d}开完（{SEP_MEETING_RESULT}），九月读数已结算，不再参与判定"
-            if _today > SEP_MEETING_DATE else f"三源均超过{_MAX_AGE_D}天，判定按缺数处理")
+            f"三源均超过{_MAX_AGE_D}天，判定按缺数处理"
+            f"（9月会议已于{SEP_MEETING_DATE:%m-%d}开完：{SEP_MEETING_RESULT}；"
+            f"这一格现在问的是下一场）")
         stale_keys.add("fedwatch_sep_hike")
 
     # 数据健康标志（tier1/2 才算；手动源缺录不触发H1）
@@ -976,8 +1011,10 @@ def _judge_stabilize(verdict: str, gold_fell: bool):
     return held, len(days)
 
 
-def build_regime(ctx: dict, series: dict | None = None) -> dict:
+def build_regime(ctx: dict, series: dict | None = None,
+                 next_meeting_label: str = "") -> dict:
     """主导链判定（8-25报告链条6判据的条件计数版，不做叙事）。"""
+    _mtg = next_meeting_label
     # 条件名写成大白话：看的人没有金融背景，"盈亏平衡通胀>2.8"等于没说。
     # 数字保留在句子里，能对着上面的快照卡自己核。
     # 每条自带显示串。2026-09-09：加息那条原来直接把 0.646 印在卡片右边，
@@ -985,7 +1022,10 @@ def build_regime(ctx: dict, series: dict | None = None) -> dict:
     # 页面其它地方（雷达、推送）又都写 65%，同一个数三种样子。口径这边知道，
     # 就在这边定死，前端不再猜。
     conds = [
-        ("市场认为9月加息的可能性 低于40%", "fedwatch_sep_hike",
+        # 2026-09-20：原文写死"9月"，九月开完之后这一条就永远是空的。改成跟着
+        # 会议日程滚，并把会议日期写进条件句——读的人得知道问的是哪一场。
+        (f"市场认为下次会议{('(' + _mtg + ')') if _mtg else ''}加息的可能性 低于40%",
+         "fedwatch_sep_hike",
          ctx.get("fedwatch_sep_hike"), lambda v: v < 0.4, lambda v: f"{v * 100:.1f}%"),
         ("政府借30年的钱，年息 高于5.2%",   "us30y",
          ctx.get("us30y"),             lambda v: v > 5.2, lambda v: f"{v:.2f}%"),
@@ -1002,9 +1042,30 @@ def build_regime(ctx: dict, series: dict | None = None) -> dict:
               for name, key, v, fn, disp in conds]
     met = sum(1 for d in detail if d["met"])
     unknown = sum(1 for d in detail if not d["known"])
+    # 2026-09-20 加两条自检。起因 Momo 看首页：「主页的不加息，加息是什么？
+    # 现在加息了加的是哪一个，这个要改吗」。
+    # 剧本名里"不加息"三个字已经被事实推翻（9-16 加了），而卡上没有任何地方说这件事；
+    # 更要紧的是这个剧本的核心说法"存钱的人被物价吃掉"从来没有被直接检验过——
+    # 三个条件里没有一条量它。真利率就是那个直接读数，摆上来，成不成立当场看见。
+    _tips = ctx.get("tips10y")
+    if _tips is None:
+        _core = None
+    elif _tips > 0.5:
+        _core = (f"这个剧本的核心说法是「存钱的人被物价慢慢吃掉」。直接检验它的是真利率："
+                 f"现在买 10 年期抗通胀国债，扣掉物价之后每年还能多拿 {_tips:.2f}%。"
+                 f"这个数是正的而且不低，所以「被吃掉」这一条目前**不成立**。")
+    else:
+        _core = (f"这个剧本的核心说法是「存钱的人被物价慢慢吃掉」。直接检验它的是真利率："
+                 f"现在是 {_tips:.2f}%，"
+                 + ("已经是负的，存钱确实在亏。" if _tips < 0 else "贴着零，存钱几乎白存。"))
     return {"name": "通胀偏高但不加息(金融抑制)", "met": met, "total": len(detail),
             "unknown": unknown, "detail": detail,
             "source_note": ctx.get("_fedwatch_source"),
+            # 注：不能用 %-m/%-d，Windows 的 strftime 不支持，会抛 ValueError
+            "fact_note": (f"美联储 {SEP_MEETING_DATE.month}月{SEP_MEETING_DATE.day}日已经加过一次息"
+                          f"（{SEP_MEETING_RESULT}）。剧本名字里的「不加息」是旧的——"
+                          f"它讲的不是永远不加，是「加了也追不上物价」。"),
+            "core_check": _core,
             "plain": "三条同时成立，说明「东西在涨价、政府借钱很贵，但央行还是不打算加息」。"
                      "钱放在银行会被物价慢慢吃掉——历史上这种时候，钱会往黄金和实物跑。",
             "judge_result": _judge_regime(series or {}),
@@ -1279,8 +1340,8 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
         "predictions": scorecard_data,
         "news": news_items or [],
         "radar": build_radar(ctx or {}),
-        "radar_bands": build_radar_bands(ctx or {}),
-        "regime": build_regime(ctx or {}, series),
+        "radar_bands": build_radar_bands(ctx or {}, _next_meeting_label(by_key)),
+        "regime": build_regime(ctx or {}, series, _next_meeting_label(by_key)),
         "gex_history": _load_gex_history(),
         "gex": (by_key["gex_net"].extra | {"net_gex_bn": by_key["gex_net"].value,
                                            "stale": by_key["gex_net"].stale})
@@ -1451,20 +1512,34 @@ def main():
         out = {"value": d.value, "as_of": d.as_of, "stale": d.stale}
         # 会议开完：标已结算。前端 applyFreshHikeOdds 见到 settled 就不再用盘中值覆盖、
         # 不再拿它重算剧本条件（否则前端会把后端刚关掉的错判又打开）。
-        if dt.date.today() > SEP_MEETING_DATE:
+        # 2026-09-20：ZQ 那条已经改成"下一场会议"，永远指向未来，不能再当结算值。
+        # 还绑在九月市场上的只剩 Polymarket / Kalshi / CME人工三条。
+        if k != "fedwatch_zq_sep" and dt.date.today() > SEP_MEETING_DATE:
             out.update(stale=True, settled=True,
                        settled_note=f"9月会议 {SEP_MEETING_DATE:%m-%d} 已开完：{SEP_MEETING_RESULT}")
         # Polymarket / Kalshi 带五档分布（降50+/降25/不动/加25/加50+），三方对照页要"维持"那一档
         if d.extra.get("dist"):
             out["dist"] = d.extra["dist"]
         return out
+    # 2026-09-20：归档从"九月这一场"改成"下一场"，键名 p_hike_sep → p_hike_next。
+    # 九月的读数和十月的读数问的是两件事，拼到同一条线上是口径错误（曲线会在
+    # 9-16 那天从 100% 直接掉到 56%，看着像市场崩了，其实只是换了个问题）。
+    # 所以只取"当前这一场"的点；九月那段留在盘里和已结算的预测卡上。
+    _cur_mtg = None
+    try:
+        from fetchers.fedwatch_zq import next_meeting as _nm_fn
+        _nm = _nm_fn(dt.date.today())
+        _cur_mtg = _nm[0].isoformat() if _nm else None
+    except Exception:
+        pass
     odds_series = []
     fw_dir = DATA / "fedwatch"
     if fw_dir.exists():
         for pth in sorted(fw_dir.glob("*.json")):
             try:
                 j = json.loads(pth.read_text(encoding="utf-8"))
-                odds_series.append([j["date"], j["p_hike_sep"]])
+                if "p_hike_next" in j and j.get("meeting") == _cur_mtg:
+                    odds_series.append([j["date"], j["p_hike_next"]])
             except Exception:
                 pass
     scorecard_data["market_odds"] = {

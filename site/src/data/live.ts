@@ -409,6 +409,10 @@ export const regimeLive = L?.regime
       name: L.regime.name, met: L.regime.met, total: L.regime.total,
       unknown: L.regime.unknown ?? 0,
       plain: L.regime.plain as string | undefined,
+      // 2026-09-20：剧本名里的"不加息"已被 9-16 那次加息推翻，而卡上原来没有任何
+      // 地方说这件事；核心说法"存钱的人被吃掉"也从没被直接检验过。后端补了这两条。
+      factNote: L.regime.fact_note as string | undefined,
+      coreCheck: L.regime.core_check as string | undefined,
       sourceNote: L.regime.source_note as string | undefined,
       // 8-25报告写的判据，现在真算了（monitor._judge_regime），不再是一句摆设
       judge: L.regime.judge_result as

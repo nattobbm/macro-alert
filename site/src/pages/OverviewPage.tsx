@@ -194,6 +194,25 @@ export default function OverviewPage({ onGlobeClick, onShowdownClick }: { onGlob
               </div>
             )}
 
+            {/* 剧本名里的"不加息"已经被 9-16 那次加息推翻，必须当场说清楚，
+                否则首页在用一个过时的名字描述现在。核心说法也直接给检验读数。 */}
+            {(regimeLive?.factNote || regimeLive?.coreCheck) && (
+              <div className="neu-inset-sm px-4 py-3 mb-3 text-xs" style={{ lineHeight: 1.7 }}>
+                {regimeLive?.factNote && (
+                  <div style={{ color: 'var(--text)' }}>{regimeLive.factNote}</div>
+                )}
+                {regimeLive?.coreCheck && (
+                  <div className={regimeLive?.factNote ? 'mt-2' : ''}
+                       style={{ color: 'var(--text-muted)' }}>
+                    {regimeLive.coreCheck.split('**').map((seg, i) =>
+                      i % 2 === 1
+                        ? <strong key={i} style={{ color: 'var(--st-fire-text)' }}>{seg}</strong>
+                        : <span key={i}>{seg}</span>)}
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className="space-y-2">
               {(regimeLive?.conds ?? []).map((c, i) => (
                 <div
