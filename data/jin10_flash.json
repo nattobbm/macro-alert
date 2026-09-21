@@ -77,6 +77,61 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-22",
+   "time_bj": "11:10",
+   "title": "澳洲联储主席布洛克发表讲话",
+   "speaker": "布洛克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-22",
+   "time_bj": "19:00",
+   "title": "欧洲央行行长拉加德发言",
+   "speaker": "拉加德",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-22",
+   "time_bj": "22:05",
+   "title": "美联储威廉姆斯发表演讲",
+   "speaker": "威廉姆斯",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-22",
+   "time_bj": "22:20",
+   "title": "美联储杰斐逊发表演讲",
+   "speaker": "杰斐逊",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-23",
+   "time_bj": "01:00",
+   "title": "美联储巴尔金发表讲话",
+   "speaker": "巴尔金",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -2022,7 +2077,947 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：如果需求过热，美联储将采取何种行动“毫无疑问”。",
+   "link": "https://flash.jin10.com/detail/20260921183115393800",
+   "published": "2026-09-21T10:31:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：强劲需求可能与能源、关税及其他供应冲击一起推动通胀上升。",
+   "link": "https://flash.jin10.com/detail/20260921183119964800",
+   "published": "2026-09-21T10:31:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：供应冲击对通胀的影响持续存在，必须在制定货币政策时加以考虑。",
+   "link": "https://flash.jin10.com/detail/20260921183128978800",
+   "published": "2026-09-21T10:31:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：需要证据表明供应端通胀正在减弱，否则很难看到回到2%通胀的“可信路径”。",
+   "link": "https://flash.jin10.com/detail/20260921183141384800",
+   "published": "2026-09-21T10:31:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：恢复价格稳定“不会毫无痛苦”。",
+   "link": "https://flash.jin10.com/detail/20260921183204378800",
+   "published": "2026-09-21T10:32:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储古尔斯比：通胀回落至2%的道路可能并不轻松】金十数据9月21日讯，美联储古尔斯比警告称，美联储不能忽视反复且持续的供给冲击，并且必须以一种可能带来经济困难的方式作出回应。“供给冲击出现得更加频繁、冲击力度更大、持续时间也更长了。”古尔斯比周一表示，“一旦通胀领域的供给冲击",
+   "link": "https://flash.jin10.com/detail/20260921184136103800",
+   "published": "2026-09-21T10:41:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：美联储必须有勇气应对通胀。",
+   "link": "https://flash.jin10.com/detail/20260921185318254800",
+   "published": "2026-09-21T10:53:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：乐观认为美联储可以重回2%的目标，只要没有更多需求过热的证据。",
+   "link": "https://flash.jin10.com/detail/20260921190112338800",
+   "published": "2026-09-21T11:01:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：仍在梳理通胀中有多少是由于供应冲击与需求造成的。",
+   "link": "https://flash.jin10.com/detail/20260921190131810800",
+   "published": "2026-09-21T11:01:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：有关美联储应降低联邦政府借贷成本的主张，正是美联储保持独立性之所以重要的原因之一。",
+   "link": "https://flash.jin10.com/detail/20260921191139037800",
+   "published": "2026-09-21T11:11:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：如果财政政策推动了通胀，美联储必须考虑这一点。",
+   "link": "https://flash.jin10.com/detail/20260921191218470800",
+   "published": "2026-09-21T11:12:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：不应忽视基于调查的通胀预期。",
+   "link": "https://flash.jin10.com/detail/20260921192119306800",
+   "published": "2026-09-21T11:21:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：即使在频繁的供应冲击下，2%的通胀目标仍然是现实的，市场预期反映了对实现该目标的信心。",
+   "link": "https://flash.jin10.com/detail/20260921192148203800",
+   "published": "2026-09-21T11:21:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：2%的通胀目标是中期目标。",
+   "link": "https://flash.jin10.com/detail/20260921192207359800",
+   "published": "2026-09-21T11:22:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：如果有确凿证据表明通胀正在回落至2%，那么我对降息没有异议。",
+   "link": "https://flash.jin10.com/detail/20260921192302646800",
+   "published": "2026-09-21T11:23:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：美联储目前不存在就业问题，但确实面临通胀问题。",
+   "link": "https://flash.jin10.com/detail/20260921192405348800",
+   "published": "2026-09-21T11:24:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：愿意接受当前通胀问题不会持续的观点，但希望看到通胀正在消退的证据。",
+   "link": "https://flash.jin10.com/detail/20260921192435528800",
+   "published": "2026-09-21T11:24:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储古尔斯比：若通胀不回落，需采取明确行动加息】金十数据9月21日讯，美联储古尔斯比表示，表示，他对通胀开始回落至2%目标水平的可能性持开放态度，如果有确凿证据表明通胀正在回落至2%，那么对降息没有异议；但如果通胀未能回落，则需要上调利率。“目前，我们没有就业问题，但确实存在",
+   "link": "https://flash.jin10.com/detail/20260921194012074800",
+   "published": "2026-09-21T11:40:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 1,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "在给加息铺路，但用\"如果\"留了退路",
+   "meaning_lean": "鹰",
+   "meaning_id": "cond_hike"
+  },
+  {
+   "title": "美联储古尔斯比：今年早些时候的通胀数据似乎显示供应冲击正在消退，但目前部分通胀压力来自需求。",
+   "link": "https://flash.jin10.com/detail/20260921210023314800",
+   "published": "2026-09-21T13:00:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：供需压力对通胀的影响更多体现在速度而非目标上。",
+   "link": "https://flash.jin10.com/detail/20260921210028393800",
+   "published": "2026-09-21T13:00:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：如果通胀主要由需求驱动，利率政策应对将需要更加激进，并更早采取行动。",
+   "link": "https://flash.jin10.com/detail/20260921210042208800",
+   "published": "2026-09-21T13:00:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：鉴于多种通胀压力并存，美联储目前更接近需要“采取行动”的情形。",
+   "link": "https://flash.jin10.com/detail/20260921210054705800",
+   "published": "2026-09-21T13:00:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：辖区内企业联系人反馈的担忧听起来类似于传统的需求过热。",
+   "link": "https://flash.jin10.com/detail/20260921210105423800",
+   "published": "2026-09-21T13:01:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：不会将未来可能的加息视为对去年降息的逆转。",
+   "link": "https://flash.jin10.com/detail/20260921210116222800",
+   "published": "2026-09-21T13:01:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 1,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：如果供应冲击引发的通胀被证明具有持续性，美联储唯一的选择就是压低总需求。",
+   "link": "https://flash.jin10.com/detail/20260921210130162800",
+   "published": "2026-09-21T13:01:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：商业联系显示劳动力市场正在收紧，其他指标也表明了同样的趋势。",
+   "link": "https://flash.jin10.com/detail/20260921210134974800",
+   "published": "2026-09-21T13:01:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：当前失业率与充分就业“非常接近”。",
+   "link": "https://flash.jin10.com/detail/20260921210143305800",
+   "published": "2026-09-21T13:01:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：通胀的组成部分将影响美联储的分析，服务性通胀并不被视为与油价冲击相关，而是强劲需求的产物。",
+   "link": "https://flash.jin10.com/detail/20260921210148784800",
+   "published": "2026-09-21T13:01:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：美联储依然非常可信，大家对这项工作极为认真。",
+   "link": "https://flash.jin10.com/detail/20260921210152207800",
+   "published": "2026-09-21T13:01:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：应考虑让经济预测摘要提供更多信息。即使没有美联储经济预测摘要，外界仍会试图了解美联储官员的政策反应机制。",
+   "link": "https://flash.jin10.com/detail/20260921210218459800",
+   "published": "2026-09-21T13:02:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：从历史水平来看，美国长期利率并不算特别高，不认为这反映出市场对美国失去信心。央行官员的职责不是对市场或总统作出回应，而是根据经济状况采取行动。",
+   "link": "https://flash.jin10.com/detail/20260921210236012800",
+   "published": "2026-09-21T13:02:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：如果新的美国关税继续实施，第四季度增长可能会大幅减半，降至1%以下。",
+   "link": "https://flash.jin10.com/detail/20260921230515197800",
+   "published": "2026-09-21T15:05:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：如果油价维持在每桶接近100美元的水平，我们预计未来几个月通胀将小幅上升。",
+   "link": "https://flash.jin10.com/detail/20260921230525020800",
+   "published": "2026-09-21T15:05:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：燃料价格上涨幅度超出我们通常预期，反映出全球炼油能力受到损害。",
+   "link": "https://flash.jin10.com/detail/20260921230533834800",
+   "published": "2026-09-21T15:05:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：到目前为止，我们尚未看到更高的油价正在向其他商品和服务扩散的证据。",
+   "link": "https://flash.jin10.com/detail/20260921230543255800",
+   "published": "2026-09-21T15:05:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：最近的天然气价格与油价相比更加一致，油价几乎比之前高出40美元。",
+   "link": "https://flash.jin10.com/detail/20260921230550720800",
+   "published": "2026-09-21T15:05:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：如果通胀压力得到控制，我们不希望加息以抑制增长。",
+   "link": "https://flash.jin10.com/detail/20260921230557586800",
+   "published": "2026-09-21T15:05:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：越来越多的证据表明，许多加拿大企业已开始适应美国关税政策。",
+   "link": "https://flash.jin10.com/detail/20260921230603969800",
+   "published": "2026-09-21T15:06:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：预计未来几年劳动力增长将接近零。",
+   "link": "https://flash.jin10.com/detail/20260921230613676800",
+   "published": "2026-09-21T15:06:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【加拿大央行：美国新关税或令加拿大第四季度经济增速降至1%以下】金十数据9月21日讯，加拿大央行行长麦克勒姆周一表示，美国新关税可能导致加拿大第四季度经济增速降至1%以下。麦克勒姆表示，在央行评估利率政策时，需要考虑两方面因素：经济增长放缓可能推动通胀下行，但中东冲突导致油价上涨",
+   "link": "https://flash.jin10.com/detail/20260921230748896800",
+   "published": "2026-09-21T15:07:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "地缘链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "【加拿大央行行长：在多重相互制约因素下权衡利率政策】金十数据9月21日讯，加拿大央行行长麦克勒姆表示，未来利率政策将取决于企业和家庭如何应对能源价格高企以及贸易不确定性重新升温这两大因素，央行官员已准备根据这两项主要风险的发展情况调整货币政策。他说：“如果通胀压力得到控制，我们不",
+   "link": "https://flash.jin10.com/detail/20260921231051979800",
+   "published": "2026-09-21T15:10:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：不确定性的新纪元不会很快消失。",
+   "link": "https://flash.jin10.com/detail/20260922003629053800",
+   "published": "2026-09-21T16:36:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：燃油利润率回至正常水平可能需要一段时间，这令人担忧。",
+   "link": "https://flash.jin10.com/detail/20260922004448011800",
+   "published": "2026-09-21T16:44:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：因为这将使整体通胀更具顽固性。",
+   "link": "https://flash.jin10.com/detail/20260922004513205800",
+   "published": "2026-09-21T16:45:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：已将第四季度年化增长预测下调至0.75%。",
+   "link": "https://flash.jin10.com/detail/20260922004706284800",
+   "published": "2026-09-21T16:47:06Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：预计未来几个月通胀将略有上升。",
+   "link": "https://flash.jin10.com/detail/20260922004710843800",
+   "published": "2026-09-21T16:47:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：我们将重点关注通胀预测。",
+   "link": "https://flash.jin10.com/detail/20260922004735944800",
+   "published": "2026-09-21T16:47:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：问题在于，当前利率是否合适，还是我们需要加息。",
+   "link": "https://flash.jin10.com/detail/20260922004757497800",
+   "published": "2026-09-21T16:47:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：通胀预测将影响10月的决策。",
+   "link": "https://flash.jin10.com/detail/20260922004824994800",
+   "published": "2026-09-21T16:48:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：我们需要决定是否加息以引导CPI回到2%。",
+   "link": "https://flash.jin10.com/detail/20260922004841132800",
+   "published": "2026-09-21T16:48:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：我们关注市场如何看待利率前景。交易员们正在对利率前景形成自己的判断。",
+   "link": "https://flash.jin10.com/detail/20260922005249194800",
+   "published": "2026-09-21T16:52:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：如果我们加息动作太慢，就不得不非常迅速地加息，而且加息幅度会比我们提早行动时更大。",
+   "link": "https://flash.jin10.com/detail/20260922005350389800",
+   "published": "2026-09-21T16:53:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-21T01:58:55Z"
+ "fetched_at": "2026-09-21T18:41:58Z"
 }
