@@ -236,7 +236,10 @@ def load_or_refresh(max_age_days: int = 7) -> dict | None:
         if OUT.exists():
             j = json.loads(OUT.read_text(encoding="utf-8"))
             g = dt.datetime.fromisoformat(j["generated_at"].replace("Z", "+00:00"))
-            if (dt.datetime.now(dt.timezone.utc) - g).days < max_age_days:
+            # 结构升级也算过期：文件里没有 year_plan / recent20 的是旧版，重算。
+            # 2026-09-22 事故：提交前 git checkout -- data/ 把新算的 JSON 还原成旧版，线上全年一览空了 6 小时
+            fresh_schema = "year_plan" in j and all("recent20_ratio" in a for a in j.get("assets", {}).values())
+            if fresh_schema and (dt.datetime.now(dt.timezone.utc) - g).days < max_age_days:
                 return j
         j = compute()
         OUT.write_text(json.dumps(j, ensure_ascii=False, indent=1), encoding="utf-8")

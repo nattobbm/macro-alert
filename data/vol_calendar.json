@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-21T23:49:26Z",
+ "generated_at": "2026-09-22T02:50:59Z",
  "window": {
   "start": "2024-08-01",
   "end": "2026-09-21"
@@ -18,6 +18,9 @@
    "n_d1": 535,
    "n_d21": 515,
    "n_d252": 284,
+   "recent20": 0.47,
+   "recent20_ratio": 0.98,
+   "recent20_from": "2026-08-24",
    "max_event_day": {
     "FOMC": 2.95,
     "NFP": 5.97,
@@ -31,12 +34,15 @@
    "label_en": "Gold",
    "unit": "%",
    "symbol": "GC=F",
-   "d1": 0.77,
+   "d1": 0.78,
    "d21": 4.2,
    "d252": 44.5,
    "n_d1": 537,
    "n_d21": 517,
    "n_d252": 286,
+   "recent20": 0.83,
+   "recent20_ratio": 1.07,
+   "recent20_from": "2026-08-24",
    "max_event_day": {
     "FOMC": 4.35,
     "NFP": 3.24,
@@ -56,6 +62,9 @@
    "n_d1": 537,
    "n_d21": 517,
    "n_d252": 286,
+   "recent20": 0.2,
+   "recent20_ratio": 0.8,
+   "recent20_from": "2026-08-24",
    "max_event_day": {
     "FOMC": 1.04,
     "NFP": 1.34,
@@ -75,6 +84,9 @@
    "n_d1": 535,
    "n_d21": 515,
    "n_d252": 284,
+   "recent20": 2.3,
+   "recent20_ratio": 0.84,
+   "recent20_from": "2026-08-24",
    "max_event_day": {
     "FOMC": 8.0,
     "NFP": 16.2,
@@ -94,6 +106,9 @@
    "n_d1": 552,
    "n_d21": 532,
    "n_d252": 301,
+   "recent20": 0.41,
+   "recent20_ratio": 1.23,
+   "recent20_from": "2026-08-25",
    "max_event_day": {
     "FOMC": 1.91,
     "NFP": 1.71,
@@ -113,6 +128,9 @@
    "n_d1": 537,
    "n_d21": 517,
    "n_d252": 286,
+   "recent20": 0.66,
+   "recent20_ratio": 0.95,
+   "recent20_from": "2026-08-25",
    "max_event_day": {
     "FOMC": 11.75,
     "NFP": 15.29,
@@ -180,7 +198,7 @@
    "n": 24,
    "ratio": {
     "spx": 1.2,
-    "gold": 1.4,
+    "gold": 1.3,
     "dxy": 1.0,
     "us30y": 1.2,
     "usdjpy": 0.8,
@@ -336,5 +354,288 @@
    "2026-07-16",
    "2026-08-14"
   ]
- }
+ },
+ "year_plan": [
+  {
+   "date": "2026-10-02",
+   "type": "NFP",
+   "estimated": false
+  },
+  {
+   "date": "2026-10-14",
+   "type": "CPI",
+   "estimated": false
+  },
+  {
+   "date": "2026-10-15",
+   "type": "PPI",
+   "estimated": false
+  },
+  {
+   "date": "2026-10-15",
+   "type": "RETAIL",
+   "estimated": false
+  },
+  {
+   "date": "2026-10-28",
+   "type": "FOMC",
+   "estimated": false
+  },
+  {
+   "date": "2026-11-06",
+   "type": "NFP",
+   "estimated": false
+  },
+  {
+   "date": "2026-11-10",
+   "type": "CPI",
+   "estimated": false
+  },
+  {
+   "date": "2026-11-13",
+   "type": "PPI",
+   "estimated": false
+  },
+  {
+   "date": "2026-11-17",
+   "type": "RETAIL",
+   "estimated": false
+  },
+  {
+   "date": "2026-12-04",
+   "type": "NFP",
+   "estimated": false
+  },
+  {
+   "date": "2026-12-09",
+   "type": "FOMC",
+   "estimated": false
+  },
+  {
+   "date": "2026-12-10",
+   "type": "CPI",
+   "estimated": false
+  },
+  {
+   "date": "2026-12-15",
+   "type": "PPI",
+   "estimated": false
+  },
+  {
+   "date": "2026-12-16",
+   "type": "RETAIL",
+   "estimated": false
+  },
+  {
+   "date": "2027-01-01",
+   "type": "NFP",
+   "estimated": true
+  },
+  {
+   "date": "2027-01-13",
+   "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-01-14",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-01-15",
+   "type": "RETAIL",
+   "estimated": true
+  },
+  {
+   "date": "2027-01-27",
+   "type": "FOMC",
+   "estimated": false
+  },
+  {
+   "date": "2027-02-05",
+   "type": "NFP",
+   "estimated": true
+  },
+  {
+   "date": "2027-02-15",
+   "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-02-15",
+   "type": "RETAIL",
+   "estimated": true
+  },
+  {
+   "date": "2027-02-16",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-03-05",
+   "type": "NFP",
+   "estimated": true
+  },
+  {
+   "date": "2027-03-15",
+   "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-03-15",
+   "type": "RETAIL",
+   "estimated": true
+  },
+  {
+   "date": "2027-03-16",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-03-17",
+   "type": "FOMC",
+   "estimated": false
+  },
+  {
+   "date": "2027-04-02",
+   "type": "NFP",
+   "estimated": true
+  },
+  {
+   "date": "2027-04-13",
+   "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-04-14",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-04-15",
+   "type": "RETAIL",
+   "estimated": true
+  },
+  {
+   "date": "2027-04-28",
+   "type": "FOMC",
+   "estimated": false
+  },
+  {
+   "date": "2027-05-07",
+   "type": "NFP",
+   "estimated": true
+  },
+  {
+   "date": "2027-05-13",
+   "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-05-14",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-05-17",
+   "type": "RETAIL",
+   "estimated": true
+  },
+  {
+   "date": "2027-06-04",
+   "type": "NFP",
+   "estimated": true
+  },
+  {
+   "date": "2027-06-09",
+   "type": "FOMC",
+   "estimated": false
+  },
+  {
+   "date": "2027-06-14",
+   "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-06-15",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-06-15",
+   "type": "RETAIL",
+   "estimated": true
+  },
+  {
+   "date": "2027-07-02",
+   "type": "NFP",
+   "estimated": true
+  },
+  {
+   "date": "2027-07-13",
+   "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-07-14",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-07-15",
+   "type": "RETAIL",
+   "estimated": true
+  },
+  {
+   "date": "2027-07-28",
+   "type": "FOMC",
+   "estimated": false
+  },
+  {
+   "date": "2027-08-06",
+   "type": "NFP",
+   "estimated": true
+  },
+  {
+   "date": "2027-08-13",
+   "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-08-16",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-08-16",
+   "type": "RETAIL",
+   "estimated": true
+  },
+  {
+   "date": "2027-09-03",
+   "type": "NFP",
+   "estimated": true
+  },
+  {
+   "date": "2027-09-13",
+   "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-09-14",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-09-15",
+   "type": "FOMC",
+   "estimated": false
+  },
+  {
+   "date": "2027-09-15",
+   "type": "RETAIL",
+   "estimated": true
+  }
+ ],
+ "year_plan_note": "议息=federalreserve.gov 官方（含2027）；非农/CPI/PPI/零售=FRED 官方排期，BLS 只排到当年年底，之后按惯例推算并标 estimated，官方一出自动替换"
 }
