@@ -1615,7 +1615,170 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：我更倾向于认为，这一时期的情况将更类似于20世纪90年代的周期的中期调整。",
+   "link": "https://flash.jin10.com/detail/20260923013250175800",
+   "published": "2026-09-22T17:32:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：美联储高度关注金融状况，但不能假设市场会将利率维持在抑制通胀所需的水平。",
+   "link": "https://flash.jin10.com/detail/20260923013804549800",
+   "published": "2026-09-22T17:38:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储巴尔金：通胀压力需要时间才能消退】金十数据9月23日讯，美联储巴尔金警告称，通胀冲击可能需要一段时间才能缓解，且存在通胀压力居高不下并根深蒂固的风险。巴尔金表示，美联储上周加息有助于放缓通胀，但他并未明确表示是否需要进一步收紧政策。相反，这位美联储官员强调，供给冲击已不再",
+   "link": "https://flash.jin10.com/detail/20260923014342117800",
+   "published": "2026-09-22T17:43:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 5,
+    "dove": 2,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔金",
+   "meaning": "他认为通胀是结构性的，光等是等不下来的——要动手",
+   "meaning_lean": "鹰",
+   "meaning_id": "entrenched"
+  },
+  {
+   "title": "美联储巴尔金：不认为当前的生产力提升主要反映了人工智能的影响。",
+   "link": "https://flash.jin10.com/detail/20260923014403071800",
+   "published": "2026-09-22T17:44:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：经历了充满不确定性的时期后，企业和机构在做出投资和支出决策时不再那么犹豫。",
+   "link": "https://flash.jin10.com/detail/20260923021538275800",
+   "published": "2026-09-22T18:15:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：目前尚无经济过热的迹象，但经济正在走强，而非走弱。",
+   "link": "https://flash.jin10.com/detail/20260923021557696800",
+   "published": "2026-09-22T18:15:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：抑制市场对通胀的预期，或许有助于缓解物价上涨压力，而无需依赖“需求破坏”措施。",
+   "link": "https://flash.jin10.com/detail/20260923021614442800",
+   "published": "2026-09-22T18:16:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：许多企业仍然感到他们拥有定价权。",
+   "link": "https://flash.jin10.com/detail/20260923021622118800",
+   "published": "2026-09-22T18:16:22Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：目前银行业状况似乎非常健康。",
+   "link": "https://flash.jin10.com/detail/20260923021626504800",
+   "published": "2026-09-22T18:16:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-22T17:38:25Z"
+ "fetched_at": "2026-09-22T23:15:58Z"
 }
