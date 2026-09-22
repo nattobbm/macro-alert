@@ -28,3 +28,4 @@
 {"ts": "2026-09-21T01:59:00Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:央行欠账的紧缩（泰勒缺口>100bp）|not_fired->fired", "judge:None|回到需求侧紧缩链->确认金融抑制主导"], "muted": ["node:油价20天累计涨幅"], "chars": 373, "head": "*【09\\-21】市场在为「更松」定价：确认金融抑制主导。*"}
 {"ts": "2026-09-21T18:42:06Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|fired_muted->fired"], "muted": ["node:日元逼近干预线", "node:日元强到撤资线?", "node:日元弱到干预线?", "band:日元(USDJPY)"], "chars": 663, "head": "*【09\\-21】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
 {"ts": "2026-09-21T23:34:35Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["node:30年利率回到高点?|near->crossed"], "muted": [], "chars": 572, "head": "*【09\\-21】30年利率回到高点?越线。*"}
+{"ts": "2026-09-22T00:19:41Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 577, "head": "*【09\\-22】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
