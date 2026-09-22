@@ -76,6 +76,17 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-23",
+   "time_bj": null,
+   "title": "伊朗总统佩泽希齐扬发表讲话",
+   "speaker": null,
+   "tags": [
+    "地缘链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -1221,7 +1232,390 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：美联储将根据市场情况调整准备金供应。",
+   "link": "https://flash.jin10.com/detail/20260922220507688800",
+   "published": "2026-09-22T14:05:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【对冲基金减少美债基差交易 债券价差收窄削弱套利机会】金十数据9月22日讯，华尔街策略师表示，一项流行的美国国债交易策略规模已降至两年多来的最低水平，这反映出债券市场可供对冲基金利用的错位机会正在减少。这种被称为“基差交易”（basis trade）的策略，有助于为美国国债市场提",
+   "link": "https://flash.jin10.com/detail/20260922220508964800",
+   "published": "2026-09-22T14:05:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：持有储备不应有机会成本。",
+   "link": "https://flash.jin10.com/detail/20260922220515542800",
+   "published": "2026-09-22T14:05:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：美联储的利率控制系统非常有效。",
+   "link": "https://flash.jin10.com/detail/20260922220518201800",
+   "published": "2026-09-22T14:05:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：正在监测中央清算回购交易的增长。",
+   "link": "https://flash.jin10.com/detail/20260922220525574800",
+   "published": "2026-09-22T14:05:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：美联储将根据需要调整货币政策实施策略。",
+   "link": "https://flash.jin10.com/detail/20260922220528754800",
+   "published": "2026-09-22T14:05:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯未对货币政策和经济前景发表评论。",
+   "link": "https://flash.jin10.com/detail/20260922220533650800",
+   "published": "2026-09-22T14:05:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储威廉姆斯：利率调控工具运行良好 可根据市场变化调整】金十数据9月22日讯，美联储威廉姆斯周二为美联储实施货币政策的体系进行辩护，同时表示，随着金融市场变化，该体系可以进行调整和优化。威廉姆斯表示，利用当前一系列工具管理短期利率，并向金融体系提供“充足”的准备金，“已被证明",
+   "link": "https://flash.jin10.com/detail/20260922220652262800",
+   "published": "2026-09-22T14:06:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储威廉姆斯：美债清算工作进展超前】金十数据9月22日讯，纽约联储主席威廉姆斯表示，美国国债以及以美国国债作为抵押品的回购协议转向集中清算的进程已提前于计划推进。威廉姆斯说道：“为应对即将到来的截止日期，业界已着手扩展用于清算回购和现货交易的基础设施，相关交易活动也已提前从非",
+   "link": "https://flash.jin10.com/detail/20260922223555526800",
+   "published": "2026-09-22T14:35:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储副主席杰斐逊：现代化贴现窗口仍然有重要工作要做。",
+   "link": "https://flash.jin10.com/detail/20260922221710797800",
+   "published": "2026-09-22T14:17:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "杰斐逊",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储副主席杰斐逊：贴现窗口是市场压力下的缓冲器，支持短期融资市场的运作，维护国债流动性。",
+   "link": "https://flash.jin10.com/detail/20260922221714387800",
+   "published": "2026-09-22T14:17:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "杰斐逊",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储副主席杰斐逊在准备的发言中未对货币政策和经济作出评论。",
+   "link": "https://flash.jin10.com/detail/20260922221717250800",
+   "published": "2026-09-22T14:17:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "杰斐逊",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：美联储上周加息，因为通胀风险超过了最大就业风险。",
+   "link": "https://flash.jin10.com/detail/20260923005101982800",
+   "published": "2026-09-22T16:51:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：上周的加息“将有助于”恢复价格稳定，“我们将观察”是否需要更多加息。",
+   "link": "https://flash.jin10.com/detail/20260923005117459800",
+   "published": "2026-09-22T16:51:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：虽然人们很容易将高通胀归咎于少数几个受能源成本或关税影响的类别，但个人消费支出指数中的大部分项目涨幅都超过了3%。",
+   "link": "https://flash.jin10.com/detail/20260923005146029800",
+   "published": "2026-09-22T16:51:46Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：除数据中心和人工智能领域外，其他领域也呈现出增长势头，消费者支出保持稳定，国防和制造业表现强劲。",
+   "link": "https://flash.jin10.com/detail/20260923005205251800",
+   "published": "2026-09-22T16:52:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：像关税和能源价格这样的“传导性冲击”并未消退，当前的高通胀可能对未来通胀产生影响。",
+   "link": "https://flash.jin10.com/detail/20260923005218595800",
+   "published": "2026-09-22T16:52:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：经济形势“如果非要说的话，正在趋于稳固”。",
+   "link": "https://flash.jin10.com/detail/20260923005230454800",
+   "published": "2026-09-22T16:52:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：劳动力市场并未过热，甚至并不特别紧张。",
+   "link": "https://flash.jin10.com/detail/20260923010844464800",
+   "published": "2026-09-22T17:08:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：没有看到消费者资产负债表紧张的明显证据。",
+   "link": "https://flash.jin10.com/detail/20260923011135506800",
+   "published": "2026-09-22T17:11:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：只要就业市场保持健康，消费者就会继续消费。",
+   "link": "https://flash.jin10.com/detail/20260923011208271800",
+   "published": "2026-09-22T17:12:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-22T13:59:20Z"
+ "fetched_at": "2026-09-22T17:38:25Z"
 }
