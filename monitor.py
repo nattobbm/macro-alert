@@ -60,6 +60,7 @@ def _next_meeting_label(by_key: dict) -> str:
     return f"{md[5:7]}-{md[8:10]}" if md else ""
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict, reason  # noqa: E402
+from core import vol_calendar as _vol_calendar  # noqa: E402
 
 DATA = ROOT / "data"
 STATE_FILE = DATA / "state.json"
@@ -1343,6 +1344,8 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
         "radar_bands": build_radar_bands(ctx or {}, _next_meeting_label(by_key)),
         "regime": build_regime(ctx or {}, series, _next_meeting_label(by_key)),
         "gex_history": _load_gex_history(),
+        # 2026-09-21 波动日历（什么日子谁动几倍 + 每个标的日/月/年）。文件超 7 天自动重算，失败不阻断
+        "vol_calendar": _vol_calendar.load_or_refresh(),
         "gex": (by_key["gex_net"].extra | {"net_gex_bn": by_key["gex_net"].value,
                                            "stale": by_key["gex_net"].stale})
                if "gex_net" in by_key else None,

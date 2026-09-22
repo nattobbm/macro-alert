@@ -11,6 +11,7 @@ import {
 } from '../data/live'
 import Kline from '../components/Kline'
 import TradingStrip from '../components/TradingStrip'
+import VolCalendar from '../components/VolCalendar'
 
 const spxData = genSPX()
 
@@ -38,8 +39,34 @@ export default function EquityPage() {
       ? `${level >= currentPrice ? '+' : ''}${((level - currentPrice) / currentPrice * 100).toFixed(1)}%`
       : ''
 
+  // 2026-09-21 Momo：「点市场后多一个顶部分栏，把新东西加进去」。
+  // 顶部两栏：盘口/期权（原页）｜波动日历（新）。分栏状态只在本页，切页回来默认回盘口。
+  const [sub, setSub] = useState<'market' | 'vol'>('market')
+  const switcher = (
+    <div className="flex gap-2">
+      {([['market', isEN ? 'Quotes · Options' : '盘口 · 期权'], ['vol', isEN ? 'Volatility calendar' : '波动日历']] as const).map(([k, label]) => (
+        <button
+          key={k}
+          onClick={() => setSub(k)}
+          aria-pressed={sub === k}
+          className={`${sub === k ? 'neu-pill-active' : 'neu-pill'} px-4 py-1.5 text-sm`}
+          style={{ color: sub === k ? 'var(--text)' : 'var(--text-muted)', fontWeight: sub === k ? 600 : 400 }}
+        >{label}</button>
+      ))}
+    </div>
+  )
+  if (sub === 'vol') {
+    return (
+      <div className="space-y-6">
+        {switcher}
+        <VolCalendar />
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
+      {switcher}
 
       {/* ── 盘口：实际交易的标的（2026-09-01 从总览页移来） ───── */}
       <TradingStrip />
