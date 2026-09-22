@@ -45,14 +45,82 @@ ASSETS = [
     ("vix",    "^VIX",     "恐慌指数", "VIX",       "pt"),
 ]
 
-# FOMC 决议日（会议第二天）。federalreserve.gov/monetarypolicy/fomccalendars.htm，2026-09-21 核实
+# FOMC 决议日（会议第二天）。federalreserve.gov/monetarypolicy/fomccalendars.htm，2026-09-21 核实到 2027
 FOMC_DECISION_DATES = [
     "2024-09-18", "2024-11-07", "2024-12-18",
     "2025-01-29", "2025-03-19", "2025-05-07", "2025-06-18", "2025-07-30",
     "2025-09-17", "2025-10-29", "2025-12-10",
     "2026-01-28", "2026-03-18", "2026-04-29", "2026-06-17", "2026-07-29",
     "2026-09-16", "2026-10-28", "2026-12-09",
+    "2027-01-27", "2027-03-17", "2027-04-28", "2027-06-09", "2027-07-28",
+    "2027-09-15", "2027-10-27", "2027-12-08",
 ]
+
+# FRED release_id（从历史 parquet 里核出来的）。未来的官方发布日走 /fred/release/dates，
+# 带 include_release_dates_with_no_data=true 才给还没发布的排期。BLS 只排到当年年底，
+# 再往后的月份按惯例推算并标 estimated，官方排期一出来自动替换。
+FRED_RELEASE_ID = {"NFP": 50, "CPI": 10, "PPI": 46, "RETAIL": 9}
+
+
+def _nth_weekday(y: int, m: int, weekday: int, n: int) -> dt.date:
+    d = dt.date(y, m, 1)
+    d += dt.timedelta(days=(weekday - d.weekday()) % 7)
+    return d + dt.timedelta(days=7 * (n - 1))
+
+
+def _to_weekday(d: dt.date) -> dt.date:
+    while d.weekday() >= 5:
+        d += dt.timedelta(days=1)
+    return d
+
+
+def _estimate(ek: str, y: int, m: int) -> dt.date:
+    """惯例推算，只在官方排期没出来的月份用。非农=首个周五；CPI≈13 日；PPI=CPI 后一个工作日；零售≈15 日"""
+    if ek == "NFP":
+        return _nth_weekday(y, m, 4, 1)
+    if ek == "CPI":
+        return _to_weekday(dt.date(y, m, 13))
+    if ek == "PPI":
+        return _to_weekday(_to_weekday(dt.date(y, m, 13)) + dt.timedelta(days=1))
+    return _to_weekday(dt.date(y, m, 15))
+
+
+def _future_official(ek: str, start: dt.date, end: dt.date) -> list[str]:
+    key = os.environ.get("FRED_API_KEY")
+    rid = FRED_RELEASE_ID.get(ek)
+    if not key or not rid:
+        return []
+    try:
+        import requests
+        r = requests.get("https://api.stlouisfed.org/fred/release/dates",
+                         params={"release_id": rid, "api_key": key, "file_type": "json",
+                                 "include_release_dates_with_no_data": "true",
+                                 "realtime_start": start.isoformat(), "realtime_end": end.isoformat(),
+                                 "sort_order": "asc", "limit": "60"}, timeout=40).json()
+        return sorted({d["date"] for d in r.get("release_dates", []) if start.isoformat() <= d["date"] <= end.isoformat()})
+    except Exception:
+        return []
+
+
+def year_plan(today: dt.date, days: int = 365) -> list[dict]:
+    """今天起一年的固定日：{date, type, estimated}。官方优先，缺的月份按惯例补并标 estimated。"""
+    end = today + dt.timedelta(days=days)
+    out: list[dict] = []
+    for d in FOMC_DECISION_DATES:
+        if today.isoformat() <= d <= end.isoformat():
+            out.append({"date": d, "type": "FOMC", "estimated": False})
+    for ek in ("NFP", "CPI", "PPI", "RETAIL"):
+        official = _future_official(ek, today, end)
+        have_months = {d[:7] for d in official}
+        out += [{"date": d, "type": ek, "estimated": False} for d in official]
+        y, m = today.year, today.month
+        while dt.date(y, m, 1) <= end:
+            if f"{y:04d}-{m:02d}" not in have_months:
+                d = _estimate(ek, y, m)
+                if today <= d <= end:
+                    out.append({"date": d.isoformat(), "type": ek, "estimated": True})
+            y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+    return sorted(out, key=lambda x: (x["date"], x["type"]))
 
 # 事件类型 → (人话名, 英文, FRED release 名, 日历标题里的匹配词)
 EVENTS = {
@@ -121,12 +189,18 @@ def compute(end: dt.date | None = None) -> dict:
         base_med = _median(base)
         if n_baseline is None:
             n_baseline = len(base)
+        # 最近 20 个交易日的日均幅度 ÷ 平常：>1.2 躁动，<0.8 安静。回来第一眼要知道现在是哪种天气
+        recent = [d1[d] for d in idx[-20:] if d in d1]
+        recent_med = _median(recent)
         assets_out[key] = {
             "label": zh, "label_en": en, "unit": unit, "symbol": sym,
             "d1": round(base_med, 2) if base_med is not None else None,
             "d21": round(_median(d21.values()), 1),
             "d252": round(_median(d252.values()), 1),
             "n_d1": len(d1), "n_d21": len(d21), "n_d252": len(d252),
+            "recent20": round(recent_med, 2) if recent_med is not None else None,
+            "recent20_ratio": round(recent_med / base_med, 2) if (recent_med and base_med) else None,
+            "recent20_from": idx[-20] if len(idx) >= 20 else idx[0],
             "max_event_day": {},
         }
         for ek in EVENTS:
@@ -149,6 +223,10 @@ def compute(end: dt.date | None = None) -> dict:
         "events": events_out,
         "event_dates": {k: [d for d in v if d <= (end + dt.timedelta(days=120)).isoformat()]
                         for k, v in ev_dates.items()},
+        # 一年的固定日。官方排期优先；estimated=True 的是按惯例推的，前端画虚线
+        "year_plan": year_plan(end),
+        "year_plan_note": "议息=federalreserve.gov 官方（含2027）；非农/CPI/PPI/零售=FRED 官方排期，"
+                          "BLS 只排到当年年底，之后按惯例推算并标 estimated，官方一出自动替换",
     }
 
 
