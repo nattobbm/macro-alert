@@ -9,7 +9,13 @@
     <link rel="icon" href="/icon-192.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#d8e8f4" />
+    <!-- 2026-09-22：装成手机 app 的三件套。iPhone 不读 manifest 的图标，必须单独给 apple-touch-icon，
+         否则"添加到主屏幕"会用页面截图当图标 -->
+    <link rel="apple-touch-icon" href="/icon-192.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="CYPERMOW" />
+    <meta name="mobile-web-app-capable" content="yes" />
   </head>
   <body>
     <div id="root"></div>

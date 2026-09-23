@@ -1,12 +1,17 @@
 {
-  "name": "CYPERMOW Macro Terminal",
+  "name": "CYPERMOW · 看懂世界的小终端",
   "short_name": "CYPERMOW",
-  "start_url": "/",
+  "description": "宏观逻辑链 · 实时数据 · 可结算的预测",
+  "lang": "zh-CN",
+  "start_url": "/?src=pwa",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#04070f",
-  "theme_color": "#04070f",
+  "orientation": "portrait",
+  "background_color": "#d8e8f4",
+  "theme_color": "#d8e8f4",
   "icons": [
-    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
-    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"}
+    {"src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
   ]
 }
