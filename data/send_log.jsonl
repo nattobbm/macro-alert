@@ -35,3 +35,4 @@
 {"ts": "2026-09-22T17:38:31Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 526, "head": "*【09\\-22】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
 {"ts": "2026-09-22T23:16:05Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired"], "muted": ["node:30年利率回到高点?"], "chars": 614, "head": "*【09\\-22】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
 {"ts": "2026-09-23T01:59:11Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["judge:None|确认金融抑制主导->判据未触发"], "muted": [], "chars": 690, "head": "*【09\\-23】市场在为「更松」定价：判据未触发。*"}
+{"ts": "2026-09-23T17:51:17Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:9月加息概率回升|not_fired->fired", "node:美元指数跟着油一起涨|near->crossed", "band:下次会议加息概率（10-28）|in_band->breached_hi"], "muted": [], "chars": 828, "head": "*【09\\-23】美元指数跟着油一起涨越线、加息涨破线。*"}

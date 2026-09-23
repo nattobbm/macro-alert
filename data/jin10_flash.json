@@ -87,6 +87,39 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-24",
+   "time_bj": "15:30",
+   "title": "瑞士央行公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-09-24",
+   "time_bj": "20:50",
+   "title": "美联储哈马克发表讲话",
+   "speaker": "哈马克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-24",
+   "time_bj": "22:10",
+   "title": "美联储保尔森发表讲话",
+   "speaker": "保尔森",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -1780,5 +1813,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-23T01:59:05Z"
+ "fetched_at": "2026-09-23T17:51:10Z"
 }
