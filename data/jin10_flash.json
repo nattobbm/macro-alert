@@ -120,6 +120,50 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-25",
+   "time_bj": null,
+   "title": "英国央行行长贝利发表讲话",
+   "speaker": "贝利",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-25",
+   "time_bj": "17:15",
+   "title": "美联储威廉姆斯发表讲话",
+   "speaker": "威廉姆斯",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-25",
+   "time_bj": "21:20",
+   "title": "美联储施密德发表讲话",
+   "speaker": "施密德",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-26",
+   "time_bj": "02:00",
+   "title": "美联储哈马克发表讲话",
+   "speaker": "哈马克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -1811,7 +1855,224 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：九月份的通胀报告推动了加息。",
+   "link": "https://flash.jin10.com/detail/20260924220548247800",
+   "published": "2026-09-24T14:05:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：人工智能建设推高了顽固的通胀。",
+   "link": "https://flash.jin10.com/detail/20260924220609013800",
+   "published": "2026-09-24T14:06:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储的保尔森：支持将通胀率降至2%的政策路径。",
+   "link": "https://flash.jin10.com/detail/20260924220626948800",
+   "published": "2026-09-24T14:06:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：美联储可能需要再次加息以降低通胀。",
+   "link": "https://flash.jin10.com/detail/20260924221018342800",
+   "published": "2026-09-24T14:10:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：九月加息有助于将政策调整至更有效的抗通胀状态。",
+   "link": "https://flash.jin10.com/detail/20260924221028442800",
+   "published": "2026-09-24T14:10:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：通胀风险平衡在九月政策会议前发生变化。",
+   "link": "https://flash.jin10.com/detail/20260924221034071800",
+   "published": "2026-09-24T14:10:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：基础通胀“依然顽固地高”。",
+   "link": "https://flash.jin10.com/detail/20260924221039770800",
+   "published": "2026-09-24T14:10:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：经济韧性强，显示出增长势头增强的迹象。",
+   "link": "https://flash.jin10.com/detail/20260924221043111800",
+   "published": "2026-09-24T14:10:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：劳动力市场稳定。",
+   "link": "https://flash.jin10.com/detail/20260924221045958800",
+   "published": "2026-09-24T14:10:45Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：关于通胀，最多只能说它没有进一步恶化。",
+   "link": "https://flash.jin10.com/detail/20260924221059032800",
+   "published": "2026-09-24T14:10:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：将通胀率恢复至2%是首要任务。",
+   "link": "https://flash.jin10.com/detail/20260924221108118800",
+   "published": "2026-09-24T14:11:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【今日重点关注的财经数据与事件：2026年9月25日 周五】",
+   "link": "https://flash.jin10.com/detail/20260925000000001800",
+   "published": "2026-09-24T16:00:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-23T23:08:02Z"
+ "fetched_at": "2026-09-24T17:51:40Z"
 }
