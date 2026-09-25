@@ -43,3 +43,4 @@
 {"ts": "2026-09-25T06:34:10Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["judge:None|判据未触发->回到需求侧紧缩链"], "muted": [], "chars": 640, "head": "*【09\\-25】市场在为「更紧」定价：回到需求侧紧缩链。*"}
 {"ts": "2026-09-25T07:28:28Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["judge:None|回到需求侧紧缩链->判据未触发"], "muted": [], "chars": 676, "head": "*【09\\-25】市场在为「更松」定价：判据未触发。*"}
 {"ts": "2026-09-25T17:57:14Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["band:日元(USDJPY)"], "chars": 588, "head": "*【09\\-25】今天没有新越线。*"}
+{"ts": "2026-09-25T23:32:04Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:30年重上8-18前高（财政压制失败）|fired_muted->fired", "judge:None|判据未触发->回到需求侧紧缩链"], "muted": ["band:下次会议加息概率（10-28）"], "chars": 651, "head": "*【09\\-25】市场在为「更紧」定价：回到需求侧紧缩链。*"}
