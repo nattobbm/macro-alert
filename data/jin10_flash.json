@@ -1092,7 +1092,176 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：无法忽视持续的供应冲击。",
+   "link": "https://flash.jin10.com/detail/20260925174332416800",
+   "published": "2026-09-25T09:43:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：关税通常不会引发持续性通胀。",
+   "link": "https://flash.jin10.com/detail/20260925175007441800",
+   "published": "2026-09-25T09:50:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：美国劳动力市场并非通胀压力的来源。",
+   "link": "https://flash.jin10.com/detail/20260925175013128800",
+   "published": "2026-09-25T09:50:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：美联储应确保冲击不会变得根深蒂固。",
+   "link": "https://flash.jin10.com/detail/20260925175019668800",
+   "published": "2026-09-25T09:50:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "他认为通胀是结构性的，光等是等不下来的——要动手",
+   "meaning_lean": "鹰",
+   "meaning_id": "entrenched"
+  },
+  {
+   "title": "美联储施密德：美国债务似乎非常“极端”。",
+   "link": "https://flash.jin10.com/detail/20260925220816378800",
+   "published": "2026-09-25T14:08:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：美联储仍未解决通胀问题。",
+   "link": "https://flash.jin10.com/detail/20260925220821080800",
+   "published": "2026-09-25T14:08:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：一个问题是，人工智能生态系统是否已经大到“不能失败”的程度。",
+   "link": "https://flash.jin10.com/detail/20260925221343796800",
+   "published": "2026-09-25T14:13:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "国内新闻",
+   "link": "https://flash.jin10.com/detail/20260925231749032800",
+   "published": "2026-09-25T15:17:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链",
+    "日本链",
+    "地缘链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：决策者会关注股市估值和经济表现，但在观察中不会“过于微观”。",
+   "link": "https://flash.jin10.com/detail/20260925235214266800",
+   "published": "2026-09-25T15:52:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-25T07:28:20Z"
+ "fetched_at": "2026-09-25T17:57:06Z"
 }
