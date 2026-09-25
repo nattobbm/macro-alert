@@ -1,1 +1,1 @@
-{"held": "回到需求侧紧缩链", "candidate": null, "candidate_days": [], "gold_fell": true, "updated": "2026-09-25T06:34:10.855148+00:00"}
+{"held": "判据未触发", "candidate": "回到需求侧紧缩链", "candidate_days": ["2026-09-23"], "gold_fell": true, "updated": "2026-09-25T07:00:00+00:00", "note": "2026-09-25 手工回退：06:34Z 那次按运行日误计为第2天而改口；按数据日（FRED DFII10 最新 9-23）只有1天"}

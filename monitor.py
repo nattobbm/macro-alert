@@ -944,6 +944,7 @@ def _judge_regime(series: dict) -> dict | None:
     只做模板填空，不生成叙事：门槛写死在常量里，结论只有三种可能，一句话也不多编。
     """
     tips = [v for _, v in (series.get("tips10y") or [])]
+    _tips_day = (series.get("tips10y") or [[None]])[-1][0]     # 真利率最新数据日，改口计天用
     gold = [v for _, v in (series.get("gold") or [])]
     if len(tips) < 2 or len(gold) < 2:
         return None
@@ -963,9 +964,9 @@ def _judge_regime(series: dict) -> dict | None:
     else:
         verdict, plain = "判据未触发", "真利率这几天没明显抬头，这条判据现在还看不出方向。"
     # 改口门槛：新结论要连续 JUDGE_PERSIST_D 个不同日历日成立才替换旧结论
-    stable, pending_days = _judge_stabilize(verdict, gold_fell)
+    stable, pending_days = _judge_stabilize(verdict, gold_fell, _tips_day)
     if stable != verdict:
-        plain += f"（今天读数指向「{verdict}」，但只连续 {pending_days} 天，"                 f"不足 {JUDGE_PERSIST_D} 天，暂不改口）"
+        plain += f"（最新读数指向「{verdict}」，但只连续 {pending_days} 个交易日，"                 f"不足 {JUDGE_PERSIST_D} 个，暂不改口）"
     return {"verdict": stable, "raw_verdict": verdict, "plain": plain,
             "window_days": JUDGE_WIN_D, "persist_days_needed": JUDGE_PERSIST_D,
             "tips_chg_bp": d_tips_bp, "gold_chg_pct": d_gold_pct,
@@ -987,10 +988,15 @@ def _judge_prev_state() -> dict:
         return {}
 
 
-def _judge_stabilize(verdict: str, gold_fell: bool):
-    """新结论要连续 JUDGE_PERSIST_D 个不同日历日成立才改口。返回 (对外结论, 已连续天数)。"""
+def _judge_stabilize(verdict: str, gold_fell: bool, data_day: str | None = None):
+    """新结论要连续 JUDGE_PERSIST_D 个不同**数据日**成立才改口。返回 (对外结论, 已连续天数)。
+
+    2026-09-25 修：原来按运行日期计天。9-24 23:25Z 和 9-25 06:34Z 两次运行读到的真利率
+    都是 FRED 9-23 那一个数（FRED 隔天才发），被算成"连续两天"，判据提前改口。
+    同一份数据读两遍不是"持续"。现在按真利率序列的最新数据日期计；没传则退回运行日期。
+    """
     st = _judge_prev_state()
-    today = dt.date.today().isoformat()
+    today = data_day or dt.date.today().isoformat()
     held = st.get("held")                     # 当前对外的结论
     cand = st.get("candidate")                # 正在攒天数的新结论
     days = st.get("candidate_days") or []     # 攒到的日期（去重）
