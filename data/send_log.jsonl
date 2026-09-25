@@ -41,3 +41,4 @@
 {"ts": "2026-09-24T18:53:35Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 637, "head": "*【09\\-24】今天没有新越线。*"}
 {"ts": "2026-09-24T23:25:58Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["node:30年利率回到高点?|near->crossed"], "muted": ["node:外国央行借美元(FIMA)"], "chars": 724, "head": "*【09\\-24】30年利率回到高点?越线。*"}
 {"ts": "2026-09-25T06:34:10Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["judge:None|判据未触发->回到需求侧紧缩链"], "muted": [], "chars": 640, "head": "*【09\\-25】市场在为「更紧」定价：回到需求侧紧缩链。*"}
+{"ts": "2026-09-25T07:28:28Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["judge:None|回到需求侧紧缩链->判据未触发"], "muted": [], "chars": 676, "head": "*【09\\-25】市场在为「更松」定价：判据未触发。*"}
