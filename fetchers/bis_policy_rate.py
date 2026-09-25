@@ -70,6 +70,9 @@ AREAS = {
     "eu_rate": ("XM", "欧洲央行政策利率"),
     "gb_rate": ("GB", "英国央行政策利率"),
     "cn_lpr":  ("CN", "中国LPR一年期"),
+    # 2026-09-24 加：日历里「美联储利率决议」要回填实际值。BIS 美国口径 = 目标区间中值
+    # （9-16 加息后 3.875 = 3.75%–4.00%），比从 IORB 反推上限少一个假设。
+    "us_rate": ("US", "美联储政策利率(目标区间中值)"),
 }
 
 
@@ -118,10 +121,42 @@ def _fetch_one(key: str, area: str, label: str, max_staleness_days: int) -> Data
     note = (last.get("COMPILATION") or "").strip()
     if note:
         dp.extra["caliber_note"] = note[:400]
+    # 2026-09-24：BIS 的日频数只发到"已经生效"的那天，但说明字段会提前写上已宣布的新利率。
+    # 实例：日本央行 9-18 决议加到 1.25%、9-24 生效；BIS 数据到 9-22 仍是 1.00，
+    # 说明字段第一段已是"From 24 Sep 2026: ... around 1.25 percent"。只读数值列，网站在
+    # 决议后一周里一直说"日本利率 1.00%、最近一次调整 6-17"——决议当天起就是错的。
+    # 只认第一段形如「From <日期>: … <数字> percent」的写法（目前只有日本这样写；
+    # 韩/欧/英/中写的是"From X onwards: 口径名"，不带数，不会误读）。
+    ann = _announced(note)
+    if ann and ann[0] > dp.as_of:
+        eff, rate = ann
+        dp.extra["announced"] = {"effective": eff, "rate": rate}
+        if eff <= dt.date.today().isoformat() and rate != dp.value:
+            steps.append([eff, rate])
+            dp.extra["steps"] = steps[-12:]
+            dp.extra["value_from_announcement"] = {"bis_last_obs": dp.as_of, "bis_last_value": dp.value}
+            dp.value = rate
+            dp.as_of = eff
     if len(steps) >= 2:
         dp.extra["last_change"] = {"date": steps[-1][0],
                                    "from": steps[-2][1], "to": steps[-1][1]}
     return check_freshness(dp, max_staleness_days)
+
+
+def _announced(note: str) -> tuple[str, float] | None:
+    """从 BIS 说明字段第一段读「From 24 Sep 2026: … around 1.25 percent」→ ('2026-09-24', 1.25)。"""
+    import re
+    first = (note or "").split(";")[0]
+    if "onwards" in first:
+        return None
+    m = re.match(r"\s*From (\d{1,2} [A-Z][a-z]{2} \d{4}):.*?(\d+(?:\.\d+)?)\s*(?:percent|%)", first)
+    if not m:
+        return None
+    try:
+        eff = dt.datetime.strptime(m.group(1), "%d %b %Y").date().isoformat()
+        return eff, float(m.group(2))
+    except ValueError:
+        return None
 
 
 def fetch_all(sources: dict) -> list[DataPoint]:

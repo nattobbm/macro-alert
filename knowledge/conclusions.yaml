@@ -77,7 +77,14 @@ conclusions:
 
   - id: warsh_hawkish_talk_delayed_action
     date: 2026-09-01
-    verdict: 未决
+    verdict: 已证伪
+    settled_on: "2026-09-16"
+    result: >
+      9-16 结算：美联储加息25bp至3.75%–4.00%，12-0 全票（federalreserve.gov）。命中证伪条件①和④——
+      "行动暂缓"错了，"选举前不动真格"的核心机制也被推翻；市场押的"为信誉真加息"对了。
+      2026-09-24 补记：之后市场继续押下一场（10-28）再加，期货隐含概率 9-22 56% → 9-24 72%。
+      原判断和证据原样保留在下面，不改。
+    result_en: "Settled Sep 16: Fed hiked 25bp to 3.75-4.00%, 12-0. Falsified (conditions 1 and 4). Markets now price another hike on Oct 28 (72% on Sep 24)."
     claim: Warsh在杰克逊霍尔"该说的狠话说到位，但短期未必动手"——表态偏鹰、行动暂缓
     claim_en: "Warsh talked hawkish at Jackson Hole but may not act soon: rhetoric tightening is the cheapest option before midterms. Undecided until Sep 16 FOMC."
     number: "市场不同意：ZQ隐含9月加息概率 8-27 36.9% → 8-28 60.0%(讲话当日+23.1pp) → 9-01 73.8%"
@@ -99,3 +106,32 @@ conclusions:
       这是全库最高信息量判别点：艾丽框架(选举前口头紧缩)vs 官僚信誉框架(为信誉真加息)
       的正面冲突。市场用真金白银押了后者(73.8%)。注意本条是**别人的判断**不是本库测量，
       记录它是为了让它可被证伪——不是因为它更可信。
+
+  # ── 2026-09-24 本周两条事实（读数全部来自官方序列，可复核）──
+  - id: ust_selloff_0923_real_yield_driven
+    date: "2026-09-24"
+    verdict: 事实
+    claim: 9-23 美债大跌是「真利率」在涨，不是大家更怕通胀——市场在为更紧的美联储定价
+    claim_en: "Sep 23 Treasury selloff was driven by real yields, not inflation fears: markets priced a tighter Fed."
+    number: "10年期 4.96%→5.11%(+15bp,2007年以来最高)；其中真利率 2.63%→2.76%(+13bp)，通胀预期 2.33%→2.35%(+2bp)"
+    evidence: >
+      FRED 日频 DGS10 / DFII10 / T10YIE。同日：S&P Global 9月PMI初值创2021年7月以来最快扩张；
+      理事巴尔讲话"基准情形下还需要进一步调整政策"；下次议息(10-28)加息的期货隐含概率 9-22 56% → 9-23 68% → 9-24 72%。
+      黄金 COMEX 9-22 4376 → 9-23 4318(-1.3%)，跟着真利率跌。
+    source: FRED(圣路易斯联储)；CNBC/CNN 9-23 报道核对 PMI 与巴尔原话
+    so_what: >
+      这正是首页剧本的判据写的那种走法："真利率跳升而黄金跟着跌 = 回到正常紧缩"。
+      判据要连续 2 天才改口，9-23 是第 1 天。首页剧本卡会自动显示是否确认。
+
+  - id: boj_hike_yen_weaker
+    date: "2026-09-24"
+    verdict: 事实
+    claim: 日本 9-18 加息后日元没变强，反而更弱——"日本加息→日元升值→套息资金撤回"这条路这次没走通
+    claim_en: "After the BOJ hiked on Sep 18 the yen weakened, so the hike -> stronger yen -> carry unwind route did not fire this time."
+    number: "日本央行 1.00%→1.25%(9-24生效，7-2)；美元兑日元 9-17 收156.0 → 9-24 收158.3"
+    evidence: >
+      BIS 政策利率序列(说明字段写明 9-24 起 1.25%)；UPI/CNBC/Japan Times 9-18 报道核对票数；
+      汇率 yfinance JPY=X 日收盘。两位委员反对，市场读成"下次加息远了"，同期美债利率又在涨，美日利差没缩。
+      日债另一条路在走：10年期 9-24 升到 3.07%、30年期 4.12%，都越过了链条上的线。
+    source: BIS / 日本财务省 / yfinance
+    so_what: 日本链两条路一条停、一条在走。要看的是日债继续涨会不会逼出"卖美债"。

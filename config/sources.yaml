@@ -153,6 +153,8 @@ sources:
                desc: "欧洲央行政策利率(BIS口径:official central bank steering rate)"}
   gb_rate:    {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
                desc: "英国央行基准利率(BIS口径:official bank rate)"}
+  us_rate:    {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
+               desc: "美联储政策利率(BIS口径:目标区间中值,3.875=3.75%-4.00%)。2026-09-24加,用于日历回填议息结果"}
   cn_lpr:     {tier: 1, provider: bis, unit: "%", max_staleness_days: 90,
                desc: "中国LPR一年期(BIS口径:Loan Prime Rate 1-year)。顺便填日历里一直空着的LPR报价"}
 
@@ -161,9 +163,11 @@ sources:
   # Momo 让我再找找——日本财务省自己就公布，而且最一手：日频、1年到40年、免密钥、
   # 可追到 1974-09-24。教训：说"没有"之前先把官方发布方本身查一遍。
   # 口径=流通市场利率(複利)，单位%。存档只留近5年(约54KB)，大文件随时能重拉。
-  jp10y:      {tier: 1, provider: mof_jp, unit: "%", max_staleness_days: 5,
+  # 2026-09-24：5→8 天。财务省下一个工作日才发前一天的数，日本长假（9 月敬老+秋分连休、黄金周、新年）
+  # 会让最新读数合法地晚 6–7 天。9-21~23 连休时 9-17 的数一直挂到 9-24，被误判停更。
+  jp10y:      {tier: 1, provider: mof_jp, unit: "%", max_staleness_days: 8,
                desc: "日本10年期国债收益率(日本财务省日频)。2026-09实测2.891%,近十年100%分位"}
-  jp30y:      {tier: 1, provider: mof_jp, unit: "%", max_staleness_days: 5,
+  jp30y:      {tier: 1, provider: mof_jp, unit: "%", max_staleness_days: 8,
                desc: "日本30年期国债收益率(日本财务省日频)。长端亏损最大,对冲基金追保的源头"}
 
   # ---- 伦敦金现 XAUUSD (无需key) ----

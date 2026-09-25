@@ -116,6 +116,9 @@ async function boot() {
           m.value = q.value
           m.as_of = q.as_of
           if (q.chg_1d_pct != null) m.chg_1d_pct = q.chg_1d_pct
+          // 2026-09-24：只盖百分比不盖点数，卡上"比昨天 +X 点"还是旧快照的，和新价对不上。
+          // 轻量通道给了点数就用它；没给就清掉，宁可不显示也不显示错的。
+          m.chg_1d = q.chg_1d != null ? q.chg_1d : null
           m.intraday = true
         }
       }

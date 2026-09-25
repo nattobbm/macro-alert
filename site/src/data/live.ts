@@ -34,6 +34,7 @@ export const snapshots: Snapshot[] = L
         as_of: m.as_of ?? '—', source: (m.source ?? '').split(':')[0],
         spark: (L.series?.[k] ?? []).slice(-40).map((p: any) => p[1]),
         role: m.role ?? null,
+        caliberNote: isEN ? null : (m.caliber_note ?? null),
       }
     })
   : mock.snapshots
@@ -113,7 +114,8 @@ export const verdicts: Verdict[] = L
   ? (L.knowledge?.conclusions ?? []).map((c: any) => ({
       id: c.id, status: VERDICT_MAP[c.verdict] ?? 'pending',
       claim: (isEN && c.claim_en) ? c.claim_en : c.claim,
-      evidence: [c.number, c.evidence].filter(Boolean).join('；'),
+      // 2026-09-24：已结算的结论把结果放最前（先看结果，再看当时的依据）
+      evidence: [(isEN && c.result_en) ? c.result_en : c.result, c.number, c.evidence].filter(Boolean).join('；'),
       source: c.source ?? '',
     }))
   : mock.verdicts
@@ -233,7 +235,45 @@ export const calEvents: CalEvent[] = L
           : (isEN ? 'official release' : '官方发布'),
         kind: s.kind, speaker: s.speaker ?? null, time_bj: s.time_bj ?? null,
       })),
-    ].sort((a, b) => (a.date + (a.time_bj ?? '')).localeCompare(b.date + (b.time_bj ?? '')))
+      // 2026-09-24 加：原来这块只有手写的 3 条 + 讲话，10-02 非农、10-14 CPI 这种固定大日子都不在。
+      // 它们在波动日历的全年表里（官方日期，FRED 发布日程 / 美联储日程），取未来 30 天的并进来，
+      // 顺手带上"历史上这天谁动得最大"（波动日历同一张表，事件日幅度 ÷ 平常日幅度）。
+      ...(() => {
+        const vc = L.vol_calendar
+        const plan: any[] = vc?.year_plan ?? []
+        const now = new Date()
+        const local = new Date(now.getTime() - now.getTimezoneOffset() * 6e4)   // 看的人本地日期
+        const d0 = local.toISOString().slice(0, 10)
+        const d30 = new Date(local.getTime() + 30 * 864e5).toISOString().slice(0, 10)
+        const NAME: Record<string, [string, string]> = {
+          FOMC: ['美联储议息决议', 'FOMC decision'], NFP: ['非农就业报告', 'Payrolls report'],
+          CPI: ['CPI 物价', 'CPI'], PPI: ['PPI 出厂价格', 'PPI'], RETAIL: ['零售销售', 'Retail sales'],
+        }
+        const ASSET: Record<string, [string, string]> = {
+          spx: ['标普', 'S&P'], gold: ['黄金', 'gold'], dxy: ['美元指数', 'dollar'],
+          us30y: ['30年利率', '30Y yield'], usdjpy: ['日元', 'yen'], vix: ['恐慌指数', 'VIX'],
+        }
+        return plan.filter(p => p.date >= d0 && p.date <= d30).map(p => {
+          const ratio: Record<string, number> = vc?.events?.[p.type]?.ratio ?? {}
+          const top = Object.entries(ratio).sort((a, b) => b[1] - a[1]).slice(0, 2)
+          const hint = top.length
+            ? (isEN
+              ? `on past such days: ${top.map(([k, r]) => `${ASSET[k]?.[1] ?? k} ${r}x`).join(', ')} a normal day's move`
+              : `历史上这天：${top.map(([k, r]) => `${ASSET[k]?.[0] ?? k} ${r} 倍`).join('、')}（和平常日比）`)
+            : ''
+          return {
+            date: p.date,
+            event: (NAME[p.type]?.[isEN ? 1 : 0] ?? p.type) + (p.estimated ? (isEN ? ' (date estimated)' : '（日期按惯例推算）') : ''),
+            importance: (['FOMC', 'NFP', 'CPI'].includes(p.type) ? 3 : 2) as 1 | 2 | 3,
+            watch_for: hint,
+          }
+        })
+      })(),
+    ]
+      // 2026-09-24：标题是"未来30天"，讲话列表里却挂着前几天已经讲完的（金十日程保留近几天）。
+      // 按看的人本地日期，只留今天及以后。
+      .filter(e => e.date >= (() => { const t = new Date(); return new Date(t.getTime() - t.getTimezoneOffset() * 6e4).toISOString().slice(0, 10) })())
+      .sort((a, b) => (a.date + (a.time_bj ?? '')).localeCompare(b.date + (b.time_bj ?? '')))
   : mock.calEvents
 
 // ── SPX K线 ──
@@ -468,6 +508,7 @@ export type EconEvent = {
   forecast: string | null; previous: string | null
   // 实际值：由我们自己抓的官方序列现算（不用金十等登录墙/禁转载源）
   actual?: string | null; actual_as_of?: string; actual_src?: string
+  actual_note?: string   // 央行决议：「加息25bp，某日生效」/「维持不变」（2026-09-24 加）
   estimated: boolean; org: string; note: string; chain: string; src: string
 }
 export const econEvents: EconEvent[] = (L?.econ_calendar ?? []) as EconEvent[]

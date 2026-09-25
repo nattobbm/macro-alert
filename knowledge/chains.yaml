@@ -48,7 +48,7 @@ chains:
     one_liner: 物价预期在涨 + 长期利率在涨 + 但市场不信央行会加息管 = 存钱的人悄悄亏钱替政府还债 → 黄金是这个剧本的受益者
     falsify: 真利率跳升而黄金跟着跌 = 剧本换了，回到正常紧缩
     nodes:
-      - {label_en: "Does market believe Fed will act?", label: "市场信央行会管吗", term: "9月加息概率<0.4", metric: fedwatch_sep_hike, threshold: 0.4, direction: below, note: "低=不信"}
+      - {label_en: "Does market believe Fed will act?", label: "市场信央行会管吗", term: "下次议息加息概率<0.4", metric: fedwatch_sep_hike, threshold: 0.4, direction: below, note: "低=不信"}
       - {label_en: "Long yields elevated", label: "长期利率在高位", term: "us30y>5.2", metric: us30y, threshold: 5.2, direction: above}
       - {label_en: "Inflation expectations rising", label: "大家觉得物价要涨", term: "10年盈亏平衡通胀>2.8", metric: breakeven10, threshold: 2.8, direction: above, note: "债市定价的通胀预期"}
       - {label_en: "Real yield (ex-inflation)", label: "真利率(扣掉通胀)", term: "10年TIPS实际利率", metric: tips10y, threshold: 2.6, direction: above, note: "黄金的定价锚：真利率低→金贵"}
@@ -64,7 +64,9 @@ chains:
     one_liner: 海峡通不通 → 油价 → 物价 → 央行加不加息 → 真利率 → 黄金（黄金有三条路：避险往上，利率往下，整体减仓时它因为好卖反而先被卖）
     falsify: 协议落地+油价稳在80以下 = 这张多米诺暂时放倒
     nodes:
-      - {label_en: "Strait of Hormuz", label: "霍尔木兹海峡", term: "航运通行量", value_text: "还没恢复(约为战前8成)", status: fact}
+      # 2026-09-24 改：旧值"还没恢复(约为战前8成)"错了一个数量级。IMF PortWatch 逐日通行数：
+      # 9-01~9-20 日均 3.9 艘次，战前(2025-12~2026-02 中)日均 58.8 艘次 → 约 7%。9-20 当天只有 1 艘。
+      - {label_en: "Strait of Hormuz", label: "霍尔木兹海峡", term: "每天通过的船", value_text: "几乎停航:9月日均约4艘,战前约59艘(约7%)", status: fact, note: "IMF PortWatch 逐日数据,2026-09-24 核。9-24 美伊在纽约谈分阶段重开(卡塔尔斡旋),还没谈成"}
       - {label_en: "Oil above band?", label: "油价出上界?", term: "Brent vs 90", metric: brent, threshold: 90, direction: above, note: "超90→物价压力回来"}
       - {label_en: "Oil below band?", label: "油价出下界?", term: "Brent vs 80", metric: brent, threshold: 80, direction: below, note: "低于80→美方行动更大胆(假说,样本少)"}
       # 2026-09-10 增。原来只有「单日暴涨>5%」一个速度节点，而这轮油价是从90慢慢爬到105的，
@@ -78,14 +80,17 @@ chains:
 
   - id: japan
     emoji: "🎌"
-    name: 日本若加息，借日元的全球资金要回流
+    name: 日本加息了，借日元的全球资金会不会回流
     term: 日本链（尾部通道）
-    name_en: "If Japan hikes, yen-funded money flows home"
+    name_en: "Japan hiked - will yen-funded money flow home?"
     one_liner_en: "Two routes to the same place. (1) BOJ hikes -> yen strengthens -> ~$500bn yen-carry unwinds. (2) JGB yields rise -> funds take losses -> margin calls -> they sell the most liquid thing they hold, USTs. Both end in selling USTs & stocks."
     falsify_en: "Japan hikes yet adds USTs two months straight = chain broken"
     one_liner: 两条路通向同一个地方。一条是日本加息 → 日元变强 → 借日元炒美股的钱(约5000亿$)要撤；另一条是日债利率涨 → 拿着日债的基金亏钱被追保证金 → 只好卖掉手里最好卖的美债。两条最后都是卖美债卖股票
     falsify: 日本加息后反而连续两月增持美债 = 这条链断了
     nodes:
+      # 2026-09-24 加：链名原来是"日本若加息"，9-18 已经加了。加完日元没变强反而更弱，
+      # 第一条路（加息→日元变强→套息平仓）这次没走通；第二条路（日债利率涨→追保证金）看下面两个日债节点。
+      - {label_en: "BOJ hiked Sep 18", label: "日本央行已加息", term: "9-18 决议", value_text: "1.00%→1.25%(9-24生效),7-2两票反对;之后日元反而更弱:美元兑日元 9-17 收156.0 → 9-24 收158.3", status: fact, note: "反对票让市场觉得下次加息远了,所以日元没涨。第一条路这次没触发"}
       - {label_en: "Japan's own interest bill", label: "日本自己的利息账单", term: "FY27偿债预算", value_text: "36.6万亿¥(+17%)", status: fact, note: "它也欠很多,加息也心疼"}
       # 2026-09-10：拆艾丽260期发现她有第二条通向同一结果的机制，方向和我们这条相反但终点一样——
       # 日元「贬值」→日本输入性通胀→日本发债增加→日债收益率升→对冲基金日债亏损被追保证金→

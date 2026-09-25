@@ -24,7 +24,44 @@ _JIN10_FALLBACK = {"brent": "UKOIL", "wti": "USOIL", "usdjpy": "USDJPY"}
 #   外部核实的新闻口径 90.69。艾丽说的"突破90美元/桶"、G1阈值80-90 讲的都是
 #   头条布伦特价，用换月的合约价去量会让 G1 长期不触发——8-31 那次真实突破
 #   就是这么漏报的。同黄金 COMEX/现货 之别，是同一类错误。
+#
+# 2026-09-24 补记（主源不变，修涨跌算法）：
+#   9-24 收盘金十 UKOIL 已提前换到 12 月合约 100.81（腾讯 hf_OIL 同为 12 月，网页实时价就是它），
+#   yfinance BZ=F 仍是 11 月合约 106.27（CNBC 头条"布伦特收在 106 以上"说的是这个）。霍尔木兹危机下
+#   近高远低差 $6。旧代码拿金十的 12 月现价去减 yfinance 的 11 月昨收，网站显示"今天跌 2.2%"，
+#   实际两个合约当天都在涨——方向反了。现在涨跌只用金十自己的昨收；两源差 >1% 时写口径说明。
+#   不改成 yfinance 为主的原因：网页白天由腾讯 12 月价实时覆盖，后台若报 11 月价，同一张卡早晚差 6 块。
 _JIN10_PRIMARY = {"brent": "UKOIL"}
+
+
+# 期货连续合约（yfinance XX=F）在换月那天会把两个合约的价拼在一起，"比昨天"变成合约价差。
+# 2026-09-23 实例：WTI 10 月合约 9-22 到期，CL=F 当天换到 11 月，网站报 WTI −2.6%，
+# 而同日布伦特 11 月合约 +3.9%、新闻标题是"油价结束五连跌"。
+# 修法：找到和连续合约末价对得上的那个具体合约，用它自己的昨收算涨跌。
+_FUT_ROOT = {"brent": ("BZ", "NYM"), "wti": ("CL", "NYM"), "gold": ("GC", "CMX"),
+             "silver": ("SI", "CMX"), "platinum": ("PL", "NYM")}
+_MONTH_CODE = "FGHJKMNQUVXZ"
+
+
+def _same_contract_prev(key: str, value: float, as_of: str) -> tuple[float, str] | None:
+    """返回 (同一合约的昨收, 合约代码)；找不到对得上的合约返回 None（调用方退回连续合约算法）。"""
+    import yfinance as yf
+    root, ex = _FUT_ROOT[key]
+    d = dt.date.fromisoformat(as_of)
+    for k in range(0, 6):
+        m = (d.month - 1 + k) % 12 + 1
+        y = d.year + (d.month - 1 + k) // 12
+        sym = f"{root}{_MONTH_CODE[m - 1]}{str(y)[-2:]}.{ex}"
+        try:
+            h = yf.Ticker(sym).history(period="10d", auto_adjust=False)
+        except Exception:
+            continue
+        c = h["Close"].dropna() if not h.empty else None
+        if c is None or len(c) < 2:
+            continue
+        if c.index[-1].date().isoformat() == as_of and abs(float(c.iloc[-1]) / value - 1) < 0.002:
+            return float(c.iloc[-2]), sym
+    return None
 
 
 def _bar_is_malformed(row) -> str | None:
@@ -106,22 +143,51 @@ def fetch_all(max_staleness_days: int = 4, tickers: dict | None = None) -> list[
                 dp.value = round(float(closes.iloc[-1]), 4)
                 dp.as_of = closes.index[-1].date().isoformat()
                 # 口径优先/坏K线回退：见 _JIN10_PRIMARY / _JIN10_FALLBACK 注释
+                used_jin10 = False
                 if key in _JIN10_PRIMARY or (bad and key in _JIN10_FALLBACK):
                     try:
                         from . import jin10
-                        q = jin10.Jin10().quote(_JIN10_FALLBACK[key])
+                        code = _JIN10_PRIMARY.get(key) or _JIN10_FALLBACK[key]
+                        q = jin10.Jin10().quote(code)
                         jv = float(q.get("close"))
                         prev = dp.value
                         if prev and 0.5 < jv / prev < 2.0:   # 合理性闸门，防串码
                             dp.extra["yfinance_fallback_value"] = prev
                             dp.value = round(jv, 4)
                             dp.as_of = str(q.get("time") or "")[:10] or dp.as_of
-                            dp.source = f"jin10:{_JIN10_FALLBACK[key]}(yf坏K线回退)"
-                            dp.extra["chg_1d_pct"] = q.get("ups_percent")
+                            dp.source = f"jin10:{code}" + ("(yf坏K线回退)" if bad else "(口径优先)")
+                            # 涨跌只用金十自己的昨收（ups_price = 现价 − 昨收），不和 yfinance 的昨收混减
+                            up = q.get("ups_price")
+                            try:
+                                dp.extra["chg_1d_pct"] = float(q.get("ups_percent"))   # 金十返回字符串 '1.40'
+                            except (TypeError, ValueError):
+                                dp.extra["chg_1d_pct"] = None
+                            try:
+                                up = float(up) if up is not None else None
+                            except (TypeError, ValueError):
+                                up = None
+                            dp.extra["chg_1d"] = round(up, 4) if up is not None else None
+                            if up is not None:
+                                dp.extra["prev_close"] = round(jv - up, 4)
+                            if abs(jv / prev - 1) > 0.01:
+                                # 不写"两者差多少"：金十是实时价、yfinance 是上一个收盘，差值里混着当天涨跌
+                                dp.extra["caliber_note"] = (f"这里是国内行情软件显示的主力合约（已换到下一个月）。"
+                                                   f"新闻标题常说的即将到期那个月合约最近收在 {prev:g}。"
+                                                   f"两者不是同一个合约，差出来的主要是换月价差，不是涨跌")
+                            used_jin10 = True
                     except Exception:
                         pass
-                if len(closes) > 1:
+                if len(closes) > 1 and not used_jin10:
                     prev = float(closes.iloc[-2])
+                    if key in _FUT_ROOT:
+                        try:
+                            sc = _same_contract_prev(key, dp.value, dp.as_of)
+                        except Exception:
+                            sc = None
+                        if sc is not None:
+                            if abs(sc[0] / prev - 1) > 0.002:
+                                dp.extra["roll_fixed"] = {"contract": sc[1], "continuous_prev": round(prev, 4)}
+                            prev = sc[0]
                     dp.extra["chg_1d_pct"] = round((dp.value / prev - 1) * 100, 3) if prev else None
                     # Momo 9-02：「把数字直接算好，一眼看懂涨了多少跌多少」——
                     # 百分比对没概念的人没意义，"比昨天 +79" 和 "今天最高到最低差 90" 才有。

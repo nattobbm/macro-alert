@@ -76,6 +76,7 @@ LABELS = {
     "core_pce": "核心物价指数PCE", "gdp_real": "实际GDP", "gdp_pot": "潜在GDP(CBO)",
     "fedfunds": "联邦基金利率(月均)", "kr_rate": "韩国政策利率", "jp_rate": "日本政策利率",
     "eu_rate": "欧洲央行利率", "gb_rate": "英国央行利率", "cn_lpr": "中国LPR一年期",
+    "us_rate": "美联储政策利率(区间中值)",
     "jp10y": "日本10年国债利率", "jp30y": "日本30年国债利率",
     "tic_japan": "日本持有美债", "tic_uk": "英国持有美债",
     "tic_china": "中国持有美债", "cot_gold": "黄金大户净多单", "cot_silver": "白银大户净多单",
@@ -107,6 +108,7 @@ LABELS_EN = {
     "core_pce": "Core PCE Index", "gdp_real": "Real GDP", "gdp_pot": "Potential GDP (CBO)",
     "fedfunds": "Fed Funds Rate (Mo Avg)", "kr_rate": "Korea Policy Rate", "jp_rate": "Japan Policy Rate",
     "eu_rate": "ECB Policy Rate", "gb_rate": "BoE Bank Rate", "cn_lpr": "China LPR 1Y",
+    "us_rate": "Fed Policy Rate (range midpoint)",
     "jp10y": "JGB 10Y Yield", "jp30y": "JGB 30Y Yield",
     "tic_japan": "Japan UST Holdings", "tic_uk": "UK UST Holdings",
     "tic_china": "China UST Holdings", "cot_gold": "Gold Net Longs (COT)", "cot_silver": "Silver Net Longs (COT)",
@@ -118,7 +120,7 @@ LABELS_EN = {
     "gold": "Gold (COMEX futures)", "xauusd": "Gold (XAUUSD spot)",
     "silver": "Silver", "platinum": "Platinum", "dxy": "Dollar Index",
     "usdjpy": "USD/JPY", "brent": "Brent Oil", "wti": "WTI Oil", "move": "MOVE Bond Vol",
-    "auctions": "Auction Bid-to-Cover", "gex_net": "Dealer GEX", "fedwatch_zq_sep": "Sep Hike Odds (Futures)",
+    "auctions": "Auction Bid-to-Cover", "gex_net": "Dealer GEX", "fedwatch_zq_sep": "Next-meeting Hike Odds (Futures)",
     "polymarket_sep_hike": "Sep Hike Odds (Polymarket)", "fedwatch_sep_hike": "Sep Hike Odds (Manual)",
     "kalshi_sep_hike": "Sep Hike Odds (Kalshi)",
     "fima_weekly_usd": "FIMA Repo Usage", "war_risk_premium": "War Risk Premium (Manual)",
@@ -888,7 +890,7 @@ def build_knowledge(ctx: dict) -> dict:
                 flag = f"复核日{rd}已到"
             if c.get("review_rule") and _eval_rule(str(c["review_rule"]), ctx):
                 flag = f"失效条件触发:{c['review_rule']}"
-            if flag:
+            if flag and not c.get("settled_on"):     # 已结算的不再挂"待复核"
                 c["live_flag"] = flag
             if isinstance(c.get("review_date"), dt.date):
                 c["review_date"] = str(c["review_date"])
@@ -1206,6 +1208,72 @@ def _fill_actuals(dps: list, econ_events: list[dict]) -> int:
     return n
 
 
+# 央行利率决议的「实际值」。2026-09-24 加：ACTUAL_MAP 只管数据发布，议息结果从来没回填过，
+# 9-16 美联储加息、9-10 欧央行加息、9-18 日本央行加息，日历上"实际"一栏全是空的。
+# 用 BIS 官方政策利率序列的变动点判：决议日后 10 天内有变动 = 那就是结果；没有且序列已覆盖到决议后 = 维持。
+# 口径换算（日历里"预期"是 ForexFactory 的写法，实际值要和它同口径才能对着看）：
+#   美联储：FF 写区间上限（4.00%）；BIS 给中值 → +0.125。
+#   欧央行：FF 写主要再融资利率（2.65%）；BIS 给存款便利利率 → +0.15
+#          （2024-09-18 起两者固定差 15bp，BIS 说明字段同日起改认存款利率为主，对得上）。
+#   日本：FF 写 "<1.25%"，BIS 给 1.25 → 原样。
+CB_DECISIONS = {
+    "Federal Funds Rate": ("us_rate", 0.125),
+    "Main Refinancing Rate": ("eu_rate", 0.15),
+    "BOJ Policy Rate": ("jp_rate", 0.0),
+    "Official Bank Rate": ("gb_rate", 0.0),
+}
+
+
+def _fill_cb_decisions(dps: list, econ_events: list[dict]) -> int:
+    by_key = {dp.key: dp for dp in dps}
+    today = dt.date.today()
+    n = 0
+    for ev in econ_events:
+        # 同一轮顺手修名：FF 的 "MPC Official Bank Rate Votes" 是投票票数（如 3-0-6），
+        # 旧翻译按子串命中 "Official Bank Rate" 被叫成「英央行利率决议」，看的人以为 3-0-6 是利率。
+        if ev.get("title_en") == "MPC Official Bank Rate Votes":
+            ev["title"] = "英央行议息投票(票数分布)"
+            continue
+        cfg = CB_DECISIONS.get(ev.get("title_en") or "")
+        if not cfg or ev.get("actual"):
+            continue
+        try:
+            d = dt.date.fromisoformat(ev["date"])
+        except Exception:
+            continue
+        if d > today:
+            continue
+        key, add = cfg
+        dp = by_key.get(key)
+        if not dp or dp.value is None or not dp.as_of:
+            continue
+        steps = dp.extra.get("steps") or []
+        hit = None
+        for sd, sv in steps:
+            try:
+                sdd = dt.date.fromisoformat(sd)
+            except Exception:
+                continue
+            if d <= sdd <= d + dt.timedelta(days=10):
+                hit = (sd, sv)
+        if hit:
+            prior = [sv for sd, sv in steps if sd < hit[0]]
+            frm = prior[-1] if prior else None
+            val = hit[1] + add
+            bp = round((hit[1] - frm) * 100) if frm is not None else None
+            ev["actual"] = f"{val:.2f}%"
+            ev["actual_note"] = (f"{'加息' if bp and bp > 0 else '降息'}{abs(bp)}bp，{hit[0]} 生效" if bp else f"{hit[0]} 生效")
+        elif dp.as_of >= (d + dt.timedelta(days=1)).isoformat():
+            ev["actual"] = f"{dp.value + add:.2f}%"
+            ev["actual_note"] = "维持不变"
+        else:
+            continue
+        ev["actual_as_of"] = dp.as_of
+        ev["actual_src"] = dp.source
+        n += 1
+    return n
+
+
 def _check_late(dps: list, econ_events: list[dict]) -> list[dict]:
     """官方已发布但我们的数还停在旧周期 → 延迟。
 
@@ -1317,7 +1385,7 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
              if "econ_calendar" in by_key else [])
     late_list = _check_late(dps, _econ)
     # 日历补「实际值」（来自我们自己抓的官方序列，凑齐 实际/预期/前值 三栏）
-    _n_actual = _fill_actuals(dps, _econ)
+    _n_actual = _fill_actuals(dps, _econ) + _fill_cb_decisions(dps, _econ)
     if _n_actual:
         print(f"[calendar] 补上实际值 {_n_actual} 条", file=sys.stderr)
 
@@ -1394,10 +1462,22 @@ def run_quotes_only() -> None:
                 continue
             v = round(float(closes.iloc[-1]), 4)
             prev = float(closes.iloc[-2]) if len(closes) > 1 else None
+            _as_of = closes.index[-1].date().isoformat()
+            # 2026-09-24：期货连续合约换月当天"比昨天"是两个合约的价差（9-23 WTI 报 −2.6%、实为 +1.8%）。
+            # 和 fetchers/market.py 同一个修法：用同一个具体合约的昨收。
+            from fetchers.market import _FUT_ROOT, _same_contract_prev
+            if prev and key in _FUT_ROOT:
+                try:
+                    _sc = _same_contract_prev(key, v, _as_of)
+                    if _sc is not None:
+                        prev = _sc[0]
+                except Exception:
+                    pass
             out[key] = {
                 "value": v,
-                "as_of": closes.index[-1].date().isoformat(),
+                "as_of": _as_of,
                 "chg_1d_pct": round((v / prev - 1) * 100, 3) if prev else None,
+                "chg_1d": round(v - prev, 4) if prev else None,
                 "source": f"yfinance:{sym}",
             }
         except Exception as e:
@@ -1417,12 +1497,22 @@ def run_quotes_only() -> None:
                     _pct = float(q.get("ups_percent"))     # 金十返回的是字符串 '1.40'
                 except (TypeError, ValueError):
                     _pct = None
+                try:
+                    _up = float(q.get("ups_price"))
+                except (TypeError, ValueError):
+                    _up = None
                 out[key] = {
                     "value": round(v, 4),
                     "as_of": str(q.get("time") or "")[:10] or dt.date.today().isoformat(),
                     "chg_1d_pct": _pct,
+                    "chg_1d": round(_up, 4) if _up is not None else None,
                     "source": f"jin10:{code}",
                 }
+                # 2026-09-24：快照卡「油价Brent」的主源是金十 UKOIL（fetchers/market.py _JIN10_PRIMARY），
+                # 这里的 "brent" 却是 yfinance BZ=F。前端按 as_of 谁新用谁，两者换月早晚不同时差 $6，
+                # 同一张卡会在 100 和 106 之间跳。让轻量通道的 brent 和快照同源。
+                if key == "ukoil":
+                    out["brent"] = dict(out[key])
             except Exception as e:
                 failed.append(f"{key}({type(e).__name__})")
     except Exception as e:

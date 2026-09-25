@@ -110,17 +110,17 @@ treasury:
 
 fed:
   - id: F1_hike_odds_up
-    name: "9月加息概率回升"
-    name_en: "Sep hike odds rebound"
+    name: "下次议息加息概率回升"
+    name_en: "Next-meeting hike odds rebound"
     requires: [fedwatch_sep_hike]
     rule: "fedwatch_sep_hike > 0.65"
     severity: alert
-    chain: "判别点1。艾丽框架（服务压利息）vs 官僚信誉框架（Warsh为信誉加息）的正面冲突点"
-    falsify: "若实际加息=艾丽单因子框架重伤；若维持=官僚框架减分"
+    chain: "判别点1。艾丽框架（服务压利息）vs 官僚信誉框架（Warsh为信誉加息）的正面冲突点。9-16 已加息一次；2026-09-24 起读的是下一场（10-28）的概率，键名 fedwatch_sep_hike 是遗留命名"
+    falsify: "9-16 已结算：实际加息25bp，艾丽单因子框架重伤。下一场同一判别继续"
 
   - id: F2_hike_odds_down
-    name: "9月加息概率大幅回落"
-    name_en: "Sep hike odds collapse"
+    name: "下次议息加息概率大幅回落"
+    name_en: "Next-meeting hike odds collapse"
     requires: [fedwatch_sep_hike]
     rule: "fedwatch_sep_hike < 0.25"
     severity: watch
@@ -378,7 +378,9 @@ calendar:
     watch: "加息→套息平仓通道（尾部）；USDJPY 159-160关口"
   - date: "2026-09-30"
     event: "FY2026拨款截止"
-    watch: "两院CR日期差（12/4 vs 12/11）待协调；停摆→数据发布延迟"
+    # 2026-09-24 更新：旧文字"两院 CR 日期差待协调"已过时。众议院 370-48 通过临时拨款到 12/11，
+    # 参议院 8 月已过同一版本（govexec / NPR / The Hill 报道）。总统签署未单独核到，所以写"国会已通过"。
+    watch: "国会已通过临时拨款到12/11（众议院370-48），9-30停摆风险基本解除；下一个截止点12-11"
   - date: "2026-10-05"
     event: "CME算力期货上线（H100/B200租赁指数）"
     watch: "AI链金融化落地。与英伟达+华尔街六大5000亿融资平台配套：前者是底层信贷，后者是定价与避险工具"

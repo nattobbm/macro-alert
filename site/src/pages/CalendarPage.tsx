@@ -124,6 +124,9 @@ function EventRow({ e, open, onToggle }: { e: EconEvent; open: boolean; onToggle
           <div className="text-sm font-medium leading-snug mt-0.5" style={{ color: 'var(--text)' }}>
             {isEN ? e.title_en : e.title}
           </div>
+          {!isEN && e.actual_note && (
+            <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>{e.actual_note}</div>
+          )}
         </div>
 
         {/* 实际 / 预期 / 前值。实际值来自我们自己的官方序列，发布后自动补上 */}

@@ -409,6 +409,8 @@ def _sec_speeches(speeches: list[dict]) -> list[str]:
         quote = re.sub(r"^[^，,：:]{0,20}?(表示|称|说|指出)[，,]", "", quote)
         quote = re.sub(r"^.{0,14}?[：:]", "", quote).strip()
         quote = quote.split("。")[0][:60]
+        if not quote.strip():          # 去完前缀什么都不剩 = 这条不是原话，不显示空引号
+            continue
         role = ""
         m = re.match(r"^(.{0,12}?)(巴尔|麦克勒姆|沃什|鲍曼|沃勒|杰斐逊|库克|穆萨莱姆|哈克|戴利|古尔斯比|洛根|博斯蒂克|植田|片山|高田|贝森特)", title)
         if m:

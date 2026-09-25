@@ -195,6 +195,11 @@ def speech_after(j: Jin10, speaker: str, date: str, time_bj: str | None,
         # 预告/收尾不是讲话："巴尔将于十分钟后发表讲话""金十提示：发布会结束"
         if re.search(r"将于.{0,8}后|发布会结束|讲话结束|金十提示", content):
             continue
+        # 2026-09-24：每天的日程表【今日重点关注的财经数据与事件】里也写着讲话人名字，
+        # 没讲话时间的事件窗口从当天 00:00 起算，正好把这条日程表框进来，
+        # 推送里就出现了"贝利「」"——拿日程表当原话，去掉前缀后是空的。
+        if "今日重点关注" in content[:30]:
+            continue
         dec = decode(content)
         out.append({
             "title": content.split("\n")[0][:140],

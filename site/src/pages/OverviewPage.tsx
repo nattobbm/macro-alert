@@ -590,6 +590,11 @@ export default function OverviewPage({ onGlobeClick, onShowdownClick }: { onGlob
                         {roleMeta.tip}
                       </div>
                     )}
+                    {/* 2026-09-24：同一个名字的数，不同来源可能量的不是同一个东西（例：布伦特换月前后两个合约差 $6）。
+                        后台发现两源差得大时写 caliber_note，这里原话显示 */}
+                    {s.caliberNote && (
+                      <div style={{ color: 'var(--st-warn-text)' }}>{s.caliberNote}</div>
+                    )}
                     <div className="pt-1.5" style={{
                       color: 'var(--text-muted)', opacity: 0.8,
                       borderTop: '1px dashed var(--border)' }}>
