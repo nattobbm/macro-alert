@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { volCalendar, econEvents, calEvents, regimeLive, radarBands } from '../data/live'
+import { volCalendar, regimeLive, radarBands } from '../data/live'
 import { isEN } from '../i18n'
 
 /* 波动日历（2026-09-21 建，09-22 加「当下进度」与「全年」）
@@ -104,16 +104,9 @@ function upcoming(vc: any, days: number): Ev[] {
     const k = `${date}|${type}`; if (seen.has(k)) return
     seen.add(k); out.push({ date, type, title, estimated })
   }
-  const types: [string, string[]][] = Object.entries(vc.events).map(([k, e]: any) => [k, e.match])
-  for (const e of econEvents as any[]) {
-    if (e.country && e.country !== 'USD') continue
-    const t = types.find(([, ws]) => ws.some((w: string) => (e.title || '').includes(w)))
-    if (t) add(e.date, t[0], e.title)
-  }
-  for (const c of calEvents as any[]) {
-    const t = types.find(([, ws]) => ws.some((w: string) => (c.event || '').includes(w)))
-    if (t) add(c.date, t[0], c.event)
-  }
+  // 2026-09-28 修：原来还从日历标题里按关键词猜事件类型——"ADP小非农"被当成非农、
+  // "FOMC 委员沃勒讲话"被当成议息日、瑞士央行"利率决议"也会被当成美联储议息，"本周"一行出现
+  // "09-30 非农 / 10-01 议息"。这些日子全年表里都有官方日期（美联储日程 + FRED 发布排期），不再猜。
   for (const p of (vc.year_plan ?? []) as any[]) add(p.date, p.type, '', !!p.estimated)
   for (const d of vc.event_dates?.FOMC ?? []) add(d, 'FOMC', '')
   return out.sort((a, b) => a.date.localeCompare(b.date))
