@@ -47,3 +47,4 @@
 {"ts": "2026-09-28T05:26:41Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:下次议息加息概率回升|not_fired->fired", "band:下次会议加息概率（10-28）|near->breached_hi"], "muted": ["node:油价20天累计涨幅"], "chars": 573, "head": "*【09\\-28】加息涨破线。*"}
 {"ts": "2026-09-28T05:49:53Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 492, "head": "*【09\\-28】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-09-28T13:11:37Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 466, "head": "*【09\\-28】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-09-28T20:07:56Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|fired_muted->fired"], "muted": [], "chars": 623, "head": "*【09\\-28】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}

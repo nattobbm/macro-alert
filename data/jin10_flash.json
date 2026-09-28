@@ -54,6 +54,83 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-29",
+   "time_bj": "01:25",
+   "title": "美联储理事库克发表讲话",
+   "speaker": "库克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-29",
+   "time_bj": "01:30",
+   "title": "美联储巴尔金发表讲话",
+   "speaker": "巴尔金",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-29",
+   "time_bj": "12:30",
+   "title": "澳洲联储公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-09-30",
+   "time_bj": "01:00",
+   "title": "美联储古尔斯比发表讲话",
+   "speaker": "古尔斯比",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-30",
+   "time_bj": "01:00",
+   "title": "OpenAI首席执行官奥尔特曼发表演讲",
+   "speaker": null,
+   "tags": [
+    "AI链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-30",
+   "time_bj": "01:30",
+   "title": "美联储穆萨莱姆发表讲话",
+   "speaker": "穆萨莱姆",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-30",
+   "time_bj": "02:00",
+   "title": "美联储威廉姆斯发表讲话",
+   "speaker": "威廉姆斯",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -225,7 +302,289 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：预计未来几个月将继续面临来自人工智能和中东冲突的通胀压力。",
+   "link": "https://flash.jin10.com/detail/20260929012547344800",
+   "published": "2026-09-28T17:25:47Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：劳动力市场已做好应对加息的准备。",
+   "link": "https://flash.jin10.com/detail/20260929012606363800",
+   "published": "2026-09-28T17:26:06Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：未来利率调整的数量和幅度将受到通胀和劳动力市场数据的影响，以及经济对美联储迄今采取行动的反应。",
+   "link": "https://flash.jin10.com/detail/20260929012613752800",
+   "published": "2026-09-28T17:26:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：通胀数据中出现广泛压力的迹象。",
+   "link": "https://flash.jin10.com/detail/20260929012630757800",
+   "published": "2026-09-28T17:26:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：人工智能带来的生产率提升将在未来几年产生温和的去通胀效应。",
+   "link": "https://flash.jin10.com/detail/20260929012640744800",
+   "published": "2026-09-28T17:26:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：迄今为止，关于人工智能改变劳动市场结构的证据有限。",
+   "link": "https://flash.jin10.com/detail/20260929012652657800",
+   "published": "2026-09-28T17:26:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：对人工智能可能导致至少暂时性失业上升的情景高度关注。",
+   "link": "https://flash.jin10.com/detail/20260929012659919800",
+   "published": "2026-09-28T17:26:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：人工智能带来的生产率提升不会及时抵消今年扩散中的通胀压力。",
+   "link": "https://flash.jin10.com/detail/20260929012747753800",
+   "published": "2026-09-28T17:27:47Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：在这种情况下，美联储可用的工具将受到限制；降息可能会推高通胀。",
+   "link": "https://flash.jin10.com/detail/20260929012800436800",
+   "published": "2026-09-28T17:28:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储库克：AI需求和油价上涨将继续推高通胀压力】金十数据9月29日讯，美联储理事丽莎·库克表示，未来几个月美国通胀仍将面临压力，主要来自人工智能相关需求增长、油价上涨以及中东冲突导致的供应链扰动，但她没有明确表示需要进一步加息。库克表示，劳动力市场目前“有能力承受利率上升”，",
+   "link": "https://flash.jin10.com/detail/20260929014001235800",
+   "published": "2026-09-28T17:40:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "AI链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 1,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "现在不动",
+   "meaning_lean": "中",
+   "meaning_id": "closely_monitoring"
+  },
+  {
+   "title": "美联储理事库克：将考虑为继续引导通胀回落至目标所需的政策利率。",
+   "link": "https://flash.jin10.com/detail/20260929014221213800",
+   "published": "2026-09-28T17:42:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：预计未来几个月人工智能建设将持续带来通胀压力。",
+   "link": "https://flash.jin10.com/detail/20260929014228291800",
+   "published": "2026-09-28T17:42:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：劳动力市场似乎已做好应对加息的准备。",
+   "link": "https://flash.jin10.com/detail/20260929014232580800",
+   "published": "2026-09-28T17:42:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：低失业率是支撑消费的关键因素。",
+   "link": "https://flash.jin10.com/detail/20260929013104448800",
+   "published": "2026-09-28T17:31:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：不能说人工智能对利率压力完全免疫。",
+   "link": "https://flash.jin10.com/detail/20260929013442498800",
+   "published": "2026-09-28T17:34:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-28T13:11:32Z"
+ "fetched_at": "2026-09-28T20:07:49Z"
 }
