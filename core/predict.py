@@ -36,10 +36,15 @@ def scorecard(pred_dir: str | Path) -> dict:
             st = j.get("status")
             locked = (st in ("LOCKED", "SETTLED")
                       or j.get("momo_ranking") is not None
+                      or j.get("claude_ranking") is not None
                       or j.get("probability") is not None)
+            # 2026-09-28：三层格式（scenario_map_3layer）的概率在 layer1_direction 里，
+            # 代签的卡签的是 claude_ranking。Momo 加签后以她的为准显示，两份都在文件里记分。
+            _l1 = j.get("layer1_direction") or {}
             opens.append({"id": j.get("id"), "question": j.get("question"),
-                          "probability": j.get("probability"),
-                          "ranking": j.get("momo_ranking"),
+                          "probability": j.get("probability") if j.get("probability") is not None else _l1.get("probability_hike"),
+                          "ranking": j.get("momo_ranking") or j.get("claude_ranking"),
+                          "signed_by": "Momo" if j.get("momo_ranking") else (j.get("signed_by") or "Momo"),
                           "format": j.get("format", "probability"),
                           "status": st,
                           "settle_date": j.get("settle_date"),

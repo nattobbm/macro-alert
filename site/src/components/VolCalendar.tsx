@@ -30,6 +30,12 @@ function tone(r: number) {
   if (r <= 0.7) return { fill: 'var(--st-ok)', text: 'var(--st-ok-text)', bg: 'var(--st-ok-bg)' }
   return { fill: 'var(--st-mute)', text: 'var(--st-mute-text)', bg: 'var(--st-mute-bg)' }
 }
+/* 2026-09-28：机构日程（月初/月末/季末/到期/放假前后）是另一种钟，没有六标的倍数，只有一句研究原话 */
+const clockOf = (vc: any, t: string) => vc?.clock?.[t]
+const labelOf = (vc: any, t: string) => {
+  const e = vc?.events?.[t] ?? clockOf(vc, t)
+  return (isEN ? e?.label_en : e?.label) ?? t
+}
 const envWord = (r: number | null | undefined) =>
   r == null ? '—' : r >= 1.2 ? (isEN ? 'restless' : '偏躁') : r <= 0.8 ? (isEN ? 'quiet' : '偏静') : (isEN ? 'normal' : '平常')
 
@@ -121,7 +127,7 @@ function NowStrip({ vc, evs }: { vc: any; evs: Ev[] }) {
   const thisWeek = evs.filter(e => daysBetween(today, e.date) <= 7)
   const A = vc.assets
   const breached = (radarBands as any[]).filter(b => String(b.status).startsWith('breached')).length
-  const lab = (t: string) => isEN ? vc.events[t]?.label_en : vc.events[t]?.label
+  const lab = (t: string) => labelOf(vc, t)
   const dist = (e?: Ev) => e ? `${daysBetween(today, e.date)}${isEN ? 'd' : ' 天'}（${e.date.slice(5)}${e.estimated ? (isEN ? ', est.' : '，预计') : ''}）` : '—'
   const env = (k: string) => { const a = A[k]; if (!a?.recent20_ratio) return null; const r = a.recent20_ratio; return { r, w: envWord(r), t: tone(r >= 1.2 ? 1.3 : r <= 0.8 ? 0.7 : 1), a } }
   const envs = ['spx', 'gold'].map(k => [k, env(k)] as const).filter(([, v]) => v)
@@ -179,6 +185,15 @@ function YearGrid({ vc, evs }: { vc: any; evs: Ev[] }) {
   for (const e of evs) { const m = e.date.slice(0, 7); if (!byMonth.has(m)) byMonth.set(m, []); byMonth.get(m)!.push(e) }
   const months = [...byMonth.keys()].sort()
   const chip = (e: Ev) => {
+    const ck = clockOf(vc, e.type)
+    if (ck) return (
+      <span key={e.date + e.type} className="inline-flex items-baseline gap-1 rounded-lg px-2 py-[3px] text-[11px]"
+        title={isEN ? ck.note_en : ck.note}
+        style={{ background: 'transparent', color: 'var(--text)', border: '1px solid var(--border)' }}>
+        <span className="font-num font-bold">{+e.date.slice(8, 10)}</span>
+        <span>{isEN ? ck.label_en : ck.label}</span>
+      </span>
+    )
     const r: Record<string, number> = vc.events[e.type]?.ratio ?? {}
     const top = Math.max(0, ...Object.values(r))
     const t = tone(top)
@@ -210,8 +225,8 @@ function YearGrid({ vc, evs }: { vc: any; evs: Ev[] }) {
       </div>
       <div className="text-[10.5px] mt-3 leading-snug" style={{ color: 'var(--text-muted)' }}>
         {isEN
-          ? 'Chip color = how much the busiest asset moves on that kind of day (red ≥1.5×, pink 1.2–1.5×, grey ≈ normal). Dashed = estimated from the usual schedule; replaced automatically when the official date is published.'
-          : '色块颜色 = 这种日子动得最大的那个标的是平常的几倍（红 ≥1.5，粉 1.2–1.5，灰 ≈ 平常）。虚线 = 按惯例推算，官方日期一公布自动替换。'}
+          ? 'Chip color = how much the busiest asset moves on that kind of day (red ≥1.5×, pink 1.2–1.5×, grey ≈ normal). Dashed = estimated from the usual schedule; replaced automatically when the official date is published. Outlined = institutional calendar (month start/end, quarter end, expiry, holidays): hover for what usually happens.'
+          : '色块颜色 = 这种日子动得最大的那个标的是平常的几倍（红 ≥1.5，粉 1.2–1.5，灰 ≈ 平常）。虚线 = 按惯例推算，官方日期一公布自动替换。只有边框的 = 机构日程（月初、月末、季末、到期、放假前后），在「近 90 天」里有一句话说明。'}
       </div>
     </div>
   )
@@ -226,7 +241,11 @@ export default function VolCalendar() {
   }
   const A = vc.assets
   const year = upcoming(vc, 365)
-  const near = year.filter(e => daysBetween(todayISO(), e.date) <= 90).slice(0, 10)
+  // 机构日程每月四五个，混进 90 天会把议息/非农挤出前 10 条：宏观日照旧取 10 条，机构日程只取 35 天内
+  const near = [
+    ...year.filter(e => !clockOf(vc, e.type) && daysBetween(todayISO(), e.date) <= 90).slice(0, 10),
+    ...year.filter(e => clockOf(vc, e.type) && daysBetween(todayISO(), e.date) <= 35),
+  ].sort((a, b) => a.date.localeCompare(b.date))
 
   return (
     <div className="space-y-6">
@@ -249,6 +268,19 @@ export default function VolCalendar() {
           <div className="space-y-2.5">
             {!near.length && <div className="neu p-4 text-xs" style={{ color: 'var(--text-muted)' }}>{isEN ? 'No tracked event in the next 90 days.' : '未来 90 天没有在表里的事件。'}</div>}
             {near.map(e => {
+              const ck = clockOf(vc, e.type)
+              if (ck) return (
+                <div key={`${e.date}|${e.type}`} className="neu px-3.5 py-3">
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <span className="font-num font-bold text-sm">{e.date.slice(5)}</span>
+                    <span className="text-[11px]" style={{ color: 'var(--text-muted)' }}>{dow(e.date)}</span>
+                    <span className="text-sm font-medium flex-1 min-w-0">{isEN ? ck.label_en : ck.label}</span>
+                    <span className="badge" style={{ background: 'transparent', color: 'var(--text-muted)', border: '1px solid var(--border)' }}>{isEN ? 'institutional clock' : '机构日程'}</span>
+                  </div>
+                  <div className="mt-1.5 text-[13px] leading-relaxed">{isEN ? ck.note_en : ck.note}</div>
+                  <div className="text-[10.5px] mt-1" style={{ color: 'var(--text-muted)' }}>{isEN ? `Research note ${ck.src}, 2019–2026, strict calendar-shuffle test.` : `出处：回测线 ${ck.src} 号研究，2019–2026，日历整体错开 300 次的严格检验。`}</div>
+                </div>
+              )
               const ev = vc.events[e.type]; const s = say(ev.ratio, A); const t = tone(s.kind === 'fire' ? 1.6 : s.kind === 'warn' ? 1.3 : 1)
               const key = `${e.date}|${e.type}`; const isOpen = open === key
               const orig = e.title.replace(/★/g, '').trim()

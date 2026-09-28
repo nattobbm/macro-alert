@@ -66,7 +66,10 @@ chains:
     nodes:
       # 2026-09-24 改：旧值"还没恢复(约为战前8成)"错了一个数量级。IMF PortWatch 逐日通行数：
       # 9-01~9-20 日均 3.9 艘次，战前(2025-12~2026-02 中)日均 58.8 艘次 → 约 7%。9-20 当天只有 1 艘。
-      - {label_en: "Strait of Hormuz", label: "霍尔木兹海峡", term: "每天通过的船", value_text: "几乎停航:9月日均约4艘,战前约59艘(约7%)", status: fact, note: "IMF PortWatch 逐日数据,2026-09-24 核。9-24 美伊在纽约谈分阶段重开(卡塔尔斡旋),还没谈成"}
+      # 2026-09-28 补：船和油是两个数。海峡里的船只剩约 7%，但产油国靠管道绕行，
+      # 中东主要产油国 9 月原油出口恢复到 1280 万桶/日（2 月以来最高），比战前少 600 万桶（约为战前七成）。
+      # 旧文字"约为战前 8 成"很可能说的是油流，不是船——只写一个数都会误导。
+      - {label_en: "Strait of Hormuz", label: "霍尔木兹海峡", term: "船 / 油", value_text: "船只剩约7%(9月日均约4艘,战前约59艘);油靠绕行恢复到约七成(出口1280万桶/日,少600万)", status: fact, note: "船:IMF PortWatch 逐日数据;油:RFE/RL 9-27 引出口统计。9-26 特朗普拒绝伊朗分阶段重开方案,伊朗等美方正式答复,间接谈判最早 9-28 经卡塔尔恢复"}
       - {label_en: "Oil above band?", label: "油价出上界?", term: "Brent vs 90", metric: brent, threshold: 90, direction: above, note: "超90→物价压力回来"}
       - {label_en: "Oil below band?", label: "油价出下界?", term: "Brent vs 80", metric: brent, threshold: 80, direction: below, note: "低于80→美方行动更大胆(假说,样本少)"}
       # 2026-09-10 增。原来只有「单日暴涨>5%」一个速度节点，而这轮油价是从90慢慢爬到105的，

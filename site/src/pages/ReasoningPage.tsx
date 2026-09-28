@@ -387,6 +387,9 @@ export default function ReasoningPage() {
                       <span className="ml-2 font-num font-medium notranslate"
                         style={{ color: 'var(--st-ok-text)' }}>{(p.probability * 100).toFixed(0)}%</span>
                     )}
+                    {p.signedBy && p.signedBy !== 'Momo' && (
+                      <span className="ml-2" style={{ color: 'var(--text-muted)' }}>{isEN ? `signed by ${p.signedBy}` : `${p.signedBy} 代签`}</span>
+                    )}
                     {p.result && <span className="ml-2 font-medium">{p.result}</span>}
                   </div>
                   {/* 签发后追加的证据：折叠态只给条数，点开才看。

@@ -128,6 +128,7 @@ export const predictions: Prediction[] = L
         settle_date: o.settle_date ?? '—', status: 'open' as const,
         // 情景图卡签的是排序(如 S2>S1>S3)，概率单签的是概率；两种都要显示出来
         ranking: o.ranking ?? null, probability: o.probability ?? null,
+        signedBy: o.signed_by ?? null,
         // 签发后追加的证据 + 失效条件。排序锁死不动，但"签了之后世界发生了什么"要让人看见
         falsifiers: o.falsifiers ?? {},
         evidence: (o.evidence ?? []) as PredEvidence[],
@@ -261,6 +262,13 @@ export const calEvents: CalEvent[] = L
               ? `on past such days: ${top.map(([k, r]) => `${ASSET[k]?.[1] ?? k} ${r}x`).join(', ')} a normal day's move`
               : `历史上这天：${top.map(([k, r]) => `${ASSET[k]?.[0] ?? k} ${r} 倍`).join('、')}（和平常日比）`)
             : ''
+          const ck = vc?.clock?.[p.type]
+          if (ck) return {
+            date: p.date,
+            event: isEN ? ck.label_en : ck.label,
+            importance: (['QEND', 'MSTART', 'QOPEX'].includes(p.type) ? 2 : 1) as 1 | 2 | 3,
+            watch_for: String(isEN ? ck.note_en : ck.note).split(isEN ? '. ' : '。')[0] + (isEN ? '.' : '。'),
+          }
           return {
             date: p.date,
             event: (NAME[p.type]?.[isEN ? 1 : 0] ?? p.type) + (p.estimated ? (isEN ? ' (date estimated)' : '（日期按惯例推算）') : ''),

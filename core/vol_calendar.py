@@ -122,6 +122,98 @@ def year_plan(today: dt.date, days: int = 365) -> list[dict]:
             y, m = (y + 1, 1) if m == 12 else (y, m + 1)
     return sorted(out, key=lambda x: (x["date"], x["type"]))
 
+# ── 机构日程（2026-09-28 加）──────────────────────────────────────────────
+# 上面五种是"数据/议息"日，测的是六个标的一天动几倍。这里是另一种钟：按日程必须动的是
+# 基金、做市商、期权卖方——月初新钱、月末调仓、季末、到期、放假前后。
+# 口径来自回测线 112 / 114 号研究（2019–2026，22 条钱池的线 + SPX 1 分钟，日历整体错开
+# 300 次 + 前后两半同向的严格检验里站住的格）。测的是"哪个时段放大、哪些线一起动"，
+# 不是六个标的的日倍数，所以单独一类，不和上面混算。
+# 日期全按规则推（纽交所休市表 nyse.com 2026-09-28 核过），不需要任何外部源。
+NYSE_HOLIDAYS = {
+    "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25", "2026-06-19",
+    "2026-07-03", "2026-09-07", "2026-11-26", "2026-12-25",
+    "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18",
+    "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24",
+}
+_CLOCK_CAVEAT = "倾向不是预告：单独一天照着走，大多只比平常多十个点左右。"
+_CLOCK_CAVEAT_EN = "A tendency, not a forecast: on any single day it holds only about ten points more often than usual."
+CLOCK = {
+    "MSTART": {"label": "月初第一天", "label_en": "First day of month", "src": "114",
+               "note": "新的钱在开盘前进来：隔夜跳空比平常大得多（占当天幅度 16.6%，平常 4.1%），盘中反而平。"
+                       "月初 3 天下午回到开盘区间只有 63%（平常 72%），更容易一路走。全球 15 条线波动都更大。",
+               "note_en": "New money arrives before the open: the overnight gap is much bigger than usual, the session itself is flat. "
+                          "In the first 3 days of a month the afternoon returns to the opening range only 63% of the time (72% normally)."},
+    "MEND": {"label": "月末最后一天", "label_en": "Last day of month", "src": "114",
+             "note": "月底钱先进债：最后三天债全线偏强，最后一天股票偏弱，标普弱在上午（09:30–12:30 几个半小时都显著）。",
+             "note_en": "Month-end money goes to bonds first: bonds firm over the last three days; stocks soft on the last day, mainly in the morning."},
+    "QEND": {"label": "季末最后一天", "label_en": "Last day of quarter", "src": "112/114",
+             "note": "收盘前 30 分钟放大：31 个季末里 28 个比平常大（约 1.4 倍），上午偏静。季末前 5 天收盘半小时占全天波幅 37–38%（平常 33%）。"
+                     "57 个季末里从没出现过全球一起跌。标普 13:00 那半小时偏弱。",
+             "note_en": "The last 30 minutes are bigger (28 of 31 quarter-ends, about 1.4x); the morning is quiet. "
+                        "Never a global all-down day in 57 quarter-ends."},
+    "OPEX": {"label": "月度期权到期", "label_en": "Monthly options expiry", "src": "114",
+             "note": "到期日是按住的：公司债、原油、商品、小盘的波动都更小，全球齐涨齐跌很少。标普 13:30、14:00 两个半小时有小动静。",
+             "note_en": "Expiry pins things down: credit, oil, commodities and small caps all move less."},
+    "QOPEX": {"label": "季度到期（四巫日）", "label_en": "Quarterly expiry (quad witching)", "src": "114",
+              "note": "也是标普季度调整日。全球几乎不齐涨齐跌；标普盘中偏弱，开盘第一个半小时最明显。",
+              "note_en": "Also the S&P quarterly rebalance. Almost never a global all-up or all-down day; the S&P is soft intraday, most in the first half hour."},
+    "PREHOL": {"label": "美国放假前一天", "label_en": "Day before US holiday", "src": "114",
+               "note": "全世界一起安静：14 条线的波动都更小。",
+               "note_en": "The whole world goes quiet: 14 lines all move less."},
+    "POSTHOL": {"label": "美国放假后第一天", "label_en": "Day after US holiday", "src": "114",
+                "note": "全世界一起放大：16 条线的波动都更大；标普开盘半小时偏弱。",
+                "note_en": "The whole world gets louder: 16 lines all move more; the S&P opening half hour is soft."},
+}
+for _v in CLOCK.values():
+    _v["note"] += _CLOCK_CAVEAT
+    _v["note_en"] += " " + _CLOCK_CAVEAT_EN
+
+
+def _is_trading(d: dt.date) -> bool:
+    return d.weekday() < 5 and d.isoformat() not in NYSE_HOLIDAYS
+
+
+def _shift_trading(d: dt.date, step: int) -> dt.date:
+    while not _is_trading(d):
+        d += dt.timedelta(days=step)
+    return d
+
+
+def clock_plan(today: dt.date, days: int = 365) -> list[dict]:
+    """今天起一年的机构日程：{date, type, estimated: False}。同一天多种时取更具体的那种。"""
+    end = today + dt.timedelta(days=days)
+    out: dict[str, str] = {}
+
+    def put(d: dt.date, t: str):
+        if today <= d <= end:
+            out.setdefault(d.isoformat(), t)      # 先放的优先：季末 > 月末，四巫 > 月度到期
+    y, m = today.year, today.month
+    while dt.date(y, m, 1) <= end:
+        first = _shift_trading(dt.date(y, m, 1), 1)
+        nxt = dt.date(y + (m == 12), m % 12 + 1, 1)
+        last = _shift_trading(nxt - dt.timedelta(days=1), -1)
+        put(last, "QEND" if m in (3, 6, 9, 12) else "MEND")
+        third_fri = _nth_weekday(y, m, 4, 3)
+        opex = third_fri if _is_trading(third_fri) else _shift_trading(third_fri, -1)   # 周五休市则提前到周四
+        put(opex, "QOPEX" if m in (3, 6, 9, 12) else "OPEX")
+        put(first, "MSTART")
+        y, m = nxt.year, nxt.month
+    for h in sorted(NYSE_HOLIDAYS):
+        hd = dt.date.fromisoformat(h)
+        put(_shift_trading(hd - dt.timedelta(days=1), -1), "PREHOL")
+        put(_shift_trading(hd + dt.timedelta(days=1), 1), "POSTHOL")
+    return [{"date": d, "type": t, "estimated": False} for d, t in sorted(out.items())]
+
+
+def with_clock(j: dict, today: dt.date | None = None) -> dict:
+    """把机构日程并进 year_plan（每次加载都按今天重排，纯日期推算，不要网络）。"""
+    today = today or dt.date.today()
+    macro = [p for p in j.get("year_plan", []) if p.get("type") not in CLOCK]
+    j["year_plan"] = sorted(macro + clock_plan(today), key=lambda x: (x["date"], x["type"]))
+    j["clock"] = CLOCK
+    return j
+
+
 # 事件类型 → (人话名, 英文, FRED release 名, 日历标题里的匹配词)
 EVENTS = {
     "FOMC":   ("议息", "FOMC",        None,                                               ["FOMC", "议息", "利率决议"]),
@@ -240,14 +332,14 @@ def load_or_refresh(max_age_days: int = 7) -> dict | None:
             # 2026-09-22 事故：提交前 git checkout -- data/ 把新算的 JSON 还原成旧版，线上全年一览空了 6 小时
             fresh_schema = "year_plan" in j and all("recent20_ratio" in a for a in j.get("assets", {}).values())
             if fresh_schema and (dt.datetime.now(dt.timezone.utc) - g).days < max_age_days:
-                return j
+                return with_clock(j)
         j = compute()
         OUT.write_text(json.dumps(j, ensure_ascii=False, indent=1), encoding="utf-8")
-        return j
+        return with_clock(j)
     except Exception as e:  # noqa: BLE001
         print(f"[warn] vol_calendar: {type(e).__name__}: {e}", file=sys.stderr)
         try:
-            return json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else None
+            return with_clock(json.loads(OUT.read_text(encoding="utf-8"))) if OUT.exists() else None
         except Exception:
             return None
 

@@ -1,0 +1,121 @@
+{
+ "id": "2026-10-28_fomc_scenario",
+ "created_at": "2026-09-28T05:20:58Z",
+ "created_by": "Claude（代签）",
+ "signed_by": "Claude",
+ "signer_note": "Momo 2026-09-25 对「10-28 预测卡还没签」回复「做」= 授权代签。她可以在 10-27 收盘前另加 momo_ranking 与一句理由，两份分开记分；本卡 Claude 这一栏签发后不改。",
+ "status": "LOCKED",
+ "format": "scenario_map_3layer",
+ "format_note": "9-20 定的三层：①方向（计分：加没加）②办法（不计分：怎么说、市场怎么走，只记录对照）③意外变量（事前登记，发生了只记录不改签）。另加「预计多大」一格，取波动日历。",
+ "question": "10月FOMC（2026-10-27/28，决议 10-28 14:00 ET）：会不会再加 25bp？",
+ "date_verified": "federalreserve.gov 2026 日程：10-27/28 会议（vol_calendar FOMC_DECISION_DATES 9-21 核过）",
+ "ex_ante_snapshot": {
+  "_note": "签发时可核实读数（latest.json 生成于 2026-09-25T23:32:03Z，行情为 9-25 收盘）。结算时对照，不改。",
+  "hike_odds_zq_next": 0.62,
+  "hike_odds_zq_path": "09-20 56% → 09-21 58% → 09-22 56% → 09-23 68% → 09-24 72% → 09-25 62%",
+  "hike_odds_polymarket_note": "约 67%（financefeeds 报道，9-24/25）",
+  "fed_rate": "3.75%-4.00%（9-16 加 25bp，12-0）",
+  "us10y": 5.18,
+  "us10y_as_of": "2026-09-24",
+  "us30y": 5.47,
+  "tips10y": 2.85,
+  "breakeven10": 2.34,
+  "spx": 7743.4102,
+  "vix": 14.87,
+  "gold_comex": 4320.5,
+  "xauusd": 4285.13,
+  "dxy": 101.035,
+  "usdjpy": 157.185,
+  "brent_jin10_main": 97.36,
+  "wti": 92.44,
+  "jp_policy_rate": 1.25,
+  "jp10y": 3.073,
+  "hy_oas": 2.8,
+  "regime_judge": "回到需求侧紧缩链"
+ },
+ "context_ex_ante": {
+  "_rule": "签发前可核实的事实与外部观点。结算时不得增补。",
+  "fed_speakers": [
+   "9-23 理事巴尔：基准情形下还需要进一步调整政策（CNBC）",
+   "9-24 纽约联储威廉姆斯：年底前再加一次是合理的结果（CNBC）"
+  ],
+  "data_0923": "S&P Global 9 月 PMI 初值：扩张速度 2021-07 以来最快；10 年期当天 +15bp 至 5.11%，其中真利率 +13bp、通胀预期 +2bp",
+  "real_yield_trend": "10 年真利率 9-22 2.63% → 9-24 2.85%；首页判据 9-25 起「回到需求侧紧缩链」（连续两个数据日）",
+  "oil": "霍尔木兹船只约为战前 7%，原油出口靠绕行恢复到约七成；9-24 美伊谈分阶段重开，9-26 特朗普拒绝伊朗方案，伊朗等正式答复",
+  "japan": "日本央行 9-18 加到 1.25%（9-24 生效），日元反而走弱",
+  "fiscal": "国会已通过临时拨款到 12-11，9-30 停摆风险基本解除",
+  "data_before_meeting": [
+   "9-30 8 月 PCE",
+   "10-02 9 月非农",
+   "10-14 9 月 CPI",
+   "10-15 PPI、零售"
+  ],
+  "lesson_carried": "9-16 卡的失败模式：「政治周期约束美联储 / 选举前不动手」在沃什身上连续两次失效。本卡理由不用这条。"
+ },
+ "scenarios": {
+  "S1_加息25bp": {
+   "script": "上调至 4.00%-4.25%。信誉框架第三次兑现：通胀未回落 + 巴尔、威廉姆斯已公开铺路",
+   "expected_path": "定价已在六成以上，2 年期变动有限 · 美元↑ · 若长端不动黄金未必跌（9-16 教训）· 下午回开盘区间（议息日 93%）"
+  },
+  "S2_维持但保留加息": {
+   "script": "维持 3.75%-4.00%，声明说还可能再加、看数据",
+   "expected_path": "加息定价回落但 12 月仍高 · 美元先跌后稳 · 长端先降 · 波动集中 14:00 后"
+  },
+  "S3_维持且转软": {
+   "script": "维持并暗示加息周期到头（例如引用真利率已高、金融条件已收紧）",
+   "expected_path": "加息定价大幅回落 · 美元↓ · 黄金↑ · 长端↓ · 首页剧本回到「金融抑制」方向"
+  }
+ },
+ "layer1_direction": {
+  "_scored": true,
+  "call": "加息",
+  "probability_hike": 0.62,
+  "_probability_note": "和 ZQ 签发时读数（62%）一致。按纪律，信息量不在这个数，而在下面的理由；Brier 照算。",
+  "ranking": "S1>S2>S3"
+ },
+ "layer2_method": {
+  "_scored": false,
+  "expect": "声明继续不给前瞻指引；若加息，投票可能不再全票（9-16 是 12-0）；市场反应按波动日历：议息日标普约平常 0.9 倍、美元 1.8 倍、黄金只有 0.6 倍；研究线：14:00 后波动约 3 倍、下午回开盘区间 93%"
+ },
+ "layer3_surprise_registry": {
+  "_rule": "事前登记：这些发生了只记录到 evidence_log，不改签。",
+  "U1": "美伊达成重开海峡协议、布伦特快速跌破 85 → 通胀压力下降，S2/S3 权重上升",
+  "U2": "谈判破裂或军事升级、布伦特重回 110 以上 → 滞胀两难，方向不确定",
+  "U3": "9 月非农 <5 万或失业率 ≥4.5% → S2/S3 权重上升",
+  "U4": "9 月核心 CPI 环比 ≥0.4% → S1 权重上升",
+  "U5": "标普从高点回撤 ≥7% 或信用利差（HY OAS）跳到 3.5 以上 → 金融条件自己收紧，S2 权重上升",
+  "U6": "日元急升（美元兑日元跌破 150）或日本再出手 → 全球套息平仓，S2 权重上升",
+  "U7": "会议改期、紧急会议、非常规决议 → VOID"
+ },
+ "size_expectation": {
+  "_source": "波动日历 core/vol_calendar.py（2024-08-01 → 2026-09-21，议息日 17 个）+ 回测线 112/114",
+  "ratio": {
+   "spx": 0.9,
+   "gold": 0.6,
+   "dxy": 1.8,
+   "us30y": 1.1,
+   "usdjpy": 1.3,
+   "vix": 1.5
+  },
+  "plain": "议息日动得最大的是美元（约平常 1.8 倍），标普和平常差不多（0.9 倍），黄金反而安静（0.6 倍）。盘中：14:00 前偏静，14:00 后约 3 倍。"
+ },
+ "reasoning_ex_ante": "沃什两次都按信誉出牌，巴尔和威廉姆斯已经公开铺路，9 月数据偏热；选举前不动手这条已经失效两次，不用它。",
+ "claude_ranking": "S1>S2>S3",
+ "momo_ranking": null,
+ "_ranking_note": "claude_ranking 已锁。momo_ranking 留给她 10-27 收盘前加签（可选）。",
+ "falsifiers": {
+  "F1": "见 layer3_surprise_registry U1–U6",
+  "F2": "U7 → VOID"
+ },
+ "settle_date": "2026-10-28",
+ "settle_rule": "方向层：federalreserve.gov 决议是否上调目标区间（是=1，否=0），Brier 用 probability_hike。办法层与预计多大：机器记 10-28 收盘对 10-27 收盘的 SPX/美元/黄金/30年/VIX 变动，只并列记录不计分。",
+ "settle_source": "federalreserve.gov FOMC statement + data/fedwatch 每日存档 + data/snapshots",
+ "discipline": {
+  "no_edit_after_lock": true,
+  "sample_threshold": "累计<50只记录不解读",
+  "no_copy_market": "理由必须是自己的机制；和市场同向不是问题，照抄数字不给理由才是"
+ },
+ "signed_at": "2026-09-28T05:20:58Z",
+ "_lock_note": "签发后 layer1_direction / claude_ranking / reasoning_ex_ante / ex_ante_snapshot / scenarios 一律不得修改；git commit 时间戳即签发时刻证明。",
+ "evidence_log": []
+}
