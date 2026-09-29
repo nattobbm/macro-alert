@@ -51,3 +51,4 @@
 {"ts": "2026-09-29T00:32:31Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 700, "head": "*【09\\-29】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-09-29T13:58:59Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 750, "head": "*【09\\-29】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-09-29T17:40:13Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 763, "head": "*【09\\-29】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-09-29T18:37:14Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["band:下次会议加息概率（10-28）"], "chars": 817, "head": "*【09\\-29】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
