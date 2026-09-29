@@ -87,6 +87,39 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-09-30",
+   "time_bj": "00:40",
+   "title": "美联储理事巴尔发表讲话",
+   "speaker": "巴尔",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-30",
+   "time_bj": "01:00",
+   "title": "OpenAI CEO奥尔特曼发表演讲",
+   "speaker": null,
+   "tags": [
+    "AI链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-09-30",
+   "time_bj": "03:00",
+   "title": "美联储理事沃勒发表讲话",
+   "speaker": "沃勒",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -371,7 +404,468 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：企业利润率高，但开始收窄。",
+   "link": "https://flash.jin10.com/detail/20260930012601709800",
+   "published": "2026-09-29T17:26:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：对未来人工智能生产力提升的预期现在带来了过热的高风险。",
+   "link": "https://flash.jin10.com/detail/20260930012951962800",
+   "published": "2026-09-29T17:29:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：相比上半年2%的增速，预计下半年GDP增长将“略有回升”。",
+   "link": "https://flash.jin10.com/detail/20260930004054414800",
+   "published": "2026-09-29T16:40:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：实现通胀目标的风险增加，劳动力市场的风险减小。",
+   "link": "https://flash.jin10.com/detail/20260930004102826800",
+   "published": "2026-09-29T16:41:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：需要重新校准政策；基本情况是可能需要进一步的政策调整。",
+   "link": "https://flash.jin10.com/detail/20260930004118579800",
+   "published": "2026-09-29T16:41:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：受到企业投资和消费者支出的支持，劳动力市场稳健。",
+   "link": "https://flash.jin10.com/detail/20260930004128506800",
+   "published": "2026-09-29T16:41:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：通胀是一个关键问题；美联储已被“迫使偏离”2%的目标。",
+   "link": "https://flash.jin10.com/detail/20260930004147154800",
+   "published": "2026-09-29T16:41:47Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：通胀及时回归2%的趋势并不明显，实现通胀目标的风险已增加，可能需要进一步的政策调整以确保通胀回归目标。",
+   "link": "https://flash.jin10.com/detail/20260930004236915800",
+   "published": "2026-09-29T16:42:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：在中期内考虑人工智能提升生产力是合理的，但很难预测具体方式或时间。",
+   "link": "https://flash.jin10.com/detail/20260930004248900800",
+   "published": "2026-09-29T16:42:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：对人工智能将在长期内提升生产力持乐观态度。",
+   "link": "https://flash.jin10.com/detail/20260930004258940800",
+   "published": "2026-09-29T16:42:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：现在还为时尚早，无法判断人工智能是否会推高中性利率。",
+   "link": "https://flash.jin10.com/detail/20260930004310940800",
+   "published": "2026-09-29T16:43:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：人工智能的建设预计将在未来一年左右对美国经济活动产生强劲推动。",
+   "link": "https://flash.jin10.com/detail/20260930004317273800",
+   "published": "2026-09-29T16:43:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：应为人工智能带来的劳动力市场严重短期干扰做好准备。",
+   "link": "https://flash.jin10.com/detail/20260930004320843800",
+   "published": "2026-09-29T16:43:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "在铺路，下一步大概率往这个方向走",
+   "meaning_lean": "鹰",
+   "meaning_id": "prepared_to_act"
+  },
+  {
+   "title": "美联储理事巴尔：人工智能带来的广泛生产力提升可能需要一些时间。",
+   "link": "https://flash.jin10.com/detail/20260930004324429800",
+   "published": "2026-09-29T16:43:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：人工智能建设带来的投资激增及相关需求对价格产生了可测量的影响。",
+   "link": "https://flash.jin10.com/detail/20260930004328115800",
+   "published": "2026-09-29T16:43:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：看到技能行业的工资水平有所上升。",
+   "link": "https://flash.jin10.com/detail/20260930010234178800",
+   "published": "2026-09-29T17:02:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储巴尔：为控制通胀 未来可能需要进一步加息】金十数据9月30日讯，美联储理事迈克尔·巴尔表示，通胀回落进程受到干扰，美联储可能需要进一步调整货币政策，以确保通胀及时回到2%的目标。巴尔在底特律经济俱乐部发表讲话时表示，目前尚未看到通胀“及时回归2%目标”的明确趋势。他称，通",
+   "link": "https://flash.jin10.com/detail/20260930010410906800",
+   "published": "2026-09-29T17:04:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "美联储理事巴尔：从长远来看，我们需要确保采取必要措施使供需达到平衡。",
+   "link": "https://flash.jin10.com/detail/20260930010511678800",
+   "published": "2026-09-29T17:05:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：美国经济的韧性令人瞩目。",
+   "link": "https://flash.jin10.com/detail/20260930010620274800",
+   "published": "2026-09-29T17:06:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：美联储的独立性帮助我们更好地服务于美国人民。",
+   "link": "https://flash.jin10.com/detail/20260930011255639800",
+   "published": "2026-09-29T17:12:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：我在基本情景中没有经济衰退的预期。",
+   "link": "https://flash.jin10.com/detail/20260930011302694800",
+   "published": "2026-09-29T17:13:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：经济似乎正在积聚动能。",
+   "link": "https://flash.jin10.com/detail/20260930011353196800",
+   "published": "2026-09-29T17:13:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：我们关注的全部焦点，是数据所反映的前景演变，以及实现国会赋予我们的使命所面临的风险平衡情况。",
+   "link": "https://flash.jin10.com/detail/20260930011436414800",
+   "published": "2026-09-29T17:14:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：我认为除非我们调整政策，否则无法及时实现2%的通胀目标。",
+   "link": "https://flash.jin10.com/detail/20260930012608331800",
+   "published": "2026-09-29T17:26:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：上次加息是适当的，我们可能需要进一步调整。",
+   "link": "https://flash.jin10.com/detail/20260930012703212800",
+   "published": "2026-09-29T17:27:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-29T13:58:54Z"
+ "fetched_at": "2026-09-29T17:40:07Z"
 }
