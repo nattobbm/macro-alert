@@ -522,6 +522,8 @@ export type EconEvent = {
 export const econEvents: EconEvent[] = (L?.econ_calendar ?? []) as EconEvent[]
 // 2026-09-21 波动日历：core/vol_calendar.py 每周重算。形状见那个文件头
 export const volCalendar: any = L?.vol_calendar ?? null
+// 2026-09-29「要崩没崩」：今天查中没中 + 历史段落和办法（带出处）
+export const analogRates: any = L?.analog_rates ?? null
 export const econAsOf: string = L?.metrics?.find?.((m: any) => m.key === 'econ_calendar')?.as_of ?? genAt
 // ForexFactory层健康度：ok / fallback_cache(日期) / unavailable(原因)
 // 该层挂掉时只丢"预期/前值"，FRED官方日期与中国日程仍在（降级不失效）

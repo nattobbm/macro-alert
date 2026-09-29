@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { chains, verdicts, predictions, rateProbabilities, news, calEvents, showdown, marketOdds } from '../data/live'
 import { t as tr, isEN } from '../i18n'
+import AnalogSection from '../components/AnalogSection'
 
 const STATUS_META = {
   fire:    { dot: 'var(--st-fire)', label: tr('breached'), color: 'var(--st-fire-text)' },
@@ -187,6 +188,9 @@ export default function ReasoningPage() {
           })}
         </div>
       </section>
+
+      {/* ── 要崩没崩（2026-09-29）────────────────────── */}
+      <AnalogSection />
 
       {/* ── Verdict Library ──────────────────────────── */}
       <section>

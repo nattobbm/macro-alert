@@ -1,0 +1,367 @@
+# 「要崩没崩」知识文件（2026-09-29 建）
+# 来源：交接 `全球宏观形势推理/2026-09-29_交接_为什么没崩_推理链_给网站对话.md`（SPX 盘中会话写）
+# 规矩（她 09-29）：做不了的先记下来，不许敷衍、骗人、捏造。每条「办法」都要有出处；找不到的写"未找到"，不删不编。
+# 查证：四路并行（2004–2013 / 2018–2026 / 互联网泡沫 + 这次的办法菜单 / 艾丽 7 集 + 09-10 的 260 集旧拆解）。
+# 相似日条件和统计：回测线 `第三次回测研究9.2_数据/脚本/macro_0929/analog_0929.py`；网站每天用 core/analog.py 按同一口径查。
+
+title: 要崩没崩：30 年利率冲新高、股票黄金一起跌的日子
+answer: >-
+  1999 年以来这种日子有 23 天，之后 20 天标普多数是涨的，跌得深的比例和平常日子一样。
+  没崩的那几次，都是有人出手打在了市场最怕的那件事上；真正跌深的 2022 年春天，是通胀太高、联储没法出手。
+  问题出在"钱的价格"上，决策者有工具也有动机，所以多数不崩；问题出在"还不起、没利润"上，工具托不住，才会崩。
+
+stats: >-
+  条件（事先定）：30 年利率收在一年新高、当天 +4 个基点以上，同一天标普跌、黄金跌、美元涨。
+  命中 23 天：之后 20 天标普中位 +1.8%，74% 收涨，20 天内跌超 5% 的占 17%。
+  对照：所有日子 +1.2%、63%、18%；只要求 +4 个基点不要求新高的齐跌日 +0.8%、59%、22%。
+  样本小、相邻几天重叠，只能说"多数没接着崩"，不是规律。
+
+episodes_note: >-
+  点开看每段：那天为什么跌、谁用了什么办法、打在哪种害怕上、出处。"纠正"= 交接里凭记忆写的说法经查不对，原样标出来。
+  30 年利率用 yfinance ^TYX（每段最后一天），和 FRED 口径差 1–3 个基点。
+
+episodes:
+  - id: "2004-05"
+    label: "04-05"
+    y30: 5.56
+    spx20: 2.6
+    dd20: -1.1
+    peak_days: 0
+    fix_short: 6-30 首次加息，确认"每次 25 个基点、慢慢来"
+    trigger: 5-07 公布 4 月非农 +28.8 万（3 月 +33.7 万），市场怕加息更快。
+    fix: >-
+      联储 5-04 声明就写了"policy accommodation can be removed at a pace that is likely to be measured"，
+      但那是这段起点之前，没能止住。30 年利率 5-13 见顶后在 5.6 附近又待到 6 月中，
+      6-30 首次加息 25 个基点并重复"measured"之后才持续回落（6-30 5.41 → 8-13 5.11）。
+    fear: 怕加息更快、更多。
+    status: 纠正：交接写"慢慢加息的指引化解"，但那句话在起点之前；回落对得上的是 6-30 加息确认步速
+    sources:
+      - {label: "FOMC 2004-05-04", url: "https://www.federalreserve.gov/boarddocs/press/monetary/2004/20040504/default.htm"}
+      - {label: "FOMC 2004-06-30", url: "https://www.federalreserve.gov/boarddocs/press/monetary/2004/20040630/default.htm"}
+      - {label: "BLS 2004-05-07", url: "https://www.bls.gov/news.release/archives/jec_05072004.pdf"}
+  - id: "2006-04"
+    label: "06-04"
+    y30: 5.04
+    spx20: 2.3
+    dd20: -0.8
+    peak_days: 24
+    fix_short: 6-29 联储改口"看数据再定"，8-08 暂停加息
+    trigger: 4-07 公布 3 月非农 +21.1 万、失业率降到 4.7%。
+    fix: >-
+      30 年利率 5-12 见顶 5.29，6 月底又到 5.28（双顶）。6-29 加到 5.25% 时声明改成
+      "The extent and timing of any additional firming… will depend on the evolution of the outlook"，之后开始回落；
+      8-08 暂停时大部分回落已经完成。5 月的全球抛售起于 5-10 加息并暗示还要收紧。
+    fear: 怕加息没完没了。
+    status: 部分：交接写"8 月停止加息"，更准确是"6-29 改口 → 8-08 暂停确认"
+    sources:
+      - {label: "FOMC 2006-06-29", url: "https://www.federalreserve.gov/newsevents/pressreleases/monetary20060629a.htm"}
+      - {label: "FOMC 2006-08-08", url: "https://www.federalreserve.gov/newsevents/pressreleases/monetary20060808a.htm"}
+  - id: "2007-06"
+    label: "07-06"
+    y30: 5.36
+    spx20: 1.7
+    dd20: 0.0
+    peak_days: 0
+    fix_short: 没有人出手；利率当天见顶，后来是信用市场出事把钱赶进国债
+    trigger: 6-12 通胀担忧、市场不再指望降息，10 年期到 5.295%（5 年新高）。
+    fix: >-
+      不是政策办法。利率 6-12 当天见顶，比贝尔斯登两只对冲基金出事（6 月下旬）早约一周，峰值本身和它无关。
+      30 年一直在 5.2–5.3 徘徊到 7 月初，持续的避险下行在 7 月中以后信用市场抛售扩散时。
+    fear: 后来是"信用出事、先躲进国债"的害怕，不是有人修复。
+    status: 纠正：交接写"贝尔斯登逼钱逃进国债"，时间对不上峰值；只能说后来的回落和信用恐慌同期
+    sources:
+      - {label: "NBC 2007-06-12", url: "https://www.nbcnews.com/news/amp/wbna19220944"}
+      - {label: "BU 危机时间线", url: "https://www.bu.edu/econ/files/2011/01/Rescue.pdf"}
+  - id: "2013-06"
+    label: "13-06"
+    y30: 3.51
+    spx20: 6.5
+    dd20: -1.0
+    peak_days: 41
+    fix_short: 9-18 联储意外"先不缩减购债"
+    trigger: 6-19 伯南克说年内可能放缓购债、2014 年中结束；6-20 标普跌 2.5%。
+    fix: >-
+      6 月底官员出来缓和，只管用了几天；30 年真正的高点在 8-21 的 3.90。
+      9-18 声明"decided to await more evidence that progress will be sustained before adjusting the pace of its purchases"，
+      购债维持不变，当天 30 年 3.84 → 3.75，9-25 到 3.65，这才是拐点。
+    fear: 怕撤刺激太早、连带提早加息。
+    status: 已核实（中间"7-10 伯南克讲话"那步当天没管用，已去掉）
+    sources:
+      - {label: "CNN 2013-06-20", url: "https://money.cnn.com/2013/06/20/investing/stocks-markets/index.html"}
+      - {label: "FOMC 2013-09-18", url: "https://www.federalreserve.gov/newsevents/pressreleases/monetary20130918a.htm"}
+  - id: "2013-11"
+    label: "13-11"
+    y30: 3.90
+    spx20: 1.6
+    dd20: -0.3
+    peak_days: 27
+    fix_short: 12-18 开始缩减购债，同时把"加息"和"缩减"切开
+    trigger: 11-20 公布 10 月会议纪要，多数人预计"未来几个月"缩减购债。
+    fix: >-
+      12-18 声明：1 月起每月少买 100 亿；同时写利率维持"well past the time that the unemployment rate declines below 6-1/2 percent"。
+      当天标普 +1.7% 收历史新高，股市压力当天消退；但 30 年没回落（12-31 3.96），要到 2014 年 1 月才降。
+    fear: 怕缩减购债等于马上加息。
+    status: 部分：股市当天稳住已核实；长端利率滞后一个月，和 1-10 弱非农同期，但没有出处直接连起来
+    sources:
+      - {label: "FOMC 2013-12-18", url: "https://www.federalreserve.gov/newsevents/pressreleases/monetary20131218a.htm"}
+      - {label: "NBC 2013-11-20", url: "https://www.nbcnews.com/businessmain/stocks-drop-fed-talk-reining-stimulus-coming-months-2d11624177"}
+  - id: "2018-11"
+    label: "18-11"
+    y30: 3.45
+    spx20: 2.5
+    dd20: -3.3
+    peak_days: 0
+    fix_short: 12 月大跌后，2019-01-04 鲍威尔改口"会有耐心"
+    trigger: 11-02 公布 10 月非农 +25 万（预期 20 万），时薪同比 3.1%，2009 年以来最大涨幅。
+    fix: >-
+      利率当天见顶，但股市后来在 12 月跌得更深（联储还在加息、缩表"自动驾驶"）。
+      2019-01-04 鲍威尔说联储会"patient"、"always prepared to shift the stance of policy…significantly"，收回"自动驾驶"；
+      1-30 声明写进"the Committee will be patient"。
+    fear: 怕联储自动驾驶式继续加息和缩表。
+    status: 已核实
+    sources:
+      - {label: "BLS 2018-11-02", url: "https://www.bls.gov/news.release/archives/empsit_11022018.pdf"}
+      - {label: "CNBC 2019-01-04", url: "https://www.cnbc.com/2019/01/04/fed-chief-powell-just-walked-back-his-autopilot-remark-and-the-financial-markets-love-it.html"}
+      - {label: "FOMC 2019-01-30", url: "https://www.federalreserve.gov/newsevents/pressreleases/monetary20190130a.htm"}
+  - id: "2021-02"
+    label: "21-02/03"
+    y30: 2.31
+    spx20: 6.7
+    dd20: 0.0
+    peak_days: 10
+    fix_short: 3-17 议息：到 2023 年都不加息，通胀"暂时"
+    trigger: 2 月到 3 月疫后复苏、通胀预期上行，长端一路涨。
+    fix: >-
+      3-04 鲍威尔只说收益率上升"notable and caught my attention"，没有压，当天标普 −1.3%，抛售反而加深。
+      3-17 议息：点阵图中位到 2023 年都不加息；发布会说通胀暂时超过 2%（"transitory"）不构成加息理由，
+      还说会担心"disorderly conditions"。30 年 3-18 见顶 2.45 后回落。
+    fear: 怕通胀逼联储提前加息。
+    status: 纠正：3-04 不是平息日；平息的是 3-17 议息
+    sources:
+      - {label: "FOMC 2021-03-17 点阵图", url: "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20210317.htm"}
+      - {label: "2021-03-17 发布会", url: "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20210317.pdf"}
+  - id: "2022-04"
+    label: "22-04"
+    y30: 2.92
+    spx20: -8.4
+    dd20: -10.5
+    peak_days: 41
+    fix_short: 没有办法可用：通胀 8.5%，联储只能继续收紧
+    trigger: >-
+      4-05 布雷纳德说"最早 5 月快速缩表"；4-06 纪要写每月缩表约 950 亿、可能多次加 50 个基点；4-12 三月 CPI 8.5%，1981 年以来最高。
+    fix: 没有人能出手。三个消息都指向更紧，联储救市就等于放弃压通胀。之后 20 天标普 −8.4%，是表里唯一大跌的一段。
+    fear: 怕通胀下不来、加息缩表更快。
+    status: 已核实
+    sources:
+      - {label: "Brainard 2022-04-05", url: "https://www.federalreserve.gov/newsevents/speech/brainard20220405a.htm"}
+      - {label: "FOMC 纪要 2022-03", url: "https://www.federalreserve.gov/monetarypolicy/fomcminutes20220316.htm"}
+      - {label: "BLS CPI 2022-04-12", url: "https://www.bls.gov/news.release/archives/cpi_04122022.htm"}
+  - id: "2022-06"
+    label: "22-06"
+    y30: 3.43
+    spx20: 1.5
+    dd20: -1.8
+    peak_days: 57
+    fix_short: 没人救；6-15 加 75 个基点后，6-16 股市自己见底
+    trigger: 6-10 五月 CPI 8.6%，1981 年以来最高。
+    fix: 6-15 联储加 75 个基点到 1.50–1.75%。靴子落地后第二天（6-16）标普收 3,666.77，自己见底。没有找到救市动作。
+    fear: 怕加息幅度更大——落地后反而不怕了。
+    status: 已核实
+    sources:
+      - {label: "BLS CPI 2022-06-10", url: "https://www.bls.gov/news.release/archives/cpi_06102022.htm"}
+      - {label: "FOMC 2022-06-15", url: "https://www.federalreserve.gov/newsevents/pressreleases/monetary20220615a.htm"}
+  - id: "2022-09"
+    label: "22-09/10"
+    y30: 4.13
+    spx20: 7.1
+    dd20: -0.8
+    peak_days: 3
+    fix_short: 英国央行临时买长债；10-21 传出联储要讨论放慢
+    trigger: 9 月起加息预期继续上调，英国减税方案引发英债暴跌。
+    fix: >-
+      9-28 英国央行临时购买长期国债"on whatever scale is necessary"，到 10-14 截止，理由是养老金被迫抛售造成市场失灵。
+      10-13 美国 CPI 超预期、标普盘中新低后大反转。10-21 华尔街日报报道联储 11 月仍加 75，但会讨论怎么预告 12 月放慢，当天标普 +2.4%。
+      30 年 10-24 见顶 4.40。
+    fear: 英国那边打的是"有人被迫卖、没人接"；华尔街日报那条打的是"加息没有上限"。
+    status: 已核实（峰值纠正为 10-24 的 4.40；华尔街日报原文在付费墙后，靠转述核实）
+    sources:
+      - {label: "英国央行 2022-09-28", url: "https://www.bankofengland.co.uk/news/2022/september/bank-of-england-announces-gilt-market-operation"}
+      - {label: "CNN 2022-10-21", url: "https://www.cnn.com/2022/10/21/investing/dow-stock-market-today/index.html"}
+  - id: "2023-08"
+    label: "23-08~10"
+    y30: 4.94
+    spx20: -0.8
+    dd20: -2.6
+    peak_days: 12
+    fix_short: 鲍威尔"长债利率在替我们收紧"+ 财政部少增发长债 + 非农转弱
+    trigger: 8-01 惠誉把美国评级从 AAA 降到 AA+；8-02 季度发债增发 10 年、30 年；之后期限溢价一路上行。
+    fix: >-
+      10-19 鲍威尔（纽约经济俱乐部）："longer-term bond yields have been an important driving factor in this tightening"，"proceeding carefully"；
+      11-01 财政部 30 年只增发 10 亿、10 年只增 20 亿，并说再增一个季度就够，略低于市场预期；11-03 十月非农 +15 万。
+      30 年 10-19 见顶 5.11，之后六周掉约 60 个基点。
+    fear: 怕发债太多、期限溢价失控，怕利率"更高更久"。
+    status: 已核实
+    sources:
+      - {label: "CNBC 惠誉降级", url: "https://www.cnbc.com/2023/08/01/fitch-downgrades-us-long-term-ratings-to-aa-from-aaa.html"}
+      - {label: "Powell 2023-10-19", url: "https://www.federalreserve.gov/newsevents/speech/powell20231019a.htm"}
+      - {label: "财政部 2023-11-01", url: "https://home.treasury.gov/news/press-releases/jy1864"}
+      - {label: "BLS 2023-11-03", url: "https://www.bls.gov/news.release/archives/empsit_11032023.htm"}
+  - id: "2026-05"
+    label: "26-05"
+    y30: 5.13
+    spx20: 2.0
+    dd20: -1.9
+    peak_days: 52
+    fix_short: 不是联储救的：美伊停火谈判、油价从高点跌约两成
+    trigger: 5-15 CPI 3.8%（2023-05 以来最高）、PPI 6%，全球一起抛债：日本 30 年首次到 4%，英国 30 年到 28 年高点，油价被美伊战争推高。
+    fix: >-
+      联储没出手：沃什 5-22 就任，6-17 首次会议 12-0 维持并删掉偏宽松措辞，点阵图 9 人预期加息。
+      平息的是美伊停火谈判推进、油价从年内高点跌约 20%，5-26 30 年回到 5.02%；英伟达财报强劲也在同期。
+      但这次没真正解决：30 年后来 8 月到 5.31、9 月到 5.49，继续创新高。
+    fear: 怕战争推高油价、再推高通胀。
+    status: 部分：触发和停火、油价这条已核实；英伟达财报日期没找到原始报道
+    sources:
+      - {label: "CNBC 2026-05-15", url: "https://www.cnbc.com/2026/05/15/treasury-yields-surge-as-inflation-data-points-to-tricky-rates-path.html"}
+      - {label: "CNBC 2026-05-26", url: "https://www.cnbc.com/2026/05/26/treasury-yields-us-strikes-on-iran-oil-bonds.html"}
+      - {label: "CNBC 2026-06-17", url: "https://www.cnbc.com/2026/06/17/fed-interest-rate-decision-june-2026.html"}
+  - id: "2026-09"
+    label: "26-09"
+    y30: 5.56
+    spx20: null
+    dd20: null
+    peak_days: null
+    fix_short: 进行中（9-10、9-23、9-24、9-28 四天命中）
+    trigger: 9-16 加息后，真利率 2.63% → 2.85%，油价过 100，日本加息后日元反而走弱。
+    fix: 还没有人出手打在"利率更高更久"上。下面"这一次"列了谁手上有什么、什么时候能用。
+    status: 进行中
+
+types:
+  - name: 问题出在"钱的价格"上
+    outcome: 多数不崩
+    why: >-
+      利率太高、发债太多、有人被迫卖——决策者有工具（改口、放慢、少发长债、回购、临时买债、回购便利），
+      也有动机：利息开支、金融稳定、选票他们自己也扛不住。市场知道他们会出手，恐慌有个底。
+      上表里 2004、2006、2013、2022 秋、2023 秋都是这一类：办法直接打在"怕加息更快 / 怕发太多 / 怕没人接"上。
+    examples: 2013-09 不缩减购债；2022-09-28 英国央行临时买长债；2023-11-01 财政部少增发长债
+  - name: 问题出在"还不起、没利润"上
+    outcome: 会崩
+    why: >-
+      放水救得了流动性，救不回没有利润的公司、还不起的债。工具只能托住，挡不住。
+      互联网泡沫（2000–02，纳指 −78%）和 2008 都是这一类。
+    examples: 2000–02、2008
+  - name: 工具和目的打架
+    outcome: 跌得深、时间长，但不是一夜崩
+    why: >-
+      通胀太高的时候，联储不能放水去救市场，只能等通胀自己下来。2022 年春天就是：没有办法可用，
+      标普从高点跌了约四分之一，拖了大半年。
+    examples: 2022-04（之后 20 天标普 −8.4%，是表里唯一大跌的一段）
+
+our_data:
+  - text: 现在这个宏观组合（真利率上行 + 2 年期上行 + 联储加息期 + 市场平静），2006 年以来 30 段、375 天里，标普第二天跌超 2% 只有 1.6%——一天崩很少见。
+    src: 回测线 140 号文
+  - text: 同一组合下，20 天内跌超 5% 反而有 27.5%，比所有日子（21%）还多；这组里的大跌全是利率上行引起的。慢慢跌比一天崩常见。
+    src: 回测线 140 号文
+  - text: 黄金在同一组合下（2006 年以来 18 段、374 天），20 天内跌超 10% 一次都没有，最深 −7.3%。
+    src: 回测线 137 号文
+  - text: 2022 和 2026 两轮黄金下跌对照：结束的钥匙都是"通胀见顶 + 联储改口"；2022 年到这个阶段联储已加了 3 个百分点，2026 年 9-16 才第一次加。
+    src: 回测线 132、133 号文
+  - text: 这些都是"没发生过"，不是"不可能"：18–30 段、20 年的样本，突发冲击（银行危机、战争）会打破它。
+    src: 回测线 137 号文 §边界
+
+full_chain:
+  title: 一条推完的链：2023 年 10 月（和 9-29 同一个样子）
+  rows:
+    - {step: 决策者和目的, text: "财政部：赤字大，要用最低成本借很多钱。联储：压通胀，但不能把金融体系弄断。债券买家：拿到足够补偿才肯买长债。"}
+    - {step: 情绪, text: "买债的人怕三件事：发得太多（8-02 增发 + 8-01 降级）、通胀下不来、利率更高更久 → 要更多补偿。买股票的人怕折现率变高。"}
+    - {step: 行为和订单, text: "卖长债、买短债；股票按更高的折现率往下重估。"}
+    - {step: 波动, text: "债、股一起跌，美元涨——和 9-29 同一个样子。30 年从 8 月 4.4% 冲到 10-19 的 5.11%。"}
+    - {step: 市场怎么接受, text: "价格一路找新的平衡点，直到有人回应最怕的那件事。"}
+    - {step: 修复, text: "办法一条一条打在害怕的源头上：怕更高更久 → 10-19 鲍威尔说长债利率已经在替联储收紧；怕发太多 → 11-01 财政部少增发长债；数据自己转弱 → 11-03 非农 +15 万。"}
+    - {step: 结果, text: "30 年六周掉约 60 个基点；标普之后 60 天 +13%。"}
+    - {step: 留下了什么, text: "债一分没少，只是改成多发短债（短债占比从约 16.5% 升到约 22%），等通胀和利率下来。问题被推后——这就是她说的「延缓」；2026 年它又回来了。"}
+  sources:
+    - {label: "Powell 2023-10-19", url: "https://www.federalreserve.gov/newsevents/speech/powell20231019a.htm"}
+    - {label: "财政部 2023-11-01", url: "https://home.treasury.gov/news/press-releases/jy1864"}
+    - {label: "财政部 TBAC 2024Q1（短债占比）", url: "https://home.treasury.gov/system/files/221/TreasuryPresentationToTBACQ12024.pdf"}
+
+dotcom:
+  title: 互联网泡沫为什么伤得那么大
+  points:
+    - text: 问题是"没利润"那一类：很多公司没有盈利，估值全靠预期；当时纳指市盈率常见说法在 100 倍以上（口径不一，没找到一手精确数）。
+      sources: [{label: "Nasdaq Composite（维基，非一手）", url: "https://en.wikipedia.org/wiki/Nasdaq_Composite"}]
+    - text: 钱是借来的：欧洲 3G 牌照拍卖，英国 2000 年 4 月拍出 225 亿英镑，德国 8 月约 505 亿欧元，电信公司背上重债。
+      sources: [{label: "CNN 2000-08-17", url: "https://money.cnn.com/2000/08/17/europe/german_umts/index.htm"}, {label: "Cramton 英国 3G 报告", url: "http://www.cramton.umd.edu/papers2000-2004/01nao-cramton-report-on-uk-3g-auction.pdf"}]
+    - text: 联储在往上加：1999-06-30 从 4.75% 起加，2000-05-16 加到 6.5%。
+      sources: [{label: "FOMC 1999-06-30", url: "https://www.federalreserve.gov/boarddocs/press/general/1999/19990630/default.htm"}, {label: "FOMC 2000-05-16", url: "https://www.federalreserve.gov/boarddocs/press/general/2000/20000516/"}]
+    - text: 后面接连出事：2001 年 3–11 月衰退（NBER）；安然 2001-12-02 破产；世通 2002-07-21 破产；9·11。
+      sources: [{label: "NBER 2003-10-21", url: "https://www.nber.org/news/business-cycle-dating-committee-announcement-october-21-2003"}, {label: "Brookings", url: "https://www.brookings.edu/articles/cooking-the-books-the-cost-to-the-economy/"}]
+    - text: 不是"只有美国好"：泡沫是全球的，德国新市场上市公司市值平均跌了 96%，2003 年关闭。纳指 2000-03-10 到 2002-10-09 跌约 78%，标普约 49%。
+      sources: [{label: "BioWorld（新市场关闭）", url: "https://www.bioworld.com/articles/392498-germany-s-neuer-markt-closing-amid-mounting-losses-scandals"}, {label: "2002 年股市下跌（维基）", url: "https://en.wikipedia.org/wiki/Stock_market_downturn_of_2002"}]
+    - text: 修复留下了什么：联储 2003-06-25 降到 1%。泰勒 2007 年论文认为 2002–05 年利率偏离规则"may have been a cause of the boom and bust in housing"——修复把问题挪到了房地产，接上 2008。（减税这一环没找到出处，不写。）
+      sources: [{label: "FOMC 2003-06-25", url: "https://www.federalreserve.gov/boarddocs/press/monetary/2003/20030625/default.htm"}, {label: "Taylor 2007 Jackson Hole", url: "https://web.stanford.edu/~johntayl/Housing%20and%20Monetary%20Policy--Taylor--Jackson%20Hole%202007.pdf"}]
+
+now:
+  title: 这一次：延缓了四年又回来了，手上有哪些办法
+  why: >-
+    2022 年的债市压力怎么解的：英国央行临时买长债（2022-09-28），2023 年起财政部把发债往短期挪（短债占比从约 16.5% 升到约 22%），
+    2024-05 起财政部回购旧债。问题没消失——联邦债务 9-25 是 40.10 万亿美元——只是往短期挪、等通胀下来。
+    2026 年又回来的原因：油价（霍尔木兹）把通胀推上去、日本退出低利率、科技巨头为 AI 大量发债（五家今年约 1,940 亿美元，2025 全年 1,080 亿）。
+    下面只列"谁、能用什么、什么时候"，不预测选哪个。
+  menu:
+    - who: 财政部
+      when: 11-04 公布下季度发债计划
+      tool: 长短债结构（再往短期挪就是少发长债）；回购旧债——8-19 宣布长端每次上限翻到至少 40 亿美元，9-09 起到 11-04
+      fear: 怕长债发太多、没人接
+      left: 债还在，挪到短期，要一直滚
+      sources: [{label: "财政部 2026-08-05 再融资声明", url: "https://home.treasury.gov/news/press-releases/sb0590"}, {label: "财政部 回购翻倍", url: "https://home.treasury.gov/news/press-releases/sb0607"}]
+    - who: 联储（沃什）
+      when: 10-28 议息（加息概率 62–68%）
+      tool: 加不加、怎么说；外国央行回购便利（FIMA）——贝森特 8-03 公开要求扩大，每家每天上限 600 亿美元，扩大要 FOMC 投票，目前没扩
+      fear: 怕加息没完没了；怕海外央行为了拿美元去卖美债
+      left: 加息压了通胀，但利息开支更重
+      sources: [{label: "CNBC 2026-08-03 Bessent FIMA", url: "https://www.cnbc.com/2026/08/03/bessent-fed-japan-yen-fima-repo-facility.html"}]
+    - who: 日本（片山 / 日本央行）
+      when: 日本央行 10-29–30；汇率随时
+      tool: 9-18 已加到 1.25%；7-31 是 1998 年以来第一次日美联合干预；9-24 片山说联合干预的原则"仍然有效"，9-29 说和美方保持密切沟通。160 是彭博说的"政治红线"，不是官方触发点
+      fear: 怕日元失控 → 日本机构卖美债
+      left: 日本自己的利息账单变重
+      sources: [{label: "US News 2026-09-24 片山", url: "https://money.usnews.com/investing/news/articles/2026-09-24/japans-katayama-says-principles-of-japan-us-fx-intervention-remain-in-place"}, {label: "Bloomberg 2026-09-29 片山", url: "https://www.bloomberg.com/news/articles/2026-09-29/japan-s-katayama-reiterates-weak-yen-concern-after-bessent-call"}]
+    - who: 能源部
+      when: 9-29 已宣布
+      tool: 战略石油储备以借贷方式投放最多 4,000 万桶，是 IEA 联合行动里美国承诺 1.72 亿桶的最后一批；但 6 月那一轮企业只借走约 50 万桶
+      fear: 怕油价把通胀再推上去
+      left: 储备降到 1982 年以来最低（单一来源）
+      sources: [{label: "Bloomberg 2026-09-29", url: "https://www.bloomberg.com/news/articles/2026-09-29/us-to-tap-more-oil-from-emergency-reserve-as-fuel-prices-surge"}, {label: "BOE Report 2026-09-29", url: "https://boereport.com/2026/09/29/us-to-release-40-million-barrels-of-crude-from-strategic-petroleum-reserve-energy-department-says/"}]
+    - who: 新买家（稳定币）
+      when: 等立法
+      tool: 稳定币发行方买短债，替联储缩表接盘；但 CLARITY 法案 9-15 参议院程序性投票没过（50 对 49，差 60 票），今年基本没戏
+      fear: 怕短债没人接
+      left: 稳定币被挤兑时会被迫卖债
+      sources: [{label: "CNBC 2026-09-15 CLARITY", url: "https://www.cnbc.com/2026/09/15/senate-cloture-vote-on-clarity-act-fails-dealing-regulatory-setback-to-crypto-industry.html"}]
+    - who: 所有人
+      when: 随时
+      tool: 口头干预、前瞻指引（上表 2004、2006、2013 都是改口在起作用）
+      fear: 怕"更高更久"
+      left: 说了要兑现，不兑现下次不灵
+  note: 伊朗与霍尔木兹：9-26 特朗普拒绝伊朗分阶段重开方案，伊朗等美方正式答复，间接谈判最早 9-28 经卡塔尔恢复。
+
+alie:
+  title: 艾丽怎么推这件事（对照她的 7 集 + 09-10 全量 260 集拆解）
+  summary: >-
+    她的核心判断是"不会让它真崩"：美元体系有修复机制（货币互换、FIMA、预期管理、稳定币接盘），
+    所以恐慌有底。这和上面"钱的价格型多数不崩"是同一个方向。但按 09-10 的全量拆解，她的框架自己关掉了证伪，
+    结论不能直接采信——她提供假设，我们提供判据。
+  items:
+    - 推得最全的一集是 8-17（日元）：日元贬 → 日本通胀 → 多发债 → 日债利率涨 → 对冲基金被追保证金 → 卖美债 → 美债利率涨 → AI 发债变贵。修复：日美联合干预、FIMA 提额、日本加息；留下：日本借钱成本、能源通胀会更频繁。
+    - 11-23 说得最直白：科技公司靠借债、银行也被卷进来，所以"不敢轻易让它有大幅的下挫"。
+    - 5-25 讲到"修复留下了什么"：2001–03 降到 1%，钱流进房地产，给 2008 埋雷——和上面互联网泡沫那条一致。
+    - 她跳过最多的两环是"订单"和"市场怎么接受"；"2022 年的问题被推迟"这层她没讲过。
+    - 她说过但经查不对或没核到的：科技巨头发债"截至 7 月超过 2,200 亿"（路透是约 1,940 亿）；英伟达"5,000 亿表外融资、25% 残值担保"（5,000 亿是它牵头动员的第三方资金，25% 没核到）；长债"6.5% 甚至 7%"（30 年期 9-28 是 5.56%）。
+    - 全量拆解里的旧结论仍然成立：56 次下跌归因里只有 12 次说清了是谁在卖。
+
+open:
+  - 2004-06 非农数值和 2004-05-07 当天股债涨跌幅没取到
+  - 2013-06 底官员讲话原文只有二手转述
+  - 互联网泡沫时纳指市盈率没有一手精确数
+  - 减税和房地产泡沫的因果没找到权威出处
+  - 下次自动查到时往 Telegram 推送，等她批（现在只在网站上亮）

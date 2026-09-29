@@ -61,6 +61,7 @@ def _next_meeting_label(by_key: dict) -> str:
 from fetchers.base import DataPoint  # noqa: E402
 from core import engine, notify, predict, reason  # noqa: E402
 from core import vol_calendar as _vol_calendar  # noqa: E402
+from core import analog as _analog  # noqa: E402
 
 DATA = ROOT / "data"
 STATE_FILE = DATA / "state.json"
@@ -977,6 +978,14 @@ def _judge_regime(series: dict) -> dict | None:
 _JUDGE_STATE_FILE = None   # 延迟到 DATA 可用时再定
 
 
+def _load_analog_kb() -> dict | None:
+    try:
+        return yaml.safe_load((ROOT / "knowledge" / "analog_rates.yaml").read_text(encoding="utf-8"))
+    except Exception as e:  # noqa: BLE001
+        print(f"[warn] analog_rates.yaml: {e}", file=sys.stderr)
+        return None
+
+
 def _judge_state_path():
     return DATA / "judge_state.json"
 
@@ -1420,6 +1429,9 @@ def build_latest(dps, rule_results, auctions, cal, scorecard_data,
         "gex_history": _load_gex_history(),
         # 2026-09-21 波动日历（什么日子谁动几倍 + 每个标的日/月/年）。文件超 7 天自动重算，失败不阻断
         "vol_calendar": _vol_calendar.load_or_refresh(),
+        # 2026-09-29「要崩没崩」：今天是不是又碰上「30 年新高 + 股金齐跌 + 美元涨」（机器每天查），
+        # 加上历史段落、每段的办法和出处（knowledge/analog_rates.yaml，人工核过出处才进）
+        "analog_rates": {"today": _analog.check(), "kb": _load_analog_kb()},
         "gex": (by_key["gex_net"].extra | {"net_gex_bn": by_key["gex_net"].value,
                                            "stale": by_key["gex_net"].stale})
                if "gex_net" in by_key else None,
