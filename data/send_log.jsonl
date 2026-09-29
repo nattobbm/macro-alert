@@ -52,3 +52,4 @@
 {"ts": "2026-09-29T13:58:59Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 750, "head": "*【09\\-29】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-09-29T17:40:13Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 763, "head": "*【09\\-29】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-09-29T18:37:14Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["band:下次会议加息概率（10-28）"], "chars": 817, "head": "*【09\\-29】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-09-29T23:57:56Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:30年期收益率失序区|not_fired->fired", "rule:油价跨出80-90美元区间|fired_muted->fired", "node:30年利率失控区|near->crossed"], "muted": [], "chars": 713, "head": "*【09\\-29】30年利率失控区越线。*"}

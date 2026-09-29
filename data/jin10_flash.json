@@ -933,6 +933,24 @@
    "meaning_id": null
   },
   {
+   "title": "美联储穆萨莱姆：即使在最近一次加息之后，货币政策仍然略显宽松。",
+   "link": "https://flash.jin10.com/detail/20260930022737718800",
+   "published": "2026-09-29T18:27:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 1,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
    "title": "美联储威廉姆斯：如果经济符合预期，今年可能再加息一次。",
    "link": "https://flash.jin10.com/detail/20260930020114311800",
    "published": "2026-09-29T18:01:14Z",
@@ -1185,6 +1203,300 @@
     "hawk": 2,
     "dove": 0,
     "lean": "鹰"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：通胀应会缓解，因为最大的冲击已基本消退。",
+   "link": "https://flash.jin10.com/detail/20260930022826327800",
+   "published": "2026-09-29T18:28:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：能源价格仍然是影响经济的重要因素，但相比过去，美国经济受到能源价格波动的影响有所降低。",
+   "link": "https://flash.jin10.com/detail/20260930023010419800",
+   "published": "2026-09-29T18:30:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：取决于战争的发展方向，预计能源价格不会进一步大幅上涨。",
+   "link": "https://flash.jin10.com/detail/20260930023217266800",
+   "published": "2026-09-29T18:32:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：判断货币政策的限制性程度是很困难的。",
+   "link": "https://flash.jin10.com/detail/20260930023230669800",
+   "published": "2026-09-29T18:32:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：九月加息旨在更快实现2%的通胀目标。",
+   "link": "https://flash.jin10.com/detail/20260930023449047800",
+   "published": "2026-09-29T18:34:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：我非常相信应根据数据来制定政策。",
+   "link": "https://flash.jin10.com/detail/20260930023500692800",
+   "published": "2026-09-29T18:35:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：K型经济非常真实。",
+   "link": "https://flash.jin10.com/detail/20260930024146550800",
+   "published": "2026-09-29T18:41:46Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：人工智能正在推高资产市场估值，增强财富效应。",
+   "link": "https://flash.jin10.com/detail/20260930024726778800",
+   "published": "2026-09-29T18:47:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：开始看到一些数据显示人工智能正在提升生产力增长。",
+   "link": "https://flash.jin10.com/detail/20260930024838962800",
+   "published": "2026-09-29T18:48:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "交易员削减对美联储10月加息的押注。在美联储威廉姆斯表示“不急于采取行动”后，市场目前预计美联储到今年年底仅会再加息一次。",
+   "link": "https://flash.jin10.com/detail/20260930024941502800",
+   "published": "2026-09-29T18:49:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 1,
+    "lean": "鹰"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "这次不动，但没说以后不动",
+   "meaning_lean": "中",
+   "meaning_id": "not_in_a_hurry"
+  },
+  {
+   "title": "美联储威廉姆斯：美联储应避免卷入党派政治，专注于数据。",
+   "link": "https://flash.jin10.com/detail/20260930025032336800",
+   "published": "2026-09-29T18:50:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：生产力强劲的时期可能会抬升自然利率。",
+   "link": "https://flash.jin10.com/detail/20260930030224722800",
+   "published": "2026-09-29T19:02:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：迄今为止，人工智能尚未导致就业水平出现重大变化。",
+   "link": "https://flash.jin10.com/detail/20260930040540285800",
+   "published": "2026-09-29T20:05:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：我不认为不断上升的收益率反映出长期通胀预期正在发生转变。",
+   "link": "https://flash.jin10.com/detail/20260930040609192800",
+   "published": "2026-09-29T20:06:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：强劲的AI投资对于增强未来生产率非常重要。",
+   "link": "https://flash.jin10.com/detail/20260930040613361800",
+   "published": "2026-09-29T20:06:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：债券收益率上升表明金融条件在边际上有所收紧。",
+   "link": "https://flash.jin10.com/detail/20260930040616437800",
+   "published": "2026-09-29T20:06:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
    },
    "speaker": "威廉姆斯",
    "meaning": "无固定套话",
@@ -1651,7 +1963,26 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储沃勒在关于“AI智能体时代的支付”的讲话中，未对货币政策或经济前景发表评论。",
+   "link": "https://flash.jin10.com/detail/20260930030048634800",
+   "published": "2026-09-29T19:00:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-29T18:37:07Z"
+ "fetched_at": "2026-09-29T23:57:49Z"
 }
