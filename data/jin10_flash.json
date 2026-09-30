@@ -120,6 +120,72 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-10-01",
+   "time_bj": "03:25",
+   "title": "美联储理事库克发表讲话",
+   "speaker": "库克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-10-01",
+   "time_bj": "05:10",
+   "title": "美联储古尔斯比发表讲话",
+   "speaker": "古尔斯比",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-10-01",
+   "time_bj": "06:00",
+   "title": "美联储卡什卡利发表讲话",
+   "speaker": "卡什卡利",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-10-01",
+   "time_bj": "16:00",
+   "title": "英国央行行长贝利发表讲话",
+   "speaker": "贝利",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-10-01",
+   "time_bj": "21:05",
+   "title": "美联储巴尔金、柯林斯、施密德发表讲话",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-10-01",
+   "time_bj": "21:30",
+   "title": "欧洲央行行长拉加德发表讲话",
+   "speaker": "拉加德",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -1984,5 +2050,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-09-30T13:37:13Z"
+ "fetched_at": "2026-09-30T18:26:39Z"
 }
