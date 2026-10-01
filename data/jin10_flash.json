@@ -2048,7 +2048,614 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：致力于在保持劳动力市场强劲的同时，让通胀回到2%的目标水平。",
+   "link": "https://flash.jin10.com/detail/20261001032637612800",
+   "published": "2026-09-30T19:26:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事库克：通胀已经持续过高太久了。",
+   "link": "https://flash.jin10.com/detail/20261001032651428800",
+   "published": "2026-09-30T19:26:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "库克",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "【美联储库克：致力于让通胀回到2%的目标水平】金十数据10月1日讯，美联储理事丽莎·库克表示，美国整体通胀仍高于美联储2%的目标超过五年，她支持在9月会议上加息25个基点，并强调将致力于恢复物价稳定，同时保持就业市场强劲。她表示，美国农村社区约有2000万劳动者，占美国就业人口约",
+   "link": "https://flash.jin10.com/detail/20261001033355443800",
+   "published": "2026-09-30T19:33:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "库克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：消费者信心与实际消费数据之间的显著分歧。",
+   "link": "https://flash.jin10.com/detail/20261001052956445800",
+   "published": "2026-09-30T21:29:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：通胀率仍然过高，目前约为3%，最新数据并未改变这一情况。",
+   "link": "https://flash.jin10.com/detail/20261001060304550800",
+   "published": "2026-09-30T22:03:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "美联储卡什卡利：尽管遭遇冲击，经济依然强劲。",
+   "link": "https://flash.jin10.com/detail/20261001060310635800",
+   "published": "2026-09-30T22:03:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：消费者持续消费，求职者有职位可选。",
+   "link": "https://flash.jin10.com/detail/20261001060318274800",
+   "published": "2026-09-30T22:03:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：经济持续强劲的时间越长，我对货币政策的紧缩程度就越感到质疑。",
+   "link": "https://flash.jin10.com/detail/20261001060407014800",
+   "published": "2026-09-30T22:04:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：中性利率可能高于预期。",
+   "link": "https://flash.jin10.com/detail/20261001060439988800",
+   "published": "2026-09-30T22:04:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：对当前中性利率感到不确定。",
+   "link": "https://flash.jin10.com/detail/20261001060458832800",
+   "published": "2026-09-30T22:04:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：中性利率在可预见的未来可能维持在较高水平。",
+   "link": "https://flash.jin10.com/detail/20261001060623723800",
+   "published": "2026-09-30T22:06:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：不应盲目跟随市场，但也不会忽视市场释放的信息。",
+   "link": "https://flash.jin10.com/detail/20261001060719523800",
+   "published": "2026-09-30T22:07:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：我的预计是今年再加息一次，2027年再加息一次。",
+   "link": "https://flash.jin10.com/detail/20261001060831414800",
+   "published": "2026-09-30T22:08:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：对除人工智能领域外经济表现不佳的观点持怀疑态度。",
+   "link": "https://flash.jin10.com/detail/20261001060910522800",
+   "published": "2026-09-30T22:09:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：希望美联储能通过适度行动降低通胀。",
+   "link": "https://flash.jin10.com/detail/20261001061025377800",
+   "published": "2026-09-30T22:10:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：鉴于通胀率已经在目标水平之上持续了一段时间，美联储必须让通胀率回到2%的目标水平。",
+   "link": "https://flash.jin10.com/detail/20261001061530124800",
+   "published": "2026-09-30T22:15:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：持续的供应冲击风险推动通胀预期上升。",
+   "link": "https://flash.jin10.com/detail/20261001061640883800",
+   "published": "2026-09-30T22:16:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：美联储监察长未在美联储翻新项目中发现相关犯罪行为，对此我并不意外。",
+   "link": "https://flash.jin10.com/detail/20261001062027388800",
+   "published": "2026-09-30T22:20:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：伊朗战争带来的扰动持续时间超出预期，已逐步上调对中性利率的预估。",
+   "link": "https://flash.jin10.com/detail/20261001062758976800",
+   "published": "2026-09-30T22:27:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：美联储资产负债表在接近零利率的情况下使用效果最佳。",
+   "link": "https://flash.jin10.com/detail/20261001063027968800",
+   "published": "2026-09-30T22:30:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：美联储资产负债表的规模是一个复杂的问题。",
+   "link": "https://flash.jin10.com/detail/20261001063030526800",
+   "published": "2026-09-30T22:30:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：重新审视资产负债表策略是完全合理的。",
+   "link": "https://flash.jin10.com/detail/20261001063032879800",
+   "published": "2026-09-30T22:30:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：看好人工智能，同时也在考量相关风险。",
+   "link": "https://flash.jin10.com/detail/20261001063325527800",
+   "published": "2026-09-30T22:33:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "国内新闻：",
+   "link": "https://flash.jin10.com/detail/20261001063556151800",
+   "published": "2026-09-30T22:35:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链",
+    "地缘链",
+    "AI链",
+    "黄金链",
+    "国家博弈",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：债券收益率的上升是全球性的现象。",
+   "link": "https://flash.jin10.com/detail/20261001063929461800",
+   "published": "2026-09-30T22:39:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：美联储掉期额度是货币政策实施的一部分。",
+   "link": "https://flash.jin10.com/detail/20261001064244944800",
+   "published": "2026-09-30T22:42:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：我不知道美联储正在重新考虑货币互换额度安排。",
+   "link": "https://flash.jin10.com/detail/20261001064257532800",
+   "published": "2026-09-30T22:42:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：无法预测市场投资的变化。",
+   "link": "https://flash.jin10.com/detail/20261001064510253800",
+   "published": "2026-09-30T22:45:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：美联储加息幅度有限，不太可能显著减缓超大规模投资。",
+   "link": "https://flash.jin10.com/detail/20261001064848876800",
+   "published": "2026-09-30T22:48:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：劳动力市场看起来相当不错，没有出现恶化迹象。",
+   "link": "https://flash.jin10.com/detail/20261001065224938800",
+   "published": "2026-09-30T22:52:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：对人工智能投资是否构成系统性风险表示怀疑。",
+   "link": "https://flash.jin10.com/detail/20261001065439106800",
+   "published": "2026-09-30T22:54:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储卡什卡利：期待美联储工作组的成果。",
+   "link": "https://flash.jin10.com/detail/20261001065907741800",
+   "published": "2026-09-30T22:59:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【卡什卡利：通胀仍处高位 预计今年和明年各再加息一次】金十数据10月1日讯，美联储卡什卡利表示，尽管最新数据显示通胀低于经济学家预期，但物价上涨仍然令人担忧。卡什卡利表示：“通胀率仍然过高。通胀有很多不同的衡量方式，但目前大约维持在3%的水平。通胀已经处于高位超过5年。我认为最新",
+   "link": "https://flash.jin10.com/detail/20261001072549708800",
+   "published": "2026-09-30T23:25:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 5,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "卡什卡利",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
   }
  ],
- "fetched_at": "2026-09-30T18:26:39Z"
+ "fetched_at": "2026-10-01T00:10:42Z"
 }
