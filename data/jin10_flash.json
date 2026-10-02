@@ -1,17 +1,6 @@
 {
  "events": [
   {
-   "date": "2026-09-28",
-   "time_bj": "18:00",
-   "title": "英国央行副行长拉姆斯登发表讲话",
-   "speaker": null,
-   "tags": [
-    "其他"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "speech"
-  },
-  {
    "date": "2026-09-29",
    "time_bj": "01:25",
    "title": "美联储理事库克发表讲话",
@@ -3113,7 +3102,283 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：实施与美国国债挂钩的美联储资本计划有诸多好处。",
+   "link": "https://flash.jin10.com/detail/20261002030210816800",
+   "published": "2026-10-01T19:02:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：今年没有必要再进行利率调整。",
+   "link": "https://flash.jin10.com/detail/20261002035125727800",
+   "published": "2026-10-01T19:51:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储鲍曼：不急于进一步调整利率】金十数据10月2日讯，美联储负责监管事务的副主席米歇尔·鲍曼周四表示：“我目前没有看到采取进一步行动的紧迫性。”鲍曼称，美联储官员应该花一些时间了解当前经济趋势，以及9月加息对经济产生的影响，然后再决定是否进一步调整政策。她表示：“通胀仍高于我",
+   "link": "https://flash.jin10.com/detail/20261002044523687800",
+   "published": "2026-10-01T20:45:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 1,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "这次不动，但没说以后不动",
+   "meaning_lean": "中",
+   "meaning_id": "not_in_a_hurry"
+  },
+  {
+   "title": "美联储洛根：随着经济增长走强，劳动力市场趋于平衡。",
+   "link": "https://flash.jin10.com/detail/20261002071907038800",
+   "published": "2026-10-01T23:19:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：定期寿险保费上涨可能有助于减缓经济增速。",
+   "link": "https://flash.jin10.com/detail/20261002071911765800",
+   "published": "2026-10-01T23:19:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：政策立场一直偏离正轨，美联储公开市场委员会应该加息，目标至少为加50个基点。没有更高的利率，通胀无法达到美联储2%的目标。",
+   "link": "https://flash.jin10.com/detail/20261002071933581800",
+   "published": "2026-10-01T23:19:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：至少需要进一步加息几次，才能抵消去年秋季的降息。",
+   "link": "https://flash.jin10.com/detail/20261002072038495800",
+   "published": "2026-10-01T23:20:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 1,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：我们必须恢复价格稳定。",
+   "link": "https://flash.jin10.com/detail/20261002072047297800",
+   "published": "2026-10-01T23:20:47Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：政策利率需要提高到多高才能将通胀恢复到2%仍不确定。",
+   "link": "https://flash.jin10.com/detail/20261002072054364800",
+   "published": "2026-10-01T23:20:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：国债收益率上升可能也反映了更高的期限溢价，从而减少了收紧货币政策的必要性。",
+   "link": "https://flash.jin10.com/detail/20261002072105228800",
+   "published": "2026-10-01T23:21:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：将关注债券收益率的发展并评估其影响。",
+   "link": "https://flash.jin10.com/detail/20261002072109838800",
+   "published": "2026-10-01T23:21:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：长期收益率上升表明市场参与者预期利率将上升。",
+   "link": "https://flash.jin10.com/detail/20261002072112083800",
+   "published": "2026-10-01T23:21:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储洛根：美联储至少应该再加息50个基点】金十数据10月2日讯，2026年FOMC票委、达拉斯联储主席洛根发表讲话：“美联储的政策立场一直偏离正轨，美联储应该加息，目标至少为加50个基点，且至少需要进一步加息数次，才能抵消去年秋季的降息。因为没有更高的利率，通胀无法达到美联储",
+   "link": "https://flash.jin10.com/detail/20261002072411763800",
+   "published": "2026-10-01T23:24:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 4,
+    "dove": 2,
+    "lean": "鹰"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：相比经济增长，能源价格引发的通胀更令人担忧。",
+   "link": "https://flash.jin10.com/detail/20261002073535045800",
+   "published": "2026-10-01T23:35:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：对人工智能将提升劳动生产率持高度乐观态度。AI建设需求正在推高通胀。",
+   "link": "https://flash.jin10.com/detail/20261002073542493800",
+   "published": "2026-10-01T23:35:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-10-01T18:51:35Z"
+ "fetched_at": "2026-10-02T00:11:01Z"
 }
