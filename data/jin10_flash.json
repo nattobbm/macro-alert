@@ -10,8 +10,30 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-10-07",
+   "time_bj": "07:00",
+   "title": "美联储洛根发表讲话",
+   "speaker": "洛根",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-10-08",
+   "time_bj": "02:00",
+   "title": "美联储公布货币政策会议纪要",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
   }
  ],
  "speeches": [],
- "fetched_at": "2026-10-06T13:34:31Z"
+ "fetched_at": "2026-10-06T18:54:32Z"
 }
