@@ -287,7 +287,8 @@ export default function ReasoningPage() {
               {showdown.map(s => {
                 const pct = (v: any) => (v == null || Number.isNaN(+v)) ? '—' : `${Math.round(+v * 100)}%`
                 const mo = marketOdds
-                const hasMkt = s.market_ref === 'fomc_sep' && mo
+                // 2026-10-07：market_odds 里的 ZQ 已是滚动的「下一场」，fomc_next 也能对上市场那一栏
+                const hasMkt = (s.market_ref === 'fomc_sep' || s.market_ref === 'fomc_next') && mo
                 const oc = s.outcome
                 const ocStyle = oc === 'hit' ? { bg: 'var(--st-ok-bg)', fg: 'var(--st-ok-text)' }
                   : oc === 'miss' ? { bg: 'var(--st-fire-bg)', fg: 'var(--st-fire-text)' }

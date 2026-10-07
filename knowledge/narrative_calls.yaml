@@ -99,3 +99,70 @@ calls:
     outcome: null
     settled_at: null
     settle_note: null
+
+  # ── 2026-10-07 批次：她 9-09 → 10-06 的 21 集（SubBatch_2026-10-07-17-43-35），补拆见 资产库/内容库/2026-09-10_艾丽全量逻辑链拆解_260期.md §八 ──
+  - id: alie_2026-09-26_fomc_oct_hike
+    who: 艾丽
+    who_en: Alie (Chinese macro commentator)
+    said_on: "2026-09-26"
+    source: >-
+      「艾丽的无废话财经」9.26 如果我是沃什...（二）；9-18 那集先说「大概率需要进一步加息，是否连加看中东」，
+      9-26 坐实「推动 10 月再加一次」，10-01 综述仍主张 10 月加但口径改成「比预想提前、不排除更多不确定性」
+    event: 10月FOMC（2026-10-27/28，决议10-28）
+    event_en: Oct FOMC (Oct 27-28, decision Oct 28)
+    judgment: 沃什会推动 10 月再加息一次（油价和柴油 9 月大涨、AI 投资没降速、加息是立威和为 12 月预期管理铺路）
+    judgment_en: Warsh pushes one more 25bp hike in October (oil and diesel up in Sep, AI capex not slowing, hike as credibility and set-up for Dec guidance)
+    reasoning: 9 月原油比 8 月涨了不少，叠加柴油大涨；AI 芯片债券市场没见降温；10 月加了，12 月全市场才会跟着猜，是更好的预期管理期；韩欧日已加、英国下次要加，美联储加了盟友都得跟
+    quote: "我应该会推动10月份美联储的再一次的加息"
+    criterion: 说对＝10-28 上调目标区间；说错＝维持或下调
+    criterion_en: hit = Fed raises on Oct 28; miss = hold or cut
+    settle_date: "2026-10-28"
+    market_ref: fomc_next
+    our_ref: 2026-10-28_fomc_scenario
+    outcome: null
+    settled_at: null
+    settle_note: null
+
+  - id: alie_2026-09-11_yen_160_intervention
+    who: 艾丽
+    who_en: Alie (Chinese macro commentator)
+    said_on: "2026-09-11"
+    source: "「艾丽的无废话财经」9.11 关于贝森特最近的一些「直白表述」"
+    event: 美元兑日元回到 159–160 之后美方会不会再出手
+    event_en: Will the US act again if USDJPY returns to 159-160
+    judgment: 日元若再贬回 159、160 甚至更多，美国肯定会进一步出手，不排除美日联手干预
+    judgment_en: If the yen weakens back to 159-160 or beyond, the US will act again, possibly joint US-Japan intervention
+    reasoning: 贝森特"我是庄家"那段话是喊给日元空头听的；日元失控会直接伤到美债、美股和美元本身
+    quote: "回到159 160甚至更多的话 那么美国肯定还是会进一步的出手"
+    criterion: 说对＝美元兑日元收盘 ≥160 之后 10 个交易日内，日本财务省或美国财政部公开确认干预（口头警告不算）；说错＝≥160 持续 10 个交易日无确认干预；void＝2026-12-31 前没到 160
+    criterion_en: hit = confirmed MoF/UST intervention within 10 trading days after a close >=160; miss = >=160 for 10 trading days with no confirmed intervention; void = never reaches 160 by 2026-12-31
+    settle_date: "2026-12-31"
+    market_ref: none
+    our_ref: null
+    outcome: null
+    settled_at: null
+    settle_note: >
+      登记时读数：10-01 美元兑日元 158.4；8-29 曾破 160、9-24 到 159.0（彭博称 160 是"政治红线"但不是官方触发点）。
+      她 9-11 说这话时日元在 153–155。
+
+  - id: alie_2026-09-30_mideast_escalation_before_midterm
+    who: 艾丽
+    who_en: Alie (Chinese macro commentator)
+    said_on: "2026-09-30"
+    source: "「艾丽的无废话财经」9.30 各种压力汇聚于10月"
+    event: 11-03 美国中期选举前中东战事会不会明显升级
+    event_en: Does the Mideast war visibly escalate before the Nov 3 US midterms
+    judgment: 不排除伊朗在中期选举前孤注一掷，10 月中东战事很可能进一步升级
+    judgment_en: Iran may go all-in before the midterms; the war is quite likely to escalate further in October
+    reasoning: 以外长强硬表态；伊朗货币 1 比 250 万、国内压力越拖越大；选举后达成有意义共识的可能性几乎为零；升级会推高油价、压美国通胀，对特朗普中期选举不利
+    quote: "整个这个10月份以是很有可能会进一步的去升级中东的战事的"
+    criterion: 说对＝10-01 到 11-03 之间出现下列任一：美或以对伊朗本土新一轮空袭、伊朗对海湾或以色列发射导弹、霍尔木兹通行船只再降一半以上（IMF PortWatch 周均）、布伦特主力合约单日涨 ≥8%；说错＝全部没有
+    criterion_en: >-
+      hit = any of: new US/Israeli strikes on Iran proper, Iranian missile launches at Gulf states or Israel, Hormuz transits halve again (PortWatch weekly), Brent front-month up >=8% in a day, between Oct 1 and Nov 3; miss = none
+    settle_date: "2026-11-03"
+    market_ref: none
+    our_ref: null
+    outcome: null
+    settled_at: null
+    settle_note: >
+      登记时背景：9-26 特朗普拒绝伊朗七天停火方案；9-28 鲁比奥要求伊朗驻联合国代表团离境；10-01 布伦特主力 99.5。
