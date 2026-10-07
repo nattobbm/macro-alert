@@ -65,3 +65,4 @@
 {"ts": "2026-10-06T01:26:19Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|skipped->fired"], "muted": [], "chars": 488, "head": "*【10\\-06】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-10-06T13:34:35Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 459, "head": "*【10\\-06】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-10-06T18:54:37Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 492, "head": "*【10\\-06】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-10-07T00:06:16Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired", "rule:油价急升（供给冲击）|not_fired->fired", "judge:None|回到需求侧紧缩链->确认金融抑制主导"], "muted": [], "chars": 592, "head": "*【10\\-07】市场在为「更松」定价：确认金融抑制主导。*"}
