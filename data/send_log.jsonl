@@ -70,3 +70,4 @@
 {"ts": "2026-10-07T19:20:03Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 388, "head": "*【10\\-07】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
 {"ts": "2026-10-07T22:10:21Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 388, "head": "*【10\\-07】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
 {"ts": "2026-10-08T00:24:07Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 419, "head": "*【10\\-08】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}
+{"ts": "2026-10-08T19:16:35Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:油价急升（供给冲击）|not_fired->fired"], "muted": [], "chars": 401, "head": "*【10\\-08】今天没有新越线。剧本判据仍是「确认金融抑制主导」。*"}

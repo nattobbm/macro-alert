@@ -65,8 +65,890 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-10-10",
+   "time_bj": "04:00",
+   "title": "美联储科林斯发表讲话",
+   "speaker": "科林斯",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
- "speeches": [],
- "fetched_at": "2026-10-08T00:24:03Z"
+ "speeches": [
+  {
+   "title": "英国央行行长贝利：货币政策需要坚定不移地致力于将通胀恢复至目标水平。",
+   "link": "https://flash.jin10.com/detail/20261008201713287800",
+   "published": "2026-10-08T12:17:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：政策制定者应加强核心金融市场，以便在未来冲击中能够吸收而不放大这些冲击。",
+   "link": "https://flash.jin10.com/detail/20261008201716568800",
+   "published": "2026-10-08T12:17:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：我们必须增强核心市场的韧性。",
+   "link": "https://flash.jin10.com/detail/20261008201718509800",
+   "published": "2026-10-08T12:17:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：加强中央清算、设定适当的最低折扣率以及强化风险管理，都值得考虑。",
+   "link": "https://flash.jin10.com/detail/20261008201731005800",
+   "published": "2026-10-08T12:17:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：政府债务被更大程度地吸收，随之而来的是更大的脆弱性。",
+   "link": "https://flash.jin10.com/detail/20261008201750769800",
+   "published": "2026-10-08T12:17:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：当冲击变得更加频繁、潜在增长减弱，并且冲击的接连发生导致政府债务水平上升时，政府利用资产负债表来缓冲严重经济下滑的难度将大大增加。",
+   "link": "https://flash.jin10.com/detail/20261008201917354800",
+   "published": "2026-10-08T12:19:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：如果人工智能预期大幅修正，将可能引发冲击。",
+   "link": "https://flash.jin10.com/detail/20261008201928546800",
+   "published": "2026-10-08T12:19:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：我们正看到市场波动加剧。",
+   "link": "https://flash.jin10.com/detail/20261008202508650800",
+   "published": "2026-10-08T12:25:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：市场波动仍远未恢复正常，但我们并未看到流动性不足或紧张状况。",
+   "link": "https://flash.jin10.com/detail/20261008202943446800",
+   "published": "2026-10-08T12:29:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：能源成本向更广泛通胀传导的证据目前相对较弱，但存在风险。",
+   "link": "https://flash.jin10.com/detail/20261008203205091800",
+   "published": "2026-10-08T12:32:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：通胀风险上升，能源价格持续高企。",
+   "link": "https://flash.jin10.com/detail/20261008203438695800",
+   "published": "2026-10-08T12:34:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：必须非常仔细地关注局势。",
+   "link": "https://flash.jin10.com/detail/20261008203511370800",
+   "published": "2026-10-08T12:35:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：高杠杆头寸存在快速转变的风险。",
+   "link": "https://flash.jin10.com/detail/20261008203848094800",
+   "published": "2026-10-08T12:38:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：我看到市场表现仍然强劲。",
+   "link": "https://flash.jin10.com/detail/20261008204252502800",
+   "published": "2026-10-08T12:42:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：市场显示出较高的风险溢价。",
+   "link": "https://flash.jin10.com/detail/20261008204302911800",
+   "published": "2026-10-08T12:43:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：全力以赴将通胀恢复至目标水平。",
+   "link": "https://flash.jin10.com/detail/20261008204310401800",
+   "published": "2026-10-08T12:43:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：我们必须测试对预期的重大冲击。",
+   "link": "https://flash.jin10.com/detail/20261008204320515800",
+   "published": "2026-10-08T12:43:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：财政政策必须可信，旨在实现稳定。",
+   "link": "https://flash.jin10.com/detail/20261008204449913800",
+   "published": "2026-10-08T12:44:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：在负面冲击发生时，财政政策的承诺比以往任何时候都更加必要。",
+   "link": "https://flash.jin10.com/detail/20261008204503543800",
+   "published": "2026-10-08T12:45:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：对于市场中庞大且集中的头寸，我们绝不能掉以轻心。",
+   "link": "https://flash.jin10.com/detail/20261008204613780800",
+   "published": "2026-10-08T12:46:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：不能放松对更广泛干扰的风险警惕。",
+   "link": "https://flash.jin10.com/detail/20261008204639191800",
+   "published": "2026-10-08T12:46:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【英国央行行长：多重冲击侵蚀财政空间，政府恐无力应对下一轮经济衰退】金十数据10月8日讯，英国央行行长贝利警告称，经济增长疲软及一系列严重冲击正在削弱各国政府的财政应对能力，一旦经济再次陷入衰退，政府可能无力采取有效措施。贝利表示：“借贷成本上升和经济增长疲软会推高政府债务占GD",
+   "link": "https://flash.jin10.com/detail/20261008212135819800",
+   "published": "2026-10-08T13:21:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "债务链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：通胀居高不下，是由持续的需求压力和供应冲击驱动的。",
+   "link": "https://flash.jin10.com/detail/20261009014528681800",
+   "published": "2026-10-08T17:45:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：关键是要及时使通胀回落至2%，并限制第二轮效应。",
+   "link": "https://flash.jin10.com/detail/20261009014609023800",
+   "published": "2026-10-08T17:46:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：要将通胀恢复到目标水平，需要进一步收紧货币政策。",
+   "link": "https://flash.jin10.com/detail/20261009014628335800",
+   "published": "2026-10-08T17:46:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：当前的通胀水平要求美联储考虑加息。",
+   "link": "https://flash.jin10.com/detail/20261009014707393800",
+   "published": "2026-10-08T17:47:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：以开放的心态参加所有会议。",
+   "link": "https://flash.jin10.com/detail/20261009014713843800",
+   "published": "2026-10-08T17:47:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：大多数联系人对通胀感到担忧，但并不担心就业市场。",
+   "link": "https://flash.jin10.com/detail/20261009014752562800",
+   "published": "2026-10-08T17:47:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：未来6至9个月利率应当上调。",
+   "link": "https://flash.jin10.com/detail/20261009014831152800",
+   "published": "2026-10-08T17:48:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：目前经济相当强劲，美联储能做的最好事情就是降低通胀。",
+   "link": "https://flash.jin10.com/detail/20261009014923611800",
+   "published": "2026-10-08T17:49:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：就业市场总体平衡且稳定，无需降温就业市场以降低通胀。",
+   "link": "https://flash.jin10.com/detail/20261009015204052800",
+   "published": "2026-10-08T17:52:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：消费者活力可能会减弱。",
+   "link": "https://flash.jin10.com/detail/20261009015326376800",
+   "published": "2026-10-08T17:53:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：名义收益率上升，部分原因是由于利率预期导致实际收益率上升。",
+   "link": "https://flash.jin10.com/detail/20261009015445124800",
+   "published": "2026-10-08T17:54:45Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：市场通胀预期保持稳定，未见美联储信誉受到质疑。",
+   "link": "https://flash.jin10.com/detail/20261009015449324800",
+   "published": "2026-10-08T17:54:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：人工智能投资和政府赤字也在推高收益率。",
+   "link": "https://flash.jin10.com/detail/20261009015648920800",
+   "published": "2026-10-08T17:56:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：人工智能投资正在影响政府借款成本。",
+   "link": "https://flash.jin10.com/detail/20261009015651893800",
+   "published": "2026-10-08T17:56:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：市场通胀预期稳定，因为投资者认为美联储将加息以应对通胀。",
+   "link": "https://flash.jin10.com/detail/20261009015827433800",
+   "published": "2026-10-08T17:58:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：对资本的强劲需求可能会使利率维持在高于以往的水平。",
+   "link": "https://flash.jin10.com/detail/20261009015925192800",
+   "published": "2026-10-08T17:59:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：听到投资者对财政可持续性表示担忧。",
+   "link": "https://flash.jin10.com/detail/20261009015945813800",
+   "published": "2026-10-08T17:59:45Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：美国政府多年来一直走在不可持续的财政道路上。",
+   "link": "https://flash.jin10.com/detail/20261009020015700800",
+   "published": "2026-10-08T18:00:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：政府债务水平可能最终会带来风险。",
+   "link": "https://flash.jin10.com/detail/20261009020037312800",
+   "published": "2026-10-08T18:00:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：美联储并不关注政府债务管理。",
+   "link": "https://flash.jin10.com/detail/20261009020108745800",
+   "published": "2026-10-08T18:01:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：目前资本需求占GDP的3%至4%。",
+   "link": "https://flash.jin10.com/detail/20261009020123866800",
+   "published": "2026-10-08T18:01:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：预计资本需求将在未来5-10年持续增长。",
+   "link": "https://flash.jin10.com/detail/20261009020132472800",
+   "published": "2026-10-08T18:01:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：货币政策独立性是一项宝贵资产。",
+   "link": "https://flash.jin10.com/detail/20261009020135753800",
+   "published": "2026-10-08T18:01:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：重要的是要将政府债务管理与货币政策分开。",
+   "link": "https://flash.jin10.com/detail/20261009020227563800",
+   "published": "2026-10-08T18:02:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：金融环境已适度收紧，但仍然宽松，支持经济增长。",
+   "link": "https://flash.jin10.com/detail/20261009020353374800",
+   "published": "2026-10-08T18:03:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：信贷状况稳健良好，市场存在一些'轻微'问题。",
+   "link": "https://flash.jin10.com/detail/20261009020412217800",
+   "published": "2026-10-08T18:04:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  }
+ ],
+ "fetched_at": "2026-10-08T19:16:29Z"
 }
