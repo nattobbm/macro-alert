@@ -74,3 +74,4 @@
 {"ts": "2026-10-09T00:37:56Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["judge:None|确认金融抑制主导->判据未触发"], "muted": [], "chars": 487, "head": "*【10\\-09】市场在为「更松」定价：判据未触发。*"}
 {"ts": "2026-10-09T13:11:34Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 460, "head": "*【10\\-09】今天没有新越线。*"}
 {"ts": "2026-10-09T18:48:14Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 478, "head": "*【10\\-09】今天没有新越线。*"}
+{"ts": "2026-10-10T00:18:57Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:30年重上8-18前高（财政压制失败）|fired_muted->fired"], "muted": [], "chars": 385, "head": "*【10\\-10】今天没有新越线。*"}
