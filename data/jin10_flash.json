@@ -173,7 +173,374 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：收紧货币政策将有助于将通胀率恢复至2%。",
+   "link": "https://flash.jin10.com/detail/20261014040030305800",
+   "published": "2026-10-13T20:00:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：预计美联储将在年底前“进一步”上调利率。",
+   "link": "https://flash.jin10.com/detail/20261014040050964800",
+   "published": "2026-10-13T20:00:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：美联储当前的主要关注点是“高通胀的风险”依然处于“高位”。",
+   "link": "https://flash.jin10.com/detail/20261014040138152800",
+   "published": "2026-10-13T20:01:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：由于能源价格高企，预计通胀将保持在2%以上。",
+   "link": "https://flash.jin10.com/detail/20261014040140189800",
+   "published": "2026-10-13T20:01:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：就业市场总体平衡。",
+   "link": "https://flash.jin10.com/detail/20261014040141545800",
+   "published": "2026-10-13T20:01:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：新一年货币政策的未来路径将取决于数据。",
+   "link": "https://flash.jin10.com/detail/20261014040149959800",
+   "published": "2026-10-13T20:01:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "不承诺——说了等于没说，但它是在**收回**之前的承诺",
+   "meaning_lean": "中",
+   "meaning_id": "data_dependent"
+  },
+  {
+   "title": "美联储柯林斯：支持美联储在九月会议上加息。",
+   "link": "https://flash.jin10.com/detail/20261014040152536800",
+   "published": "2026-10-13T20:01:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：美国经济在冲击面前展现出韧性。",
+   "link": "https://flash.jin10.com/detail/20261014040204179800",
+   "published": "2026-10-13T20:02:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：预计通胀将逐渐降至2%。",
+   "link": "https://flash.jin10.com/detail/20261014040204796800",
+   "published": "2026-10-13T20:02:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：预计经济将实现更高增长和就业市场稳定。",
+   "link": "https://flash.jin10.com/detail/20261014040211153800",
+   "published": "2026-10-13T20:02:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：稳定的就业市场应支持消费者支出。",
+   "link": "https://flash.jin10.com/detail/20261014040219063800",
+   "published": "2026-10-13T20:02:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：数据中心建设正在对通胀数据施加压力。",
+   "link": "https://flash.jin10.com/detail/20261014040222893800",
+   "published": "2026-10-13T20:02:22Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：在考虑利率政策的未来走向时，应从整体角度来审视经济状况。",
+   "link": "https://flash.jin10.com/detail/20261014042623009800",
+   "published": "2026-10-13T20:26:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：我正在关注数据中通胀压力是否具有广泛性。",
+   "link": "https://flash.jin10.com/detail/20261014042728912800",
+   "published": "2026-10-13T20:27:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：经济不确定性有所上升。",
+   "link": "https://flash.jin10.com/detail/20261014042729503800",
+   "published": "2026-10-13T20:27:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储柯林斯：年内或需再加息 关注通胀是否扩散】金十数据10月14日讯，波士顿联储主席柯林斯表示，今年年底前利率可能需要进一步上调，以抑制通胀。对于是否需要进一步加息以及加息时机的判断，她表示将取决于未来公布的经济数据。柯林斯预计美国经济将继续增长，劳动力市场将维持接近充分就业",
+   "link": "https://flash.jin10.com/detail/20261014043012346800",
+   "published": "2026-10-13T20:30:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "AI链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 1,
+    "lean": "鹰"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：官员们很清楚，更高的利率可能会带来各种挑战。",
+   "link": "https://flash.jin10.com/detail/20261014043531142800",
+   "published": "2026-10-13T20:35:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：美联储不会重新考虑2%的通胀目标。",
+   "link": "https://flash.jin10.com/detail/20261014044828643800",
+   "published": "2026-10-13T20:48:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储柯林斯：美联储的经济模型会充分考虑政府债务水平这一因素。",
+   "link": "https://flash.jin10.com/detail/20261014044843961800",
+   "published": "2026-10-13T20:48:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "国内新闻：",
+   "link": "https://flash.jin10.com/detail/20261014062941958800",
+   "published": "2026-10-13T22:29:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "日本链",
+    "地缘链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "柯林斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-10-13T19:52:14Z"
+ "fetched_at": "2026-10-13T23:51:59Z"
 }
