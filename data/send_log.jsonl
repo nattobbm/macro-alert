@@ -76,3 +76,4 @@
 {"ts": "2026-10-09T18:48:14Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 478, "head": "*【10\\-09】今天没有新越线。*"}
 {"ts": "2026-10-10T00:18:57Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:30年重上8-18前高（财政压制失败）|fired_muted->fired"], "muted": [], "chars": 385, "head": "*【10\\-10】今天没有新越线。*"}
 {"ts": "2026-10-12T21:44:08Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 400, "head": "*【10\\-12】今天没有新越线。*"}
+{"ts": "2026-10-13T02:14:41Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|fired_muted->fired"], "muted": [], "chars": 492, "head": "*【10\\-13】今天没有新越线。*"}
