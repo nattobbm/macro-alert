@@ -540,7 +540,117 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "1. 美联储威廉姆斯：今年可能再加息一次，明年无需进一步加息。",
+   "link": "https://flash.jin10.com/detail/20261014162644472800",
+   "published": "2026-10-14T08:26:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链",
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 5,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：通胀仍高于我们的目标。",
+   "link": "https://flash.jin10.com/detail/20261014175301925800",
+   "published": "2026-10-14T09:53:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：目前并不认为美联储有必要急于进一步调整利率。",
+   "link": "https://flash.jin10.com/detail/20261014175351629800",
+   "published": "2026-10-14T09:53:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：在上次加息后，我们需要一些时间观察金融状况的发展，然后再采取进一步行动。",
+   "link": "https://flash.jin10.com/detail/20261014175418387800",
+   "published": "2026-10-14T09:54:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "鲍曼",
+   "meaning": "这次会议不会变——他在给\"维持不变\"找台阶",
+   "meaning_lean": "鸽",
+   "meaning_id": "take_time_to_assess"
+  },
+  {
+   "title": "【鲍曼：目前不认为美联储需急于调整利率】金十数据10月14日讯，美联储理事鲍曼：通胀仍高于我们的目标，（但）目前并不认为美联储有必要急于进一步调整利率。在上次加息后，我们需要一些时间观察金融状况的发展，然后再采取进一步行动。",
+   "link": "https://flash.jin10.com/detail/20261014175510671800",
+   "published": "2026-10-14T09:55:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "鲍曼",
+   "meaning": "这次会议不会变——他在给\"维持不变\"找台阶",
+   "meaning_lean": "鸽",
+   "meaning_id": "take_time_to_assess"
+  },
+  {
+   "title": "美联储理事鲍曼：我们正计划进行全面重组，着手解决硅谷银行倒闭期间暴露出的风险规避文化问题。",
+   "link": "https://flash.jin10.com/detail/20261014181020984800",
+   "published": "2026-10-14T10:10:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-10-13T23:51:59Z"
+ "fetched_at": "2026-10-14T14:04:07Z"
 }
