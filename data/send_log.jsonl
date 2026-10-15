@@ -83,3 +83,4 @@
 {"ts": "2026-10-14T14:04:14Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired"], "muted": ["node:市场信央行会管吗", "band:日元(USDJPY)", "band:下次会议加息概率（10-28）"], "chars": 805, "head": "*【10\\-14】今天没有新越线。*"}
 {"ts": "2026-10-14T17:59:34Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["node:市场信央行会管吗|quiet->crossed"], "muted": [], "chars": 721, "head": "*【10\\-14】市场信央行会管吗越线。*"}
 {"ts": "2026-10-14T23:26:16Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 591, "head": "*【10\\-14】今天没有新越线。*"}
+{"ts": "2026-10-15T17:46:14Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["band:下次会议加息概率（10-28）"], "chars": 434, "head": "*【10\\-15】今天没有新越线。*"}

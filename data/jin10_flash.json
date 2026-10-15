@@ -131,6 +131,17 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-10-16",
+   "time_bj": "04:30",
+   "title": "美联储哈马克发表讲话",
+   "speaker": "哈马克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -685,5 +696,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-10-14T23:26:08Z"
+ "fetched_at": "2026-10-15T17:46:05Z"
 }
