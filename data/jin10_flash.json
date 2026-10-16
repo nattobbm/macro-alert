@@ -2,17 +2,6 @@
  "events": [
   {
    "date": "2026-10-13",
-   "time_bj": "00:10",
-   "title": "美联储哈马克发表讲话",
-   "speaker": "哈马克",
-   "tags": [
-    "货币链"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "speech"
-  },
-  {
-   "date": "2026-10-13",
    "time_bj": "08:30",
    "title": "澳洲联储公布9月会议纪要",
    "speaker": null,
@@ -696,5 +685,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-10-15T23:16:22Z"
+ "fetched_at": "2026-10-16T17:23:40Z"
 }
