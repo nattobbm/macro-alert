@@ -86,3 +86,4 @@
 {"ts": "2026-10-15T17:46:14Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["band:下次会议加息概率（10-28）"], "chars": 434, "head": "*【10\\-15】今天没有新越线。*"}
 {"ts": "2026-10-15T23:16:30Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 412, "head": "*【10\\-15】今天没有新越线。*"}
 {"ts": "2026-10-16T17:23:50Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:下次议息加息概率大幅回落|not_fired->fired", "band:下次会议加息概率（10-28）|near->breached_lo"], "muted": ["node:日债10年利率"], "chars": 333, "head": "*【10\\-16】加息跌破线。*"}
+{"ts": "2026-10-16T23:03:18Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["周五周报"], "muted": ["node:30年利率失控区"], "chars": 292, "head": "*【10\\-16】今天没有新越线。*"}
