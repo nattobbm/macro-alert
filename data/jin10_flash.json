@@ -10,8 +10,19 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-10-20",
+   "time_bj": "10:00",
+   "title": "国家发展改革委召开10月份新闻发布会",
+   "speaker": null,
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [],
- "fetched_at": "2026-10-19T13:18:41Z"
+ "fetched_at": "2026-10-19T19:17:32Z"
 }
