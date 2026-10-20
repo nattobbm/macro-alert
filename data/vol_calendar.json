@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-13T19:52:19Z",
+ "generated_at": "2026-10-20T23:23:26Z",
  "window": {
   "start": "2024-08-01",
-  "end": "2026-10-13"
+  "end": "2026-10-20"
  },
- "n_baseline_days": 444,
+ "n_baseline_days": 449,
  "method": "事件日当天|变动|中位数 ÷ 平常日子|变动|中位数；平常=不落在任何事件日的交易日",
  "assets": {
   "spx": {
@@ -12,15 +12,15 @@
    "label_en": "S&P 500",
    "unit": "%",
    "symbol": "^GSPC",
-   "d1": 0.48,
+   "d1": 0.47,
    "d21": 2.4,
    "d252": 17.4,
-   "n_d1": 551,
-   "n_d21": 531,
-   "n_d252": 300,
-   "recent20": 0.46,
-   "recent20_ratio": 0.96,
-   "recent20_from": "2026-09-16",
+   "n_d1": 556,
+   "n_d21": 536,
+   "n_d252": 305,
+   "recent20": 0.44,
+   "recent20_ratio": 0.92,
+   "recent20_from": "2026-09-23",
    "max_event_day": {
     "FOMC": 2.95,
     "NFP": 5.97,
@@ -36,13 +36,13 @@
    "symbol": "GC=F",
    "d1": 0.76,
    "d21": 4.4,
-   "d252": 43.4,
-   "n_d1": 553,
-   "n_d21": 533,
-   "n_d252": 302,
-   "recent20": 0.56,
-   "recent20_ratio": 0.73,
-   "recent20_from": "2026-09-16",
+   "d252": 43.1,
+   "n_d1": 558,
+   "n_d21": 538,
+   "n_d252": 307,
+   "recent20": 0.55,
+   "recent20_ratio": 0.72,
+   "recent20_from": "2026-09-23",
    "max_event_day": {
     "FOMC": 4.35,
     "NFP": 3.24,
@@ -59,12 +59,12 @@
    "d1": 0.25,
    "d21": 1.3,
    "d252": 3.8,
-   "n_d1": 553,
-   "n_d21": 533,
-   "n_d252": 302,
-   "recent20": 0.22,
-   "recent20_ratio": 0.89,
-   "recent20_from": "2026-09-16",
+   "n_d1": 558,
+   "n_d21": 538,
+   "n_d252": 307,
+   "recent20": 0.24,
+   "recent20_ratio": 0.97,
+   "recent20_from": "2026-09-23",
    "max_event_day": {
     "FOMC": 1.04,
     "NFP": 1.34,
@@ -79,14 +79,14 @@
    "unit": "bp",
    "symbol": "^TYX",
    "d1": 2.8,
-   "d21": 12.6,
-   "d252": 22.8,
-   "n_d1": 551,
-   "n_d21": 531,
-   "n_d252": 300,
-   "recent20": 3.5,
-   "recent20_ratio": 1.25,
-   "recent20_from": "2026-09-16",
+   "d21": 12.7,
+   "d252": 23.7,
+   "n_d1": 556,
+   "n_d21": 536,
+   "n_d252": 305,
+   "recent20": 3.55,
+   "recent20_ratio": 1.27,
+   "recent20_from": "2026-09-23",
    "max_event_day": {
     "FOMC": 8.0,
     "NFP": 16.2,
@@ -103,12 +103,12 @@
    "d1": 0.33,
    "d21": 1.6,
    "d252": 4.4,
-   "n_d1": 567,
-   "n_d21": 547,
-   "n_d252": 316,
-   "recent20": 0.19,
-   "recent20_ratio": 0.57,
-   "recent20_from": "2026-09-15",
+   "n_d1": 573,
+   "n_d21": 553,
+   "n_d252": 322,
+   "recent20": 0.15,
+   "recent20_ratio": 0.45,
+   "recent20_from": "2026-09-23",
    "max_event_day": {
     "FOMC": 1.91,
     "NFP": 1.71,
@@ -122,15 +122,15 @@
    "label_en": "VIX",
    "unit": "pt",
    "symbol": "^VIX",
-   "d1": 0.68,
+   "d1": 0.69,
    "d21": 2.4,
    "d252": 2.1,
-   "n_d1": 553,
-   "n_d21": 533,
-   "n_d252": 302,
+   "n_d1": 558,
+   "n_d21": 538,
+   "n_d252": 307,
    "recent20": 0.5,
-   "recent20_ratio": 0.74,
-   "recent20_from": "2026-09-16",
+   "recent20_ratio": 0.72,
+   "recent20_from": "2026-09-23",
    "max_event_day": {
     "FOMC": 11.75,
     "NFP": 15.29,
@@ -197,7 +197,7 @@
    "label_en": "PPI",
    "n": 24,
    "ratio": {
-    "spx": 1.2,
+    "spx": 1.3,
     "gold": 1.4,
     "dxy": 1.0,
     "us30y": 1.2,
@@ -357,21 +357,6 @@
   ]
  },
  "year_plan": [
-  {
-   "date": "2026-10-14",
-   "type": "CPI",
-   "estimated": false
-  },
-  {
-   "date": "2026-10-15",
-   "type": "PPI",
-   "estimated": false
-  },
-  {
-   "date": "2026-10-15",
-   "type": "RETAIL",
-   "estimated": false
-  },
   {
    "date": "2026-10-28",
    "type": "FOMC",
@@ -640,6 +625,16 @@
   {
    "date": "2027-10-13",
    "type": "CPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-10-14",
+   "type": "PPI",
+   "estimated": true
+  },
+  {
+   "date": "2027-10-15",
+   "type": "RETAIL",
    "estimated": true
   }
  ],
