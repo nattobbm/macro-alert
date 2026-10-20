@@ -1,17 +1,6 @@
 {
  "events": [
   {
-   "date": "2026-10-16",
-   "time_bj": "04:30",
-   "title": "美联储哈马克发表讲话",
-   "speaker": "哈马克",
-   "tags": [
-    "货币链"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "speech"
-  },
-  {
    "date": "2026-10-20",
    "time_bj": "10:00",
    "title": "国家发展改革委召开10月份新闻发布会",
@@ -21,8 +10,41 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-10-21",
+   "time_bj": "17:00",
+   "title": "英伟达CEO黄仁勋发表演讲",
+   "speaker": null,
+   "tags": [
+    "AI链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-10-21",
+   "time_bj": "21:00",
+   "title": "英国央行行长贝利发表讲话",
+   "speaker": "贝利",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-10-22",
+   "time_bj": "00:00",
+   "title": "欧洲央行行长拉加德发表讲话",
+   "speaker": "拉加德",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [],
- "fetched_at": "2026-10-19T23:56:07Z"
+ "fetched_at": "2026-10-20T17:58:17Z"
 }
