@@ -92,3 +92,4 @@
 {"ts": "2026-10-19T23:56:10Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 357, "head": "*【10\\-19】今天没有新越线。*"}
 {"ts": "2026-10-20T17:58:21Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|fired_muted->fired"], "muted": [], "chars": 410, "head": "*【10\\-20】今天没有新越线。*"}
 {"ts": "2026-10-20T23:23:28Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 409, "head": "*【10\\-20】今天没有新越线。*"}
+{"ts": "2026-10-21T13:21:05Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": ["node:日债30年利率"], "chars": 383, "head": "*【10\\-21】今天没有新越线。*"}
