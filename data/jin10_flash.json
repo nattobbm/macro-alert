@@ -54,6 +54,17 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-10-23",
+   "time_bj": null,
+   "title": "澳洲联储主席布洛克发表讲话",
+   "speaker": "布洛克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -76,5 +87,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-10-22T13:20:51Z"
+ "fetched_at": "2026-10-22T17:58:24Z"
 }
