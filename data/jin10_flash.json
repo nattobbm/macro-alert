@@ -1,61 +1,6 @@
 {
  "events": [
   {
-   "date": "2026-10-20",
-   "time_bj": "10:00",
-   "title": "国家发展改革委召开10月份新闻发布会",
-   "speaker": null,
-   "tags": [
-    "其他"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "speech"
-  },
-  {
-   "date": "2026-10-21",
-   "time_bj": "17:00",
-   "title": "英伟达CEO黄仁勋发表演讲",
-   "speaker": null,
-   "tags": [
-    "AI链"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "speech"
-  },
-  {
-   "date": "2026-10-21",
-   "time_bj": "21:00",
-   "title": "英国央行行长贝利发表讲话",
-   "speaker": "贝利",
-   "tags": [
-    "其他"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "speech"
-  },
-  {
-   "date": "2026-10-22",
-   "time_bj": "00:00",
-   "title": "欧洲央行行长拉加德发表讲话",
-   "speaker": "拉加德",
-   "tags": [
-    "其他"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "speech"
-  },
-  {
-   "date": "2026-10-22",
-   "time_bj": "21:00",
-   "title": "英国央行行长贝利发表讲话",
-   "speaker": "贝利",
-   "tags": [
-    "其他"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "speech"
-  },
-  {
    "date": "2026-10-23",
    "time_bj": null,
    "title": "澳洲联储主席布洛克发表讲话",
@@ -67,25 +12,6 @@
    "kind": "speech"
   }
  ],
- "speeches": [
-  {
-   "title": "【贝利为就特朗普攻击鲍威尔一事发声进行辩护】金十数据10月21日讯，英国央行行长贝利表示，他当时为捍卫时任美联储主席杰鲍威尔免受特朗普的攻击而采取行动是正确的，并且会再次这样做。贝利表示，他和其他央行行长之所以发声，是因为美国总统开始将矛头指向鲍威尔“作为个人”，而非针对该机构的",
-   "link": "https://flash.jin10.com/detail/20261021234602732800",
-   "published": "2026-10-21T15:46:02Z",
-   "source": "金十快讯",
-   "tags": [
-    "货币链"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "贝利",
-   "meaning": "无固定套话",
-   "meaning_lean": "中",
-   "meaning_id": null
-  }
- ],
- "fetched_at": "2026-10-23T23:28:09Z"
+ "speeches": [],
+ "fetched_at": "2026-10-26T13:06:47Z"
 }
