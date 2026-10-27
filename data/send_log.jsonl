@@ -104,3 +104,4 @@
 {"ts": "2026-10-26T13:06:50Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": ["node:日元逼近干预线", "node:日元强到撤资线?", "node:日元弱到干预线?", "band:日元(USDJPY)"], "chars": 382, "head": "*【10\\-26】今天没有新越线。*"}
 {"ts": "2026-10-26T19:14:54Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 280, "head": "*【10\\-26】今天没有新越线。*"}
 {"ts": "2026-10-27T00:04:33Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 302, "head": "*【10\\-27】今天没有新越线。*"}
+{"ts": "2026-10-27T13:07:11Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 313, "head": "*【10\\-27】今天没有新越线。*"}
