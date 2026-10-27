@@ -1,5 +1,61 @@
 {
- "events": [],
+ "events": [
+  {
+   "date": "2026-10-28",
+   "time_bj": "09:00",
+   "title": "新西兰联储公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-10-28",
+   "time_bj": "21:45",
+   "title": "加拿大央行公布利率决议和货币政策报告",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-10-28",
+   "time_bj": "22:30",
+   "title": "加拿大央行行长麦克勒姆召开新闻发布会",
+   "speaker": "麦克勒姆",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-10-29",
+   "time_bj": "02:00",
+   "title": "美联储FOMC公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-10-29",
+   "time_bj": "02:30",
+   "title": "美联储主席沃什召开新闻发布会",
+   "speaker": "沃什",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  }
+ ],
  "speeches": [],
- "fetched_at": "2026-10-27T13:07:09Z"
+ "fetched_at": "2026-10-27T18:40:17Z"
 }
