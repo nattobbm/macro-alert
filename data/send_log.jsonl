@@ -108,3 +108,4 @@
 {"ts": "2026-10-27T18:40:20Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|fired_muted->fired"], "muted": [], "chars": 392, "head": "*【10\\-27】今天没有新越线。*"}
 {"ts": "2026-10-27T23:59:14Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:SOFR持续高于IORB（准备金稀缺信号）|not_fired->fired"], "muted": [], "chars": 447, "head": "*【10\\-27】今天没有新越线。*"}
 {"ts": "2026-10-28T13:07:22Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 518, "head": "*【10\\-28】今天没有新越线。*"}
+{"ts": "2026-10-28T18:49:39Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired"], "muted": [], "chars": 570, "head": "*【10\\-28】今天没有新越线。*"}

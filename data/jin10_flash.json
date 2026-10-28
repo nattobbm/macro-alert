@@ -54,8 +54,923 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-10-29",
+   "time_bj": "21:15",
+   "title": "欧洲央行公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-10-29",
+   "time_bj": "21:45",
+   "title": "欧洲央行行长拉加德召开新闻发布会",
+   "speaker": "拉加德",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
- "speeches": [],
- "fetched_at": "2026-10-28T13:07:19Z"
+ "speeches": [
+  {
+   "title": "【加拿大央行上调通胀预期，称货币政策能够提供的宽松空间已经缩小】金十数据10月28日讯，在随加拿大央行利率决议一同发布的《货币政策报告》中，决策层大幅上调了通胀预测，预计2027年消费者价格指数（CPI）同比涨幅将达到3.1%，高于此前预测的2.0%。麦克勒姆表示：“支持加息的主",
+   "link": "https://flash.jin10.com/detail/20261028220242998800",
+   "published": "2026-10-28T14:02:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 2,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：我们看到能源领域的投资有所增加。",
+   "link": "https://flash.jin10.com/detail/20261028224113856800",
+   "published": "2026-10-28T14:41:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：当然认为企业投资将会更强劲。",
+   "link": "https://flash.jin10.com/detail/20261028224208725800",
+   "published": "2026-10-28T14:42:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：即使此次加息后，政策利率仍足够低，不会抑制经济增长。",
+   "link": "https://flash.jin10.com/detail/20261028224352565800",
+   "published": "2026-10-28T14:43:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：企业面临的成本压力上升。",
+   "link": "https://flash.jin10.com/detail/20261028224401687800",
+   "published": "2026-10-28T14:44:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：投资预估可能偏保守。",
+   "link": "https://flash.jin10.com/detail/20261028224407585800",
+   "published": "2026-10-28T14:44:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：利率没有预设路径。",
+   "link": "https://flash.jin10.com/detail/20261028224621954800",
+   "published": "2026-10-28T14:46:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：我们将帮助抵御更高燃料成本的转嫁。",
+   "link": "https://flash.jin10.com/detail/20261028224629147800",
+   "published": "2026-10-28T14:46:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：任何时候改变方向，都始终是一个艰难的决定。",
+   "link": "https://flash.jin10.com/detail/20261028224706532800",
+   "published": "2026-10-28T14:47:06Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：通胀看起来不太可能得到良好控制。",
+   "link": "https://flash.jin10.com/detail/20261028224915669800",
+   "published": "2026-10-28T14:49:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：“非常清楚”经济面临的不确定性。",
+   "link": "https://flash.jin10.com/detail/20261028224939425800",
+   "published": "2026-10-28T14:49:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：通胀得到控制的可能性降低。",
+   "link": "https://flash.jin10.com/detail/20261028224946073800",
+   "published": "2026-10-28T14:49:46Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：风险管理角度倾向于加息。",
+   "link": "https://flash.jin10.com/detail/20261028225123652800",
+   "published": "2026-10-28T14:51:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：美国贸易和中东地区的不确定性可能改变前景。",
+   "link": "https://flash.jin10.com/detail/20261028225132262800",
+   "published": "2026-10-28T14:51:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "地缘链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：消费支出的强劲支撑了增长前景的改善。",
+   "link": "https://flash.jin10.com/detail/20261028225751280800",
+   "published": "2026-10-28T14:57:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "经济扛得住加息——这是给紧缩开绿灯",
+   "meaning_lean": "鹰",
+   "meaning_id": "resilient_consumer"
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：能源行业绝非经济增长的唯一驱动力。",
+   "link": "https://flash.jin10.com/detail/20261028225810193800",
+   "published": "2026-10-28T14:58:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：我们今天所处的情况与疫情结束时有所不同。",
+   "link": "https://flash.jin10.com/detail/20261028230516286800",
+   "published": "2026-10-28T15:05:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：疫情让我们认识到，在产能闲置的情况下通胀仍可能上升。",
+   "link": "https://flash.jin10.com/detail/20261028230520564800",
+   "published": "2026-10-28T15:05:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：与一年前相比，经济中的闲置产能减少。",
+   "link": "https://flash.jin10.com/detail/20261028230528559800",
+   "published": "2026-10-28T15:05:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储利率已公布，市场等待沃什讲话，国际黄金走势会反转吗？Richard直播中将梳理关键因素，点击马上观看！",
+   "link": "https://flash.jin10.com/detail/20261029021504744800",
+   "published": "2026-10-28T18:15:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "黄金链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储如期维持利率不变，市场紧盯沃什发布会如何“自圆其说”】金十数据10月29日讯，美联储10比2的投票结果维持利率不变，其中美联储理事库克和美联储哈玛克投了反对票，主张加息25个基点。哈玛克此前曾投票支持收紧政策，最近一次是在7月。她主张美联储现在进行较小幅度的调整，以避免未",
+   "link": "https://flash.jin10.com/detail/20261029021948186800",
+   "published": "2026-10-28T18:19:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储维持利率不变，债券交易员预计12月加息概率达90%】金十数据10月29日讯，美联储维持利率不变后，美国国债价格小幅走低；这一决定强化了交易员的预期，即美联储将在12月重启紧缩。周三利率决议公布后，对美联储政策路径更为敏感的两年期国债收益率上涨约3个基点，达到4.76%。交",
+   "link": "https://flash.jin10.com/detail/20261029022320249800",
+   "published": "2026-10-28T18:23:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 4,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "沃什",
+   "meaning": "现在不动",
+   "meaning_lean": "中",
+   "meaning_id": "closely_monitoring"
+  },
+  {
+   "title": "【分析师：美联储可能担心政策收紧过快】金十数据10月29日讯，毕马威首席经济学家斯沃克表示，沃什在今天的新闻发布会上恐怕不会就此次决策提供更多解释。不过她推测，决策者在考量时或许顾虑到，如果政策收紧过快，可能会对经济造成“破坏”。她特别指出，人工智能热潮中存在一些“脆弱性”。10",
+   "link": "https://flash.jin10.com/detail/20261029022918945800",
+   "published": "2026-10-28T18:29:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：经济活动正以强劲步伐扩张。",
+   "link": "https://flash.jin10.com/detail/20261029023117137800",
+   "published": "2026-10-28T18:31:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：国内支出一直保持韧性。",
+   "link": "https://flash.jin10.com/detail/20261029023129148800",
+   "published": "2026-10-28T18:31:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "经济扛得住加息——这是给紧缩开绿灯",
+   "meaning_lean": "鹰",
+   "meaning_id": "resilient_consumer"
+  },
+  {
+   "title": "美联储主席沃什：生产率强劲，资本投资稳健。",
+   "link": "https://flash.jin10.com/detail/20261029023204519800",
+   "published": "2026-10-28T18:32:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：委员会认为，更多信息将有助于确定适当的政策立场。",
+   "link": "https://flash.jin10.com/detail/20261029023215186800",
+   "published": "2026-10-28T18:32:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：商业投资可能以两位数速度增长。",
+   "link": "https://flash.jin10.com/detail/20261029023253360800",
+   "published": "2026-10-28T18:32:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：委员会正密切关注外部形势，情况并未变得更为宽松。",
+   "link": "https://flash.jin10.com/detail/20261029023256713800",
+   "published": "2026-10-28T18:32:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "沃什",
+   "meaning": "现在不动",
+   "meaning_lean": "中",
+   "meaning_id": "closely_monitoring"
+  },
+  {
+   "title": "美联储主席沃什：委员会将实现物价稳定。",
+   "link": "https://flash.jin10.com/detail/20261029023258721800",
+   "published": "2026-10-28T18:32:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：就业增长高于去年水平。",
+   "link": "https://flash.jin10.com/detail/20261029023313662800",
+   "published": "2026-10-28T18:33:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：就业状况呈积极态势。",
+   "link": "https://flash.jin10.com/detail/20261029023319481800",
+   "published": "2026-10-28T18:33:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：第三季度GDP可能高于3%。",
+   "link": "https://flash.jin10.com/detail/20261029023334704800",
+   "published": "2026-10-28T18:33:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：我们的职责是降低通胀。",
+   "link": "https://flash.jin10.com/detail/20261029023342744800",
+   "published": "2026-10-28T18:33:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：讨论主要集中在通胀问题上。",
+   "link": "https://flash.jin10.com/detail/20261029023354996800",
+   "published": "2026-10-28T18:33:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：信贷环境已经收紧。",
+   "link": "https://flash.jin10.com/detail/20261029023413350800",
+   "published": "2026-10-28T18:34:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：市场参与者在资本配置上更加审慎。",
+   "link": "https://flash.jin10.com/detail/20261029023422478800",
+   "published": "2026-10-28T18:34:22Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：不愿也无法认定金融环境偏紧。",
+   "link": "https://flash.jin10.com/detail/20261029023440427800",
+   "published": "2026-10-28T18:34:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：经济增长已增强。",
+   "link": "https://flash.jin10.com/detail/20261029023503572800",
+   "published": "2026-10-28T18:35:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：委员会认为，更多信息将有助于其确定适合使通胀率回归2%的政策立场。",
+   "link": "https://flash.jin10.com/detail/20261029023551167800",
+   "published": "2026-10-28T18:35:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：委员会进行了充分讨论，有关地缘政治与技术问题。",
+   "link": "https://flash.jin10.com/detail/20261029023559511800",
+   "published": "2026-10-28T18:35:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：对金融市场波动并不感到意外。",
+   "link": "https://flash.jin10.com/detail/20261029023611237800",
+   "published": "2026-10-28T18:36:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：资本支出占GDP的比重处于历史高位。",
+   "link": "https://flash.jin10.com/detail/20261029023615789800",
+   "published": "2026-10-28T18:36:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：我们的职责是确保某些部门的相对价格变化不会扩大。",
+   "link": "https://flash.jin10.com/detail/20261029023632453800",
+   "published": "2026-10-28T18:36:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：预计2028年将举行6次政策制定会议。",
+   "link": "https://flash.jin10.com/detail/20261029023704063800",
+   "published": "2026-10-28T18:37:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：联邦公开市场委员会日程将从明年秋季起调整。",
+   "link": "https://flash.jin10.com/detail/20261029023716764800",
+   "published": "2026-10-28T18:37:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：我们认为每年8次会议是合适的次数。",
+   "link": "https://flash.jin10.com/detail/20261029023811508800",
+   "published": "2026-10-28T18:38:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：2027年，其中一次会议将不会对利率和声明进行投票。",
+   "link": "https://flash.jin10.com/detail/20261029023830165800",
+   "published": "2026-10-28T18:38:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储主席沃什：我预计2028年将有2次会议不进行利率投票。",
+   "link": "https://flash.jin10.com/detail/20261029023837717800",
+   "published": "2026-10-28T18:38:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃什",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  }
+ ],
+ "fetched_at": "2026-10-28T18:49:35Z"
 }
