@@ -111,3 +111,4 @@
 {"ts": "2026-10-28T18:49:39Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired"], "muted": [], "chars": 570, "head": "*【10\\-28】今天没有新越线。*"}
 {"ts": "2026-10-29T00:22:59Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:下次议息加息概率回升|not_fired->fired", "band:下次会议加息概率（12-09）|breached_lo->breached_hi"], "muted": ["node:市场信央行会管吗"], "chars": 735, "head": "*【10\\-29】加息涨破线。*"}
 {"ts": "2026-10-29T13:07:55Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 579, "head": "*【10\\-29】今天没有新越线。*"}
+{"ts": "2026-10-29T18:57:20Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:央行欠账的紧缩（泰勒缺口>100bp）|not_fired->fired"], "muted": [], "chars": 604, "head": "*【10\\-29】今天没有新越线。*"}

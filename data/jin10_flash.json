@@ -76,6 +76,29 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-10-30",
+   "time_bj": null,
+   "title": "日本央行公布利率决议和经济前景展望报告",
+   "speaker": null,
+   "tags": [
+    "货币链",
+    "日本链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-10-30",
+   "time_bj": "14:30",
+   "title": "日本央行行长植田和男召开新闻发布会",
+   "speaker": "植田和男",
+   "tags": [
+    "日本链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -2393,7 +2416,1256 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "【欧洲央行维持利率不变，拉加德提前离任加剧能源与法国局势担忧】金十数据10月29日讯，欧洲央行维持利率在2.5%不变，符合市场预期。与此同时，行长拉加德将提前离任的消息，进一步加剧了市场对能源成本和法国局势的担忧。在利率政策方面，欧洲央行选择暂时观望。自伊朗战争冲击能源市场以来，",
+   "link": "https://flash.jin10.com/detail/20261029211931930800",
+   "published": "2026-10-29T13:19:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链"
+   ],
+   "tone": {
+    "hawk": 5,
+    "dove": 1,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【机构：欧洲央行12月加息选项仍在台面 明年高层洗牌值得市场关注】金十数据10月29日讯，Saltmarsh Economics欧洲经济学家Marchel Alexandrovich表示，正如市场所预期的，欧洲央行在今天的会议上维持利率不变，但释放出明确信号：12月加息仍是一个很",
+   "link": "https://flash.jin10.com/detail/20261029214425848800",
+   "published": "2026-10-29T13:44:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行维持利率不变，但指出经济和通胀均同时面临两股反向力量。另外，拉加德将提前卸任，后续政策前景如何？马上围观发布会...",
+   "link": "https://flash.jin10.com/detail/20261029214512702800",
+   "published": "2026-10-29T13:45:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德重申欧洲央行政策声明。",
+   "link": "https://flash.jin10.com/detail/20261029214751744800",
+   "published": "2026-10-29T13:47:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：最新数据显示第三季度经济正在扩张。",
+   "link": "https://flash.jin10.com/detail/20261029214934502800",
+   "published": "2026-10-29T13:49:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：短期内增长应得到支撑。",
+   "link": "https://flash.jin10.com/detail/20261029215023969800",
+   "published": "2026-10-29T13:50:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：能源价格再度上涨和融资成本上升损害了信心与增长。",
+   "link": "https://flash.jin10.com/detail/20261029215028475800",
+   "published": "2026-10-29T13:50:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：人工智能投资与公共支出将支撑增长。",
+   "link": "https://flash.jin10.com/detail/20261029215057580800",
+   "published": "2026-10-29T13:50:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：出口应会回升。财政可持续性是关键锚点。",
+   "link": "https://flash.jin10.com/detail/20261029215119250800",
+   "published": "2026-10-29T13:51:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：财政应对措施必须是临时性、有针对性和量身定制的。",
+   "link": "https://flash.jin10.com/detail/20261029215130729800",
+   "published": "2026-10-29T13:51:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：定价链的早期环节显示上行压力。",
+   "link": "https://flash.jin10.com/detail/20261029215321727800",
+   "published": "2026-10-29T13:53:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：欧洲央行工资追踪指标显示，2026年剩余月份工资涨幅为2.5%-2.8%。",
+   "link": "https://flash.jin10.com/detail/20261029215330044800",
+   "published": "2026-10-29T13:53:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：工资压力依然温和。",
+   "link": "https://flash.jin10.com/detail/20261029215332987800",
+   "published": "2026-10-29T13:53:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：整体通胀仍保持总体稳定。",
+   "link": "https://flash.jin10.com/detail/20261029215342609800",
+   "published": "2026-10-29T13:53:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：多数长期通胀预期指标处于2%左右。",
+   "link": "https://flash.jin10.com/detail/20261029215359090800",
+   "published": "2026-10-29T13:53:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：工资追踪指标显示2027年第一季度将增长2.6%。",
+   "link": "https://flash.jin10.com/detail/20261029215405962800",
+   "published": "2026-10-29T13:54:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：能源价格涨幅已超出基线水平。从中期来看，能源将进一步推高通胀。",
+   "link": "https://flash.jin10.com/detail/20261029215418167800",
+   "published": "2026-10-29T13:54:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "把通胀归因到外面——意思是\"不是我们放水放的\"，为不加息留理由",
+   "meaning_lean": "鸽",
+   "meaning_id": "energy_driven"
+  },
+  {
+   "title": "欧洲央行行长拉加德：未来几个季度整体通胀率可能远高于目标水平。",
+   "link": "https://flash.jin10.com/detail/20261029215431761800",
+   "published": "2026-10-29T13:54:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "欧洲央行行长拉加德：后续能源通胀若下降，应会带动整体通胀回落。",
+   "link": "https://flash.jin10.com/detail/20261029215449586800",
+   "published": "2026-10-29T13:54:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：增长面临的风险偏向下行。",
+   "link": "https://flash.jin10.com/detail/20261029215454398800",
+   "published": "2026-10-29T13:54:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：财政不确定性可能损害信心。",
+   "link": "https://flash.jin10.com/detail/20261029215521954800",
+   "published": "2026-10-29T13:55:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：市场情绪恶化可能收紧融资条件，抑制需求。",
+   "link": "https://flash.jin10.com/detail/20261029215526671800",
+   "published": "2026-10-29T13:55:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：通胀风险偏向上行。",
+   "link": "https://flash.jin10.com/detail/20261029215610162800",
+   "published": "2026-10-29T13:56:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：财政不确定性可能进一步收紧金融条件。",
+   "link": "https://flash.jin10.com/detail/20261029215718371800",
+   "published": "2026-10-29T13:57:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【欧洲央行按兵不动，英国10年期国债收益率创五周新低】金十数据10月29日讯，欧洲央行周四决定维持利率不变后，英国国债收益率一度跌至5.244%，创9月23日以来的最低水平。Moneyfarm首席投资官理查德·弗拉克斯在一份报告中表示：“这一决定表明，欧洲央行希望暂停行动，评估9",
+   "link": "https://flash.jin10.com/detail/20261029215739519800",
+   "published": "2026-10-29T13:57:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：自上次会议以来，金融环境已经有所收紧。",
+   "link": "https://flash.jin10.com/detail/20261029215818487800",
+   "published": "2026-10-29T13:58:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：我们已经看到能源价格飙升带来的间接影响有所增加。",
+   "link": "https://flash.jin10.com/detail/20261029220236151800",
+   "published": "2026-10-29T14:02:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：特别关注第二轮通胀效应风险。",
+   "link": "https://flash.jin10.com/detail/20261029220245070800",
+   "published": "2026-10-29T14:02:45Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【机构：拉加德卸任在即，继任者将面临抗通胀与稳增长难题】金十数据10月29日讯，Premier Miton首席投资官Neil Birrell表示，随着欧洲央行行长拉加德将于明年2月7日卸任，欧洲央行正迎来一场人事变局，但今天央行决定将利率维持不变。她的继任者上任时，将面对一个市场",
+   "link": "https://flash.jin10.com/detail/20261029220256149800",
+   "published": "2026-10-29T14:02:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 1,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：除了预测中已包含的内容外，目前并未看到第二轮效应的风险。",
+   "link": "https://flash.jin10.com/detail/20261029220310731800",
+   "published": "2026-10-29T14:03:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：自9月以来，长期融资成本有所上升。",
+   "link": "https://flash.jin10.com/detail/20261029220455114800",
+   "published": "2026-10-29T14:04:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：管理委员会就是否适合加息进行了辩论。（本次议息结果维持利率不变）",
+   "link": "https://flash.jin10.com/detail/20261029220534170800",
+   "published": "2026-10-29T14:05:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：基于不确定性，整体通胀未发生变化，管委会一致决定维持利率不变。",
+   "link": "https://flash.jin10.com/detail/20261029220600126800",
+   "published": "2026-10-29T14:06:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：目前采取审慎的做法仍然合适。",
+   "link": "https://flash.jin10.com/detail/20261029220603191800",
+   "published": "2026-10-29T14:06:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：维持关键利率不变的决定获得一致通过。",
+   "link": "https://flash.jin10.com/detail/20261029220607854800",
+   "published": "2026-10-29T14:06:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：各方一致认为欧洲央行处于有利地位。",
+   "link": "https://flash.jin10.com/detail/20261029220656235800",
+   "published": "2026-10-29T14:06:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：会议间期信息将很密集。",
+   "link": "https://flash.jin10.com/detail/20261029221006302800",
+   "published": "2026-10-29T14:10:06Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：六周的额外信息将让我们掌握更多情况。",
+   "link": "https://flash.jin10.com/detail/20261029221236886800",
+   "published": "2026-10-29T14:12:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：整体通胀走势是12月决策的关键。",
+   "link": "https://flash.jin10.com/detail/20261029221347266800",
+   "published": "2026-10-29T14:13:47Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：整体通胀可能在决策中占据特殊地位。",
+   "link": "https://flash.jin10.com/detail/20261029221356049800",
+   "published": "2026-10-29T14:13:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：超大规模企业的债券发行对收益率上升起到了一定作用。",
+   "link": "https://flash.jin10.com/detail/20261029221403956800",
+   "published": "2026-10-29T14:14:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：利率已上升，且可能将维持在高位。高负债国家需要明白利率将会更高。",
+   "link": "https://flash.jin10.com/detail/20261029221413987800",
+   "published": "2026-10-29T14:14:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：全球长端收益率曲线已普遍上移。",
+   "link": "https://flash.jin10.com/detail/20261029221513166800",
+   "published": "2026-10-29T14:15:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：欧洲央行极有可能在12月给出情景预测。",
+   "link": "https://flash.jin10.com/detail/20261029221525368800",
+   "published": "2026-10-29T14:15:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：财政计划必须符合欧盟财政框架。",
+   "link": "https://flash.jin10.com/detail/20261029221549428800",
+   "published": "2026-10-29T14:15:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：如果市场形势发展威胁到传导，我们有工具可以应对。",
+   "link": "https://flash.jin10.com/detail/20261029221615163800",
+   "published": "2026-10-29T14:16:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：对我们所有人而言，前进方向相当明确。",
+   "link": "https://flash.jin10.com/detail/20261029221702950800",
+   "published": "2026-10-29T14:17:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：拥有应对无序、不合理市场波动的工具。",
+   "link": "https://flash.jin10.com/detail/20261029221843087800",
+   "published": "2026-10-29T14:18:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：我们没有限制会议次数的计划。",
+   "link": "https://flash.jin10.com/detail/20261029222055996800",
+   "published": "2026-10-29T14:20:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：欧洲央行的业务连续性从未中断，相信这一状态将持续下去。",
+   "link": "https://flash.jin10.com/detail/20261029222104615800",
+   "published": "2026-10-29T14:21:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：欧洲央行的治理在过去已证明是稳健的。",
+   "link": "https://flash.jin10.com/detail/20261029222126540800",
+   "published": "2026-10-29T14:21:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：债券收益率上升已“符合”能源价格上涨的幅度。",
+   "link": "https://flash.jin10.com/detail/20261029222139638800",
+   "published": "2026-10-29T14:21:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：在2月7日（卸任）之前，欧洲央行由我负责并专注履职。",
+   "link": "https://flash.jin10.com/detail/20261029222332245800",
+   "published": "2026-10-29T14:23:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【分析师：欧洲央行强调经济增长面临的下行风险】金十数据10月29日讯，梵蒂安宏观经济研究分析师Claus Vistesen在一份报告中表示，欧洲央行承认通胀仍面临持续的上行风险，但如今也明确担忧能源成本上升以及自9月以来金融环境收紧可能对经济增长造成下行压力。因此，Vistese",
+   "link": "https://flash.jin10.com/detail/20261029222343294800",
+   "published": "2026-10-29T14:23:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 1,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：我们不会改变债券赎回政策。",
+   "link": "https://flash.jin10.com/detail/20261029222824633800",
+   "published": "2026-10-29T14:28:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：没有重新平衡的相关安排。",
+   "link": "https://flash.jin10.com/detail/20261029222833956800",
+   "published": "2026-10-29T14:28:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【分析师：拉加德暂未释放出手干预市场信号】金十数据10月29日讯，分析师Mark Schroers指出，谈到法国局势与债券收益率时，拉加德表示，全球债券收益率曲线长端收益率均有所上升，高负债国家必须将利率走高的因素纳入考量。但她同时强调，欧洲央行拥有应对市场无序、非合理波动的工具",
+   "link": "https://flash.jin10.com/detail/20261029222944344800",
+   "published": "2026-10-29T14:29:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：我提前卸任是为了能对非货币政策事务自由表达意见。",
+   "link": "https://flash.jin10.com/detail/20261029223010829800",
+   "published": "2026-10-29T14:30:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：从来不存在合适的离开时机。",
+   "link": "https://flash.jin10.com/detail/20261029223019608800",
+   "published": "2026-10-29T14:30:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：希望拥有参与非政策事务的自由。",
+   "link": "https://flash.jin10.com/detail/20261029223027509800",
+   "published": "2026-10-29T14:30:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：作为欧洲央行行长，我们有保持中立的义务。",
+   "link": "https://flash.jin10.com/detail/20261029223034599800",
+   "published": "2026-10-29T14:30:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：此时此刻，面对世界许多角落，我的发声有助于弘扬我心中珍视的原则。",
+   "link": "https://flash.jin10.com/detail/20261029223108516800",
+   "published": "2026-10-29T14:31:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：（关于法国政治）我无法保持中立。",
+   "link": "https://flash.jin10.com/detail/20261029223143701800",
+   "published": "2026-10-29T14:31:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：我看到真相常常遭到扭曲。",
+   "link": "https://flash.jin10.com/detail/20261029223217381800",
+   "published": "2026-10-29T14:32:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：寻找我的继任者的程序已经启动，候选人将比我更优秀；不必担心出现权力真空。",
+   "link": "https://flash.jin10.com/detail/20261029223230299800",
+   "published": "2026-10-29T14:32:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "欧洲央行行长拉加德：欧洲央行将以完全的连续性继续开展业务。",
+   "link": "https://flash.jin10.com/detail/20261029223311894800",
+   "published": "2026-10-29T14:33:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "国内新闻：",
+   "link": "https://flash.jin10.com/detail/20261029233944756800",
+   "published": "2026-10-29T15:39:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "国家博弈",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【荷兰国际：欧洲央行维持利率不变，因能源冲击的连锁影响有限】金十数据10月29日讯，荷兰国际经济学家卡斯滕·布热斯基在一份报告中表示，欧洲央行维持利率不变的主要依据是，能源价格上涨尚未引发明显的连锁价格效应。与此同时，债券收益率上升已经收紧金融条件。布热斯基表示：“债券市场已经接",
+   "link": "https://flash.jin10.com/detail/20261029234234425800",
+   "published": "2026-10-29T15:42:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【消息称欧洲央行官员预计12月加息，随后暂停加息】金十数据10月29日讯，据路透社报道，三位在会议结束后受访的决策者表示，欧洲央行决策者预计将在12月加息，以应对能源价格推动的高通胀，随后暂停加息，因为债券收益率上升预计将拖累经济增长并抑制通胀。欧洲央行周四如市场普遍预期般维持利",
+   "link": "https://flash.jin10.com/detail/20261029234458898800",
+   "published": "2026-10-29T15:44:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 8,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "拉加德",
+   "meaning": "把通胀归因到外面——意思是\"不是我们放水放的\"，为不加息留理由",
+   "meaning_lean": "鸽",
+   "meaning_id": "energy_driven"
   }
  ],
- "fetched_at": "2026-10-29T13:07:51Z"
+ "fetched_at": "2026-10-29T18:57:15Z"
 }
