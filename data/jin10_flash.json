@@ -3665,7 +3665,832 @@
    "meaning": "把通胀归因到外面——意思是\"不是我们放水放的\"，为不加息留理由",
    "meaning_lean": "鸽",
    "meaning_id": "energy_driven"
+  },
+  {
+   "title": "日本央行行长植田和男：预计日本经济将继续温和增长。",
+   "link": "https://flash.jin10.com/detail/20261030143311838800",
+   "published": "2026-10-30T06:33:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：政府措施、宽松货币条件看来正强力支撑经济。",
+   "link": "https://flash.jin10.com/detail/20261030143419427800",
+   "published": "2026-10-30T06:34:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：中长期通胀预期约为2%。",
+   "link": "https://flash.jin10.com/detail/20261030143541155800",
+   "published": "2026-10-30T06:35:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：核心CPI通胀水平总体符合2%物价稳定目标，预计将维持在该水平附近。",
+   "link": "https://flash.jin10.com/detail/20261030143600077800",
+   "published": "2026-10-30T06:36:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：日本央行将继续上调政策利率，并根据经济活动、物价及金融形势发展，调整货币宽松程度。",
+   "link": "https://flash.jin10.com/detail/20261030143733552800",
+   "published": "2026-10-30T06:37:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：将基础通胀稳定在2%左右的水平很重要。",
+   "link": "https://flash.jin10.com/detail/20261030143754154800",
+   "published": "2026-10-30T06:37:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：日本金融环境仍然宽松。",
+   "link": "https://flash.jin10.com/detail/20261030143803568800",
+   "published": "2026-10-30T06:38:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：将关注中东冲突、人工智能需求及外汇走势的影响。",
+   "link": "https://flash.jin10.com/detail/20261030144002952800",
+   "published": "2026-10-30T06:40:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链",
+    "地缘链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：日本央行出售日本房地产投资信托（J-REIT）的步伐没有变化。",
+   "link": "https://flash.jin10.com/detail/20261030144015272800",
+   "published": "2026-10-30T06:40:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【德商银行：日本央行12月加息已几乎被市场完全消化】金十数据10月30日讯，德国商业银行分析师Michael Pfister指出，日本央行继9月加息后维持利率不变，但通过暗示潜在价格压力已达到2%的通胀目标，释放了鹰派信号。市场认为，日本央行12月进一步加息的可能性越来越大，且这",
+   "link": "https://flash.jin10.com/detail/20261030144121499800",
+   "published": "2026-10-30T06:41:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：各项政府措施将刺激经济，推动实现2%物价目标。",
+   "link": "https://flash.jin10.com/detail/20261030144139516800",
+   "published": "2026-10-30T06:41:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【德商银行：日本央行12月加息已几乎被市场完全消化】金十数据10月30日讯，德国商业银行分析师Michael Pfister指出，日本央行继9月加息后维持利率不变，但通过暗示潜在价格压力已达到2%的通胀目标，释放了鹰派信号。市场认为，日本央行12月进一步加息的可能性越来越大，且这",
+   "link": "https://flash.jin10.com/detail/20261030144142123800",
+   "published": "2026-10-30T06:41:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：剔除特殊因素后的CPI一直保持较高增长。",
+   "link": "https://flash.jin10.com/detail/20261030144352848800",
+   "published": "2026-10-30T06:43:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：所有委员一致认为，潜在通胀已达到2%。不能容忍潜在通胀进一步上升。",
+   "link": "https://flash.jin10.com/detail/20261030144500468800",
+   "published": "2026-10-30T06:45:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：（被问及日本央行今日为何维持政策利率不变时）需要进一步关注风险以及金融环境对经济和物价的影响。",
+   "link": "https://flash.jin10.com/detail/20261030144616348800",
+   "published": "2026-10-30T06:46:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：将监测各类数据，以判断趋势通胀是否已企稳。",
+   "link": "https://flash.jin10.com/detail/20261030144824477800",
+   "published": "2026-10-30T06:48:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：每次会议都将密切关注经济和通胀走势。",
+   "link": "https://flash.jin10.com/detail/20261030144914143800",
+   "published": "2026-10-30T06:49:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "现在不动",
+   "meaning_lean": "中",
+   "meaning_id": "closely_monitoring"
+  },
+  {
+   "title": "日本央行行长植田和男：同样重要的是，工资上涨今后能否成为常态。",
+   "link": "https://flash.jin10.com/detail/20261030144925587800",
+   "published": "2026-10-30T06:49:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：将在每次会议上讨论加息必要性。",
+   "link": "https://flash.jin10.com/detail/20261030144947094800",
+   "published": "2026-10-30T06:49:47Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：尚未宣布已实现通胀目标，因为我们认为通胀稳定、可持续地维持在2%附近很重要。",
+   "link": "https://flash.jin10.com/detail/20261030145120141800",
+   "published": "2026-10-30T06:51:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：将灵活调整货币政策，主动引导通胀向2%靠拢，而非被动等待。",
+   "link": "https://flash.jin10.com/detail/20261030145131104800",
+   "published": "2026-10-30T06:51:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：日本央行不打算在某个时点正式宣布已实现物价目标。",
+   "link": "https://flash.jin10.com/detail/20261030145200389800",
+   "published": "2026-10-30T06:52:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：需要确认潜在通胀率将维持在2%。",
+   "link": "https://flash.jin10.com/detail/20261030145228496800",
+   "published": "2026-10-30T06:52:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：与一个月前相比，超调风险未必已经上升。",
+   "link": "https://flash.jin10.com/detail/20261030145417211800",
+   "published": "2026-10-30T06:54:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：是否宣布通缩结束取决于政府。",
+   "link": "https://flash.jin10.com/detail/20261030145458093800",
+   "published": "2026-10-30T06:54:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：不会就是否修订与政府的联合协议置评。",
+   "link": "https://flash.jin10.com/detail/20261030145549222800",
+   "published": "2026-10-30T06:55:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：中长期通胀预期稳定在2%的程度仍然非常低。",
+   "link": "https://flash.jin10.com/detail/20261030145842342800",
+   "published": "2026-10-30T06:58:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：将在每次货币政策会议上审视基线情景风险是否成为现实，包括12月会议。",
+   "link": "https://flash.jin10.com/detail/20261030150234950800",
+   "published": "2026-10-30T07:02:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：对于稳定通胀预期而言，货币政策是否适时适当地执行至为重要。",
+   "link": "https://flash.jin10.com/detail/20261030150300173800",
+   "published": "2026-10-30T07:03:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：（当被问及全球央行加息的影响）将审视中长期债券市场、外汇等各种机制。",
+   "link": "https://flash.jin10.com/detail/20261030150320909800",
+   "published": "2026-10-30T07:03:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：需要密切关注银行放贷和企业融资状况。",
+   "link": "https://flash.jin10.com/detail/20261030150434505800",
+   "published": "2026-10-30T07:04:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "现在不动",
+   "meaning_lean": "中",
+   "meaning_id": "closely_monitoring"
+  },
+  {
+   "title": "日本央行行长植田和男：在决定货币政策时需要观察过去加息的累计效应及金融条件受到的影响。",
+   "link": "https://flash.jin10.com/detail/20261030150454112800",
+   "published": "2026-10-30T07:04:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：听闻部分中小企业在获取融资方面面临困难。",
+   "link": "https://flash.jin10.com/detail/20261030150614245800",
+   "published": "2026-10-30T07:06:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【日本央行行长植田和男试图淡化“通胀胜利宣言”，称应由政府来定调】金十数据10月30日讯，日本央行行长植田和男在新闻发布会上表示，尚不能宣布已实现通胀目标，认为让通胀稳定且可持续地保持在2%左右非常重要。日本央行不打算在某个时候正式宣布已实现物价目标，宣布结束通缩由政府决定。分析",
+   "link": "https://flash.jin10.com/detail/20261030150917235800",
+   "published": "2026-10-30T07:09:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：认为超宽松货币政策已显现一些积极效果，但不足以像最初预期那样在两年内将通胀推升至2%。",
+   "link": "https://flash.jin10.com/detail/20261030151003611800",
+   "published": "2026-10-30T07:10:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：9月和10月的情况已经表明，能源和材料价格上涨正在推高消费价格。",
+   "link": "https://flash.jin10.com/detail/20261030151126204800",
+   "published": "2026-10-30T07:11:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "把通胀归因到外面——意思是\"不是我们放水放的\"，为不加息留理由",
+   "meaning_lean": "鸽",
+   "meaning_id": "energy_driven"
+  },
+  {
+   "title": "日本央行行长植田和男：需要适当的货币政策来赢得公众信任。",
+   "link": "https://flash.jin10.com/detail/20261030151356934800",
+   "published": "2026-10-30T07:13:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：无法事先确定加息的具体间隔，例如每隔几个月加息一次。",
+   "link": "https://flash.jin10.com/detail/20261030152054986800",
+   "published": "2026-10-30T07:20:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：货币政策调整对金融状况的影响未必会显化。",
+   "link": "https://flash.jin10.com/detail/20261030152909296800",
+   "published": "2026-10-30T07:29:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：意识到中性利率与政策利率之间仍存在差距。",
+   "link": "https://flash.jin10.com/detail/20261030152939175800",
+   "published": "2026-10-30T07:29:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美元：",
+   "link": "https://flash.jin10.com/detail/20261030153113459800",
+   "published": "2026-10-30T07:31:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "日本链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：日本金融环境仍保持宽松。",
+   "link": "https://flash.jin10.com/detail/20261030153445479800",
+   "published": "2026-10-30T07:34:45Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：密切关注春季薪资谈判。",
+   "link": "https://flash.jin10.com/detail/20261030153515930800",
+   "published": "2026-10-30T07:35:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "现在不动",
+   "meaning_lean": "中",
+   "meaning_id": "closely_monitoring"
+  },
+  {
+   "title": "日本央行行长植田和男：需要年度劳资薪资谈判取得进展，使2%的通胀水平能够稳定形成。",
+   "link": "https://flash.jin10.com/detail/20261030153633870800",
+   "published": "2026-10-30T07:36:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "日本央行行长植田和男：基础通胀率达到2%是一个里程碑。",
+   "link": "https://flash.jin10.com/detail/20261030154352397800",
+   "published": "2026-10-30T07:43:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "日本链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "植田和男",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-10-30T00:18:16Z"
+ "fetched_at": "2026-10-30T13:07:59Z"
 }

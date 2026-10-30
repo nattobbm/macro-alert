@@ -113,3 +113,4 @@
 {"ts": "2026-10-29T13:07:55Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 579, "head": "*【10\\-29】今天没有新越线。*"}
 {"ts": "2026-10-29T18:57:20Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:央行欠账的紧缩（泰勒缺口>100bp）|not_fired->fired"], "muted": [], "chars": 604, "head": "*【10\\-29】今天没有新越线。*"}
 {"ts": "2026-10-30T00:18:21Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:30年重上8-18前高（财政压制失败）|not_fired->fired", "node:30年利率回到高点?|near->crossed"], "muted": [], "chars": 591, "head": "*【10\\-30】30年利率回到高点?越线。*"}
+{"ts": "2026-10-30T13:08:04Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 485, "head": "*【10\\-30】今天没有新越线。*"}
