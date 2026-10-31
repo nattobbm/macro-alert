@@ -115,3 +115,4 @@
 {"ts": "2026-10-30T00:18:21Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:30年重上8-18前高（财政压制失败）|not_fired->fired", "node:30年利率回到高点?|near->crossed"], "muted": [], "chars": 591, "head": "*【10\\-30】30年利率回到高点?越线。*"}
 {"ts": "2026-10-30T13:08:04Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 485, "head": "*【10\\-30】今天没有新越线。*"}
 {"ts": "2026-10-30T18:35:00Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:SPX单日大幅下跌|not_fired->fired", "node:大盘单日大跌|quiet->crossed"], "muted": [], "chars": 514, "head": "*【10\\-30】大盘单日大跌越线。*"}
+{"ts": "2026-10-31T00:02:35Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["node:30年利率回到高点?", "node:大盘单日大跌"], "chars": 498, "head": "*【10\\-31】今天没有新越线。*"}
