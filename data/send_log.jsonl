@@ -120,3 +120,4 @@
 {"ts": "2026-11-03T02:38:47Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["node:真利率(扣掉通胀)"], "chars": 566, "head": "*【11\\-03】今天没有新越线。*"}
 {"ts": "2026-11-03T14:09:26Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 602, "head": "*【11\\-03】今天没有新越线。*"}
 {"ts": "2026-11-03T19:04:09Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 595, "head": "*【11\\-03】今天没有新越线。*"}
+{"ts": "2026-11-03T20:05:59Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|skipped->fired"], "muted": [], "chars": 593, "head": "*【11\\-03】今天没有新越线。*"}
