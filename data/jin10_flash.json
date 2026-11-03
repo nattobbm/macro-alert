@@ -45,6 +45,424 @@
    "kind": "speech"
   }
  ],
- "speeches": [],
- "fetched_at": "2026-11-03T02:38:43Z"
+ "speeches": [
+  {
+   "title": "澳洲联储主席布洛克：加息对于降低通胀是必要的。",
+   "link": "https://flash.jin10.com/detail/20261103123135937800",
+   "published": "2026-11-03T04:31:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：经济增长需放缓，失业率需进一步上升（以降低通胀）。",
+   "link": "https://flash.jin10.com/detail/20261103123425883800",
+   "published": "2026-11-03T04:34:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：现在承受一些痛苦，将防止未来出现更多痛苦。",
+   "link": "https://flash.jin10.com/detail/20261103123531637800",
+   "published": "2026-11-03T04:35:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：收紧政策旨在应对国内产能压力。",
+   "link": "https://flash.jin10.com/detail/20261103123607212800",
+   "published": "2026-11-03T04:36:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：投票支持维持利率不变的委员认为存在更多下行风险。",
+   "link": "https://flash.jin10.com/detail/20261103123646255800",
+   "published": "2026-11-03T04:36:46Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：投票支持维持利率不变的委员认为，他们需要再等待一段时间以获取更多数据。",
+   "link": "https://flash.jin10.com/detail/20261103123713542800",
+   "published": "2026-11-03T04:37:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：未来一年的通胀水平已基本定型。",
+   "link": "https://flash.jin10.com/detail/20261103123818703800",
+   "published": "2026-11-03T04:38:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：这并非一种好局面。",
+   "link": "https://flash.jin10.com/detail/20261103123907912800",
+   "published": "2026-11-03T04:39:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：不知道下一次利率举措会是什么，不提供指引。",
+   "link": "https://flash.jin10.com/detail/20261103124131848800",
+   "published": "2026-11-03T04:41:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：目前最好的做法可能是暂停行动并评估即将公布的数据。",
+   "link": "https://flash.jin10.com/detail/20261103124220540800",
+   "published": "2026-11-03T04:42:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：货币政策将会奏效，但需要时间才能完全传导。",
+   "link": "https://flash.jin10.com/detail/20261103124315112800",
+   "published": "2026-11-03T04:43:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：失业率依然相对较低，就业仍在增长。",
+   "link": "https://flash.jin10.com/detail/20261103124440931800",
+   "published": "2026-11-03T04:44:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：目前尚未看到经济出现裂痕。",
+   "link": "https://flash.jin10.com/detail/20261103124456285800",
+   "published": "2026-11-03T04:44:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：支持维持利率不变的委员并未排除加息可能，只是希望看到更多数据。",
+   "link": "https://flash.jin10.com/detail/20261103124832656800",
+   "published": "2026-11-03T04:48:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：我们无意让经济陷入衰退。",
+   "link": "https://flash.jin10.com/detail/20261103125044911800",
+   "published": "2026-11-03T04:50:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：目前不存在工资-价格螺旋上升。",
+   "link": "https://flash.jin10.com/detail/20261103125442536800",
+   "published": "2026-11-03T04:54:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：澳元跟随利差走势，对进口价格的传导存在滞后。",
+   "link": "https://flash.jin10.com/detail/20261103130515365800",
+   "published": "2026-11-03T05:05:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：这次加息可能还不够，但目前并不明显。",
+   "link": "https://flash.jin10.com/detail/20261103130704034800",
+   "published": "2026-11-03T05:07:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：并不一定会再次加息，旨在保留政策选项。",
+   "link": "https://flash.jin10.com/detail/20261103130709079800",
+   "published": "2026-11-03T05:07:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【澳洲联储主席布洛克：加息旨在遏制通胀，不排除进一步收紧政策】金十数据11月3日讯，澳洲联储主席布洛克在货币政策新闻发布会上表示，加息对于降低通胀是必要的，经济增长需要放缓，失业率也需要进一步上升（以降低通胀）。她强调，现在承受一些痛苦，将避免未来出现更大痛苦。此次收紧政策主要是",
+   "link": "https://flash.jin10.com/detail/20261103131619260800",
+   "published": "2026-11-03T05:16:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 6,
+    "dove": 1,
+    "lean": "鹰"
+   },
+   "speaker": "布洛克",
+   "meaning": "这次会议不会变——他在给\"维持不变\"找台阶",
+   "meaning_lean": "鸽",
+   "meaning_id": "take_time_to_assess"
+  },
+  {
+   "title": "澳洲联储主席布洛克：不确定利率需要升至多高。",
+   "link": "https://flash.jin10.com/detail/20261103131858122800",
+   "published": "2026-11-03T05:18:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：委员会做出政策选择，而非试图引导预期。",
+   "link": "https://flash.jin10.com/detail/20261103132116873800",
+   "published": "2026-11-03T05:21:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "澳洲联储主席布洛克：政策前景仍未明确，市场将自行解读。",
+   "link": "https://flash.jin10.com/detail/20261103132238782800",
+   "published": "2026-11-03T05:22:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "布洛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  }
+ ],
+ "fetched_at": "2026-11-03T14:09:21Z"
 }
