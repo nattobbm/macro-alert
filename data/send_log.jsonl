@@ -117,3 +117,4 @@
 {"ts": "2026-10-30T18:35:00Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:SPX单日大幅下跌|not_fired->fired", "node:大盘单日大跌|quiet->crossed"], "muted": [], "chars": 514, "head": "*【10\\-30】大盘单日大跌越线。*"}
 {"ts": "2026-10-31T00:02:35Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["node:30年利率回到高点?", "node:大盘单日大跌"], "chars": 498, "head": "*【10\\-31】今天没有新越线。*"}
 {"ts": "2026-11-02T14:08:20Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 462, "head": "*【11\\-02】今天没有新越线。*"}
+{"ts": "2026-11-03T02:38:47Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["node:真利率(扣掉通胀)"], "chars": 566, "head": "*【11\\-03】今天没有新越线。*"}
