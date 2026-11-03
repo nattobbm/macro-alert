@@ -43,6 +43,17 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-11-04",
+   "time_bj": "10:00",
+   "title": "国家发展改革委举行新闻发布会",
+   "speaker": null,
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -464,5 +475,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-03T14:09:21Z"
+ "fetched_at": "2026-11-03T19:04:04Z"
 }
