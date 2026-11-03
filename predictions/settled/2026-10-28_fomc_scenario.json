@@ -4,7 +4,7 @@
  "created_by": "Claude（代签）",
  "signed_by": "Claude",
  "signer_note": "Momo 2026-09-25 对「10-28 预测卡还没签」回复「做」= 授权代签。她可以在 10-27 收盘前另加 momo_ranking 与一句理由，两份分开记分；本卡 Claude 这一栏签发后不改。",
- "status": "LOCKED",
+ "status": "SETTLED",
  "format": "scenario_map_3layer",
  "format_note": "9-20 定的三层：①方向（计分：加没加）②办法（不计分：怎么说、市场怎么走，只记录对照）③意外变量（事前登记，发生了只记录不改签）。另加「预计多大」一格，取波动日历。",
  "question": "10月FOMC（2026-10-27/28，决议 10-28 14:00 ET）：会不会再加 25bp？",
@@ -117,5 +117,38 @@
  },
  "signed_at": "2026-09-28T05:20:58Z",
  "_lock_note": "签发后 layer1_direction / claude_ranking / reasoning_ex_ante / ex_ante_snapshot / scenarios 一律不得修改；git commit 时间戳即签发时刻证明。",
- "evidence_log": []
+ "evidence_log": [
+  {
+   "logged_at": "2026-11-03",
+   "who": "Claude",
+   "what": "U2 触发：布伦特 10-22 113.2、10-23 116.7，重回 110 以上",
+   "bearing": "方向不确定（登记口径）",
+   "source": "data/latest.json series.brent"
+  }
+ ],
+ "outcome": "S2_维持但保留加息",
+ "outcome_binary": 0,
+ "settle_date_actual": "2026-10-28",
+ "settled_at": "2026-11-03T00:00:00Z",
+ "settled_by": "Claude（11-03 补结算，晚了 6 天：10-07 后没人结）",
+ "actual_decision": "维持 3.75%-4.00%，10-2（库克、哈马克反对，主张加 25bp）。声明：「The accumulation of more information will help the Committee determine the policy stance appropriate」，没有转软，也没有给加息指引。会后市场押 12 月加息。",
+ "actual_path": {
+  "_note": "10-28 收盘对 10-27 收盘，取 data/latest.json series（只并列记录，不计分）",
+  "spx": "+0.28%",
+  "dxy": "-0.13%",
+  "gold": "-0.56%",
+  "us30y": "+7bp",
+  "us10y": "+6bp",
+  "vix": "-3.5%",
+  "usdjpy": "+0.30%"
+ },
+ "scenario_match": "S2（维持但保留加息）。我们排第一的 S1 没发生；S3（转软）也没发生——两张反对票都是要加。",
+ "market_scorecard": "市场对：ZQ 10-27 加息概率只有 8%（data/fedwatch/2026-10-27.json）。签发时（9-25）是 62%，一个月里从六成跌到不到一成，我们没跟着改，按纪律也不该改。",
+ "failure_mode": {
+  "类型": "时点错（方向没错：委员会里确实有人要加，市场押 12 月）",
+  "说明": "签发时 ZQ 62%，我们给 0.62 和市场一样。之后 10 月数据和油价没把定价推上去，到会前只剩 8%。卡上 U2「布伦特重回 110 以上」10-22 起成真（10-23 116.7），按登记它指向\"方向不确定\"，确实没帮 S1。",
+  "可迁移结论": "和市场同概率签卡等于没信息量；下一张卡要么给出和市场不同的理由，要么写清\"我们只跟市场\"。"
+ },
+ "brier": 0.3844,
+ "what_we_learned": "第三张议息卡：8-28 错、9-16 错、10-28 错（时点）。三张都在\"沃什下一步\"上押早了或押反了。"
 }

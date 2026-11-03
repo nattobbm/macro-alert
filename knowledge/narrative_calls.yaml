@@ -119,9 +119,13 @@ calls:
     settle_date: "2026-10-28"
     market_ref: fomc_next
     our_ref: 2026-10-28_fomc_scenario
-    outcome: null
-    settled_at: null
-    settle_note: null
+    outcome: miss
+    settled_at: "2026-11-03T00:00:00Z"
+    settle_note: >
+      10-28 维持 3.75%-4.00%，10-2（库克、哈马克主张加 25bp）。她说的"推动 10 月再加一次"没发生，判据写的是"维持＝她错"。
+      三方同表：市场对（ZQ 10-27 只押 8% 加息），我们的卡也错（排 S1 加息，0.62），她错。
+      她事前就松了口：10.1 综述加了对冲，10.23 改成「不论10月份加不加 十 2月份加不加 美联储接下来的整体思路是加息的思路」；会后 10.30 / 11.1 / 11.3 一字未提。
+      原句是规范性措辞「如果我是卧时〔疑为 沃什〕 我应该会推动」，不是"沃什会"。详见 资产库/内容库/2026-11-03_艾丽补拆_0909-1103_v0.md §5.3。
 
   - id: alie_2026-09-11_yen_160_intervention
     who: 艾丽
@@ -162,7 +166,80 @@ calls:
     settle_date: "2026-11-03"
     market_ref: none
     our_ref: null
+    outcome: hit
+    settled_at: "2026-11-03T00:00:00Z"
+    settle_note: >
+      11-02 美军对伊朗克什姆岛（霍尔木兹海峡内，伊朗本土）实施有限空袭，美方称"防御性"，伊朗官媒报五声爆炸（CNN / NBC / ABC / The National，11-02~03）。
+      满足判据第一项"美或以对伊朗本土新一轮空袭"，在 11-03 截止前一天，事件层算她说对。WSJ 另报近几周有小规模、刻意保密的打击。
+      但机制层她没说中：她 9-30 说的是伊朗"孤注一掷"主动升级；实际是美方主动、伊朗淡化（副外长"保留自卫权利"）。11.3 她自己也改口成美国动手、伊朗示软。
+      布伦特没有单日涨 ≥8%：10 月单日最大涨幅约 4%（10-08 +4.1%、10-22 +4.0%）；11-02 反而跌 10.9%（117.6 → 104.8）。
+      登记时背景：9-26 特朗普拒绝伊朗七天停火方案；9-28 鲁比奥要求伊朗驻联合国代表团离境；10-01 布伦特主力 99.5。
+
+  # ── 2026-11-03 批次：她 9-09 → 11-03 的 46 集云端精读，见 资产库/内容库/2026-11-03_艾丽补拆_0909-1103_v0.md §5.2 ──
+  # P2 / P3 是 11-03 才登的（晚于结果），但原话日期在前、两句方向相反、一起登一起结，不存在挑对的登。
+  - id: alie_2026-10-13_no_strike_before_midterm
+    who: 艾丽
+    who_en: Alie (Chinese macro commentator)
+    said_on: "2026-10-13"
+    source: "「艾丽的无废话财经」10.13 “Garbage Time”"
+    event: 11-03 中期选举前美国会不会对伊朗直接动手
+    event_en: Does the US strike Iran directly before the Nov 3 midterms
+    judgment: 特朗普肯定不愿意在中期选举前直接出手（例外：对方"过度了"或美方人员伤亡）
+    judgment_en: Trump certainly doesn't want to strike before the midterms (unless Iran goes too far or US personnel are hit)
+    reasoning: 选前是 garbage time，打了推高油价和通胀，对选举不利；第三艘航母 11 月中旬才到
+    quote: "从特来说 他肯定是不愿意在中期选举 之前就直接出手的"
+    criterion: 说对＝10-13 到 11-03 美国没有对伊朗本土实施军事打击；说错＝有
+    criterion_en: hit = no US strike on Iranian territory Oct 13 - Nov 3; miss = a strike
+    settle_date: "2026-11-03"
+    market_ref: none
+    our_ref: null
+    outcome: miss
+    settled_at: "2026-11-03T00:00:00Z"
+    settle_note: >
+      11-02 美军空袭克什姆岛（CNN / NBC / ABC，11-02）。说错。
+      她留的例外有一半沾边：美方说是回应伊朗向美军飞机开火（"防御性"），但没有美方伤亡报道。按判据仍记 miss，例外写在这里备查。
+      隔一天她自己说了反话，见下一条 alie_2026-10-14_strike_before_midterm。
+
+  - id: alie_2026-10-14_strike_before_midterm
+    who: 艾丽
+    who_en: Alie (Chinese macro commentator)
+    said_on: "2026-10-14"
+    source: "「艾丽的无废话财经」10.14 中期选举之前会不会有“黑天鹅”事件？"
+    event: 11-03 中期选举前美国会不会对伊朗直接动手
+    event_en: Does the US strike Iran directly before the Nov 3 midterms
+    judgment: 很有可能在中期选举前，特朗普就会选择动手
+    judgment_en: Quite likely Trump strikes before the midterms
+    reasoning: 同集又降为条件句「对于当前的特政府其实是可以提前动手的」
+    quote: "就是很有可能在中期选举之前 特就会选择动手的"
+    criterion: 说对＝10-14 到 11-03 美国对伊朗本土实施军事打击；说错＝没有
+    criterion_en: hit = US strike on Iranian territory Oct 14 - Nov 3; miss = none
+    settle_date: "2026-11-03"
+    market_ref: none
+    our_ref: null
+    outcome: hit
+    settled_at: "2026-11-03T00:00:00Z"
+    settle_note: >
+      11-02 美军空袭克什姆岛，说对。和前一天 10.13 那句方向相反，两句必有一对一错——这一对本身就是她"两头都说过"的例子。
+      规模是"有限、防御性"，美方说不代表恢复大规模作战（NBC / ABC）。
+
+  - id: alie_2026-11-03_strike_escalation_post_midterm
+    who: 艾丽
+    who_en: Alie (Chinese macro commentator)
+    said_on: "2026-11-03"
+    source: "「艾丽的无废话财经」11.3（无副标题）"
+    event: 中期选举后两个月内美以会不会加大对伊朗的打击
+    event_en: Do the US/Israel escalate strikes on Iran within two months after the midterms
+    judgment: 11-03 一过，美以很有可能进一步加大对伊朗的打击（她说的窗口是到新一届国会 1 月 9、10 号就职）
+    judgment_en: Right after Nov 3, the US and Israel quite likely step up strikes on Iran (her window runs to the new Congress in early Jan)
+    reasoning: 选前怕油价和通胀，选后约束消失；谈判谈不成、谈成也难执行；11-02 已先打了克什姆岛
+    quote: "11月3号一过 梅姨〔疑为 美以〕很有可能就会进一步的加大 对他们的打击的"
+    criterion: 说对＝11-04 到 2027-01-10 出现比 11-02 克什姆岛更大的打击，任一即可：美或以对伊朗本土多点或连续多日空袭、伊朗对海湾或以色列发射导弹、霍尔木兹通行船只再降一半以上（IMF PortWatch 周均）、布伦特主力单日涨 ≥8%；说错＝全部没有。判据是我们补的，她没给
+    criterion_en: >-
+      hit = between Nov 4 and Jan 10 any strike larger than the Nov 2 Qeshm raid: multi-site or multi-day US/Israeli strikes on Iran, Iranian missiles at Gulf states or Israel, Hormuz transits halve again (PortWatch weekly), or Brent front-month up >=8% in a day; miss = none
+    settle_date: "2027-01-10"
+    market_ref: none
+    our_ref: null
     outcome: null
     settled_at: null
     settle_note: >
-      登记时背景：9-26 特朗普拒绝伊朗七天停火方案；9-28 鲁比奥要求伊朗驻联合国代表团离境；10-01 布伦特主力 99.5。
+      登记时读数：11-03 布伦特 101.67（11-02 单日 -10.9%）；11-02 美军有限空袭克什姆岛；伊朗总统佩泽希齐扬释放谈判信号（半岛，11-03）。

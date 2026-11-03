@@ -19,11 +19,21 @@ def scorecard(pred_dir: str | Path) -> dict:
             j = json.loads(f.read_text(encoding="utf-8"))
         except Exception:
             continue
-        p, o = j.get("probability"), j.get("outcome")
+        # 2026-11-03：三层格式的概率在 layer1_direction，结局是情景名，0/1 放 outcome_binary
+        p = j.get("probability")
+        if p is None:
+            p = (j.get("layer1_direction") or {}).get("probability_hike")
+        o = j.get("outcome_binary", j.get("outcome"))
         if p is not None and o in (0, 1):
             briers.append((p - o) ** 2)
-        settled.append({"id": j.get("id"), "outcome": o, "probability": p,
-                        "quality_self_score": j.get("quality_self_score")})
+        settled.append({"id": j.get("id"), "outcome": j.get("outcome"), "probability": p,
+                        "quality_self_score": j.get("quality_self_score"),
+                        # 三方对照里"我们"那一栏结算后也要还在（以前只认 open，结了就消失）
+                        "ranking": j.get("momo_ranking") or j.get("claude_ranking"),
+                        "scenario_labels": {k.split("_", 1)[0]: k.split("_", 1)[1] if "_" in k else k
+                                            for k in (j.get("scenarios") or {}).keys()},
+                        "signed_at": (j.get("signed_at") or j.get("created_at") or "")[:10],
+                        "reasoning": j.get("reasoning_ex_ante")})
 
     opens = []
     for f in open_files:

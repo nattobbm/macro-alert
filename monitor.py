@@ -1666,7 +1666,7 @@ def main():
     # 市场那一栏前端从 market_odds 现取（这样盘中轻量刷新也能跟上），这里只拼叙事和我们。
     try:
         _nc = yaml.safe_load((ROOT / "knowledge" / "narrative_calls.yaml").read_text(encoding="utf-8")) or {}
-        _open_by_id = {o["id"]: o for o in scorecard_data.get("open_list", [])}
+        _open_by_id = {o["id"]: o for o in scorecard_data.get("settled_list", []) + scorecard_data.get("open_list", [])}
         showdown = []
         for c in _nc.get("calls", []):
             ours = _open_by_id.get(c.get("our_ref")) if c.get("our_ref") else None
