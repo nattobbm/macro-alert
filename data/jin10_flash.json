@@ -54,6 +54,94 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-11-05",
+   "time_bj": "15:00",
+   "title": "商务部召开例行新闻发布会",
+   "speaker": null,
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-05",
+   "time_bj": "20:00",
+   "title": "英国央行公布利率决议",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-11-05",
+   "time_bj": "20:30",
+   "title": "英国央行行长贝利召开新闻发布会",
+   "speaker": "贝利",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-05",
+   "time_bj": "20:40",
+   "title": "瑞士央行行长施莱格尔发表讲话",
+   "speaker": "施莱格尔",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-05",
+   "time_bj": "21:50",
+   "title": "美联储哈马克发表讲话",
+   "speaker": "哈马克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-05",
+   "time_bj": "22:10",
+   "title": "美联储巴尔金发表讲话",
+   "speaker": "巴尔金",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-05",
+   "time_bj": "23:30",
+   "title": "加拿大央行行长麦克勒姆出席听证会",
+   "speaker": "麦克勒姆",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-06",
+   "time_bj": "02:00",
+   "title": "欧洲央行行长拉加德、管委多伦茨发表讲话",
+   "speaker": null,
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -475,5 +563,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-04T14:09:04Z"
+ "fetched_at": "2026-11-04T20:24:54Z"
 }

@@ -123,3 +123,4 @@
 {"ts": "2026-11-03T20:05:59Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|skipped->fired"], "muted": [], "chars": 593, "head": "*【11\\-03】今天没有新越线。*"}
 {"ts": "2026-11-04T00:53:35Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:10年期实际利率突破|not_fired->fired", "node:真利率(扣掉通胀)|near->crossed"], "muted": [], "chars": 678, "head": "*【11\\-04】真利率\\(扣掉通胀\\)越线。*"}
 {"ts": "2026-11-04T14:09:10Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 494, "head": "*【11\\-04】今天没有新越线。*"}
+{"ts": "2026-11-04T20:25:00Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired"], "muted": [], "chars": 550, "head": "*【11\\-04】今天没有新越线。*"}
