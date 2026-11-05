@@ -561,7 +561,513 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：我认为有理由进一步加息。",
+   "link": "https://flash.jin10.com/detail/20261105200106234800",
+   "published": "2026-11-05T12:01:06Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：目前能源价格已在传导过程中形成足够的通胀压力，足以支持加息。",
+   "link": "https://flash.jin10.com/detail/20261105200216847800",
+   "published": "2026-11-05T12:02:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：除非伊朗战争得到解决，否则这不太可能是最后一次加息。",
+   "link": "https://flash.jin10.com/detail/20261105200314115800",
+   "published": "2026-11-05T12:03:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：未来并非必然会出现一连串加息。",
+   "link": "https://flash.jin10.com/detail/20261105200639498800",
+   "published": "2026-11-05T12:06:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：近期GDP增长中，由人工智能驱动的部分略低于五分之一。",
+   "link": "https://flash.jin10.com/detail/20261105204203787800",
+   "published": "2026-11-05T12:42:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：市场曲线已计入明年进一步收紧政策，但这主要反映的是风险溢价，而非预期利率，这似乎是对能源风险的合理反映。",
+   "link": "https://flash.jin10.com/detail/20261105204905375800",
+   "published": "2026-11-05T12:49:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：冲突方面的好消息将意味着CPI在一定程度上见顶于5%以下。",
+   "link": "https://flash.jin10.com/detail/20261105204927939800",
+   "published": "2026-11-05T12:49:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：近期油价下跌是利好消息。",
+   "link": "https://flash.jin10.com/detail/20261105204931503800",
+   "published": "2026-11-05T12:49:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：可能有必要进一步上调关键利率。",
+   "link": "https://flash.jin10.com/detail/20261105204933854800",
+   "published": "2026-11-05T12:49:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：过去48小时的新闻对前景有重要影响。",
+   "link": "https://flash.jin10.com/detail/20261105205148981800",
+   "published": "2026-11-05T12:51:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：即便我们事先知晓过去48小时内会发生什么，利率决策依然会如此。",
+   "link": "https://flash.jin10.com/detail/20261105205304944800",
+   "published": "2026-11-05T12:53:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：过去48小时内出现的令人振奋的消息，并不意味着我们可以断言未来无需再次加息。",
+   "link": "https://flash.jin10.com/detail/20261105205413869800",
+   "published": "2026-11-05T12:54:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：在冲突未解决的情况下，再次加息的理由充分。",
+   "link": "https://flash.jin10.com/detail/20261105205418164800",
+   "published": "2026-11-05T12:54:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：毫无疑问，最好的结果就是冲突得到解决。",
+   "link": "https://flash.jin10.com/detail/20261105205426771800",
+   "published": "2026-11-05T12:54:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：若冲突方面传来好消息，通胀可能更快回落。",
+   "link": "https://flash.jin10.com/detail/20261105205446249800",
+   "published": "2026-11-05T12:54:46Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：现在必须真正把重点放在结束这场冲突上。",
+   "link": "https://flash.jin10.com/detail/20261105205545783800",
+   "published": "2026-11-05T12:55:45Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：我认为我们并未行动过晚。",
+   "link": "https://flash.jin10.com/detail/20261105210457880800",
+   "published": "2026-11-05T13:04:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：我不会认同“两次行动即止”的观点。",
+   "link": "https://flash.jin10.com/detail/20261105210622701800",
+   "published": "2026-11-05T13:06:22Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：希望到12月我们能获得更多关于战争结果的信息。",
+   "link": "https://flash.jin10.com/detail/20261105211330303800",
+   "published": "2026-11-05T13:13:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "当被问及与欧盟建立更紧密关系的问题时，英国央行行长贝利表示，他支持加强贸易与开放。",
+   "link": "https://flash.jin10.com/detail/20261105211658307800",
+   "published": "2026-11-05T13:16:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：我们一直处于一个面临巨大供应冲击的环境之中。",
+   "link": "https://flash.jin10.com/detail/20261105211948627800",
+   "published": "2026-11-05T13:19:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "瑞士央行行长施莱格尔：本世纪迄今，瑞士央行已实现物价稳定目标。",
+   "link": "https://flash.jin10.com/detail/20261105204043252800",
+   "published": "2026-11-05T12:40:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施莱格尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "瑞士央行行长施莱格尔：与其他货币相比，瑞士法郎具有相对较强的避险属性。",
+   "link": "https://flash.jin10.com/detail/20261105204249278800",
+   "published": "2026-11-05T12:42:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施莱格尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "瑞士央行行长施莱格尔：我们的货币政策策略在广泛情形下均行之有效。",
+   "link": "https://flash.jin10.com/detail/20261105204257440800",
+   "published": "2026-11-05T12:42:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施莱格尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "瑞士央行行长施莱格尔：瑞士央行不主张使用前瞻性指引。",
+   "link": "https://flash.jin10.com/detail/20261105210721303800",
+   "published": "2026-11-05T13:07:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施莱格尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "瑞士央行行长施莱格尔：目前瑞士的通胀主要限于燃料和能源领域。",
+   "link": "https://flash.jin10.com/detail/20261105212715652800",
+   "published": "2026-11-05T13:27:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施莱格尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "瑞士央行行长施莱格尔：目前我们未看到瑞士物价压力出现扩散。",
+   "link": "https://flash.jin10.com/detail/20261105212758815800",
+   "published": "2026-11-05T13:27:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施莱格尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "瑞士央行行长施莱格尔：我们拥有在未来对抗通胀的正确工具。",
+   "link": "https://flash.jin10.com/detail/20261105212814007800",
+   "published": "2026-11-05T13:28:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施莱格尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-05T01:03:22Z"
+ "fetched_at": "2026-11-05T14:09:22Z"
 }
