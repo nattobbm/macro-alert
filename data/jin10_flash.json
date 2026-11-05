@@ -142,6 +142,50 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-11-06",
+   "time_bj": "08:00",
+   "title": "美联储洛根发表讲话",
+   "speaker": "洛根",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-06",
+   "time_bj": "22:10",
+   "title": "美联储穆萨莱姆发表讲话",
+   "speaker": "穆萨莱姆",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-07",
+   "time_bj": "00:00",
+   "title": "日本央行行长植田和男发表讲话",
+   "speaker": "植田和男",
+   "tags": [
+    "日本链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-07",
+   "time_bj": "01:15",
+   "title": "美联储理事鲍曼发表讲话",
+   "speaker": "鲍曼",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -1067,7 +1111,450 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：经济中的需求是稳健的，尽管部分行业并未感受到这一点。",
+   "link": "https://flash.jin10.com/detail/20261105220816964800",
+   "published": "2026-11-05T14:08:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：企业招聘仍然谨慎，但尚未开始裁员。",
+   "link": "https://flash.jin10.com/detail/20261105220849645800",
+   "published": "2026-11-05T14:08:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：企业面临成本压力。",
+   "link": "https://flash.jin10.com/detail/20261105220923338800",
+   "published": "2026-11-05T14:09:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：盈利依然强劲，这正鼓励企业投资并留住员工。",
+   "link": "https://flash.jin10.com/detail/20261105221001042800",
+   "published": "2026-11-05T14:10:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：过去18个月的成本压力（始于关税）具有广泛基础，企业认为不得不将其转嫁出去。",
+   "link": "https://flash.jin10.com/detail/20261105221320788800",
+   "published": "2026-11-05T14:13:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：政策路径十分明确；当前的问题在于节奏，采取渐进方式“合情合理”。",
+   "link": "https://flash.jin10.com/detail/20261105221554857800",
+   "published": "2026-11-05T14:15:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：预计通胀不会加速，但目前也看不出它会回落。",
+   "link": "https://flash.jin10.com/detail/20261105221601982800",
+   "published": "2026-11-05T14:16:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储巴尔金：我认为逐步加息很合理】金十数据11月5日讯，美联储巴尔金最新发表讲话：“经济中的需求是稳健的，尽管部分行业并未感受到这一点。盈利依然强劲，这正鼓励企业投资并留住员工。预计通胀不会加速，但目前也看不出它会回落，逐步加息对我而言仍然合理。”",
+   "link": "https://flash.jin10.com/detail/20261105221753423800",
+   "published": "2026-11-05T14:17:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：人工智能是当前强劲需求的重要组成部分。",
+   "link": "https://flash.jin10.com/detail/20261105221826491800",
+   "published": "2026-11-05T14:18:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：利率可能不是遏制人工智能的首要因素，但会产生一定影响。",
+   "link": "https://flash.jin10.com/detail/20261105221829563800",
+   "published": "2026-11-05T14:18:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：当前政策大致处于中性水平附近。",
+   "link": "https://flash.jin10.com/detail/20261105221833505800",
+   "published": "2026-11-05T14:18:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：通胀是目前美联储面临的最重要风险。",
+   "link": "https://flash.jin10.com/detail/20261105221925472800",
+   "published": "2026-11-05T14:19:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：预算赤字“规模可观”，过去几年的财政政策一直是经济的顺风因素。",
+   "link": "https://flash.jin10.com/detail/20261105222138541800",
+   "published": "2026-11-05T14:21:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：对选举后财政政策将如何发展没有看法。",
+   "link": "https://flash.jin10.com/detail/20261105222159146800",
+   "published": "2026-11-05T14:21:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：我认为，目前推动生产力增长的并非人工智能，而是对疫情期间开始出现的劳动力短缺问题的适应。",
+   "link": "https://flash.jin10.com/detail/20261105222456405800",
+   "published": "2026-11-05T14:24:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：人工智能建设在短期内确实产生了通胀影响。",
+   "link": "https://flash.jin10.com/detail/20261105222538951800",
+   "published": "2026-11-05T14:25:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：数据中心因缺乏雇员，在其所在社区没有天然的支持群体。",
+   "link": "https://flash.jin10.com/detail/20261105222738590800",
+   "published": "2026-11-05T14:27:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：改变政策制定会议次数并非大事。",
+   "link": "https://flash.jin10.com/detail/20261105223222949800",
+   "published": "2026-11-05T14:32:22Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：改变政策会议节奏的优势在于，每次会议都能获得更顺畅的数据流。",
+   "link": "https://flash.jin10.com/detail/20261105223306580800",
+   "published": "2026-11-05T14:33:06Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：目前银行体系的信贷动态“令人安心”。",
+   "link": "https://flash.jin10.com/detail/20261105223736828800",
+   "published": "2026-11-05T14:37:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：加息可以影响需求，并最终影响油价。",
+   "link": "https://flash.jin10.com/detail/20261105230341743800",
+   "published": "2026-11-05T15:03:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "国内新闻",
+   "link": "https://flash.jin10.com/detail/20261105230537837800",
+   "published": "2026-11-05T15:05:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "黄金链",
+    "国家博弈",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：乐观认为我们能争取到更低的美国关税。",
+   "link": "https://flash.jin10.com/detail/20261106002801253800",
+   "published": "2026-11-05T16:28:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：不能排除在美国贸易状况好转之前局势会进一步升级。",
+   "link": "https://flash.jin10.com/detail/20261106002916139800",
+   "published": "2026-11-05T16:29:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-05T14:09:22Z"
+ "fetched_at": "2026-11-05T20:38:58Z"
 }
