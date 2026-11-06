@@ -128,3 +128,4 @@
 {"ts": "2026-11-05T14:09:29Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 623, "head": "*【11\\-05】今天没有新越线。*"}
 {"ts": "2026-11-05T20:39:05Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:VIX期限结构转backwardation|not_fired->fired", "rule:SPX单日大幅下跌|not_fired->fired", "node:大盘单日大跌|quiet->crossed"], "muted": [], "chars": 619, "head": "*【11\\-05】大盘单日大跌越线。*"}
 {"ts": "2026-11-06T01:07:28Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 567, "head": "*【11\\-06】今天没有新越线。*"}
+{"ts": "2026-11-06T14:09:48Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 582, "head": "*【11\\-06】今天没有新越线。*"}
