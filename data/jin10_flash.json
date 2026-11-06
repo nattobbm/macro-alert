@@ -2,22 +2,22 @@
  "events": [
   {
    "date": "2026-11-03",
-   "time_bj": "00:15",
-   "title": "美联储古尔斯比发表讲话",
-   "speaker": "古尔斯比",
+   "time_bj": null,
+   "title": "加拿大央行行长麦克勒姆出席听证会",
+   "speaker": "麦克勒姆",
    "tags": [
-    "货币链"
+    "其他"
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
   },
   {
    "date": "2026-11-03",
-   "time_bj": null,
-   "title": "加拿大央行行长麦克勒姆出席听证会",
-   "speaker": "麦克勒姆",
+   "time_bj": "00:15",
+   "title": "美联储古尔斯比发表讲话",
+   "speaker": "古尔斯比",
    "tags": [
-    "其他"
+    "货币链"
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
@@ -1556,5 +1556,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-05T20:38:58Z"
+ "fetched_at": "2026-11-06T01:07:20Z"
 }
