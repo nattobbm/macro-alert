@@ -87,6 +87,50 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-11-10",
+   "time_bj": "17:00",
+   "title": "美联储理事沃勒发表讲话",
+   "speaker": "沃勒",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-10",
+   "time_bj": "22:35",
+   "title": "美联储洛根发表讲话",
+   "speaker": "洛根",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-11",
+   "time_bj": "02:30",
+   "title": "加拿大央行公布货币政策会议纪要",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
+  },
+  {
+   "date": "2026-11-11",
+   "time_bj": "02:30",
+   "title": "美联储施密德发表讲话",
+   "speaker": "施密德",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -797,7 +841,588 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：大问题一直出在通胀方面。",
+   "link": "https://flash.jin10.com/detail/20261109232349623800",
+   "published": "2026-11-09T15:23:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：就业和增长实际上相当稳定。",
+   "link": "https://flash.jin10.com/detail/20261109232356874800",
+   "published": "2026-11-09T15:23:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：我们必须正视通胀治理的失败。",
+   "link": "https://flash.jin10.com/detail/20261109232413844800",
+   "published": "2026-11-09T15:24:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：开始看到服务业通胀抬头。",
+   "link": "https://flash.jin10.com/detail/20261109232508244800",
+   "published": "2026-11-09T15:25:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：数据中心的情况看起来像传统意义上的经济过热。",
+   "link": "https://flash.jin10.com/detail/20261109232626364800",
+   "published": "2026-11-09T15:26:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：消费支出一直是增长的主要驱动力。",
+   "link": "https://flash.jin10.com/detail/20261109232808804800",
+   "published": "2026-11-09T15:28:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储古尔斯比：AI数据中心建设加剧需求过热 通胀仍是首要问题】金十数据11月10日讯，芝加哥联储主席古尔斯比表示，AI数据中心建设正显现出传统需求过热的特征，同时能源价格上涨正向服务业等更广泛领域传导，通胀压力有所扩散。他指出，央行通常需要积极应对经济过热。古尔斯比称，美国就",
+   "link": "https://flash.jin10.com/detail/20261110005339890800",
+   "published": "2026-11-09T16:53:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "美联储巴尔金：美联储双重使命面临的风险主要集中在通胀方面。",
+   "link": "https://flash.jin10.com/detail/20261110010448168800",
+   "published": "2026-11-09T17:04:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：货币政策方向明确，但最好谨慎调整政策。",
+   "link": "https://flash.jin10.com/detail/20261110010457221800",
+   "published": "2026-11-09T17:04:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：美国经济表现出相当强的稳定性。",
+   "link": "https://flash.jin10.com/detail/20261110010503578800",
+   "published": "2026-11-09T17:05:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：需求保持韧性，加之成本普遍上涨，正在给物价带来上行压力。",
+   "link": "https://flash.jin10.com/detail/20261110010511827800",
+   "published": "2026-11-09T17:05:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：企业表示，正尝试将成本上涨转嫁给消费者。",
+   "link": "https://flash.jin10.com/detail/20261110010518000800",
+   "published": "2026-11-09T17:05:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：企业经营状况良好，盈利表现相当出色。",
+   "link": "https://flash.jin10.com/detail/20261110010522974800",
+   "published": "2026-11-09T17:05:22Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：银行家表示，贷款业务储备充足，信贷需求已扩展至人工智能领域以外的广泛行业。",
+   "link": "https://flash.jin10.com/detail/20261110010529879800",
+   "published": "2026-11-09T17:05:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：企业裁员规模仍然有限。",
+   "link": "https://flash.jin10.com/detail/20261110010533647800",
+   "published": "2026-11-09T17:05:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：听到的消息显示，成本压力正在广泛蔓延。",
+   "link": "https://flash.jin10.com/detail/20261110010545340800",
+   "published": "2026-11-09T17:05:45Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：消费者信心低迷，但在就业市场保持韧性的支撑下，消费者仍在持续支出。",
+   "link": "https://flash.jin10.com/detail/20261110010555201800",
+   "published": "2026-11-09T17:05:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储巴尔金：通胀风险仍占主导，政策调整应谨慎】金十数据11月10日讯，里士满联储主席巴尔金表示，通胀已连续近六年高于美联储2%的目标，当前双重使命面临的风险主要集中在通胀方面。企业仍面临广泛成本上涨，并计划将部分成本转嫁给消费者。巴尔金认为，在需求保持强劲、通胀持续高企的情况",
+   "link": "https://flash.jin10.com/detail/20261110011735798800",
+   "published": "2026-11-09T17:17:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：处于历史水平的是政府债务，而非消费者债务。",
+   "link": "https://flash.jin10.com/detail/20261110020027354800",
+   "published": "2026-11-09T18:00:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：12月会议没有基准情景。",
+   "link": "https://flash.jin10.com/detail/20261110022059573800",
+   "published": "2026-11-09T18:20:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：很难判断选举对经济的影响。",
+   "link": "https://flash.jin10.com/detail/20261110022110621800",
+   "published": "2026-11-09T18:21:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：. 当前政策利率可能处于中性利率附近或略低于中性水平。",
+   "link": "https://flash.jin10.com/detail/20261110022118138800",
+   "published": "2026-11-09T18:21:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金： 如果每次美联储政策会议都能纳入此前两个月的完整经济数据，将更有利于决策。",
+   "link": "https://flash.jin10.com/detail/20261110022126504800",
+   "published": "2026-11-09T18:21:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：上一次就业报告表现“健康”，但仍看到企业处于低招聘、低裁员的状态。",
+   "link": "https://flash.jin10.com/detail/20261110022132625800",
+   "published": "2026-11-09T18:21:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储巴尔金：不认为近期选举中获批的投票措施会阻碍数据中心扩张，企业会在其他地方寻找建设地点。",
+   "link": "https://flash.jin10.com/detail/20261110022140803800",
+   "published": "2026-11-09T18:21:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔金",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：人工智能资产价格泡沫构成明显的金融稳定风险。",
+   "link": "https://flash.jin10.com/detail/20261110012805529800",
+   "published": "2026-11-09T17:28:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：人工智能的回报可能强劲，但市场可能对其估值过高，或者回报兑现所需时间可能长于预期。",
+   "link": "https://flash.jin10.com/detail/20261110012811458800",
+   "published": "2026-11-09T17:28:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：人工智能和投资正日益显现出积极供给冲击的初步迹象。",
+   "link": "https://flash.jin10.com/detail/20261110012819915800",
+   "published": "2026-11-09T17:28:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：英国经济活动表现出比预期更强的韧性，部分原因是人工智能投资，尤其是在商业服务领域。",
+   "link": "https://flash.jin10.com/detail/20261110012829190800",
+   "published": "2026-11-09T17:28:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：人工智能、数字技术和机器人技术有潜力通过提高生产率来提升可持续经济增长。",
+   "link": "https://flash.jin10.com/detail/20261110012833898800",
+   "published": "2026-11-09T17:28:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：前沿人工智能增加了网络攻击风险，需要在模型发布前后进行更广泛的测试。",
+   "link": "https://flash.jin10.com/detail/20261110012931037800",
+   "published": "2026-11-09T17:29:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "英国央行行长贝利：我们不能再指望供给冲击会自行消退了。",
+   "link": "https://flash.jin10.com/detail/20261110014742142800",
+   "published": "2026-11-09T17:47:42Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "贝利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-09T14:10:12Z"
+ "fetched_at": "2026-11-09T22:58:57Z"
 }
