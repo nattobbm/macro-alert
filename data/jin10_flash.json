@@ -76,6 +76,28 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-11-11",
+   "time_bj": "04:30",
+   "title": "美联储理事鲍曼发表讲话",
+   "speaker": "鲍曼",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-11",
+   "time_bj": "07:30",
+   "title": "美联储保尔森发表讲话",
+   "speaker": "保尔森",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -1079,7 +1101,461 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：过度通胀是不可接受的。",
+   "link": "https://flash.jin10.com/detail/20261110235012447800",
+   "published": "2026-11-10T15:50:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：今年冬季美联储可能以比迄今为止更快的速度加息。明显美联储至少还需加息两次，每次25个基点。",
+   "link": "https://flash.jin10.com/detail/20261110235040943800",
+   "published": "2026-11-10T15:50:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：逐步调整政策可以降低经济活动恶化程度超出必要水平的风险。",
+   "link": "https://flash.jin10.com/detail/20261110235048588800",
+   "published": "2026-11-10T15:50:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：再加息两次后，暂停并评估可能需要采取的进一步行动是合理的。",
+   "link": "https://flash.jin10.com/detail/20261110235059168800",
+   "published": "2026-11-10T15:50:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：美联储政策利率至少比适度限制性水平低50个基点。",
+   "link": "https://flash.jin10.com/detail/20261110235123811800",
+   "published": "2026-11-10T15:51:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：债券市场收益率上升表明货币政策仍有工作要做，而不是意味着经济活动获得了独立的顺风助力。",
+   "link": "https://flash.jin10.com/detail/20261110235132668800",
+   "published": "2026-11-10T15:51:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：战时能源中断并非价格压力的唯一来源。",
+   "link": "https://flash.jin10.com/detail/20261110235148354800",
+   "published": "2026-11-10T15:51:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：数据显示，宽松的货币政策正在加剧通胀压力；实际联邦基金利率为78个基点。",
+   "link": "https://flash.jin10.com/detail/20261110235155395800",
+   "published": "2026-11-10T15:51:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：担心高于预期的消费者价格指数意味着个人消费支出通胀可能上升。",
+   "link": "https://flash.jin10.com/detail/20261110235200727800",
+   "published": "2026-11-10T15:52:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：通胀率正明显高于2%的目标水平。",
+   "link": "https://flash.jin10.com/detail/20261110235205708800",
+   "published": "2026-11-10T15:52:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：劳动力市场处于平衡状态，甚至略有收紧。",
+   "link": "https://flash.jin10.com/detail/20261110235209695800",
+   "published": "2026-11-10T15:52:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：经济增长强劲，消费者支出稳健，企业支出旺盛。",
+   "link": "https://flash.jin10.com/detail/20261110235214644800",
+   "published": "2026-11-10T15:52:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "经济扛得住加息——这是给紧缩开绿灯",
+   "meaning_lean": "鹰",
+   "meaning_id": "resilient_consumer"
+  },
+  {
+   "title": "美联储洛根：尽快实现前景、通胀与就业风险之间的平衡至关重要。",
+   "link": "https://flash.jin10.com/detail/20261110235219197800",
+   "published": "2026-11-10T15:52:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：价格上涨压力的来源也不仅限于关税，而且这种广泛的价格上涨趋势可能会持续下去。",
+   "link": "https://flash.jin10.com/detail/20261110235239890800",
+   "published": "2026-11-10T15:52:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储洛根：美联储至少还需加息两次 每次25个基点】金十数据11月10日讯，美联储洛根最新发表讲话：“过度通胀是不可接受的。今年冬季美联储可能以比迄今为止更快的速度加息。明显美联储至少还需加息两次，每次25个基点。再加息两次后，暂停并评估可能需要采取的进一步行动是合理的。目前美",
+   "link": "https://flash.jin10.com/detail/20261110235312146800",
+   "published": "2026-11-10T15:53:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 4,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根：联邦公开市场委员会应明确美联储利率目标。",
+   "link": "https://flash.jin10.com/detail/20261110235351258800",
+   "published": "2026-11-10T15:53:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储洛根发表讲话后，美国2年期国债收益率小幅升至日内高点。",
+   "link": "https://flash.jin10.com/detail/20261110235439185800",
+   "published": "2026-11-10T15:54:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "洛根",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：在整体能源因素之下，价格出现了一些令人担忧的趋势。",
+   "link": "https://flash.jin10.com/detail/20261111024444472800",
+   "published": "2026-11-10T18:44:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：去年并不认为利率具有限制性，但认为当前利率相当宽松。",
+   "link": "https://flash.jin10.com/detail/20261111024701513800",
+   "published": "2026-11-10T18:47:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：可以说住房领域正经历一种“有趣的动态”，但在其他方面找不到任何限制。",
+   "link": "https://flash.jin10.com/detail/20261111024833696800",
+   "published": "2026-11-10T18:48:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：美国近期招聘相当强劲。",
+   "link": "https://flash.jin10.com/detail/20261111024858146800",
+   "published": "2026-11-10T18:48:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：通胀是首要问题。",
+   "link": "https://flash.jin10.com/detail/20261111024921362800",
+   "published": "2026-11-10T18:49:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：需求强劲，利率并非犹豫的理由。",
+   "link": "https://flash.jin10.com/detail/20261111025105875800",
+   "published": "2026-11-10T18:51:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储施密德：从现在到美联储12月会议之间，将有许多有趣的数据点。",
+   "link": "https://flash.jin10.com/detail/20261111030420562800",
+   "published": "2026-11-10T19:04:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储施密德：当前利率水平相当宽松 通胀仍是首要关注问题】金十数据11月11日讯，堪萨斯城联储主席杰夫·施密德周二表示，通胀是美联储当前最关注的问题，并暗示支持收紧货币政策以控制通胀。他表示，自己去年就不认为当时的利率具有足够限制性，如今的利率水平也“相当宽松”，目前重点是评估",
+   "link": "https://flash.jin10.com/detail/20261111030915470800",
+   "published": "2026-11-10T19:09:15Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 2,
+    "lean": "鸽"
+   },
+   "speaker": "施密德",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-10T14:10:30Z"
+ "fetched_at": "2026-11-10T20:27:42Z"
 }
