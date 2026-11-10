@@ -134,3 +134,4 @@
 {"ts": "2026-11-09T14:10:17Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": ["node:日债10年利率"], "chars": 444, "head": "*【11\\-09】今天没有新越线。*"}
 {"ts": "2026-11-09T22:59:06Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:10年期实际利率突破|not_fired->fired", "node:真利率(扣掉通胀)|near->crossed"], "muted": [], "chars": 673, "head": "*【11\\-09】真利率\\(扣掉通胀\\)越线。*"}
 {"ts": "2026-11-10T02:54:56Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 653, "head": "*【11\\-10】今天没有新越线。*"}
+{"ts": "2026-11-10T14:10:35Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:VIX期限结构转backwardation|not_fired->fired"], "muted": ["node:油价出美方舒适区", "node:油价出上界?", "band:油价(布伦特)"], "chars": 733, "head": "*【11\\-10】今天没有新越线。*"}

@@ -659,7 +659,427 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：将需要进一步收紧政策。",
+   "link": "https://flash.jin10.com/detail/20261110170033994800",
+   "published": "2026-11-10T09:00:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：即使10月CPI较9月有所改善，仍将支持在12月加息25个基点。如果10月核心CPI涨幅在0.3%左右或更高，美联储12月可能需要加息50个基点。",
+   "link": "https://flash.jin10.com/detail/20261110170056496800",
+   "published": "2026-11-10T09:00:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：10月愿意暂缓推进政策收紧；关键在于，已承诺的加息应在合理时间内落实。",
+   "link": "https://flash.jin10.com/detail/20261110170138293800",
+   "published": "2026-11-10T09:01:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：美国通胀水平过高，9月通胀数据表现糟糕。",
+   "link": "https://flash.jin10.com/detail/20261110170152653800",
+   "published": "2026-11-10T09:01:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "沃勒",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "美联储理事沃勒：尤其担心物价上涨呈现广泛蔓延态势。",
+   "link": "https://flash.jin10.com/detail/20261110170200121800",
+   "published": "2026-11-10T09:02:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：美联储工作人员的分析显示，未来生产者物价可能进一步上涨，能源价格冲击可能持续更长时间。",
+   "link": "https://flash.jin10.com/detail/20261110170211978800",
+   "published": "2026-11-10T09:02:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储理事沃勒：将支持下月加息25个基点 必要时50个基点】金十数据11月10日讯，美联储理事沃勒最新发表讲话：“美联储将需要进一步收紧政策。美国通胀水平过高，9月通胀数据表现糟糕。我尤其担心物价上涨呈现广泛蔓延态势。即使10月CPI较9月有所改善，仍将支持在12月加息25个基",
+   "link": "https://flash.jin10.com/detail/20261110170212003800",
+   "published": "2026-11-10T09:02:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 4,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "沃勒",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "美联储理事沃勒：预计本季度经济增长有所放缓，但整体仍将保持稳健增长。劳动力市场状况稳健，劳动力供需大致保持平衡，就业水平接近美联储的目标。",
+   "link": "https://flash.jin10.com/detail/20261110170225146800",
+   "published": "2026-11-10T09:02:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：劳动力市场是否像失业率所显示的那样健康尚不明确；有关劳动力市场活力和生产率增长的问题仍有待进一步研究。",
+   "link": "https://flash.jin10.com/detail/20261110170243653800",
+   "published": "2026-11-10T09:02:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【现货金银短线走低】金十数据11月10日讯，现货黄金短线走低超20美元，跌破4090美元/盎司，日内跌1.23%。现货白银短线走低0.5美元，日内跌幅达2.00%，现报52.35美元/盎司。消息面上，美联储理事沃勒表示，将支持下月加息25个基点，必要时50个基点。",
+   "link": "https://flash.jin10.com/detail/20261110170314334800",
+   "published": "2026-11-10T09:03:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "黄金链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储理事沃勒将12月加息幅度与CPI挂钩 50基点选项浮出水面】金十数据11月10日讯，美联储理事沃勒最新表示，他支持在12月加息，并警告称，如果通胀继续加速，他将支持加息50个基点，以维护美联储的公信力。沃勒的强硬表态是迄今美联储官员支持12月加息的最明确论述，不仅认为决策",
+   "link": "https://flash.jin10.com/detail/20261110171628240800",
+   "published": "2026-11-10T09:16:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 8,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "沃勒",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "美联储理事沃勒：我认为，一段时间内不会看到人工智能带来广泛的生产率提升。",
+   "link": "https://flash.jin10.com/detail/20261110174624047800",
+   "published": "2026-11-10T09:46:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：实际利率必须上升，以维持货币政策的限制性水平。政策远没有我预想的那么具有限制性。",
+   "link": "https://flash.jin10.com/detail/20261110175258433800",
+   "published": "2026-11-10T09:52:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：我们需要加息，以对通胀形成下行压力。",
+   "link": "https://flash.jin10.com/detail/20261110175303727800",
+   "published": "2026-11-10T09:53:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：民主党控制国会将对总统提名美联储官员的人事任命形成制衡。",
+   "link": "https://flash.jin10.com/detail/20261110175513027800",
+   "published": "2026-11-10T09:55:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒在被问及股市大幅波动时表示，这通常不会对他有关利率走势的看法产生重要影响。",
+   "link": "https://flash.jin10.com/detail/20261110175835890800",
+   "published": "2026-11-10T09:58:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：我们至少需要收回此前三次预防性降息。",
+   "link": "https://flash.jin10.com/detail/20261110180814679800",
+   "published": "2026-11-10T10:08:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：并非超级偏鹰，我们不想重创经济。",
+   "link": "https://flash.jin10.com/detail/20261110180906952800",
+   "published": "2026-11-10T10:09:06Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：我们不会把利率提高150或200个基点。",
+   "link": "https://flash.jin10.com/detail/20261110180935757800",
+   "published": "2026-11-10T10:09:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储理事沃勒：我们并非超级鹰派 不会加息150或200个基点】金十数据11月10日讯，美联储理事沃勒发表讲话：“我们至少需要收回此前三次预防性降息。我们并非超级偏鹰，我们只是不想重创经济，不想让经济急剧下滑。我们不会把利率提高150或200个基点。”",
+   "link": "https://flash.jin10.com/detail/20261110181024675800",
+   "published": "2026-11-10T10:10:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 1,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：近期油价下跌不会迅速带动柴油价格下降，原因是炼油产能不足。",
+   "link": "https://flash.jin10.com/detail/20261110181510061800",
+   "published": "2026-11-10T10:15:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：我认为，美联储同僚中没有人认为我们当前的利率水平是合适的。",
+   "link": "https://flash.jin10.com/detail/20261110181649325800",
+   "published": "2026-11-10T10:16:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：市场对美国利率的预期有所回落，目前已更加接近美联储的政策预期。",
+   "link": "https://flash.jin10.com/detail/20261110181937041800",
+   "published": "2026-11-10T10:19:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-10T02:54:51Z"
+ "fetched_at": "2026-11-10T14:10:30Z"
 }
