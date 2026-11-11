@@ -1555,7 +1555,679 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：金融环境已经收紧，美联储必须权衡进一步收紧政策的成本。",
+   "link": "https://flash.jin10.com/detail/20261111043020259800",
+   "published": "2026-11-10T20:30:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：持续的通胀和走强的劳动力市场状况表明“仍有工作要做”。",
+   "link": "https://flash.jin10.com/detail/20261111043023767800",
+   "published": "2026-11-10T20:30:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：降低通胀仍是优先事项。",
+   "link": "https://flash.jin10.com/detail/20261111043025455800",
+   "published": "2026-11-10T20:30:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：随着冲击消退，预计明年核心PCE将更接近2%。",
+   "link": "https://flash.jin10.com/detail/20261111043029210800",
+   "published": "2026-11-10T20:30:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：受能源价格及人工智能相关需求影响，10月核心PCE料上升3.3%。",
+   "link": "https://flash.jin10.com/detail/20261111043038849800",
+   "published": "2026-11-10T20:30:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：今年经济增长势头增强。",
+   "link": "https://flash.jin10.com/detail/20261111043041157800",
+   "published": "2026-11-10T20:30:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：CPI数据表明通胀压力可能持续。",
+   "link": "https://flash.jin10.com/detail/20261111043051730800",
+   "published": "2026-11-10T20:30:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：劳动力市场有所改善，并不紧张，也未加剧通胀。",
+   "link": "https://flash.jin10.com/detail/20261111043054149800",
+   "published": "2026-11-10T20:30:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：认为股票估值存在大幅回调的风险。",
+   "link": "https://flash.jin10.com/detail/20261111043140566800",
+   "published": "2026-11-10T20:31:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：时间将有助于美联储进一步了解人工智能相关需求增长势头的持久性。",
+   "link": "https://flash.jin10.com/detail/20261111043453294800",
+   "published": "2026-11-10T20:34:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：人工智能发展越来越多地获得外部资金支持。",
+   "link": "https://flash.jin10.com/detail/20261111043454069800",
+   "published": "2026-11-10T20:34:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：长期通胀预期锚定良好。",
+   "link": "https://flash.jin10.com/detail/20261111050153726800",
+   "published": "2026-11-10T21:01:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：通胀预期是一项重要数据，但未必决定我对事物的看法。",
+   "link": "https://flash.jin10.com/detail/20261111050158646800",
+   "published": "2026-11-10T21:01:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：需要看到人工智能和中东风险缓解，才能对明年通胀下降有信心。",
+   "link": "https://flash.jin10.com/detail/20261111050257089800",
+   "published": "2026-11-10T21:02:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：我将把关注重点转向通胀。",
+   "link": "https://flash.jin10.com/detail/20261111050327351800",
+   "published": "2026-11-10T21:03:27Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储理事鲍曼：通胀仍有待控制 但需权衡进一步收紧政策的成本】金十数据11月11日讯，美联储负责监管事务的副主席米歇尔·鲍曼表示，目前通胀压力仍在持续，而就业市场正在趋于稳固，通胀仍有进一步回落的空间。她预计10月核心PCE同比升至3.3%，能源价格上涨和AI相关需求是主要推动",
+   "link": "https://flash.jin10.com/detail/20261111050609537800",
+   "published": "2026-11-10T21:06:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链",
+    "地缘链",
+    "AI链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：与财政部的公开沟通渠道至关重要。",
+   "link": "https://flash.jin10.com/detail/20261111050801175800",
+   "published": "2026-11-10T21:08:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：美联储正努力收集有关人工智能相关债务交易对手方的数据。",
+   "link": "https://flash.jin10.com/detail/20261111050840609800",
+   "published": "2026-11-10T21:08:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：人工智能将提高劳动者生产率，创造新的就业岗位，并淘汰不太必要的岗位。",
+   "link": "https://flash.jin10.com/detail/20261111051514388800",
+   "published": "2026-11-10T21:15:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：不认为人工智能会夺走我们经济中的就业岗位。",
+   "link": "https://flash.jin10.com/detail/20261111051517168800",
+   "published": "2026-11-10T21:15:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：美联储持续对银行开展网络安全检查，已看到各方高度关注识别和修补漏洞。",
+   "link": "https://flash.jin10.com/detail/20261111051901142800",
+   "published": "2026-11-10T21:19:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：美联储去年逐步降息，随后暂停，之后又恢复降息；未来几个月，我们可能以同样方式应对通胀。",
+   "link": "https://flash.jin10.com/detail/20261111052113019800",
+   "published": "2026-11-10T21:21:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 2,
+    "lean": "鸽"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：已将重点转向小型银行规则和监管方式。",
+   "link": "https://flash.jin10.com/detail/20261111052546414800",
+   "published": "2026-11-10T21:25:46Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：通胀并未处于下行趋势，这一事实应让我们保持谨慎。",
+   "link": "https://flash.jin10.com/detail/20261111052905719800",
+   "published": "2026-11-10T21:29:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事鲍曼：需要考虑以何种节奏和何种时间表来解决这一问题。",
+   "link": "https://flash.jin10.com/detail/20261111052908917800",
+   "published": "2026-11-10T21:29:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "国内新闻：",
+   "link": "https://flash.jin10.com/detail/20261111063029341800",
+   "published": "2026-11-10T22:30:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链",
+    "地缘链",
+    "AI链",
+    "黄金链",
+    "国家博弈",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 4,
+    "dove": 1,
+    "lean": "鹰"
+   },
+   "speaker": "鲍曼",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：若通胀形势恶化，美联储将采取更激进行动。",
+   "link": "https://flash.jin10.com/detail/20261111073056797800",
+   "published": "2026-11-10T23:30:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：利率政策的确切路径取决于经济如何演变。",
+   "link": "https://flash.jin10.com/detail/20261111073120164800",
+   "published": "2026-11-10T23:31:20Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：鉴于通胀高企，进一步“渐进”加息是合适的。",
+   "link": "https://flash.jin10.com/detail/20261111073134319800",
+   "published": "2026-11-10T23:31:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：渐进式加息也为美联储官员留出了评估影响的空间。",
+   "link": "https://flash.jin10.com/detail/20261111073147878800",
+   "published": "2026-11-10T23:31:47Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：渐进式加息为经济提供了调整时间。CPI数据显示通胀仍是一个问题。支持美联储近期的利率决定。",
+   "link": "https://flash.jin10.com/detail/20261111073209500800",
+   "published": "2026-11-10T23:32:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：核心通胀率徘徊在2.5%至3%之间。美联储在降低通胀方面“还有更多工作要做”。经济强于预期，就业市场稳健且稳定。",
+   "link": "https://flash.jin10.com/detail/20261111073224830800",
+   "published": "2026-11-10T23:32:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：人工智能和能源对通胀的影响难以衡量。通胀前景面临的风险较高。",
+   "link": "https://flash.jin10.com/detail/20261111073323633800",
+   "published": "2026-11-10T23:33:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：货币政策需要“略偏紧缩”。",
+   "link": "https://flash.jin10.com/detail/20261111073409826800",
+   "published": "2026-11-10T23:34:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储保尔森：未见加快紧缩的压力。",
+   "link": "https://flash.jin10.com/detail/20261111074819044800",
+   "published": "2026-11-10T23:48:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储保尔森：目前采取渐进式紧缩政策较为适宜】金十数据11月11日讯，美联储官员保尔森表示，她倾向于支持以渐进的步伐加息。她指出，目前的工资压力有限，通胀预期也与美联储2%的目标保持一致。保尔森表示：“就目前而言，进一步采取渐进式紧缩政策似乎是适宜的。”她补充道：“如果通胀预期",
+   "link": "https://flash.jin10.com/detail/20261111083326175800",
+   "published": "2026-11-11T00:33:26Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 3,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "保尔森",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-10T20:27:42Z"
+ "fetched_at": "2026-11-11T00:53:18Z"
 }
