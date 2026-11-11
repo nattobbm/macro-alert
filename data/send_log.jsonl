@@ -137,3 +137,4 @@
 {"ts": "2026-11-10T14:10:35Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:VIX期限结构转backwardation|not_fired->fired"], "muted": ["node:油价出美方舒适区", "node:油价出上界?", "band:油价(布伦特)"], "chars": 733, "head": "*【11\\-10】今天没有新越线。*"}
 {"ts": "2026-11-10T20:27:49Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["node:油价出美方舒适区|near->crossed", "node:油价出上界?|near->crossed", "band:油价(布伦特)|near->breached_hi"], "muted": [], "chars": 751, "head": "*【11\\-10】油价出美方舒适区越线、油价出上界?越线、油涨破线。*"}
 {"ts": "2026-11-11T00:53:25Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:黄金突破关键位|skipped->fired"], "muted": [], "chars": 556, "head": "*【11\\-11】今天没有新越线。*"}
+{"ts": "2026-11-11T14:10:46Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": ["band:日元(USDJPY)"], "chars": 581, "head": "*【11\\-11】今天没有新越线。*"}
