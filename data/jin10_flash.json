@@ -98,6 +98,61 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-11-12",
+   "time_bj": "21:30",
+   "title": "美联储哈马克发表讲话",
+   "speaker": "哈马克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-12",
+   "time_bj": "23:00",
+   "title": "美联储理事巴尔发表讲话",
+   "speaker": "巴尔",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-13",
+   "time_bj": "00:15",
+   "title": "美联储古尔斯比发表讲话",
+   "speaker": "古尔斯比",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-13",
+   "time_bj": "02:10",
+   "title": "美联储戴利发表讲话",
+   "speaker": "戴利",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-13",
+   "time_bj": "02:30",
+   "title": "美联储施密德发表讲话",
+   "speaker": "施密德",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -2229,5 +2284,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-11T14:10:37Z"
+ "fetched_at": "2026-11-11T20:11:01Z"
 }
