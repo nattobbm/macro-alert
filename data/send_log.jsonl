@@ -140,3 +140,4 @@
 {"ts": "2026-11-11T14:10:46Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": ["band:日元(USDJPY)"], "chars": 581, "head": "*【11\\-11】今天没有新越线。*"}
 {"ts": "2026-11-11T20:11:09Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 601, "head": "*【11\\-11】今天没有新越线。*"}
 {"ts": "2026-11-12T02:01:14Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired"], "muted": [], "chars": 553, "head": "*【11\\-12】今天没有新越线。*"}
+{"ts": "2026-11-12T14:11:11Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 482, "head": "*【11\\-12】今天没有新越线。*"}
