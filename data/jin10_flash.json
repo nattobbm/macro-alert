@@ -1,17 +1,6 @@
 {
  "events": [
   {
-   "date": "2026-11-09",
-   "time_bj": "23:00",
-   "title": "美联储古尔斯比发表讲话",
-   "speaker": "古尔斯比",
-   "tags": [
-    "货币链"
-   ],
-   "src": "jin10:今日重点关注",
-   "kind": "speech"
-  },
-  {
    "date": "2026-11-10",
    "time_bj": "01:15",
    "title": "美联储巴尔金发表讲话",
@@ -156,134 +145,6 @@
   }
  ],
  "speeches": [
-  {
-   "title": "美联储古尔斯比：大问题一直出在通胀方面。",
-   "link": "https://flash.jin10.com/detail/20261109232349623800",
-   "published": "2026-11-09T15:23:49Z",
-   "source": "金十快讯",
-   "tags": [
-    "货币链"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "古尔斯比",
-   "meaning": "无固定套话",
-   "meaning_lean": "中",
-   "meaning_id": null
-  },
-  {
-   "title": "美联储古尔斯比：就业和增长实际上相当稳定。",
-   "link": "https://flash.jin10.com/detail/20261109232356874800",
-   "published": "2026-11-09T15:23:56Z",
-   "source": "金十快讯",
-   "tags": [
-    "货币链"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "古尔斯比",
-   "meaning": "无固定套话",
-   "meaning_lean": "中",
-   "meaning_id": null
-  },
-  {
-   "title": "美联储古尔斯比：我们必须正视通胀治理的失败。",
-   "link": "https://flash.jin10.com/detail/20261109232413844800",
-   "published": "2026-11-09T15:24:13Z",
-   "source": "金十快讯",
-   "tags": [
-    "货币链"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "古尔斯比",
-   "meaning": "无固定套话",
-   "meaning_lean": "中",
-   "meaning_id": null
-  },
-  {
-   "title": "美联储古尔斯比：开始看到服务业通胀抬头。",
-   "link": "https://flash.jin10.com/detail/20261109232508244800",
-   "published": "2026-11-09T15:25:08Z",
-   "source": "金十快讯",
-   "tags": [
-    "货币链"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "古尔斯比",
-   "meaning": "无固定套话",
-   "meaning_lean": "中",
-   "meaning_id": null
-  },
-  {
-   "title": "美联储古尔斯比：数据中心的情况看起来像传统意义上的经济过热。",
-   "link": "https://flash.jin10.com/detail/20261109232626364800",
-   "published": "2026-11-09T15:26:26Z",
-   "source": "金十快讯",
-   "tags": [
-    "货币链",
-    "AI链"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "古尔斯比",
-   "meaning": "无固定套话",
-   "meaning_lean": "中",
-   "meaning_id": null
-  },
-  {
-   "title": "美联储古尔斯比：消费支出一直是增长的主要驱动力。",
-   "link": "https://flash.jin10.com/detail/20261109232808804800",
-   "published": "2026-11-09T15:28:08Z",
-   "source": "金十快讯",
-   "tags": [
-    "货币链"
-   ],
-   "tone": {
-    "hawk": 0,
-    "dove": 0,
-    "lean": "中性"
-   },
-   "speaker": "古尔斯比",
-   "meaning": "无固定套话",
-   "meaning_lean": "中",
-   "meaning_id": null
-  },
-  {
-   "title": "【美联储古尔斯比：AI数据中心建设加剧需求过热 通胀仍是首要问题】金十数据11月10日讯，芝加哥联储主席古尔斯比表示，AI数据中心建设正显现出传统需求过热的特征，同时能源价格上涨正向服务业等更广泛领域传导，通胀压力有所扩散。他指出，央行通常需要积极应对经济过热。古尔斯比称，美国就",
-   "link": "https://flash.jin10.com/detail/20261110005339890800",
-   "published": "2026-11-09T16:53:39Z",
-   "source": "金十快讯",
-   "tags": [
-    "货币链",
-    "AI链"
-   ],
-   "tone": {
-    "hawk": 1,
-    "dove": 0,
-    "lean": "鹰"
-   },
-   "speaker": "古尔斯比",
-   "meaning": "不会松，先把\"降息\"想法掐掉",
-   "meaning_lean": "鹰",
-   "meaning_id": "inflation_too_high"
-  },
   {
    "title": "美联储巴尔金：美联储双重使命面临的风险主要集中在通胀方面。",
    "link": "https://flash.jin10.com/detail/20261110010448168800",
@@ -3228,6 +3089,26 @@
    "meaning_id": null
   },
   {
+   "title": "【美联储戴利：进一步加息可能是抑制通胀所必需的】金十数据11月13日讯，美联储旧金山联储主席戴利周四表示，进一步收紧货币政策可能是降低通胀所必需的，因为通胀压力持续存在，且并非仅集中在受关税或油价直接影响的行业。她表示，越来越多企业告知她，计划将更高的投入成本转嫁给消费者，企业上",
+   "link": "https://flash.jin10.com/detail/20261113045104887800",
+   "published": "2026-11-12T20:51:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "戴利",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
    "title": "美联储施密德在谈及住房成本时未对货币政策或经济前景置评。",
    "link": "https://flash.jin10.com/detail/20261113023019247800",
    "published": "2026-11-12T18:30:19Z",
@@ -3282,5 +3163,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-12T20:47:23Z"
+ "fetched_at": "2026-11-13T01:28:19Z"
 }
