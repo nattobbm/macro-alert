@@ -144,3 +144,4 @@
 {"ts": "2026-11-12T20:47:33Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 514, "head": "*【11\\-12】今天没有新越线。*"}
 {"ts": "2026-11-13T01:28:29Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:30年重上8-18前高（财政压制失败）|not_fired->fired", "node:30年利率回到高点?|near->crossed", "judge:None|判据未触发->回到需求侧紧缩链"], "muted": [], "chars": 605, "head": "*【11\\-13】市场在为「更紧」定价：回到需求侧紧缩链。*"}
 {"ts": "2026-11-13T14:11:33Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 492, "head": "*【11\\-13】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-11-13T20:29:01Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["周五周报"], "muted": [], "chars": 499, "head": "*本周没有新越线。* 系统在跑，只是这周没事。"}
