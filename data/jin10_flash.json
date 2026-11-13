@@ -91,8 +91,8 @@
   {
    "date": "2026-11-12",
    "time_bj": "21:30",
-   "title": "美联储哈马克发表讲话",
-   "speaker": "哈马克",
+   "title": "美联储哈玛克发表讲话",
+   "speaker": "哈玛克",
    "tags": [
     "货币链"
    ],
@@ -2145,6 +2145,353 @@
    "meaning_id": null
   },
   {
+   "title": "美联储哈玛克：美联储在就业方面的职责履行得非常好。",
+   "link": "https://flash.jin10.com/detail/20261112214250532800",
+   "published": "2026-11-12T13:42:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：美联储多年来在通胀职责上一直缺位。最新通胀数据显示，其正朝着错误的方向发展。",
+   "link": "https://flash.jin10.com/detail/20261112214329923800",
+   "published": "2026-11-12T13:43:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：存在真实的需求压力，正在推高通胀。",
+   "link": "https://flash.jin10.com/detail/20261112214352453800",
+   "published": "2026-11-12T13:43:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：我们需要转向限制性货币政策以降低通胀。",
+   "link": "https://flash.jin10.com/detail/20261112214409665800",
+   "published": "2026-11-12T13:44:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：担心美国经济可能形成通胀思维模式。",
+   "link": "https://flash.jin10.com/detail/20261112214434169800",
+   "published": "2026-11-12T13:44:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：人工智能基础设施建设正在带来实实在在的价格上涨压力。",
+   "link": "https://flash.jin10.com/detail/20261112214454423800",
+   "published": "2026-11-12T13:44:54Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储哈玛克：需要转向限制性货币政策以降低通胀】金十数据11月12日讯，美联储哈玛克最新发表讲话：“美联储在就业方面的职责履行得非常好，但美联储多年来在通胀职责上一直缺位。最新通胀数据显示，其正朝着错误的方向发展。我们需要转向限制性货币政策以降低通胀。我担心美国经济可能形成通胀",
+   "link": "https://flash.jin10.com/detail/20261112214608892800",
+   "published": "2026-11-12T13:46:08Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：每次参加FOMC会议都持开放态度。",
+   "link": "https://flash.jin10.com/detail/20261112215956507800",
+   "published": "2026-11-12T13:59:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：倾向于支持美联储采取幅度更小、更稳定的利率调整。",
+   "link": "https://flash.jin10.com/detail/20261112220033227800",
+   "published": "2026-11-12T14:00:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：美联储需要加息以达到限制性利率政策。",
+   "link": "https://flash.jin10.com/detail/20261112220051049800",
+   "published": "2026-11-12T14:00:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：不认为美联储落后于形势，若出现这种情况将考虑采取更激进的行动。",
+   "link": "https://flash.jin10.com/detail/20261112220125624800",
+   "published": "2026-11-12T14:01:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：幅度更小、更稳定的加息幅度为经济留出调整时间。",
+   "link": "https://flash.jin10.com/detail/20261112220144700800",
+   "published": "2026-11-12T14:01:44Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：近期通胀数据显示价格压力正在扩大。",
+   "link": "https://flash.jin10.com/detail/20261112220153030800",
+   "published": "2026-11-12T14:01:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：以开放心态迎接12月会议。",
+   "link": "https://flash.jin10.com/detail/20261112220343584800",
+   "published": "2026-11-12T14:03:43Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：就业市场停滞，由于缺乏活力，我不会称其为健康。",
+   "link": "https://flash.jin10.com/detail/20261112220522464800",
+   "published": "2026-11-12T14:05:22Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：看到能源带来第二轮价格压力。",
+   "link": "https://flash.jin10.com/detail/20261112220616815800",
+   "published": "2026-11-12T14:06:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：非常有兴趣看看各工作组会提出什么意见。",
+   "link": "https://flash.jin10.com/detail/20261112220904826800",
+   "published": "2026-11-12T14:09:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：金融状况对增长构成支撑。",
+   "link": "https://flash.jin10.com/detail/20261112221709427800",
+   "published": "2026-11-12T14:17:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "国内新闻",
+   "link": "https://flash.jin10.com/detail/20261112230604797800",
+   "published": "2026-11-12T15:06:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "地缘链",
+    "AI链",
+    "黄金链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
    "title": "美联储理事巴尔：美国应做好准备，应对人工智能给就业市场带来的“严重短期扰动”风险。",
    "link": "https://flash.jin10.com/detail/20261112230024055800",
    "published": "2026-11-12T15:00:24Z",
@@ -3163,5 +3510,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-13T01:28:19Z"
+ "fetched_at": "2026-11-13T14:11:22Z"
 }
