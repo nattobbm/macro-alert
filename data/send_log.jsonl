@@ -146,3 +146,4 @@
 {"ts": "2026-11-13T14:11:33Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 492, "head": "*【11\\-13】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-13T20:29:01Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["周五周报"], "muted": [], "chars": 499, "head": "*本周没有新越线。* 系统在跑，只是这周没事。"}
 {"ts": "2026-11-14T01:02:15Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 535, "head": "*【11\\-14】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-11-16T14:18:07Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["node:日债30年利率|near->crossed"], "muted": ["node:日债10年利率"], "chars": 608, "head": "*【11\\-16】日债30年利率越线。*"}
