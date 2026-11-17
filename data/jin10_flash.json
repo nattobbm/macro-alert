@@ -43,6 +43,50 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-11-18",
+   "time_bj": "15:30",
+   "title": "英国央行行长贝利发表讲话",
+   "speaker": "贝利",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-18",
+   "time_bj": "22:25",
+   "title": "欧洲央行行长拉加德发表讲话",
+   "speaker": "拉加德",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-18",
+   "time_bj": "23:00",
+   "title": "英国央行行长贝利发表讲话",
+   "speaker": "贝利",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-19",
+   "time_bj": "02:00",
+   "title": "新西兰联储主席布雷曼发表讲话",
+   "speaker": "布雷曼",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -246,7 +290,774 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：市场仍处于创建新支付系统的早期阶段。",
+   "link": "https://flash.jin10.com/detail/20261117221007876800",
+   "published": "2026-11-17T14:10:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：美联储将努力帮助促进支付系统的创新。",
+   "link": "https://flash.jin10.com/detail/20261117221018719800",
+   "published": "2026-11-17T14:10:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：传统货币和支付系统仍发挥关键作用。",
+   "link": "https://flash.jin10.com/detail/20261117221037025800",
+   "published": "2026-11-17T14:10:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：目前支付领域正在发生一场革命。",
+   "link": "https://flash.jin10.com/detail/20261117223819694800",
+   "published": "2026-11-17T14:38:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：在不断变化的支付体系中，银行仍将拥有重要的未来。",
+   "link": "https://flash.jin10.com/detail/20261117223829207800",
+   "published": "2026-11-17T14:38:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事沃勒：代理式人工智能在银行业的大规模应用仍任重道远。",
+   "link": "https://flash.jin10.com/detail/20261117224802468800",
+   "published": "2026-11-17T14:48:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "沃勒",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：美联储应在市场平静时期为国债市场干预制定原则。",
+   "link": "https://flash.jin10.com/detail/20261117223528702800",
+   "published": "2026-11-17T14:35:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克在布鲁金斯学会活动的预先准备讲话中未就经济或货币政策前景置评。",
+   "link": "https://flash.jin10.com/detail/20261117223537314800",
+   "published": "2026-11-17T14:35:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：当市场压力来袭时，可能几乎没有时间来决定依据什么原则运作，或如何传达这些原则。",
+   "link": "https://flash.jin10.com/detail/20261117223553547800",
+   "published": "2026-11-17T14:35:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：当国债市场失灵可能波及经济，且美联储的行动能够解决该问题时，应考虑进行干预。",
+   "link": "https://flash.jin10.com/detail/20261117223604954800",
+   "published": "2026-11-17T14:36:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：此类操作也应是临时性的，一旦市场金融稳定恢复，就应及时出售所持资产。",
+   "link": "https://flash.jin10.com/detail/20261117223611318800",
+   "published": "2026-11-17T14:36:11Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：支持增强常备回购便利工具，以提高其有效性。",
+   "link": "https://flash.jin10.com/detail/20261117223646474800",
+   "published": "2026-11-17T14:36:46Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：应假定这些行动是临时且有针对性的，最好从一开始就内置退出策略。",
+   "link": "https://flash.jin10.com/detail/20261117223653509800",
+   "published": "2026-11-17T14:36:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：美联储的沟通应明确区分政策行动与市场运作行动。",
+   "link": "https://flash.jin10.com/detail/20261117223659913800",
+   "published": "2026-11-17T14:36:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：在反映基本面的波动性市场中，流动性状况不佳并非美联储能够或应当试图解决的问题。",
+   "link": "https://flash.jin10.com/detail/20261117223809421800",
+   "published": "2026-11-17T14:38:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：自昨日以来，对货币政策收紧的看法没有变化。",
+   "link": "https://flash.jin10.com/detail/20261117225328230800",
+   "published": "2026-11-17T14:53:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：美国财政部和美联储在债券市场的目标不同。",
+   "link": "https://flash.jin10.com/detail/20261117225501606800",
+   "published": "2026-11-17T14:55:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：美联储在极端市场失序时更有能力采取行动。",
+   "link": "https://flash.jin10.com/detail/20261117225510372800",
+   "published": "2026-11-17T14:55:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：美联储与财政部可在市场压力方面进行协调，同时美联储保持其货币政策独立性。",
+   "link": "https://flash.jin10.com/detail/20261117225557491800",
+   "published": "2026-11-17T14:55:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：要求银行每天使用常备回购便利（SRP）满足准备金需求，有助于消除银行使用该工具的顾虑。",
+   "link": "https://flash.jin10.com/detail/20261117230216168800",
+   "published": "2026-11-17T15:02:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：在紧缩周期中更难进行干预。",
+   "link": "https://flash.jin10.com/detail/20261117230402470800",
+   "published": "2026-11-17T15:04:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：通胀正朝着错误的方向发展。",
+   "link": "https://flash.jin10.com/detail/20261117232418840800",
+   "published": "2026-11-17T15:24:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：增长预期与美联储政策推高了收益率。",
+   "link": "https://flash.jin10.com/detail/20261117232440716800",
+   "published": "2026-11-17T15:24:40Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储哈玛克：住房领域是经济中一个我能明确看到利率带来制约的领域，而在其他领域则未见此类影响。",
+   "link": "https://flash.jin10.com/detail/20261117232604376800",
+   "published": "2026-11-17T15:26:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "哈玛克",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：经济强劲且日益走强，但通胀并未朝着正确方向发展。",
+   "link": "https://flash.jin10.com/detail/20261118032453822800",
+   "published": "2026-11-17T19:24:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：美联储要让通胀回到2%仍有更多工作要做。",
+   "link": "https://flash.jin10.com/detail/20261118032458079800",
+   "published": "2026-11-17T19:24:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：通胀“顽固地处于高位”。",
+   "link": "https://flash.jin10.com/detail/20261118032534679800",
+   "published": "2026-11-17T19:25:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：正看到冲击蔓延至更广泛通胀数据的迹象。",
+   "link": "https://flash.jin10.com/detail/20261118032609842800",
+   "published": "2026-11-17T19:26:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：关税与能源冲击仍在影响通胀数据。",
+   "link": "https://flash.jin10.com/detail/20261118032619462800",
+   "published": "2026-11-17T19:26:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：经济具有韧性，劳动力市场稳健。",
+   "link": "https://flash.jin10.com/detail/20261118032659863800",
+   "published": "2026-11-17T19:26:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：我认为当前形势无需采取激进的政策行动。",
+   "link": "https://flash.jin10.com/detail/20261118032807927800",
+   "published": "2026-11-17T19:28:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：关税问题基本已经过去。",
+   "link": "https://flash.jin10.com/detail/20261118033129835800",
+   "published": "2026-11-17T19:31:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：金融环境目前仍相当有利于经济增长。",
+   "link": "https://flash.jin10.com/detail/20261118033237858800",
+   "published": "2026-11-17T19:32:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：金融市场运行非常良好。",
+   "link": "https://flash.jin10.com/detail/20261118033528005800",
+   "published": "2026-11-17T19:35:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：我们看到金融状况略有正常化。",
+   "link": "https://flash.jin10.com/detail/20261118033556342800",
+   "published": "2026-11-17T19:35:56Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：我们看到人工智能领域的融资正变得更加不透明和复杂。",
+   "link": "https://flash.jin10.com/detail/20261118033617795800",
+   "published": "2026-11-17T19:36:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：我目前尚未看到人工智能带来金融稳定风险。",
+   "link": "https://flash.jin10.com/detail/20261118033655897800",
+   "published": "2026-11-17T19:36:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：网络安全问题仍令人担忧。",
+   "link": "https://flash.jin10.com/detail/20261118034114094800",
+   "published": "2026-11-17T19:41:14Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：需求显然在与供给的赛跑中胜出。",
+   "link": "https://flash.jin10.com/detail/20261118034125213800",
+   "published": "2026-11-17T19:41:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：美联储将及时使通胀率回落至2%。",
+   "link": "https://flash.jin10.com/detail/20261118034452644800",
+   "published": "2026-11-17T19:44:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【美联储威廉姆斯：通胀仍顽固高企 但无需采取激进政策行动】金十数据11月18日讯，纽约联储主席威廉姆斯表示，随着美国经济走强、通胀走势恶化，美联储仍有更多工作要做，但他认为当前形势尚不需要采取激进的政策行动。威廉姆斯称，通胀仍然“顽固地处于高位”，并已看到关税和能源冲击向更广泛通",
+   "link": "https://flash.jin10.com/detail/20261118035001671800",
+   "published": "2026-11-17T19:50:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储威廉姆斯：美联储过去几个月的行动效果良好。",
+   "link": "https://flash.jin10.com/detail/20261118042759962800",
+   "published": "2026-11-17T20:27:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "威廉姆斯",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-17T14:18:18Z"
+ "fetched_at": "2026-11-17T21:45:26Z"
 }
