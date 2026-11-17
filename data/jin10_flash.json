@@ -1,5 +1,252 @@
 {
- "events": [],
- "speeches": [],
- "fetched_at": "2026-11-17T03:08:50Z"
+ "events": [
+  {
+   "date": "2026-11-17",
+   "time_bj": "20:30",
+   "title": "美联储穆萨莱姆发表讲话",
+   "speaker": "穆萨莱姆",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-17",
+   "time_bj": "22:10",
+   "title": "美联储理事沃勒发表讲话",
+   "speaker": "沃勒",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-17",
+   "time_bj": "22:30",
+   "title": "美联储哈玛克发表讲话",
+   "speaker": "哈玛克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-18",
+   "time_bj": "03:25",
+   "title": "美联储威廉姆斯发表讲话",
+   "speaker": "威廉姆斯",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  }
+ ],
+ "speeches": [
+  {
+   "title": "美联储穆萨莱姆：春季前可能需要“数次”加息。",
+   "link": "https://flash.jin10.com/detail/20261117203124156800",
+   "published": "2026-11-17T12:31:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：劳动力市场稳定且平衡，接近充分就业。",
+   "link": "https://flash.jin10.com/detail/20261117203137106800",
+   "published": "2026-11-17T12:31:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：若公众质疑美联储的决心，债券收益率将上升。",
+   "link": "https://flash.jin10.com/detail/20261117203204517800",
+   "published": "2026-11-17T12:32:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "债务链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：认为通胀持续高企的风险显著。",
+   "link": "https://flash.jin10.com/detail/20261117203229592800",
+   "published": "2026-11-17T12:32:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：实际政策利率需要上升约1个百分点。",
+   "link": "https://flash.jin10.com/detail/20261117203239563800",
+   "published": "2026-11-17T12:32:39Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：货币政策和金融状况仍为利好因素。",
+   "link": "https://flash.jin10.com/detail/20261117203250514800",
+   "published": "2026-11-17T12:32:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：最可能的情景是，除非美联储加息，否则通胀将维持高位。",
+   "link": "https://flash.jin10.com/detail/20261117203410876800",
+   "published": "2026-11-17T12:34:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：尽早行动是缓解价格压力而不损害就业和增长的最佳方式。",
+   "link": "https://flash.jin10.com/detail/20261117203417971800",
+   "published": "2026-11-17T12:34:17Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：对高于趋势的GDP增长将继续保持乐观态度。",
+   "link": "https://flash.jin10.com/detail/20261117203450128800",
+   "published": "2026-11-17T12:34:50Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：人工智能正在提前拉动需求与投资。",
+   "link": "https://flash.jin10.com/detail/20261117211203376800",
+   "published": "2026-11-17T13:12:03Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储穆萨莱姆：货币政策必须立即作出反应。",
+   "link": "https://flash.jin10.com/detail/20261117211337996800",
+   "published": "2026-11-17T13:13:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "穆萨莱姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  }
+ ],
+ "fetched_at": "2026-11-17T14:18:18Z"
 }
