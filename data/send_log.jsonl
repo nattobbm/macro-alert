@@ -151,3 +151,4 @@
 {"ts": "2026-11-17T03:08:52Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 509, "head": "*【11\\-17】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-17T14:18:21Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 603, "head": "*【11\\-17】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-17T21:45:32Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:VIX期限结构转backwardation|not_fired->fired"], "muted": ["node:大盘单日大跌"], "chars": 653, "head": "*【11\\-17】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-11-18T02:35:59Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:SOFR持续高于IORB（准备金稀缺信号）|not_fired->fired"], "muted": [], "chars": 642, "head": "*【11\\-18】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
