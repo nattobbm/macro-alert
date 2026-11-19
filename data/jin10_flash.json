@@ -153,6 +153,83 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-11-20",
+   "time_bj": "01:30",
+   "title": "美联储古尔斯比发表讲话",
+   "speaker": "古尔斯比",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-20",
+   "time_bj": "03:15",
+   "title": "美联储理事巴尔发表讲话",
+   "speaker": "巴尔",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-20",
+   "time_bj": "05:00",
+   "title": "美联储巴尔金发表讲话",
+   "speaker": "巴尔金",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-20",
+   "time_bj": "07:30",
+   "title": "美联储保尔森发表讲话",
+   "speaker": "保尔森",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-20",
+   "time_bj": "16:15",
+   "title": "欧洲央行行长拉加德发表讲话",
+   "speaker": "拉加德",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-20",
+   "time_bj": "21:25",
+   "title": "美联储理事沃勒发表讲话",
+   "speaker": "沃勒",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-21",
+   "time_bj": "01:15",
+   "title": "美联储理事丽莎·库克发表讲话",
+   "speaker": "丽莎·库克",
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
   }
  ],
  "speeches": [
@@ -2021,7 +2098,579 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "美联储副主席杰斐逊：人工智能建设是一项同时影响需求和供给的冲击；当前压力在需求端，未来可能带来生产率提升。",
+   "link": "https://flash.jin10.com/detail/20261119222529880800",
+   "published": "2026-11-19T14:25:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "杰斐逊",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储副主席杰斐逊：人工智能建设正在对通胀构成上行压力。",
+   "link": "https://flash.jin10.com/detail/20261119222534404800",
+   "published": "2026-11-19T14:25:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "杰斐逊",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储副主席杰斐逊：能源成本冲击对央行构成挑战，使央行在通胀与就业风险之间面临权衡。",
+   "link": "https://flash.jin10.com/detail/20261119222551901800",
+   "published": "2026-11-19T14:25:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "杰斐逊",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储副主席杰斐逊：人工智能可能通过岗位替代给部分家庭带来“重大挑战”，但也可能创造新的就业机会。",
+   "link": "https://flash.jin10.com/detail/20261119222604815800",
+   "published": "2026-11-19T14:26:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "杰斐逊",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储副主席杰斐逊：对调整通胀目标不感兴趣。",
+   "link": "https://flash.jin10.com/detail/20261119234957034800",
+   "published": "2026-11-19T15:49:57Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "杰斐逊",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：就业市场稳定，但通胀“远高于”美联储2%的目标。",
+   "link": "https://flash.jin10.com/detail/20261120014055389800",
+   "published": "2026-11-19T17:40:55Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "美联储古尔斯比：消费者需求一直非常强劲且稳固。",
+   "link": "https://flash.jin10.com/detail/20261120014141641800",
+   "published": "2026-11-19T17:41:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "经济扛得住加息——这是给紧缩开绿灯",
+   "meaning_lean": "鹰",
+   "meaning_id": "resilient_consumer"
+  },
+  {
+   "title": "美联储古尔斯比：担心关税对通胀的影响比预期更为持久。",
+   "link": "https://flash.jin10.com/detail/20261120015159634800",
+   "published": "2026-11-19T17:51:59Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：人工智能似乎有望提振生产率，但美联储的本职工作是判断当前经济是否过热。",
+   "link": "https://flash.jin10.com/detail/20261120015500474800",
+   "published": "2026-11-19T17:55:00Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：AI公司炒作越热，通过需求和投资被提前拉入当前活动的需求就越多。",
+   "link": "https://flash.jin10.com/detail/20261120015510366800",
+   "published": "2026-11-19T17:55:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：目前美联储的任务是防止人工智能热潮导致经济过热。",
+   "link": "https://flash.jin10.com/detail/20261120015601598800",
+   "published": "2026-11-19T17:56:01Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：当前就业市场稳定；美联储的失误在于通胀问题。",
+   "link": "https://flash.jin10.com/detail/20261120015723266800",
+   "published": "2026-11-19T17:57:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：目前未看到滞胀迹象，就业市场保持稳定。",
+   "link": "https://flash.jin10.com/detail/20261120015804569800",
+   "published": "2026-11-19T17:58:04Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：移民政策的变化意味着，美联储应减少对月度就业数据的依赖，不应将其视为判断商业周期的信号。",
+   "link": "https://flash.jin10.com/detail/20261120020135205800",
+   "published": "2026-11-19T18:01:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：如果关税持续存在，美联储无法对其视而不见。",
+   "link": "https://flash.jin10.com/detail/20261120020312381800",
+   "published": "2026-11-19T18:03:12Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "国家博弈"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：美联储仍在寻找证据，以确认人工智能驱动的生产率提升正开始向科技行业以外扩散。",
+   "link": "https://flash.jin10.com/detail/20261120021041447800",
+   "published": "2026-11-19T18:10:41Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储古尔斯比：除非人工智能能够证明其可以提高科技行业以外其他领域的生产率，否则AI热潮可能最终只是“昙花一现”。",
+   "link": "https://flash.jin10.com/detail/20261120021131281800",
+   "published": "2026-11-19T18:11:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "古尔斯比",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "消息人士称，蒙特利尔银行正从瑞穗银行挖角资深管道交易撮合人阿里·阿克巴尔，由其负责该行的美国能源投资银行业务，同时还有其他瑞穗银行银行家一并加盟。",
+   "link": "https://flash.jin10.com/detail/20261120024736731800",
+   "published": "2026-11-19T18:47:36Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：人工智能有潜力扩大金融服务的可及性。",
+   "link": "https://flash.jin10.com/detail/20261120032225406800",
+   "published": "2026-11-19T19:22:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：人工智能必须遵守金融行业监管规定。",
+   "link": "https://flash.jin10.com/detail/20261120032405125800",
+   "published": "2026-11-19T19:24:05Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：人工智能可能带来银行挤兑加速的风险。",
+   "link": "https://flash.jin10.com/detail/20261120032635222800",
+   "published": "2026-11-19T19:26:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：已公开表达对银行监管问题的分歧。",
+   "link": "https://flash.jin10.com/detail/20261120033324011800",
+   "published": "2026-11-19T19:33:24Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：更关注与银行监管相关的长期问题。",
+   "link": "https://flash.jin10.com/detail/20261120033325327800",
+   "published": "2026-11-19T19:33:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：担心监管路径可能使金融风险更难被理解。",
+   "link": "https://flash.jin10.com/detail/20261120033425139800",
+   "published": "2026-11-19T19:34:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：美联储并未试图将经济中的投资设定在某一水平。",
+   "link": "https://flash.jin10.com/detail/20261120033716085800",
+   "published": "2026-11-19T19:37:16Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：金融环境相当宽松，这有助于推动经济发展。",
+   "link": "https://flash.jin10.com/detail/20261120033746190800",
+   "published": "2026-11-19T19:37:46Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 1,
+    "lean": "鸽"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：人工智能热潮是风险偏好升温的一部分。",
+   "link": "https://flash.jin10.com/detail/20261120033810963800",
+   "published": "2026-11-19T19:38:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链",
+    "AI链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：通胀一直过高。",
+   "link": "https://flash.jin10.com/detail/20261120033831041800",
+   "published": "2026-11-19T19:38:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "巴尔",
+   "meaning": "不会松，先把\"降息\"想法掐掉",
+   "meaning_lean": "鹰",
+   "meaning_id": "inflation_too_high"
+  },
+  {
+   "title": "美联储理事巴尔：在风险偏好上升的环境中放松监管可能会引发问题。",
+   "link": "https://flash.jin10.com/detail/20261120033835371800",
+   "published": "2026-11-19T19:38:35Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：我们将需要进一步调整货币政策。",
+   "link": "https://flash.jin10.com/detail/20261120033851785800",
+   "published": "2026-11-19T19:38:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "美联储理事巴尔：库克是一位出色的美联储理事。",
+   "link": "https://flash.jin10.com/detail/20261120034558336800",
+   "published": "2026-11-19T19:45:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "巴尔",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-19T14:19:19Z"
+ "fetched_at": "2026-11-19T21:28:06Z"
 }

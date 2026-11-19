@@ -156,3 +156,4 @@
 {"ts": "2026-11-18T21:23:36Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:三大海外持有人同时减持|skipped->fired", "rule:VIX期限结构转backwardation|not_fired->fired"], "muted": [], "chars": 561, "head": "*【11\\-18】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-19T02:00:23Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 571, "head": "*【11\\-19】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-19T14:19:26Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:油价跨出80-90美元区间|fired_muted->fired"], "muted": [], "chars": 571, "head": "*【11\\-19】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-11-19T21:28:19Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:VIX期限结构转backwardation|not_fired->fired", "rule:SPX单日大幅下跌|not_fired->fired", "node:大盘单日大跌|quiet->crossed"], "muted": [], "chars": 619, "head": "*【11\\-19】大盘单日大跌越线。*"}
