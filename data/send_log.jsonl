@@ -160,3 +160,4 @@
 {"ts": "2026-11-20T01:00:03Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:FIMA回购便利被实际动用|not_fired->fired", "node:外国央行借美元(FIMA)|quiet->crossed"], "muted": [], "chars": 652, "head": "*【11\\-20】外国央行借美元\\(FIMA\\)越线。*"}
 {"ts": "2026-11-20T01:54:28Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 610, "head": "*【11\\-20】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-20T14:19:20Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:VIX进入应激区|not_fired->fired"], "muted": [], "chars": 554, "head": "*【11\\-20】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-11-20T21:03:33Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["周五周报"], "muted": [], "chars": 525, "head": "*本周没有新越线。* 系统在跑，只是这周没事。"}
