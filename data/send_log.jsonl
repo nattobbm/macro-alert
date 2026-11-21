@@ -161,3 +161,4 @@
 {"ts": "2026-11-20T01:54:28Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 610, "head": "*【11\\-20】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-20T14:19:20Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:VIX进入应激区|not_fired->fired"], "muted": [], "chars": 554, "head": "*【11\\-20】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-20T21:03:33Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["周五周报"], "muted": [], "chars": 525, "head": "*本周没有新越线。* 系统在跑，只是这周没事。"}
+{"ts": "2026-11-21T01:44:25Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 498, "head": "*【11\\-21】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
