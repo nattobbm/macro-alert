@@ -165,3 +165,4 @@
 {"ts": "2026-11-23T14:19:34Z", "sent": false, "gate": "skip", "dry_run": true, "api_ok": null, "why": [], "muted": [], "chars": 410, "head": "*【11\\-23】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-24T00:48:03Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:VIX期限结构转backwardation|not_fired->fired"], "muted": ["node:油价出美方舒适区", "node:整体借钱环境", "node:大盘单日大跌", "node:油价出上界?", "node:30年利率回到高点?", "band:油价(布伦特)"], "chars": 700, "head": "*【11\\-24】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
 {"ts": "2026-11-24T04:58:12Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 494, "head": "*【11\\-24】今天没有新越线。剧本判据仍是「回到需求侧紧缩链」。*"}
+{"ts": "2026-11-24T14:09:44Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["node:油价出美方舒适区|near->crossed", "node:油价出上界?|near->crossed", "band:油价(布伦特)|near->breached_hi"], "muted": [], "chars": 619, "head": "*【11\\-24】油价出美方舒适区越线、油价出上界?越线、油涨破线。*"}
