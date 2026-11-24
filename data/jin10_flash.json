@@ -21,6 +21,28 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "speech"
+  },
+  {
+   "date": "2026-11-25",
+   "time_bj": "22:15",
+   "title": "英国英国央行行长贝利等官员出席听证会",
+   "speaker": "贝利等官员",
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-26",
+   "time_bj": "03:00",
+   "title": "美联储公布经济状况褐皮书",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
   }
  ],
  "speeches": [
@@ -536,7 +558,565 @@
    "meaning": "无固定套话",
    "meaning_lean": "中",
    "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：年底通胀率可能不会完全达到加拿大央行10月预测的约3.5%那么高。",
+   "link": "https://flash.jin10.com/detail/20261125012551516800",
+   "published": "2026-11-24T17:25:51Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：企业势必将更多成本转嫁给消费者，而石油冲击的这一第二轮效应将加剧通胀的持续性。",
+   "link": "https://flash.jin10.com/detail/20261125012609143800",
+   "published": "2026-11-24T17:26:09Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：经济表现出的韧性超出我们预期。",
+   "link": "https://flash.jin10.com/detail/20261125012619483800",
+   "published": "2026-11-24T17:26:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：CPI可能不会像此前预测的那样高企。",
+   "link": "https://flash.jin10.com/detail/20261125012631993800",
+   "published": "2026-11-24T17:26:31Z",
+   "source": "金十快讯",
+   "tags": [
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：历史证据和调查表明未来价格将上涨。",
+   "link": "https://flash.jin10.com/detail/20261125012648001800",
+   "published": "2026-11-24T17:26:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：自10月以来，油价和炼油利润率已有所回落。",
+   "link": "https://flash.jin10.com/detail/20261125012652660800",
+   "published": "2026-11-24T17:26:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：我们的2%目标适用于整体CPI通胀；核心指标是我们对整体CPI展望的输入，而非目标。",
+   "link": "https://flash.jin10.com/detail/20261125012702906800",
+   "published": "2026-11-24T17:27:02Z",
+   "source": "金十快讯",
+   "tags": [
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：疫情期间对CPI持续性的识别“太慢”。",
+   "link": "https://flash.jin10.com/detail/20261125012719785800",
+   "published": "2026-11-24T17:27:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：需要避免除燃料外更广泛商品价格持续上涨。",
+   "link": "https://flash.jin10.com/detail/20261125012723925800",
+   "published": "2026-11-24T17:27:23Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：新冠疫情表明，暂时性的供应冲击“可能会叠加”。",
+   "link": "https://flash.jin10.com/detail/20261125012729035800",
+   "published": "2026-11-24T17:27:29Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：在关注当前数据的同时，也要同样关注CPI的走向。",
+   "link": "https://flash.jin10.com/detail/20261125012733539800",
+   "published": "2026-11-24T17:27:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "数据"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：利率政策可以限制能源冲击的溢出效应。",
+   "link": "https://flash.jin10.com/detail/20261125012738071800",
+   "published": "2026-11-24T17:27:38Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "别国的事在影响我们，我们的决定不完全自主",
+   "meaning_lean": "中",
+   "meaning_id": "spillover"
+  },
+  {
+   "title": "掉期市场数据显示，在加拿大央行行长麦克勒姆发表言论后，加拿大央行12月加息的可能性已从65%升至80%。",
+   "link": "https://flash.jin10.com/detail/20261125013332115800",
+   "published": "2026-11-24T17:33:32Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "【加拿大央行行长：年底通胀或低于预期 但油价传导效应仍将持续】金十数据11月25日讯，加拿大央行行长麦克勒姆周二表示，受近期油价及炼油利润率回落影响，加拿大年底通胀可能低于此前预期，但高油价的后续传导效应仍将使未来数月通胀保持粘性。加拿大10月通胀率维持在3.1%，央行此前预计第",
+   "link": "https://flash.jin10.com/detail/20261125013430195800",
+   "published": "2026-11-24T17:34:30Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 2,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：我们当然关心就业。",
+   "link": "https://flash.jin10.com/detail/20261125021053711800",
+   "published": "2026-11-24T18:10:53Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：加息使企业在转嫁全部成本时三思而行。",
+   "link": "https://flash.jin10.com/detail/20261125021852749800",
+   "published": "2026-11-24T18:18:52Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：成本压力正在积聚，历史表明它们通常需要八到九个月才会在价格中显现。",
+   "link": "https://flash.jin10.com/detail/20261125021858775800",
+   "published": "2026-11-24T18:18:58Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：在利率问题上不存在无风险策略。",
+   "link": "https://flash.jin10.com/detail/20261125022025399800",
+   "published": "2026-11-24T18:20:25Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：经济不需要那么多支持。",
+   "link": "https://flash.jin10.com/detail/20261125022048281800",
+   "published": "2026-11-24T18:20:48Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：央行关注更高成本传导的速度有多快。",
+   "link": "https://flash.jin10.com/detail/20261125022210161800",
+   "published": "2026-11-24T18:22:10Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：我们预计第三季度表现稳健。",
+   "link": "https://flash.jin10.com/detail/20261125022213716800",
+   "published": "2026-11-24T18:22:13Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：加拿大央行传达的信息是：如果供给冲击是暂时的，那么选择忽略它仍然是合理的。",
+   "link": "https://flash.jin10.com/detail/20261125030328374800",
+   "published": "2026-11-24T19:03:28Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：如果通胀预期保持良好锚定，我们可能仍需要作出回应。",
+   "link": "https://flash.jin10.com/detail/20261125030518561800",
+   "published": "2026-11-24T19:05:18Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：不过那样的话，我们就不必做出那么多回应了。",
+   "link": "https://flash.jin10.com/detail/20261125030519431800",
+   "published": "2026-11-24T19:05:19Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：抵押贷款拖欠率现已恢复正常。",
+   "link": "https://flash.jin10.com/detail/20261125030649490800",
+   "published": "2026-11-24T19:06:49Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：整体抵押贷款拖欠水平并不算高。",
+   "link": "https://flash.jin10.com/detail/20261125030834290800",
+   "published": "2026-11-24T19:08:34Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：房地产市场无疑是疲软的，我们看不到它会引领复苏。",
+   "link": "https://flash.jin10.com/detail/20261125030846573800",
+   "published": "2026-11-24T19:08:46Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：油价已从10月水平回落。",
+   "link": "https://flash.jin10.com/detail/20261125031137729800",
+   "published": "2026-11-24T19:11:37Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：如果能源价格下降得更快，通胀也应随之回落，加息的必要性也会降低。",
+   "link": "https://flash.jin10.com/detail/20261125031533014800",
+   "published": "2026-11-24T19:15:33Z",
+   "source": "金十快讯",
+   "tags": [
+    "货币链"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：在通胀率问题上，我们对低于和高于目标同样重视。",
+   "link": "https://flash.jin10.com/detail/20261125031807924800",
+   "published": "2026-11-24T19:18:07Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 1,
+    "dove": 0,
+    "lean": "鹰"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
+  },
+  {
+   "title": "加拿大央行行长麦克勒姆：通胀预测没有上升是好的。",
+   "link": "https://flash.jin10.com/detail/20261125032121010800",
+   "published": "2026-11-24T19:21:21Z",
+   "source": "金十快讯",
+   "tags": [
+    "其他"
+   ],
+   "tone": {
+    "hawk": 0,
+    "dove": 0,
+    "lean": "中性"
+   },
+   "speaker": "麦克勒姆",
+   "meaning": "无固定套话",
+   "meaning_lean": "中",
+   "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-24T14:09:41Z"
+ "fetched_at": "2026-11-24T23:00:36Z"
 }
