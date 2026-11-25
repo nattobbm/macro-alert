@@ -43,6 +43,28 @@
    ],
    "src": "jin10:今日重点关注",
    "kind": "release"
+  },
+  {
+   "date": "2026-11-26",
+   "time_bj": "15:00",
+   "title": "商务部召开11月第4次例行新闻发布会",
+   "speaker": null,
+   "tags": [
+    "其他"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "speech"
+  },
+  {
+   "date": "2026-11-26",
+   "time_bj": "20:30",
+   "title": "欧洲央行公布10月货币政策会议纪要",
+   "speaker": null,
+   "tags": [
+    "货币链"
+   ],
+   "src": "jin10:今日重点关注",
+   "kind": "release"
   }
  ],
  "speeches": [
@@ -1118,5 +1140,5 @@
    "meaning_id": null
   }
  ],
- "fetched_at": "2026-11-25T14:14:31Z"
+ "fetched_at": "2026-11-25T22:29:34Z"
 }
