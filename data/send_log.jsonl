@@ -170,3 +170,4 @@
 {"ts": "2026-11-25T03:43:53Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": ["node:日债30年利率"], "chars": 655, "head": "*【11\\-25】今天没有新越线。*"}
 {"ts": "2026-11-25T14:14:36Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:VIX进入应激区|not_fired->fired"], "muted": [], "chars": 503, "head": "*【11\\-25】今天没有新越线。*"}
 {"ts": "2026-11-25T22:29:41Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 500, "head": "*【11\\-25】今天没有新越线。*"}
+{"ts": "2026-11-26T03:05:09Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["rule:SOFR持续高于IORB（准备金稀缺信号）|not_fired->fired", "rule:黄金突破关键位|skipped->fired"], "muted": ["node:日债10年利率"], "chars": 411, "head": "*【11\\-26】今天没有新越线。*"}
