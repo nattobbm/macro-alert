@@ -176,3 +176,4 @@
 {"ts": "2026-11-27T03:17:37Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["node:油价出美方舒适区|near->crossed", "node:油价出上界?|near->crossed", "band:油价(布伦特)|in_band->breached_hi"], "muted": [], "chars": 594, "head": "*【11\\-27】油价出美方舒适区越线、油价出上界?越线、油涨破线。*"}
 {"ts": "2026-11-27T14:21:21Z", "sent": false, "gate": "send", "dry_run": true, "api_ok": false, "why": ["rule:SRF常备回购被动用|not_fired->fired", "node:常备回购工具SRF有人用吗|quiet->crossed"], "muted": [], "chars": 492, "head": "*【11\\-27】常备回购工具SRF有人用吗越线。*"}
 {"ts": "2026-11-27T21:56:35Z", "sent": true, "gate": "send", "dry_run": false, "api_ok": true, "why": ["周五周报"], "muted": [], "chars": 421, "head": "*本周没有新越线。* 系统在跑，只是这周没事。"}
+{"ts": "2026-11-28T02:57:22Z", "sent": false, "gate": "skip", "dry_run": false, "api_ok": null, "why": [], "muted": [], "chars": 464, "head": "*【11\\-28】今天没有新越线。*"}
